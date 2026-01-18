@@ -1,7 +1,8 @@
 import fs from "fs";
 import path from "path";
 import { load } from "cheerio";
-import type { CheerioAPI, Element } from "cheerio";
+import type { CheerioAPI } from "cheerio";
+import type { AnyNode } from "domhandler";
 import type { DataFile, Game, TeamRecord } from "../src/lib/types";
 
 const STANDINGS_URL = "https://nm1.ffbb.com/classement";
@@ -110,7 +111,7 @@ function parseStandings(html: string) {
   return { teams, nameToId };
 }
 
-function extractTeamData($: CheerioAPI, el: Element) {
+function extractTeamData($: CheerioAPI, el: AnyNode) {
   const node = $(el);
   const imgSrc = node.find("img").attr("src") ?? "";
   const logoIdMatch = imgSrc.match(/getTeamLogo\\?id=(\\d+)/);
@@ -154,9 +155,13 @@ function parseSchedulePage(
     if (teamEls.length < 2) {
       return;
     }
-
-    const homeData = extractTeamData($, teamEls.get(0));
-    const awayData = extractTeamData($, teamEls.get(1));
+    const homeEl = teamEls.get(0);
+    const awayEl = teamEls.get(1);
+    if (!homeEl || !awayEl) {
+      return;
+    }
+    const homeData = extractTeamData($, homeEl);
+    const awayData = extractTeamData($, awayEl);
     let homeId =
       homeData.logoId ??
       pageNameToId.get(normalizeName(homeData.name)) ??
