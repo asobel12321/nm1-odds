@@ -14,16 +14,18 @@ function dateValue(date: string): number {
   return Number.isNaN(parsed) ? Number.POSITIVE_INFINITY : parsed;
 }
 
+function dateKey(date: string): string {
+  return date.split(" ")[0] ?? date;
+}
+
 function nextRoundGames(games: Game[]): { roundDate: string; games: Game[] } | null {
   if (games.length === 0) {
     return null;
   }
   const sorted = [...games].sort((a, b) => dateValue(a.date) - dateValue(b.date));
   const target = sorted[0];
-  const targetValue = dateValue(target.date);
-  const round = sorted.filter(
-    (game) => dateValue(game.date) === targetValue || game.date === target.date,
-  );
+  const targetKey = dateKey(target.date);
+  const round = sorted.filter((game) => dateKey(game.date) === targetKey);
   return { roundDate: target.date, games: round };
 }
 
