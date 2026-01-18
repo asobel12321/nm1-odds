@@ -1,0 +1,1744 @@
+{
+  "season": "2025-2026",
+  "updated": "2026-01-18",
+  "teams": [
+    {
+      "id": "13367",
+      "name": "Mulhouse",
+      "abbr": "MUL",
+      "wins": 15,
+      "losses": 5
+    },
+    {
+      "id": "26",
+      "name": "Le Havre",
+      "abbr": "STB",
+      "wins": 16,
+      "losses": 3
+    },
+    {
+      "id": "278",
+      "name": "Fos Provence Basket",
+      "abbr": "FOS",
+      "wins": 14,
+      "losses": 5
+    },
+    {
+      "id": "1851",
+      "name": "BC Orchies",
+      "abbr": "ORC",
+      "wins": 13,
+      "losses": 6
+    },
+    {
+      "id": "14914",
+      "name": "Loon Plage",
+      "abbr": "LOO",
+      "wins": 12,
+      "losses": 7
+    },
+    {
+      "id": "1704",
+      "name": "SOM Boulogne",
+      "abbr": "SOMB",
+      "wins": 11,
+      "losses": 8
+    },
+    {
+      "id": "253",
+      "name": "Berck Rang du Fliers",
+      "abbr": "BRK",
+      "wins": 11,
+      "losses": 8
+    },
+    {
+      "id": "285",
+      "name": "Saint-Vallier",
+      "abbr": "SVT",
+      "wins": 10,
+      "losses": 9
+    },
+    {
+      "id": "14469",
+      "name": "LYONSO",
+      "abbr": "LYO",
+      "wins": 9,
+      "losses": 10
+    },
+    {
+      "id": "1703",
+      "name": "SCABB",
+      "abbr": "SCABB",
+      "wins": 7,
+      "losses": 12
+    },
+    {
+      "id": "15339",
+      "name": "Metz BC",
+      "abbr": "MET",
+      "wins": 5,
+      "losses": 15
+    },
+    {
+      "id": "361",
+      "name": "Charleville-Méz.",
+      "abbr": "CHA",
+      "wins": 4,
+      "losses": 15
+    },
+    {
+      "id": "15487",
+      "name": "Pays Salonais Basket 13",
+      "abbr": "PSB",
+      "wins": 4,
+      "losses": 15
+    },
+    {
+      "id": "13303",
+      "name": "Besançon",
+      "abbr": "BES",
+      "wins": 3,
+      "losses": 16
+    }
+  ],
+  "games": [
+    {
+      "id": "832720",
+      "date": "2025-09-19 20:00",
+      "home": "1704",
+      "away": "15487",
+      "played": true,
+      "homeScore": 83,
+      "awayScore": 73
+    },
+    {
+      "id": "832734",
+      "date": "2025-09-19 20:00",
+      "home": "278",
+      "away": "15339",
+      "played": true,
+      "homeScore": 68,
+      "awayScore": 55
+    },
+    {
+      "id": "832785",
+      "date": "2025-09-19 20:00",
+      "home": "26",
+      "away": "13303",
+      "played": true,
+      "homeScore": 72,
+      "awayScore": 70
+    },
+    {
+      "id": "832811",
+      "date": "2025-09-19 20:00",
+      "home": "14914",
+      "away": "14469",
+      "played": true,
+      "homeScore": 63,
+      "awayScore": 76
+    },
+    {
+      "id": "832878",
+      "date": "2025-09-19 20:00",
+      "home": "13367",
+      "away": "285",
+      "played": true,
+      "homeScore": 84,
+      "awayScore": 79
+    },
+    {
+      "id": "832889",
+      "date": "2025-09-19 20:00",
+      "home": "1851",
+      "away": "361",
+      "played": true,
+      "homeScore": 84,
+      "awayScore": 71
+    },
+    {
+      "id": "832967",
+      "date": "2025-11-18 20:00",
+      "home": "1703",
+      "away": "253",
+      "played": true,
+      "homeScore": 75,
+      "awayScore": 78
+    },
+    {
+      "id": "832694",
+      "date": "2025-09-26 20:00",
+      "home": "253",
+      "away": "13367",
+      "played": true,
+      "homeScore": 83,
+      "awayScore": 75
+    },
+    {
+      "id": "832707",
+      "date": "2025-09-26 20:00",
+      "home": "13303",
+      "away": "1703",
+      "played": true,
+      "homeScore": 72,
+      "awayScore": 78
+    },
+    {
+      "id": "832746",
+      "date": "2025-09-26 20:00",
+      "home": "361",
+      "away": "1704",
+      "played": true,
+      "homeScore": 74,
+      "awayScore": 77
+    },
+    {
+      "id": "832837",
+      "date": "2025-09-26 20:00",
+      "home": "14469",
+      "away": "278",
+      "played": true,
+      "homeScore": 82,
+      "awayScore": 77
+    },
+    {
+      "id": "832863",
+      "date": "2025-09-26 20:00",
+      "home": "15339",
+      "away": "26",
+      "played": true,
+      "homeScore": 62,
+      "awayScore": 76
+    },
+    {
+      "id": "832902",
+      "date": "2025-09-26 20:30",
+      "home": "15487",
+      "away": "1851",
+      "played": true,
+      "homeScore": 69,
+      "awayScore": 77
+    },
+    {
+      "id": "832955",
+      "date": "2025-09-26 20:30",
+      "home": "285",
+      "away": "14914",
+      "played": true,
+      "homeScore": 93,
+      "awayScore": 88
+    },
+    {
+      "id": "832721",
+      "date": "2025-09-30 20:00",
+      "home": "1704",
+      "away": "1851",
+      "played": true,
+      "homeScore": 80,
+      "awayScore": 81
+    },
+    {
+      "id": "832735",
+      "date": "2025-09-30 20:00",
+      "home": "278",
+      "away": "15487",
+      "played": true,
+      "homeScore": 87,
+      "awayScore": 65
+    },
+    {
+      "id": "832747",
+      "date": "2025-09-30 20:00",
+      "home": "361",
+      "away": "1703",
+      "played": true,
+      "homeScore": 57,
+      "awayScore": 75
+    },
+    {
+      "id": "832786",
+      "date": "2025-09-30 20:00",
+      "home": "26",
+      "away": "285",
+      "played": true,
+      "homeScore": 94,
+      "awayScore": 82
+    },
+    {
+      "id": "832812",
+      "date": "2025-09-30 20:00",
+      "home": "14914",
+      "away": "253",
+      "played": true,
+      "homeScore": 81,
+      "awayScore": 78
+    },
+    {
+      "id": "832864",
+      "date": "2025-09-30 20:00",
+      "home": "15339",
+      "away": "14469",
+      "played": true,
+      "homeScore": 61,
+      "awayScore": 81
+    },
+    {
+      "id": "832879",
+      "date": "2025-09-30 20:00",
+      "home": "13367",
+      "away": "13303",
+      "played": true,
+      "homeScore": 63,
+      "awayScore": 58
+    },
+    {
+      "id": "832748",
+      "date": "2025-10-03 20:00",
+      "home": "361",
+      "away": "13367",
+      "played": true,
+      "homeScore": 60,
+      "awayScore": 78
+    },
+    {
+      "id": "832838",
+      "date": "2025-10-03 20:00",
+      "home": "14469",
+      "away": "26",
+      "played": true,
+      "homeScore": 54,
+      "awayScore": 74
+    },
+    {
+      "id": "832890",
+      "date": "2025-10-03 20:00",
+      "home": "1851",
+      "away": "1703",
+      "played": true,
+      "homeScore": 94,
+      "awayScore": 71
+    },
+    {
+      "id": "832903",
+      "date": "2025-10-03 20:30",
+      "home": "15487",
+      "away": "14914",
+      "played": true,
+      "homeScore": 75,
+      "awayScore": 87
+    },
+    {
+      "id": "832695",
+      "date": "2025-10-04 20:00",
+      "home": "253",
+      "away": "15339",
+      "played": true,
+      "homeScore": 94,
+      "awayScore": 64
+    },
+    {
+      "id": "832708",
+      "date": "2025-10-04 20:00",
+      "home": "13303",
+      "away": "1704",
+      "played": true,
+      "homeScore": 74,
+      "awayScore": 83
+    },
+    {
+      "id": "832956",
+      "date": "2025-10-04 20:00",
+      "home": "285",
+      "away": "278",
+      "played": true,
+      "homeScore": 71,
+      "awayScore": 73
+    },
+    {
+      "id": "832736",
+      "date": "2025-10-10 20:00",
+      "home": "278",
+      "away": "253",
+      "played": true,
+      "homeScore": 82,
+      "awayScore": 69
+    },
+    {
+      "id": "832787",
+      "date": "2025-10-10 20:00",
+      "home": "26",
+      "away": "15487",
+      "played": true,
+      "homeScore": 101,
+      "awayScore": 66
+    },
+    {
+      "id": "832813",
+      "date": "2025-10-10 20:00",
+      "home": "14914",
+      "away": "361",
+      "played": true,
+      "homeScore": 90,
+      "awayScore": 63
+    },
+    {
+      "id": "832839",
+      "date": "2025-10-10 20:00",
+      "home": "14469",
+      "away": "13303",
+      "played": true,
+      "homeScore": 64,
+      "awayScore": 52
+    },
+    {
+      "id": "832865",
+      "date": "2025-10-10 20:00",
+      "home": "15339",
+      "away": "285",
+      "played": true,
+      "homeScore": 94,
+      "awayScore": 83
+    },
+    {
+      "id": "832968",
+      "date": "2025-10-11 20:00",
+      "home": "1703",
+      "away": "1704",
+      "played": true,
+      "homeScore": 77,
+      "awayScore": 73
+    },
+    {
+      "id": "832891",
+      "date": "2025-10-14 20:00",
+      "home": "1851",
+      "away": "13367",
+      "played": true,
+      "homeScore": 72,
+      "awayScore": 69
+    },
+    {
+      "id": "832737",
+      "date": "2025-10-21 20:00",
+      "home": "278",
+      "away": "13303",
+      "played": true,
+      "homeScore": 94,
+      "awayScore": 92
+    },
+    {
+      "id": "832788",
+      "date": "2025-10-21 20:00",
+      "home": "26",
+      "away": "1851",
+      "played": true,
+      "homeScore": 87,
+      "awayScore": 73
+    },
+    {
+      "id": "832814",
+      "date": "2025-10-21 20:00",
+      "home": "14914",
+      "away": "1704",
+      "played": true,
+      "homeScore": 62,
+      "awayScore": 71
+    },
+    {
+      "id": "832840",
+      "date": "2025-10-21 20:00",
+      "home": "14469",
+      "away": "253",
+      "played": true,
+      "homeScore": 64,
+      "awayScore": 70
+    },
+    {
+      "id": "832866",
+      "date": "2025-10-21 20:00",
+      "home": "15339",
+      "away": "361",
+      "played": true,
+      "homeScore": 80,
+      "awayScore": 83
+    },
+    {
+      "id": "832958",
+      "date": "2025-10-21 20:00",
+      "home": "285",
+      "away": "15487",
+      "played": true,
+      "homeScore": 78,
+      "awayScore": 69
+    },
+    {
+      "id": "832876",
+      "date": "2025-10-22 20:00",
+      "home": "13367",
+      "away": "1703",
+      "played": true,
+      "homeScore": 84,
+      "awayScore": 59
+    },
+    {
+      "id": "832696",
+      "date": "2025-10-17 20:00",
+      "home": "253",
+      "away": "26",
+      "played": true,
+      "homeScore": 80,
+      "awayScore": 87
+    },
+    {
+      "id": "832709",
+      "date": "2025-10-17 20:00",
+      "home": "13303",
+      "away": "14914",
+      "played": true,
+      "homeScore": 71,
+      "awayScore": 75
+    },
+    {
+      "id": "832722",
+      "date": "2025-10-17 20:00",
+      "home": "1704",
+      "away": "13367",
+      "played": true,
+      "homeScore": 65,
+      "awayScore": 74
+    },
+    {
+      "id": "832749",
+      "date": "2025-10-17 20:00",
+      "home": "361",
+      "away": "278",
+      "played": true,
+      "homeScore": 84,
+      "awayScore": 89
+    },
+    {
+      "id": "832892",
+      "date": "2025-10-17 20:00",
+      "home": "1851",
+      "away": "15339",
+      "played": true,
+      "homeScore": 65,
+      "awayScore": 62
+    },
+    {
+      "id": "832904",
+      "date": "2025-10-17 20:30",
+      "home": "15487",
+      "away": "1703",
+      "played": true,
+      "homeScore": 65,
+      "awayScore": 64
+    },
+    {
+      "id": "832957",
+      "date": "2025-10-17 20:30",
+      "home": "285",
+      "away": "14469",
+      "played": true,
+      "homeScore": 80,
+      "awayScore": 59
+    },
+    {
+      "id": "832710",
+      "date": "2025-10-24 20:00",
+      "home": "13303",
+      "away": "15339",
+      "played": true,
+      "homeScore": 82,
+      "awayScore": 65
+    },
+    {
+      "id": "832723",
+      "date": "2025-10-24 20:00",
+      "home": "1704",
+      "away": "278",
+      "played": true,
+      "homeScore": 80,
+      "awayScore": 66
+    },
+    {
+      "id": "832750",
+      "date": "2025-10-24 20:00",
+      "home": "361",
+      "away": "26",
+      "played": true,
+      "homeScore": 82,
+      "awayScore": 94
+    },
+    {
+      "id": "832893",
+      "date": "2025-10-24 20:00",
+      "home": "1851",
+      "away": "14469",
+      "played": true,
+      "homeScore": 70,
+      "awayScore": 66
+    },
+    {
+      "id": "832905",
+      "date": "2025-10-24 20:30",
+      "home": "15487",
+      "away": "13367",
+      "played": true,
+      "homeScore": 62,
+      "awayScore": 71
+    },
+    {
+      "id": "832697",
+      "date": "2025-10-25 20:00",
+      "home": "253",
+      "away": "285",
+      "played": true,
+      "homeScore": 107,
+      "awayScore": 88
+    },
+    {
+      "id": "832969",
+      "date": "2025-10-25 20:00",
+      "home": "1703",
+      "away": "14914",
+      "played": true,
+      "homeScore": 55,
+      "awayScore": 84
+    },
+    {
+      "id": "832698",
+      "date": "2025-10-31 20:00",
+      "home": "253",
+      "away": "15487",
+      "played": true,
+      "homeScore": 80,
+      "awayScore": 75
+    },
+    {
+      "id": "832738",
+      "date": "2025-10-31 20:00",
+      "home": "278",
+      "away": "1851",
+      "played": true,
+      "homeScore": 94,
+      "awayScore": 77
+    },
+    {
+      "id": "832789",
+      "date": "2025-10-31 20:00",
+      "home": "26",
+      "away": "1703",
+      "played": true,
+      "homeScore": 96,
+      "awayScore": 83
+    },
+    {
+      "id": "832815",
+      "date": "2025-10-31 20:00",
+      "home": "14914",
+      "away": "13367",
+      "played": true,
+      "homeScore": 79,
+      "awayScore": 84
+    },
+    {
+      "id": "832841",
+      "date": "2025-10-31 20:00",
+      "home": "14469",
+      "away": "361",
+      "played": true,
+      "homeScore": 101,
+      "awayScore": 61
+    },
+    {
+      "id": "832867",
+      "date": "2025-10-31 20:00",
+      "home": "15339",
+      "away": "1704",
+      "played": true,
+      "homeScore": 62,
+      "awayScore": 68
+    },
+    {
+      "id": "832959",
+      "date": "2025-10-31 20:30",
+      "home": "285",
+      "away": "13303",
+      "played": true,
+      "homeScore": 79,
+      "awayScore": 66
+    },
+    {
+      "id": "832711",
+      "date": "2025-11-04 20:00",
+      "home": "13303",
+      "away": "253",
+      "played": true,
+      "homeScore": 68,
+      "awayScore": 91
+    },
+    {
+      "id": "832724",
+      "date": "2025-11-04 20:00",
+      "home": "1704",
+      "away": "26",
+      "played": true,
+      "homeScore": 74,
+      "awayScore": 75
+    },
+    {
+      "id": "832751",
+      "date": "2025-11-04 20:00",
+      "home": "361",
+      "away": "285",
+      "played": true,
+      "homeScore": 83,
+      "awayScore": 85
+    },
+    {
+      "id": "832880",
+      "date": "2025-11-04 20:00",
+      "home": "13367",
+      "away": "15339",
+      "played": true,
+      "homeScore": 96,
+      "awayScore": 90
+    },
+    {
+      "id": "832894",
+      "date": "2025-11-04 20:00",
+      "home": "1851",
+      "away": "14914",
+      "played": true,
+      "homeScore": 86,
+      "awayScore": 58
+    },
+    {
+      "id": "832970",
+      "date": "2025-11-04 20:00",
+      "home": "1703",
+      "away": "278",
+      "played": true,
+      "homeScore": 80,
+      "awayScore": 84
+    },
+    {
+      "id": "832906",
+      "date": "2025-11-04 20:30",
+      "home": "15487",
+      "away": "14469",
+      "played": true,
+      "homeScore": 74,
+      "awayScore": 72
+    },
+    {
+      "id": "832712",
+      "date": "2025-11-07 20:00",
+      "home": "13303",
+      "away": "15487",
+      "played": true,
+      "homeScore": 84,
+      "awayScore": 61
+    },
+    {
+      "id": "832739",
+      "date": "2025-11-07 20:00",
+      "home": "278",
+      "away": "13367",
+      "played": true,
+      "homeScore": 90,
+      "awayScore": 73
+    },
+    {
+      "id": "832842",
+      "date": "2025-11-07 20:00",
+      "home": "14469",
+      "away": "1704",
+      "played": true,
+      "homeScore": 53,
+      "awayScore": 70
+    },
+    {
+      "id": "832868",
+      "date": "2025-11-07 20:00",
+      "home": "15339",
+      "away": "1703",
+      "played": true,
+      "homeScore": 65,
+      "awayScore": 68
+    },
+    {
+      "id": "832790",
+      "date": "2025-11-07 20:30",
+      "home": "26",
+      "away": "14914",
+      "played": true,
+      "homeScore": 89,
+      "awayScore": 92
+    },
+    {
+      "id": "832699",
+      "date": "2025-11-08 20:00",
+      "home": "253",
+      "away": "361",
+      "played": true,
+      "homeScore": 100,
+      "awayScore": 73
+    },
+    {
+      "id": "832960",
+      "date": "2025-11-08 20:00",
+      "home": "285",
+      "away": "1851",
+      "played": true,
+      "homeScore": 84,
+      "awayScore": 75
+    },
+    {
+      "id": "832974",
+      "date": "2025-11-10 20:00",
+      "home": "1703",
+      "away": "1851",
+      "played": true,
+      "homeScore": 66,
+      "awayScore": 73
+    },
+    {
+      "id": "832727",
+      "date": "2025-12-19 20:00",
+      "home": "1704",
+      "away": "13303",
+      "played": true,
+      "homeScore": 70,
+      "awayScore": 60
+    },
+    {
+      "id": "832792",
+      "date": "2025-12-19 20:00",
+      "home": "26",
+      "away": "14469",
+      "played": true,
+      "homeScore": 98,
+      "awayScore": 64
+    },
+    {
+      "id": "832818",
+      "date": "2025-12-19 20:00",
+      "home": "14914",
+      "away": "15487",
+      "played": true,
+      "homeScore": 70,
+      "awayScore": 63
+    },
+    {
+      "id": "832871",
+      "date": "2025-12-19 20:00",
+      "home": "15339",
+      "away": "253",
+      "played": true,
+      "homeScore": 73,
+      "awayScore": 79
+    },
+    {
+      "id": "832883",
+      "date": "2025-12-19 20:00",
+      "home": "13367",
+      "away": "361",
+      "played": true,
+      "homeScore": 90,
+      "awayScore": 66
+    },
+    {
+      "id": "832733",
+      "date": "2025-12-20 20:00",
+      "home": "278",
+      "away": "285",
+      "played": true,
+      "homeScore": 111,
+      "awayScore": 98
+    },
+    {
+      "id": "832725",
+      "date": "2025-11-14 20:00",
+      "home": "1704",
+      "away": "285",
+      "played": true,
+      "homeScore": 93,
+      "awayScore": 74
+    },
+    {
+      "id": "832752",
+      "date": "2025-11-14 20:00",
+      "home": "361",
+      "away": "13303",
+      "played": true,
+      "homeScore": 82,
+      "awayScore": 81
+    },
+    {
+      "id": "832816",
+      "date": "2025-11-14 20:00",
+      "home": "14914",
+      "away": "278",
+      "played": true,
+      "homeScore": 78,
+      "awayScore": 87
+    },
+    {
+      "id": "832881",
+      "date": "2025-11-14 20:00",
+      "home": "13367",
+      "away": "26",
+      "played": true,
+      "homeScore": 73,
+      "awayScore": 66
+    },
+    {
+      "id": "832895",
+      "date": "2025-11-14 20:00",
+      "home": "1851",
+      "away": "253",
+      "played": true,
+      "homeScore": 82,
+      "awayScore": 86
+    },
+    {
+      "id": "832971",
+      "date": "2025-11-14 20:00",
+      "home": "1703",
+      "away": "14469",
+      "played": true,
+      "homeScore": 68,
+      "awayScore": 75
+    },
+    {
+      "id": "832907",
+      "date": "2025-11-14 20:30",
+      "home": "15487",
+      "away": "15339",
+      "played": true,
+      "homeScore": 70,
+      "awayScore": 72
+    },
+    {
+      "id": "832843",
+      "date": "2025-11-19 20:00",
+      "home": "14469",
+      "away": "13367",
+      "played": true,
+      "homeScore": 71,
+      "awayScore": 84
+    },
+    {
+      "id": "832713",
+      "date": "2025-11-21 20:00",
+      "home": "13303",
+      "away": "1851",
+      "played": true,
+      "homeScore": 78,
+      "awayScore": 92
+    },
+    {
+      "id": "832740",
+      "date": "2025-11-21 20:00",
+      "home": "278",
+      "away": "26",
+      "played": true,
+      "homeScore": 74,
+      "awayScore": 70
+    },
+    {
+      "id": "832869",
+      "date": "2025-11-21 20:00",
+      "home": "15339",
+      "away": "14914",
+      "played": true,
+      "homeScore": 82,
+      "awayScore": 87
+    },
+    {
+      "id": "832908",
+      "date": "2025-11-21 20:30",
+      "home": "15487",
+      "away": "361",
+      "played": true,
+      "homeScore": 83,
+      "awayScore": 91
+    },
+    {
+      "id": "832961",
+      "date": "2025-11-21 20:30",
+      "home": "285",
+      "away": "1703",
+      "played": true,
+      "homeScore": 86,
+      "awayScore": 81
+    },
+    {
+      "id": "832700",
+      "date": "2025-11-22 20:00",
+      "home": "253",
+      "away": "1704",
+      "played": true,
+      "homeScore": 76,
+      "awayScore": 91
+    },
+    {
+      "id": "832714",
+      "date": "2025-12-05 20:00",
+      "home": "13303",
+      "away": "26",
+      "played": true,
+      "homeScore": 56,
+      "awayScore": 88
+    },
+    {
+      "id": "832753",
+      "date": "2025-12-05 20:00",
+      "home": "361",
+      "away": "1851",
+      "played": true,
+      "homeScore": 76,
+      "awayScore": 90
+    },
+    {
+      "id": "832844",
+      "date": "2025-12-05 20:00",
+      "home": "14469",
+      "away": "14914",
+      "played": true,
+      "homeScore": 73,
+      "awayScore": 60
+    },
+    {
+      "id": "832870",
+      "date": "2025-12-05 20:00",
+      "home": "15339",
+      "away": "278",
+      "played": true,
+      "homeScore": 87,
+      "awayScore": 79
+    },
+    {
+      "id": "832909",
+      "date": "2025-12-05 20:30",
+      "home": "15487",
+      "away": "1704",
+      "played": true,
+      "homeScore": 104,
+      "awayScore": 88
+    },
+    {
+      "id": "832701",
+      "date": "2025-12-06 20:00",
+      "home": "253",
+      "away": "1703",
+      "played": true,
+      "homeScore": 84,
+      "awayScore": 84
+    },
+    {
+      "id": "832954",
+      "date": "2025-12-06 20:00",
+      "home": "285",
+      "away": "13367",
+      "played": true,
+      "homeScore": 96,
+      "awayScore": 70
+    },
+    {
+      "id": "832896",
+      "date": "2025-12-09 20:00",
+      "home": "1851",
+      "away": "15487",
+      "played": true,
+      "homeScore": 92,
+      "awayScore": 88
+    },
+    {
+      "id": "832726",
+      "date": "2025-12-12 20:00",
+      "home": "1704",
+      "away": "361",
+      "played": true,
+      "homeScore": 73,
+      "awayScore": 75
+    },
+    {
+      "id": "832741",
+      "date": "2025-12-12 20:00",
+      "home": "278",
+      "away": "14469",
+      "played": true,
+      "homeScore": 73,
+      "awayScore": 80
+    },
+    {
+      "id": "832791",
+      "date": "2025-12-12 20:00",
+      "home": "26",
+      "away": "15339",
+      "played": true,
+      "homeScore": 79,
+      "awayScore": 65
+    },
+    {
+      "id": "832817",
+      "date": "2025-12-12 20:00",
+      "home": "14914",
+      "away": "285",
+      "played": true,
+      "homeScore": 101,
+      "awayScore": 59
+    },
+    {
+      "id": "832882",
+      "date": "2025-12-12 20:00",
+      "home": "13367",
+      "away": "253",
+      "played": true,
+      "homeScore": 85,
+      "awayScore": 73
+    },
+    {
+      "id": "832972",
+      "date": "2025-12-12 20:00",
+      "home": "1703",
+      "away": "13303",
+      "played": true,
+      "homeScore": 71,
+      "awayScore": 66
+    },
+    {
+      "id": "832702",
+      "date": "2025-12-16 20:00",
+      "home": "253",
+      "away": "14914",
+      "played": true,
+      "homeScore": 72,
+      "awayScore": 89
+    },
+    {
+      "id": "832715",
+      "date": "2025-12-16 20:00",
+      "home": "13303",
+      "away": "13367",
+      "played": true,
+      "homeScore": 84,
+      "awayScore": 78
+    },
+    {
+      "id": "832845",
+      "date": "2025-12-16 20:00",
+      "home": "14469",
+      "away": "15339",
+      "played": true,
+      "homeScore": 77,
+      "awayScore": 86
+    },
+    {
+      "id": "832897",
+      "date": "2025-12-16 20:00",
+      "home": "1851",
+      "away": "1704",
+      "played": true,
+      "homeScore": 92,
+      "awayScore": 84
+    },
+    {
+      "id": "832962",
+      "date": "2025-12-16 20:00",
+      "home": "285",
+      "away": "26",
+      "played": true,
+      "homeScore": 80,
+      "awayScore": 87
+    },
+    {
+      "id": "832973",
+      "date": "2025-12-16 20:00",
+      "home": "1703",
+      "away": "361",
+      "played": true,
+      "homeScore": 87,
+      "awayScore": 85
+    },
+    {
+      "id": "832910",
+      "date": "2025-12-16 20:30",
+      "home": "15487",
+      "away": "278",
+      "played": true,
+      "homeScore": 91,
+      "awayScore": 85
+    },
+    {
+      "id": "832877",
+      "date": "2025-12-23 20:00",
+      "home": "13367",
+      "away": "1851",
+      "played": true,
+      "homeScore": 78,
+      "awayScore": 68
+    },
+    {
+      "id": "832716",
+      "date": "2026-01-09 20:00",
+      "home": "13303",
+      "away": "14469",
+      "played": true,
+      "homeScore": 79,
+      "awayScore": 85
+    },
+    {
+      "id": "832728",
+      "date": "2026-01-09 20:00",
+      "home": "1704",
+      "away": "1703",
+      "played": true,
+      "homeScore": 71,
+      "awayScore": 54
+    },
+    {
+      "id": "832754",
+      "date": "2026-01-09 20:00",
+      "home": "361",
+      "away": "14914",
+      "played": true,
+      "homeScore": 88,
+      "awayScore": 92
+    },
+    {
+      "id": "832911",
+      "date": "2026-01-09 20:30",
+      "home": "15487",
+      "away": "26",
+      "played": true,
+      "homeScore": 83,
+      "awayScore": 95
+    },
+    {
+      "id": "832963",
+      "date": "2026-01-09 20:30",
+      "home": "285",
+      "away": "15339",
+      "played": true,
+      "homeScore": 101,
+      "awayScore": 70
+    },
+    {
+      "id": "832703",
+      "date": "2026-01-10 20:00",
+      "home": "253",
+      "away": "278",
+      "played": true,
+      "homeScore": 79,
+      "awayScore": 85
+    },
+    {
+      "id": "832874",
+      "date": "2026-01-13 20:00",
+      "home": "15339",
+      "away": "13367",
+      "played": true,
+      "homeScore": 65,
+      "awayScore": 94
+    },
+    {
+      "id": "2026-02-03 20:00-253-13303",
+      "date": "2026-02-03 20:00",
+      "home": "253",
+      "away": "13303",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-03 20:00-278-1703",
+      "date": "2026-02-03 20:00",
+      "home": "278",
+      "away": "1703",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-03 20:00-26-1704",
+      "date": "2026-02-03 20:00",
+      "home": "26",
+      "away": "1704",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-03 20:00-14914-1851",
+      "date": "2026-02-03 20:00",
+      "home": "14914",
+      "away": "1851",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-03 20:00-14469-15487",
+      "date": "2026-02-03 20:00",
+      "home": "14469",
+      "away": "15487",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-03 20:00-285-361",
+      "date": "2026-02-03 20:00",
+      "home": "285",
+      "away": "361",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "832975",
+      "date": "2026-01-15 20:00",
+      "home": "1703",
+      "away": "15487",
+      "played": true,
+      "homeScore": 91,
+      "awayScore": 74
+    },
+    {
+      "id": "832742",
+      "date": "2026-01-16 20:00",
+      "home": "278",
+      "away": "361",
+      "played": true,
+      "homeScore": 99,
+      "awayScore": 69
+    },
+    {
+      "id": "832793",
+      "date": "2026-01-16 20:00",
+      "home": "26",
+      "away": "253",
+      "played": true,
+      "homeScore": 85,
+      "awayScore": 59
+    },
+    {
+      "id": "832819",
+      "date": "2026-01-16 20:00",
+      "home": "14914",
+      "away": "13303",
+      "played": true,
+      "homeScore": 86,
+      "awayScore": 82
+    },
+    {
+      "id": "832846",
+      "date": "2026-01-16 20:00",
+      "home": "14469",
+      "away": "285",
+      "played": true,
+      "homeScore": 67,
+      "awayScore": 76
+    },
+    {
+      "id": "832872",
+      "date": "2026-01-16 20:00",
+      "home": "15339",
+      "away": "1851",
+      "played": true,
+      "homeScore": 80,
+      "awayScore": 78
+    },
+    {
+      "id": "832884",
+      "date": "2026-01-16 20:00",
+      "home": "13367",
+      "away": "1704",
+      "played": true,
+      "homeScore": 99,
+      "awayScore": 80
+    },
+    {
+      "id": "2026-01-20 20:00-253-14469",
+      "date": "2026-01-20 20:00",
+      "home": "253",
+      "away": "14469",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-01-20 20:00-13303-278",
+      "date": "2026-01-20 20:00",
+      "home": "13303",
+      "away": "278",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-01-20 20:00-1704-14914",
+      "date": "2026-01-20 20:00",
+      "home": "1704",
+      "away": "14914",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-01-20 20:00-361-15339",
+      "date": "2026-01-20 20:00",
+      "home": "361",
+      "away": "15339",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-01-20 20:00-1851-26",
+      "date": "2026-01-20 20:00",
+      "home": "1851",
+      "away": "26",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-01-20 20:00-1703-13367",
+      "date": "2026-01-20 20:00",
+      "home": "1703",
+      "away": "13367",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-01-20 20:30-15487-285",
+      "date": "2026-01-20 20:30",
+      "home": "15487",
+      "away": "285",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-01-23 20:00-278-1704",
+      "date": "2026-01-23 20:00",
+      "home": "278",
+      "away": "1704",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-01-23 20:00-26-361",
+      "date": "2026-01-23 20:00",
+      "home": "26",
+      "away": "361",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-01-23 20:00-14914-1703",
+      "date": "2026-01-23 20:00",
+      "home": "14914",
+      "away": "1703",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-01-23 20:00-14469-1851",
+      "date": "2026-01-23 20:00",
+      "home": "14469",
+      "away": "1851",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-01-23 20:00-15339-13303",
+      "date": "2026-01-23 20:00",
+      "home": "15339",
+      "away": "13303",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-01-23 20:00-13367-15487",
+      "date": "2026-01-23 20:00",
+      "home": "13367",
+      "away": "15487",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-01-24 20:00-285-253",
+      "date": "2026-01-24 20:00",
+      "home": "285",
+      "away": "253",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-01-29 20:00-1703-26",
+      "date": "2026-01-29 20:00",
+      "home": "1703",
+      "away": "26",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-01-30 20:00-13303-285",
+      "date": "2026-01-30 20:00",
+      "home": "13303",
+      "away": "285",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-01-30 20:00-1704-15339",
+      "date": "2026-01-30 20:00",
+      "home": "1704",
+      "away": "15339",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-01-30 20:00-361-14469",
+      "date": "2026-01-30 20:00",
+      "home": "361",
+      "away": "14469",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-01-30 20:00-13367-14914",
+      "date": "2026-01-30 20:00",
+      "home": "13367",
+      "away": "14914",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-01-30 20:00-1851-278",
+      "date": "2026-01-30 20:00",
+      "home": "1851",
+      "away": "278",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-01-30 20:30-15487-253",
+      "date": "2026-01-30 20:30",
+      "home": "15487",
+      "away": "253",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-06 20:00-1704-14469",
+      "date": "2026-02-06 20:00",
+      "home": "1704",
+      "away": "14469",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-06 20:00-361-253",
+      "date": "2026-02-06 20:00",
+      "home": "361",
+      "away": "253",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-06 20:00-14914-26",
+      "date": "2026-02-06 20:00",
+      "home": "14914",
+      "away": "26",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-06 20:00-13367-278",
+      "date": "2026-02-06 20:00",
+      "home": "13367",
+      "away": "278",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-06 20:00-1851-285",
+      "date": "2026-02-06 20:00",
+      "home": "1851",
+      "away": "285",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-06 20:30-15487-13303",
+      "date": "2026-02-06 20:30",
+      "home": "15487",
+      "away": "13303",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-07 20:00-1703-15339",
+      "date": "2026-02-07 20:00",
+      "home": "1703",
+      "away": "15339",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-13 20:00-253-1851",
+      "date": "2026-02-13 20:00",
+      "home": "253",
+      "away": "1851",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-13 20:00-13303-361",
+      "date": "2026-02-13 20:00",
+      "home": "13303",
+      "away": "361",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-13 20:00-278-14914",
+      "date": "2026-02-13 20:00",
+      "home": "278",
+      "away": "14914",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-13 20:00-26-13367",
+      "date": "2026-02-13 20:00",
+      "home": "26",
+      "away": "13367",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-13 20:00-14469-1703",
+      "date": "2026-02-13 20:00",
+      "home": "14469",
+      "away": "1703",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-13 20:00-15339-15487",
+      "date": "2026-02-13 20:00",
+      "home": "15339",
+      "away": "15487",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-13 20:00-285-1704",
+      "date": "2026-02-13 20:00",
+      "home": "285",
+      "away": "1704",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-20 20:00-1704-253",
+      "date": "2026-02-20 20:00",
+      "home": "1704",
+      "away": "253",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-20 20:00-361-15487",
+      "date": "2026-02-20 20:00",
+      "home": "361",
+      "away": "15487",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-20 20:00-26-278",
+      "date": "2026-02-20 20:00",
+      "home": "26",
+      "away": "278",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-20 20:00-14914-15339",
+      "date": "2026-02-20 20:00",
+      "home": "14914",
+      "away": "15339",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-20 20:00-13367-14469",
+      "date": "2026-02-20 20:00",
+      "home": "13367",
+      "away": "14469",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-20 20:00-1851-13303",
+      "date": "2026-02-20 20:00",
+      "home": "1851",
+      "away": "13303",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    {
+      "id": "2026-02-20 20:00-1703-285",
+      "date": "2026-02-20 20:00",
+      "home": "1703",
+      "away": "285",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    }
+  ]
+}
