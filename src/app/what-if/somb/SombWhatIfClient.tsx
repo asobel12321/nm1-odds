@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { DEFAULT_HOME_ADV, DEFAULT_K, winProb } from "@/lib/model";
 import type { ForcedOutcomes, Game, TeamRecord } from "@/lib/types";
 
 interface OddsResponse {
@@ -38,6 +39,15 @@ export default function SombWhatIfClient({
     const map: Record<string, TeamRecord> = {};
     for (const team of teams) {
       map[team.id] = team;
+    }
+    return map;
+  }, [teams]);
+
+  const teamWpct = useMemo(() => {
+    const map: Record<string, number> = {};
+    for (const team of teams) {
+      const gamesPlayed = team.wins + team.losses;
+      map[team.id] = gamesPlayed > 0 ? team.wins / gamesPlayed : 0.5;
     }
     return map;
   }, [teams]);
@@ -153,6 +163,16 @@ export default function SombWhatIfClient({
                   displayGames.map((game) => {
                     const home = teamLookup[game.home]?.name ?? game.home;
                     const away = teamLookup[game.away]?.name ?? game.away;
+                    const homeWpct = teamWpct[game.home] ?? 0.5;
+                    const awayWpct = teamWpct[game.away] ?? 0.5;
+                    const pHome = winProb(
+                      homeWpct,
+                      awayWpct,
+                      DEFAULT_K,
+                      DEFAULT_HOME_ADV,
+                    );
+                    const pSombWin =
+                      game.home === teamId ? pHome : game.away === teamId ? 1 - pHome : null;
                     const toggle = currentToggle(game);
                     return (
                       <div
@@ -164,6 +184,11 @@ export default function SombWhatIfClient({
                         </div>
                         <div className="col-span-6 font-semibold text-slate-900">
                           {away} @ {home}
+                          {pSombWin !== null ? (
+                            <div className="text-xs font-semibold uppercase tracking-[0.18em] text-rose-400">
+                              Model SOMB win {(pSombWin * 100).toFixed(1)}%
+                            </div>
+                          ) : null}
                         </div>
                         <div className="col-span-3 flex justify-end gap-1">
                           {(["auto", "win", "loss"] as ToggleValue[]).map((value) => (

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "13367",
+    "abbr": "MUL",
+    "name": "Mulhouse"
+  },
+  {
+    "id": "26",
+    "abbr": "STB",
+    "name": "Le Havre"
+  },
+  {
+    "id": "278",
+    "abbr": "FOS",
+    "name": "Fos Provence Basket"
+  },
+  {
+    "id": "1851",
+    "abbr": "ORC",
+    "name": "BC Orchies"
+  },
+  {
+    "id": "14914",
+    "abbr": "LOO",
+    "name": "Loon Plage"
+  },
+  {
+    "id": "1704",
+    "abbr": "SOMB",
+    "name": "SOM Boulogne"
+  },
+  {
+    "id": "253",
+    "abbr": "BRK",
+    "name": "Berck Rang du Fliers"
+  },
+  {
+    "id": "285",
+    "abbr": "SVT",
+    "name": "Saint-Vallier"
+  },
+  {
+    "id": "14469",
+    "abbr": "LYO",
+    "name": "LYONSO"
+  },
+  {
+    "id": "1703",
+    "abbr": "SCABB",
+    "name": "SCABB"
+  },
+  {
+    "id": "15339",
+    "abbr": "MET",
+    "name": "Metz BC"
+  },
+  {
+    "id": "361",
+    "abbr": "CHA",
+    "name": "Charleville-Méz."
+  },
+  {
+    "id": "15487",
+    "abbr": "PSB",
+    "name": "Pays Salonais Basket 13"
+  },
+  {
+    "id": "13303",
+    "abbr": "BES",
+    "name": "Besançon"
+  }
+]

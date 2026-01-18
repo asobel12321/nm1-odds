@@ -297,6 +297,17 @@ async function main() {
   const outputPath = path.join(process.cwd(), "data", "poule-b.json");
   fs.writeFileSync(outputPath, JSON.stringify(output, null, 2));
   console.log(`Wrote ${teams.length} teams and ${games.length} games to ${outputPath}`);
+
+  const mapPath = path.join(process.cwd(), "data", "teams-map.json");
+  fs.writeFileSync(
+    mapPath,
+    JSON.stringify(
+      teams.map((team) => ({ id: team.id, abbr: team.abbr, name: team.name })),
+      null,
+      2,
+    ),
+  );
+  console.log(`Wrote team map to ${mapPath}`);
 }
 
 main().catch((error) => {
