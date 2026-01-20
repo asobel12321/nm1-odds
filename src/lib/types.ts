@@ -43,12 +43,28 @@ export interface SimResult {
   winHist: Record<TeamId, number[]>;
 }
 
+export interface WinTableRow {
+  remainingWins: number;
+  remainingLosses: number;
+  wins: number;
+  losses: number;
+  winPct: number;
+  rankProbs: number[];
+  noPlayoffs: number;
+}
+
+export interface WinTable {
+  remainingGames: number;
+  rows: WinTableRow[];
+}
+
 export interface OddsCache extends SimResult {
   updated: string;
   simulations: number;
   k: number;
   homeAdv: number;
   sombId: TeamId;
+  sombWinTable?: WinTable;
 }
 
 export interface BestWorstResult {

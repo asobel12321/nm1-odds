@@ -13,6 +13,7 @@ interface OddsResponse {
     best: { label: string; odds: number };
     worst: { label: string; odds: number };
   } | null;
+  winTable?: WinTable | null;
 }
 
 interface SombWhatIfClientProps {
@@ -24,6 +25,21 @@ interface SombWhatIfClientProps {
 
 type ToggleValue = "auto" | "win" | "loss";
 
+interface WinTableRow {
+  remainingWins: number;
+  remainingLosses: number;
+  wins: number;
+  losses: number;
+  winPct: number;
+  rankProbs: number[];
+  noPlayoffs: number;
+}
+
+interface WinTable {
+  remainingGames: number;
+  rows: WinTableRow[];
+}
+
 export default function SombWhatIfClient({
   teamId,
   teams,
@@ -33,6 +49,7 @@ export default function SombWhatIfClient({
   const [forcedOutcomes, setForcedOutcomes] = useState<ForcedOutcomes>({});
   const [odds, setOdds] = useState<number>(0);
   const [bestWorst, setBestWorst] = useState<OddsResponse["bestWorst"]>(null);
+  const [winTable, setWinTable] = useState<WinTable | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   const teamLookup = useMemo(() => {
@@ -92,6 +109,29 @@ export default function SombWhatIfClient({
     };
   }, [forcedOutcomes, teamId]);
 
+  useEffect(() => {
+    let active = true;
+    async function fetchWinTable() {
+      const res = await fetch("/api/odds", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          teamId,
+          includeWinTable: true,
+        }),
+      });
+      const json = (await res.json()) as OddsResponse;
+      if (!active) {
+        return;
+      }
+      setWinTable(json.winTable ?? null);
+    }
+    fetchWinTable();
+    return () => {
+      active = false;
+    };
+  }, [teamId]);
+
   function toggleGame(game: Game, value: ToggleValue) {
     setForcedOutcomes((prev) => {
       const next = { ...prev };
@@ -121,6 +161,17 @@ export default function SombWhatIfClient({
       (forced === "home" && game.home === teamId) ||
       (forced === "away" && game.away === teamId);
     return isWin ? "win" : "loss";
+  }
+
+  function formatPct(value: number): string {
+    const pct = value * 100;
+    if (pct >= 99.5) {
+      return ">99%";
+    }
+    if (pct > 0 && pct < 1) {
+      return "<1%";
+    }
+    return `${pct.toFixed(0)}%`;
   }
 
   return (
@@ -266,6 +317,78 @@ export default function SombWhatIfClient({
                 </div>
               )}
             </div>
+          </div>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="font-display text-2xl font-semibold">
+            SOMB Outcomes by Remaining Wins
+          </h2>
+          <div className="overflow-x-auto rounded-2xl border border-rose-100 bg-white/90 shadow-sm">
+            <table className="min-w-[860px] table-auto border-collapse text-xs text-slate-700">
+              <thead>
+                <tr className="bg-rose-50 text-[11px] font-semibold uppercase tracking-[0.2em] text-rose-600">
+                  <th className="px-3 py-2 text-left">Remaining Games Won</th>
+                  <th className="px-3 py-2 text-left">Win% of Remaining</th>
+                  <th className="px-3 py-2 text-center" colSpan={2}>
+                    Resultant Record
+                  </th>
+                  <th className="px-3 py-2 text-center" colSpan={7}>
+                    Finish Rank
+                  </th>
+                  <th className="px-3 py-2 text-center">No Playoffs</th>
+                </tr>
+                <tr className="bg-rose-50 text-[11px] font-semibold uppercase tracking-[0.2em] text-rose-400">
+                  <th className="px-3 pb-2 text-left" />
+                  <th className="px-3 pb-2 text-left" />
+                  <th className="px-2 pb-2 text-center">W</th>
+                  <th className="px-2 pb-2 text-center">L</th>
+                  {Array.from({ length: 7 }, (_, idx) => (
+                    <th key={`rank-${idx + 1}`} className="px-2 pb-2 text-center">
+                      {idx + 1}
+                    </th>
+                  ))}
+                  <th className="px-2 pb-2 text-center">8+</th>
+                </tr>
+              </thead>
+              <tbody>
+                {winTable ? (
+                  [...winTable.rows]
+                    .sort((a, b) => b.remainingWins - a.remainingWins)
+                    .map((row) => (
+                      <tr
+                        key={`row-${row.remainingWins}`}
+                        className="border-t border-rose-100"
+                      >
+                        <td className="px-3 py-2 font-semibold text-slate-900">
+                          {row.remainingWins} of {winTable.remainingGames}
+                        </td>
+                        <td className="px-3 py-2">{formatPct(row.winPct)}</td>
+                        <td className="px-2 py-2 text-center font-semibold">
+                          {row.wins}
+                        </td>
+                        <td className="px-2 py-2 text-center font-semibold">
+                          {row.losses}
+                        </td>
+                        {row.rankProbs.slice(0, 7).map((prob, idx) => (
+                          <td key={`prob-${row.remainingWins}-${idx}`} className="px-2 py-2 text-center">
+                            {formatPct(prob)}
+                          </td>
+                        ))}
+                        <td className="px-2 py-2 text-center font-semibold text-rose-600">
+                          {formatPct(row.noPlayoffs)}
+                        </td>
+                      </tr>
+                    ))
+                ) : (
+                  <tr>
+                    <td className="px-3 py-4 text-sm text-slate-500" colSpan={12}>
+                      Win table not available yet.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
           </div>
         </section>
       </main>

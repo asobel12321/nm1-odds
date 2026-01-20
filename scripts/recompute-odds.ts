@@ -3,6 +3,7 @@ import path from "path";
 import { loadData, findSombId } from "../src/lib/data";
 import { simulateSeason } from "../src/lib/simulate";
 import { DEFAULT_HOME_ADV, DEFAULT_K } from "../src/lib/model";
+import { buildWinTable } from "../src/lib/winTable";
 import type { OddsCache } from "../src/lib/types";
 
 const SIMULATIONS = 20000;
@@ -16,6 +17,12 @@ export async function recomputeOdds() {
     homeAdv: DEFAULT_HOME_ADV,
     sombId,
   });
+  const sombWinTable = buildWinTable(data, sombId, {
+    simulations: SIMULATIONS,
+    k: DEFAULT_K,
+    homeAdv: DEFAULT_HOME_ADV,
+    sombId,
+  });
 
   const odds: OddsCache = {
     ...result,
@@ -24,6 +31,7 @@ export async function recomputeOdds() {
     k: DEFAULT_K,
     homeAdv: DEFAULT_HOME_ADV,
     sombId,
+    sombWinTable,
   };
 
   const outputPath = path.join(process.cwd(), "data", "odds.json");

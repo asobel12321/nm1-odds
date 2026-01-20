@@ -11,6 +11,7 @@ interface OddsRequest {
   homeAdv?: number;
   teamId?: string;
   includeBestWorst?: boolean;
+  includeWinTable?: boolean;
   forcedOutcomes?: ForcedOutcomes;
 }
 
@@ -23,6 +24,7 @@ export async function POST(req: Request) {
   const teamId = body.teamId ?? "SOMB";
   const sombId = findSombId(data) ?? "SOMB";
   const forcedOutcomes = body.forcedOutcomes ?? {};
+  const includeWinTable = body.includeWinTable ?? false;
   const cached = loadOddsCache();
   const shouldUseCache =
     Object.keys(forcedOutcomes).length === 0 &&
@@ -36,6 +38,7 @@ export async function POST(req: Request) {
       rankHist: cached.rankHist,
       winHist: cached.winHist,
       bestWorst: null,
+      winTable: includeWinTable ? cached.sombWinTable ?? null : null,
     });
   }
 
@@ -62,5 +65,6 @@ export async function POST(req: Request) {
     rankHist: result.rankHist,
     winHist: result.winHist,
     bestWorst,
+    winTable: includeWinTable ? cached?.sombWinTable ?? null : null,
   });
 }
