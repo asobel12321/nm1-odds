@@ -26,6 +26,15 @@ export default function Home() {
           sombId,
         });
   const teamLookup = teamsById(data.teams);
+  const remainingById: Record<string, number> = {};
+  for (const team of data.teams) {
+    remainingById[team.id] = 0;
+  }
+  for (const game of remaining) {
+    remainingById[game.home] += 1;
+    remainingById[game.away] += 1;
+  }
+
   const rows = [...data.teams]
     .sort((a, b) => {
       const aGames = a.wins + a.losses;
@@ -43,11 +52,28 @@ export default function Home() {
       }
       return a.name.localeCompare(b.name);
     })
-    .map((team, index) => ({
-      rank: index + 1,
-      team,
-      top7Odds: simulation.top7Odds[team.id] ?? 0,
-    }));
+    .map((team, index, sortedTeams) => {
+      const teamRemaining = remainingById[team.id] ?? 0;
+      const teamTotal = team.wins + team.losses + teamRemaining;
+      const maxWinPct =
+        teamTotal > 0 ? (team.wins + teamRemaining) / teamTotal : 0;
+      const guaranteedAbove = sortedTeams.filter((other) => {
+        if (other.id === team.id) {
+          return false;
+        }
+        const otherRemaining = remainingById[other.id] ?? 0;
+        const otherTotal = other.wins + other.losses + otherRemaining;
+        const minWinPct = otherTotal > 0 ? other.wins / otherTotal : 0;
+        return minWinPct > maxWinPct;
+      }).length;
+      const hasPlayoffChance = guaranteedAbove < 7;
+      return {
+        rank: index + 1,
+        team,
+        top7Odds: simulation.top7Odds[team.id] ?? 0,
+        hasPlayoffChance,
+      };
+    });
   const upcoming = [...remaining].sort((a, b) => {
     if (a.date === "TBD" && b.date !== "TBD") {
       return 1;

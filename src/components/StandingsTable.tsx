@@ -5,6 +5,7 @@ export interface StandingsRow {
   rank: number;
   team: TeamRecord;
   top7Odds: number;
+  hasPlayoffChance?: boolean;
 }
 
 interface StandingsTableProps {
@@ -39,7 +40,9 @@ export default function StandingsTable({ rows }: StandingsTableProps) {
               {row.team.wins}-{row.team.losses}
             </div>
             <div className="col-span-2 text-right font-semibold text-slate-900">
-              {formatTopOdds(row.top7Odds, 1)}
+              {row.top7Odds <= 0 && row.hasPlayoffChance
+                ? formatTopOdds(0.001, 1)
+                : formatTopOdds(row.top7Odds, 1)}
             </div>
           </div>
         ))}
