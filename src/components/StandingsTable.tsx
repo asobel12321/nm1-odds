@@ -1,3 +1,4 @@
+import { formatTopOdds } from "@/lib/format";
 import type { TeamRecord } from "@/lib/types";
 
 export interface StandingsRow {
@@ -38,7 +39,7 @@ export default function StandingsTable({ rows }: StandingsTableProps) {
               {row.team.wins}-{row.team.losses}
             </div>
             <div className="col-span-2 text-right font-semibold text-slate-900">
-              {(row.top7Odds * 100).toFixed(1)}%
+              {formatTopOdds(row.top7Odds, 1)}
             </div>
           </div>
         ))}

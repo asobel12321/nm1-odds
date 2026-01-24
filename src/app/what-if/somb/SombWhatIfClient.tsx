@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { formatTopOdds } from "@/lib/format";
 import { DEFAULT_HOME_ADV, DEFAULT_K, winProb } from "@/lib/model";
 import type { ForcedOutcomes, Game, TeamRecord } from "@/lib/types";
 
@@ -272,7 +273,7 @@ export default function SombWhatIfClient({
                 Top-7 Probability
               </div>
               <div className="mt-3 text-4xl font-semibold text-slate-900">
-                {loading ? "..." : `${(odds * 100).toFixed(1)}%`}
+                {loading ? "..." : formatTopOdds(odds, 1)}
               </div>
               <div className="mt-4 text-xs text-slate-500">
                 Simulated from {allRemainingGames.length} remaining games.
@@ -296,7 +297,7 @@ export default function SombWhatIfClient({
                       {bestWorst.best.label}
                     </div>
                     <div className="text-sm text-emerald-600">
-                      {(bestWorst.best.odds * 100).toFixed(1)}% top 7
+                      {formatTopOdds(bestWorst.best.odds, 1)} top 7
                     </div>
                   </div>
                   <div>
@@ -307,7 +308,7 @@ export default function SombWhatIfClient({
                       {bestWorst.worst.label}
                     </div>
                     <div className="text-sm text-rose-600">
-                      {(bestWorst.worst.odds * 100).toFixed(1)}% top 7
+                      {formatTopOdds(bestWorst.worst.odds, 1)} top 7
                     </div>
                   </div>
                 </div>
