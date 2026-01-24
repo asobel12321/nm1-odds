@@ -1,40 +1,40 @@
 {
     "season":  "2025-2026",
-    "updated":  "2026-01-20",
+    "updated":  "2026-01-24",
     "teams":  [
                   {
                       "id":  "13367",
                       "name":  "Mulhouse",
                       "abbr":  "MUL",
-                      "wins":  15,
+                      "wins":  16,
                       "losses":  6
                   },
                   {
                       "id":  "26",
                       "name":  "Le Havre",
                       "abbr":  "STB",
-                      "wins":  17,
+                      "wins":  18,
                       "losses":  3
                   },
                   {
                       "id":  "278",
                       "name":  "Fos Provence Basket",
                       "abbr":  "FOS",
-                      "wins":  14,
+                      "wins":  15,
                       "losses":  6
                   },
                   {
                       "id":  "1851",
                       "name":  "BC Orchies",
                       "abbr":  "ORC",
-                      "wins":  13,
+                      "wins":  14,
                       "losses":  7
                   },
                   {
                       "id":  "14914",
                       "name":  "Loon Plage",
                       "abbr":  "LOO",
-                      "wins":  12,
+                      "wins":  13,
                       "losses":  8
                   },
                   {
@@ -42,13 +42,13 @@
                       "name":  "SOM Boulogne",
                       "abbr":  "SOMB",
                       "wins":  12,
-                      "losses":  8
+                      "losses":  9
                   },
                   {
                       "id":  "253",
                       "name":  "Berck Rang du Fliers",
                       "abbr":  "BRK",
-                      "wins":  12,
+                      "wins":  13,
                       "losses":  8
                   },
                   {
@@ -56,48 +56,48 @@
                       "name":  "Saint-Vallier",
                       "abbr":  "SVT",
                       "wins":  10,
-                      "losses":  10
+                      "losses":  11
                   },
                   {
                       "id":  "14469",
                       "name":  "LYONSO",
                       "abbr":  "LYO",
                       "wins":  9,
-                      "losses":  11
+                      "losses":  12
                   },
                   {
                       "id":  "1703",
                       "name":  "SCABB",
                       "abbr":  "SCABB",
                       "wins":  8,
-                      "losses":  12
+                      "losses":  13
                   },
                   {
                       "id":  "15339",
                       "name":  "Metz BC",
                       "abbr":  "MET",
                       "wins":  5,
-                      "losses":  16
+                      "losses":  17
                   },
                   {
                       "id":  "361",
                       "name":  "Charleville-Méz.",
                       "abbr":  "CHA",
                       "wins":  5,
-                      "losses":  15
+                      "losses":  16
                   },
                   {
                       "id":  "15487",
                       "name":  "Pays Salonais Basket 13",
                       "abbr":  "PSB",
                       "wins":  5,
-                      "losses":  15
+                      "losses":  16
                   },
                   {
                       "id":  "13303",
                       "name":  "Besançon",
                       "abbr":  "BES",
-                      "wins":  4,
+                      "wins":  5,
                       "losses":  16
                   }
               ],
@@ -1430,63 +1430,63 @@
                       "date":  "2026-01-23 20:00",
                       "home":  "278",
                       "away":  "1704",
-                      "played":  false,
-                      "homeScore":  null,
-                      "awayScore":  null
+                      "played":  true,
+                      "homeScore":  95,
+                      "awayScore":  75
                   },
                   {
                       "id":  "2026-01-23 20:00-26-361",
                       "date":  "2026-01-23 20:00",
                       "home":  "26",
                       "away":  "361",
-                      "played":  false,
-                      "homeScore":  null,
-                      "awayScore":  null
+                      "played":  true,
+                      "homeScore":  93,
+                      "awayScore":  70
                   },
                   {
                       "id":  "2026-01-23 20:00-14914-1703",
                       "date":  "2026-01-23 20:00",
                       "home":  "14914",
                       "away":  "1703",
-                      "played":  false,
-                      "homeScore":  null,
-                      "awayScore":  null
+                      "played":  true,
+                      "homeScore":  96,
+                      "awayScore":  76
                   },
                   {
                       "id":  "2026-01-23 20:00-14469-1851",
                       "date":  "2026-01-23 20:00",
                       "home":  "14469",
                       "away":  "1851",
-                      "played":  false,
-                      "homeScore":  null,
-                      "awayScore":  null
+                      "played":  true,
+                      "homeScore":  54,
+                      "awayScore":  60
                   },
                   {
                       "id":  "2026-01-23 20:00-15339-13303",
                       "date":  "2026-01-23 20:00",
                       "home":  "15339",
                       "away":  "13303",
-                      "played":  false,
-                      "homeScore":  null,
-                      "awayScore":  null
+                      "played":  true,
+                      "homeScore":  66,
+                      "awayScore":  76
                   },
                   {
                       "id":  "2026-01-23 20:00-13367-15487",
                       "date":  "2026-01-23 20:00",
                       "home":  "13367",
                       "away":  "15487",
-                      "played":  false,
-                      "homeScore":  null,
-                      "awayScore":  null
+                      "played":  true,
+                      "homeScore":  75,
+                      "awayScore":  69
                   },
                   {
                       "id":  "2026-01-24 20:00-285-253",
                       "date":  "2026-01-24 20:00",
                       "home":  "285",
                       "away":  "253",
-                      "played":  false,
-                      "homeScore":  null,
-                      "awayScore":  null
+                      "played":  true,
+                      "homeScore":  88,
+                      "awayScore":  97
                   },
                   {
                       "id":  "2026-01-29 20:00-1703-26",
