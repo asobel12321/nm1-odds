@@ -4,10 +4,17 @@ export function rankTeams(
   teams: TeamRecord[],
   wins: Record<TeamId, number>,
   sombId: TeamId = "SOMB",
+  totalGames?: Record<TeamId, number>,
 ): TeamId[] {
   return [...teams]
     .sort((a, b) => {
-      const diff = wins[b.id] - wins[a.id];
+      const aGames = totalGames?.[a.id];
+      const bGames = totalGames?.[b.id];
+      const aPct =
+        aGames && aGames > 0 ? wins[a.id] / aGames : wins[a.id];
+      const bPct =
+        bGames && bGames > 0 ? wins[b.id] / bGames : wins[b.id];
+      const diff = bPct - aPct;
       if (diff !== 0) {
         return diff;
       }

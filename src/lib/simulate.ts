@@ -40,6 +40,10 @@ export function simulateSeason(data: DataFile, params: SimParams): SimResult {
   const maxWins = Math.max(
     ...data.teams.map((team) => team.wins + counts[team.id]),
   );
+  const totalGames: Record<TeamId, number> = {};
+  for (const team of data.teams) {
+    totalGames[team.id] = team.wins + team.losses + counts[team.id];
+  }
 
   const rankHist: Record<TeamId, number[]> = {};
   const winHist: Record<TeamId, number[]> = {};
@@ -69,7 +73,12 @@ export function simulateSeason(data: DataFile, params: SimParams): SimResult {
       wins[winnerId] += 1;
     }
 
-    const ranked = rankTeams(data.teams, wins, params.sombId ?? "SOMB");
+    const ranked = rankTeams(
+      data.teams,
+      wins,
+      params.sombId ?? "SOMB",
+      totalGames,
+    );
     for (let i = 0; i < ranked.length; i += 1) {
       const id = ranked[i];
       rankHist[id][i] += 1;

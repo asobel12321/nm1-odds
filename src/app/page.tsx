@@ -26,11 +26,28 @@ export default function Home() {
           sombId,
         });
   const teamLookup = teamsById(data.teams);
-  const rows = data.teams.map((team, index) => ({
-    rank: index + 1,
-    team,
-    top7Odds: simulation.top7Odds[team.id] ?? 0,
-  }));
+  const rows = [...data.teams]
+    .sort((a, b) => {
+      const aGames = a.wins + a.losses;
+      const bGames = b.wins + b.losses;
+      const aPct = aGames > 0 ? a.wins / aGames : 0;
+      const bPct = bGames > 0 ? b.wins / bGames : 0;
+      if (bPct !== aPct) {
+        return bPct - aPct;
+      }
+      if (a.id === sombId && b.id !== sombId) {
+        return -1;
+      }
+      if (b.id === sombId && a.id !== sombId) {
+        return 1;
+      }
+      return a.name.localeCompare(b.name);
+    })
+    .map((team, index) => ({
+      rank: index + 1,
+      team,
+      top7Odds: simulation.top7Odds[team.id] ?? 0,
+    }));
   const upcoming = [...remaining].sort((a, b) => {
     if (a.date === "TBD" && b.date !== "TBD") {
       return 1;
