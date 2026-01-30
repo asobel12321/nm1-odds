@@ -3,6 +3,7 @@ import { simulateSeason } from "@/lib/simulate";
 import type {
   DataFile,
   ForcedOutcomes,
+  Game,
   MatchdayImpact,
   SimParams,
   TeamId,
@@ -12,7 +13,7 @@ function dateKey(date: string): string {
   return date.split(" ")[0] ?? date;
 }
 
-function nextRoundGames(games: { date: string }[]) {
+function nextRoundGames(games: Game[]) {
   if (games.length === 0) {
     return null;
   }
