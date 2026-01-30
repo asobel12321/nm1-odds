@@ -3,6 +3,7 @@ import path from "path";
 import { loadData, findSombId } from "../src/lib/data";
 import { simulateSeason } from "../src/lib/simulate";
 import { DEFAULT_HOME_ADV, DEFAULT_K } from "../src/lib/model";
+import { buildMatchdayImpact } from "../src/lib/matchdayImpact";
 import { buildWinTable } from "../src/lib/winTable";
 import type { OddsCache } from "../src/lib/types";
 
@@ -23,6 +24,12 @@ export async function recomputeOdds() {
     homeAdv: DEFAULT_HOME_ADV,
     sombId,
   });
+  const sombMatchdayImpact = buildMatchdayImpact(data, sombId, {
+    simulations: SIMULATIONS,
+    k: DEFAULT_K,
+    homeAdv: DEFAULT_HOME_ADV,
+    sombId,
+  });
 
   const odds: OddsCache = {
     ...result,
@@ -32,6 +39,7 @@ export async function recomputeOdds() {
     homeAdv: DEFAULT_HOME_ADV,
     sombId,
     sombWinTable,
+    sombMatchdayImpact,
   };
 
   const outputPath = path.join(process.cwd(), "data", "odds.json");

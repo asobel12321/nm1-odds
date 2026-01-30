@@ -15,6 +15,7 @@ interface OddsResponse {
     worst: { label: string; odds: number };
   } | null;
   winTable?: WinTable | null;
+  matchdayImpact?: MatchdayImpact | null;
 }
 
 interface SombWhatIfClientProps {
@@ -41,6 +42,19 @@ interface WinTable {
   rows: WinTableRow[];
 }
 
+interface MatchdayImpactGame {
+  game: Game;
+  homeWinOdds: number;
+  awayWinOdds: number;
+  better: "home" | "away";
+  delta: number;
+}
+
+interface MatchdayImpact {
+  roundDate: string;
+  games: MatchdayImpactGame[];
+}
+
 export default function SombWhatIfClient({
   teamId,
   teams,
@@ -51,6 +65,7 @@ export default function SombWhatIfClient({
   const [odds, setOdds] = useState<number>(0);
   const [bestWorst, setBestWorst] = useState<OddsResponse["bestWorst"]>(null);
   const [winTable, setWinTable] = useState<WinTable | null>(null);
+  const [matchdayImpact, setMatchdayImpact] = useState<MatchdayImpact | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   const teamLookup = useMemo(() => {
@@ -92,7 +107,7 @@ export default function SombWhatIfClient({
         body: JSON.stringify({
           teamId,
           simulations: 5000,
-          includeBestWorst: true,
+          includeBestWorst: false,
           forcedOutcomes,
         }),
       });
@@ -128,6 +143,29 @@ export default function SombWhatIfClient({
       setWinTable(json.winTable ?? null);
     }
     fetchWinTable();
+    return () => {
+      active = false;
+    };
+  }, [teamId]);
+
+  useEffect(() => {
+    let active = true;
+    async function fetchMatchdayImpact() {
+      const res = await fetch("/api/odds", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          teamId,
+          includeMatchdayImpact: true,
+        }),
+      });
+      const json = (await res.json()) as OddsResponse;
+      if (!active) {
+        return;
+      }
+      setMatchdayImpact(json.matchdayImpact ?? null);
+    }
+    fetchMatchdayImpact();
     return () => {
       active = false;
     };
@@ -282,40 +320,41 @@ export default function SombWhatIfClient({
 
             <div className="rounded-2xl border border-rose-100 bg-white/90 p-6 shadow-sm">
               <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-500">
-                Next Matchday Scenarios
+                Next Matchday Impact (Single Game)
               </div>
-              {bestWorst ? (
-                <div className="mt-4 space-y-4 text-sm text-slate-700">
+              {matchdayImpact ? (
+                <div className="mt-4 space-y-3 text-sm text-slate-700">
                   <div className="text-xs uppercase tracking-[0.2em] text-slate-400">
-                    {bestWorst.roundDate} - {bestWorst.scenarios} scenarios
+                    {matchdayImpact.roundDate}
                   </div>
-                  <div>
-                    <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">
-                      Best Case
-                    </div>
-                    <div className="mt-1 font-semibold text-slate-900">
-                      {bestWorst.best.label}
-                    </div>
-                    <div className="text-sm text-emerald-600">
-                      {formatTopOdds(bestWorst.best.odds, 1)} top 7
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-600">
-                      Worst Case
-                    </div>
-                    <div className="mt-1 font-semibold text-slate-900">
-                      {bestWorst.worst.label}
-                    </div>
-                    <div className="text-sm text-rose-600">
-                      {formatTopOdds(bestWorst.worst.odds, 1)} top 7
-                    </div>
+                  <div className="space-y-3">
+                    {matchdayImpact.games.map((impact) => {
+                      const home = teamLookup[impact.game.home]?.name ?? impact.game.home;
+                      const away = teamLookup[impact.game.away]?.name ?? impact.game.away;
+                      const homeBetter = impact.better === "home";
+                      return (
+                        <div
+                          key={`impact-${impact.game.id}`}
+                          className="rounded-xl border border-rose-100 bg-white px-4 py-3"
+                        >
+                          <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-400">
+                            {away} @ {home}
+                          </div>
+                          <div className="mt-2 grid grid-cols-2 gap-3 text-xs">
+                            <div className={homeBetter ? "font-semibold text-emerald-600" : ""}>
+                              {home} win: {formatTopOdds(impact.homeWinOdds, 1)} top 7
+                            </div>
+                            <div className={!homeBetter ? "font-semibold text-emerald-600" : ""}>
+                              {away} win: {formatTopOdds(impact.awayWinOdds, 1)} top 7
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               ) : (
-                <div className="mt-3 text-sm text-slate-500">
-                  No upcoming round detected.
-                </div>
+                <div className="mt-3 text-sm text-slate-500">No upcoming round detected.</div>
               )}
             </div>
           </div>

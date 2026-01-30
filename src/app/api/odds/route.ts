@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { findSombId, loadData, loadOddsCache } from "@/lib/data";
+import { buildMatchdayImpact } from "@/lib/matchdayImpact";
 import { DEFAULT_HOME_ADV, DEFAULT_K } from "@/lib/model";
 import { simulateSeason } from "@/lib/simulate";
 import { bestWorstNextRound } from "@/lib/bestWorst";
@@ -12,6 +13,7 @@ interface OddsRequest {
   teamId?: string;
   includeBestWorst?: boolean;
   includeWinTable?: boolean;
+  includeMatchdayImpact?: boolean;
   forcedOutcomes?: ForcedOutcomes;
 }
 
@@ -25,6 +27,7 @@ export async function POST(req: Request) {
   const sombId = findSombId(data) ?? "SOMB";
   const forcedOutcomes = body.forcedOutcomes ?? {};
   const includeWinTable = body.includeWinTable ?? false;
+  const includeMatchdayImpact = body.includeMatchdayImpact ?? false;
   const cached = loadOddsCache();
   const shouldUseCache =
     Object.keys(forcedOutcomes).length === 0 &&
@@ -39,6 +42,9 @@ export async function POST(req: Request) {
       winHist: cached.winHist,
       bestWorst: null,
       winTable: includeWinTable ? cached.sombWinTable ?? null : null,
+      matchdayImpact: includeMatchdayImpact
+        ? cached.sombMatchdayImpact ?? null
+        : null,
     });
   }
 
@@ -59,6 +65,16 @@ export async function POST(req: Request) {
         forcedOutcomes,
       })
     : null;
+  const matchdayImpact = includeMatchdayImpact
+    ? cached?.sombMatchdayImpact ??
+      buildMatchdayImpact(data, teamId, {
+        simulations,
+        k,
+        homeAdv,
+        sombId,
+        forcedOutcomes,
+      })
+    : null;
 
   return NextResponse.json({
     top7Odds: result.top7Odds,
@@ -66,5 +82,6 @@ export async function POST(req: Request) {
     winHist: result.winHist,
     bestWorst,
     winTable: includeWinTable ? cached?.sombWinTable ?? null : null,
+    matchdayImpact,
   });
 }

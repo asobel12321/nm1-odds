@@ -58,6 +58,19 @@ export interface WinTable {
   rows: WinTableRow[];
 }
 
+export interface MatchdayImpactGame {
+  game: Game;
+  homeWinOdds: number;
+  awayWinOdds: number;
+  better: "home" | "away";
+  delta: number;
+}
+
+export interface MatchdayImpact {
+  roundDate: string;
+  games: MatchdayImpactGame[];
+}
+
 export interface OddsCache extends SimResult {
   updated: string;
   simulations: number;
@@ -65,6 +78,7 @@ export interface OddsCache extends SimResult {
   homeAdv: number;
   sombId: TeamId;
   sombWinTable?: WinTable;
+  sombMatchdayImpact?: MatchdayImpact;
 }
 
 export interface BestWorstResult {
