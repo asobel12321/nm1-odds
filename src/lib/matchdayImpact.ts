@@ -4,6 +4,7 @@ import type {
   DataFile,
   ForcedOutcomes,
   Game,
+  MatchdayImpactGame,
   MatchdayImpact,
   SimParams,
   TeamId,
@@ -35,7 +36,7 @@ export function buildMatchdayImpact(
     return null;
   }
 
-  const impacts = round.games.map((game) => {
+  const impacts: MatchdayImpactGame[] = round.games.map((game) => {
     const baseForced = params.forcedOutcomes ?? {};
     const homeForced: ForcedOutcomes = { ...baseForced, [game.id]: "home" };
     const awayForced: ForcedOutcomes = { ...baseForced, [game.id]: "away" };
@@ -52,11 +53,13 @@ export function buildMatchdayImpact(
     });
     const homeOdds = homeResult.top7Odds[teamId] ?? 0;
     const awayOdds = awayResult.top7Odds[teamId] ?? 0;
+    const better: MatchdayImpactGame["better"] =
+      homeOdds >= awayOdds ? "home" : "away";
     return {
       game,
       homeWinOdds: homeOdds,
       awayWinOdds: awayOdds,
-      better: homeOdds >= awayOdds ? "home" : "away",
+      better,
       delta: homeOdds - awayOdds,
     };
   });
