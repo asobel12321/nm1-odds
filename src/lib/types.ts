@@ -78,7 +78,7 @@ export interface OddsCache extends SimResult {
   homeAdv: number;
   sombId: TeamId;
   sombWinTable?: WinTable;
-  sombMatchdayImpact?: MatchdayImpact;
+  sombMatchdayImpact?: MatchdayImpact | null;
 }
 
 export interface BestWorstResult {
