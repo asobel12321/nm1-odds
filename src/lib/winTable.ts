@@ -1,4 +1,5 @@
 import { createRng } from "@/lib/rng";
+import { PLAYOFF_CUTOFF } from "@/lib/competition";
 import { winProb } from "@/lib/model";
 import { rankTeams } from "@/lib/rank";
 import { remainingGames } from "@/lib/data";
@@ -69,7 +70,7 @@ export function buildWinTable(
     const total = rowTotals[remainingWins] || 1;
     const rankProbs = counts.map((count) => count / total);
     const remainingLosses = remainingCount - remainingWins;
-    const noPlayoffs = rankProbs.slice(7).reduce((a, b) => a + b, 0);
+    const noPlayoffs = rankProbs.slice(PLAYOFF_CUTOFF).reduce((a, b) => a + b, 0);
     return {
       remainingWins,
       remainingLosses,

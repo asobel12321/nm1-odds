@@ -1,23 +1,58 @@
 [
   {
-    "id": "13367",
-    "abbr": "MUL",
-    "name": "Mulhouse"
-  },
-  {
     "id": "26",
     "abbr": "STB",
     "name": "Le Havre"
   },
   {
+    "id": "13367",
+    "abbr": "MUL",
+    "name": "Mulhouse"
+  },
+  {
     "id": "278",
     "abbr": "FOS",
-    "name": "Fos Provence Basket"
+    "name": "Fos-sur-mer"
+  },
+  {
+    "id": "3",
+    "abbr": "LEV",
+    "name": "Levallois"
+  },
+  {
+    "id": "2937",
+    "abbr": "UTL",
+    "name": "Tarbes-Lourdes"
+  },
+  {
+    "id": "345",
+    "abbr": "FOU",
+    "name": "Pays de Fougeres"
   },
   {
     "id": "1851",
     "abbr": "ORC",
-    "name": "BC Orchies"
+    "name": "Orchies"
+  },
+  {
+    "id": "14016",
+    "abbr": "SAB",
+    "name": "Les Sables d'Olonne"
+  },
+  {
+    "id": "247",
+    "abbr": "LOR",
+    "name": "Lorient"
+  },
+  {
+    "id": "13305",
+    "abbr": "UTB",
+    "name": "Tours"
+  },
+  {
+    "id": "1704",
+    "abbr": "SOMB",
+    "name": "Boulogne-sur-Mer"
   },
   {
     "id": "14914",
@@ -25,48 +60,13 @@
     "name": "Loon Plage"
   },
   {
-    "id": "1704",
-    "abbr": "SOMB",
-    "name": "SOM Boulogne"
+    "id": "1844",
+    "abbr": "TOU",
+    "name": "Toulouse"
   },
   {
     "id": "253",
     "abbr": "BRK",
     "name": "Berck Rang du Fliers"
-  },
-  {
-    "id": "285",
-    "abbr": "SVT",
-    "name": "Saint-Vallier"
-  },
-  {
-    "id": "14469",
-    "abbr": "LYO",
-    "name": "LYONSO"
-  },
-  {
-    "id": "1703",
-    "abbr": "SCABB",
-    "name": "SCABB"
-  },
-  {
-    "id": "15339",
-    "abbr": "MET",
-    "name": "Metz BC"
-  },
-  {
-    "id": "361",
-    "abbr": "CHA",
-    "name": "Charleville-Méz."
-  },
-  {
-    "id": "15487",
-    "abbr": "PSB",
-    "name": "Pays Salonais Basket 13"
-  },
-  {
-    "id": "13303",
-    "abbr": "BES",
-    "name": "Besançon"
   }
 ]

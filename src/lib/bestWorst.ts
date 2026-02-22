@@ -81,7 +81,7 @@ export function bestWorstNextRound(
       forcedOutcomes: scenarioOutcomes,
       seed: (params.seed ?? 1) + mask,
     });
-    const odds = result.top7Odds[teamId] ?? 0;
+    const odds = result.playoffOdds[teamId] ?? 0;
     const label = formatOutcomeLabel(scenarioOutcomes, unforced, teamLookup);
 
     if (!best || odds > best.odds) {

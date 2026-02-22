@@ -1,6 +1,7 @@
 import Link from "next/link";
 import StandingsTable from "@/components/StandingsTable";
 import GamesTable from "@/components/GamesTable";
+import { PLAYOFF_CUTOFF } from "@/lib/competition";
 import {
   findSombId,
   loadData,
@@ -66,11 +67,11 @@ export default function Home() {
         const minWinPct = otherTotal > 0 ? other.wins / otherTotal : 0;
         return minWinPct > maxWinPct;
       }).length;
-      const hasPlayoffChance = guaranteedAbove < 7;
+      const hasPlayoffChance = guaranteedAbove < PLAYOFF_CUTOFF;
       return {
         rank: index + 1,
         team,
-        top7Odds: simulation.top7Odds[team.id] ?? 0,
+        playoffOdds: simulation.playoffOdds[team.id] ?? 0,
         hasPlayoffChance,
       };
     });
@@ -90,14 +91,14 @@ export default function Home() {
         <header className="grid gap-6 md:grid-cols-[1.2fr_0.8fr] md:items-end">
           <div className="space-y-4">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-amber-700">
-              NM1 Poule B
+              NM1 Phase 2 - Group A
             </p>
             <h1 className="font-display text-4xl font-semibold leading-tight text-slate-900 md:text-5xl">
-              Playoff odds, matchups, and momentum at a glance.
+              Top Group playoff race projections.
             </h1>
             <p className="max-w-xl text-base text-slate-600">
-              Updated using current standings and a simple win% + home-court model.
-              Toggle SOMB outcomes for a custom what-if view.
+              Current Group A standings and a simple win% + home-court model for
+              top-8 playoff qualification.
             </p>
           </div>
           <div className="rounded-3xl border border-amber-200 bg-white/80 p-6 shadow-sm">
@@ -107,7 +108,7 @@ export default function Home() {
             <div className="mt-4 flex items-center justify-between">
               <div>
                 <div className="text-sm font-semibold text-slate-900">SOMB What-If</div>
-                <div className="text-xs text-slate-500">Force wins & losses</div>
+                <div className="text-xs text-slate-500">Path to top 8</div>
               </div>
               <Link
                 href="/what-if/somb"

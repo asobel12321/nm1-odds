@@ -51,8 +51,8 @@ export function buildMatchdayImpact(
       forcedOutcomes: awayForced,
       seed,
     });
-    const homeOdds = homeResult.top7Odds[teamId] ?? 0;
-    const awayOdds = awayResult.top7Odds[teamId] ?? 0;
+    const homeOdds = homeResult.playoffOdds[teamId] ?? 0;
+    const awayOdds = awayResult.playoffOdds[teamId] ?? 0;
     const better: MatchdayImpactGame["better"] =
       homeOdds >= awayOdds ? "home" : "away";
     return {

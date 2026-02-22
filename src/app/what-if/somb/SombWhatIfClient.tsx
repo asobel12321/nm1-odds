@@ -2,12 +2,13 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { PLAYOFF_CUTOFF } from "@/lib/competition";
 import { formatTopOdds } from "@/lib/format";
 import { DEFAULT_HOME_ADV, DEFAULT_K, winProb } from "@/lib/model";
 import type { ForcedOutcomes, Game, TeamRecord } from "@/lib/types";
 
 interface OddsResponse {
-  top7Odds: Record<string, number>;
+  playoffOdds: Record<string, number>;
   bestWorst: {
     roundDate: string;
     scenarios: number;
@@ -115,7 +116,7 @@ export default function SombWhatIfClient({
       if (!active) {
         return;
       }
-      setOdds(json.top7Odds?.[teamId] ?? 0);
+      setOdds(json.playoffOdds?.[teamId] ?? 0);
       setBestWorst(json.bestWorst);
       setLoading(false);
     }
@@ -223,8 +224,7 @@ export default function SombWhatIfClient({
             </p>
             <h1 className="font-display text-4xl font-semibold">What-If Simulator</h1>
             <p className="mt-2 max-w-2xl text-sm text-slate-600">
-              Force outcomes for SOMB games and see playoff odds refresh instantly.
-              SOMB wins tiebreaks against every opponent.
+              Force outcomes for SOMB games and see top-8 playoff odds refresh instantly.
             </p>
           </div>
           <Link
@@ -308,7 +308,7 @@ export default function SombWhatIfClient({
             <h2 className="font-display text-2xl font-semibold">Live Odds</h2>
             <div className="rounded-2xl border border-rose-100 bg-white/90 p-6 shadow-sm">
               <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-500">
-                Top-7 Probability
+                Top-8 Playoff Probability
               </div>
               <div className="mt-3 text-4xl font-semibold text-slate-900">
                 {loading ? "..." : formatTopOdds(odds, 1)}
@@ -342,10 +342,10 @@ export default function SombWhatIfClient({
                           </div>
                           <div className="mt-2 grid grid-cols-2 gap-3 text-xs">
                             <div className={homeBetter ? "font-semibold text-emerald-600" : ""}>
-                              {home} win: {formatTopOdds(impact.homeWinOdds, 1)} top 7
+                              {home} win: {formatTopOdds(impact.homeWinOdds, 1)} playoffs
                             </div>
                             <div className={!homeBetter ? "font-semibold text-emerald-600" : ""}>
-                              {away} win: {formatTopOdds(impact.awayWinOdds, 1)} top 7
+                              {away} win: {formatTopOdds(impact.awayWinOdds, 1)} playoffs
                             </div>
                           </div>
                         </div>
@@ -373,22 +373,22 @@ export default function SombWhatIfClient({
                   <th className="px-3 py-2 text-center" colSpan={2}>
                     Resultant Record
                   </th>
-                  <th className="px-3 py-2 text-center" colSpan={7}>
+                  <th className="px-3 py-2 text-center" colSpan={8}>
                     Finish Rank
                   </th>
-                  <th className="px-3 py-2 text-center">No Playoffs</th>
+                  <th className="px-3 py-2 text-center">No Playoffs (9+)</th>
                 </tr>
                 <tr className="bg-rose-50 text-[11px] font-semibold uppercase tracking-[0.2em] text-rose-400">
                   <th className="px-3 pb-2 text-left" />
                   <th className="px-3 pb-2 text-left" />
                   <th className="px-2 pb-2 text-center">W</th>
                   <th className="px-2 pb-2 text-center">L</th>
-                  {Array.from({ length: 7 }, (_, idx) => (
+                  {Array.from({ length: PLAYOFF_CUTOFF }, (_, idx) => (
                     <th key={`rank-${idx + 1}`} className="px-2 pb-2 text-center">
                       {idx + 1}
                     </th>
                   ))}
-                  <th className="px-2 pb-2 text-center">8+</th>
+                  <th className="px-2 pb-2 text-center">9+</th>
                 </tr>
               </thead>
               <tbody>
@@ -410,7 +410,7 @@ export default function SombWhatIfClient({
                         <td className="px-2 py-2 text-center font-semibold">
                           {row.losses}
                         </td>
-                        {row.rankProbs.slice(0, 7).map((prob, idx) => (
+                        {row.rankProbs.slice(0, PLAYOFF_CUTOFF).map((prob, idx) => (
                           <td key={`prob-${row.remainingWins}-${idx}`} className="px-2 py-2 text-center">
                             {formatPct(prob)}
                           </td>
@@ -422,7 +422,7 @@ export default function SombWhatIfClient({
                     ))
                 ) : (
                   <tr>
-                    <td className="px-3 py-4 text-sm text-slate-500" colSpan={12}>
+                    <td className="px-3 py-4 text-sm text-slate-500" colSpan={13}>
                       Win table not available yet.
                     </td>
                   </tr>

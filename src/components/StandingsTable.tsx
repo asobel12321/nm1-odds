@@ -4,7 +4,7 @@ import type { TeamRecord } from "@/lib/types";
 export interface StandingsRow {
   rank: number;
   team: TeamRecord;
-  top7Odds: number;
+  playoffOdds: number;
   hasPlayoffChance?: boolean;
 }
 
@@ -19,7 +19,7 @@ export default function StandingsTable({ rows }: StandingsTableProps) {
         <div className="col-span-1">#</div>
         <div className="col-span-7">Team</div>
         <div className="col-span-2 text-right">W-L</div>
-        <div className="col-span-2 text-right">Top 7</div>
+        <div className="col-span-2 text-right">Playoffs</div>
       </div>
       <div className="divide-y divide-slate-100">
         {rows.map((row) => (
@@ -40,9 +40,9 @@ export default function StandingsTable({ rows }: StandingsTableProps) {
               {row.team.wins}-{row.team.losses}
             </div>
             <div className="col-span-2 text-right font-semibold text-slate-900">
-              {row.top7Odds <= 0 && row.hasPlayoffChance
+              {row.playoffOdds <= 0 && row.hasPlayoffChance
                 ? formatTopOdds(0.001, 1)
-                : formatTopOdds(row.top7Odds, 1)}
+                : formatTopOdds(row.playoffOdds, 1)}
             </div>
           </div>
         ))}

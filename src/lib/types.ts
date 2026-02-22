@@ -38,7 +38,7 @@ export interface SimParams {
 }
 
 export interface SimResult {
-  top7Odds: Record<TeamId, number>;
+  playoffOdds: Record<TeamId, number>;
   rankHist: Record<TeamId, number[]>;
   winHist: Record<TeamId, number[]>;
 }

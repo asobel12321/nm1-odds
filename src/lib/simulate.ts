@@ -1,4 +1,5 @@
 import { createRng } from "@/lib/rng";
+import { PLAYOFF_CUTOFF } from "@/lib/competition";
 import { winProb } from "@/lib/model";
 import { rankTeams } from "@/lib/rank";
 import type { DataFile, SimParams, SimResult, TeamId } from "@/lib/types";
@@ -94,12 +95,14 @@ export function simulateSeason(data: DataFile, params: SimParams): SimResult {
     }
   }
 
-  const top7Odds: Record<TeamId, number> = {};
+  const playoffOdds: Record<TeamId, number> = {};
   for (const id of teamIds) {
     rankHist[id] = rankHist[id].map((count) => count / simulations);
     winHist[id] = winHist[id].map((count) => count / simulations);
-    top7Odds[id] = rankHist[id].slice(0, 7).reduce((a, b) => a + b, 0);
+    playoffOdds[id] = rankHist[id]
+      .slice(0, PLAYOFF_CUTOFF)
+      .reduce((a, b) => a + b, 0);
   }
 
-  return { top7Odds, rankHist, winHist };
+  return { playoffOdds, rankHist, winHist };
 }

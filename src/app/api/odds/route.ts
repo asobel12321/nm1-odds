@@ -37,7 +37,7 @@ export async function POST(req: Request) {
 
   if (shouldUseCache) {
     return NextResponse.json({
-      top7Odds: cached.top7Odds,
+      playoffOdds: cached.playoffOdds,
       rankHist: cached.rankHist,
       winHist: cached.winHist,
       bestWorst: null,
@@ -77,7 +77,7 @@ export async function POST(req: Request) {
     : null;
 
   return NextResponse.json({
-    top7Odds: result.top7Odds,
+    playoffOdds: result.playoffOdds,
     rankHist: result.rankHist,
     winHist: result.winHist,
     bestWorst,
