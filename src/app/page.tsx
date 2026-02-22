@@ -10,6 +10,7 @@ import {
   teamsById,
 } from "@/lib/data";
 import { DEFAULT_HOME_ADV, DEFAULT_K } from "@/lib/model";
+import { rankTeams } from "@/lib/rank";
 import { simulateSeason } from "@/lib/simulate";
 
 export default function Home() {
@@ -36,24 +37,16 @@ export default function Home() {
     remainingById[game.away] += 1;
   }
 
-  const rows = [...data.teams]
-    .sort((a, b) => {
-      const aGames = a.wins + a.losses;
-      const bGames = b.wins + b.losses;
-      const aPct = aGames > 0 ? a.wins / aGames : 0;
-      const bPct = bGames > 0 ? b.wins / bGames : 0;
-      if (bPct !== aPct) {
-        return bPct - aPct;
-      }
-      if (a.id === sombId && b.id !== sombId) {
-        return -1;
-      }
-      if (b.id === sombId && a.id !== sombId) {
-        return 1;
-      }
-      return a.name.localeCompare(b.name);
-    })
-    .map((team, index, sortedTeams) => {
+  const currentWins: Record<string, number> = {};
+  const currentGames: Record<string, number> = {};
+  for (const team of data.teams) {
+    currentWins[team.id] = team.wins;
+    currentGames[team.id] = team.wins + team.losses;
+  }
+  const rankedIds = rankTeams(data.teams, currentWins, sombId, currentGames);
+  const sortedTeams = rankedIds.map((id) => teamLookup[id]!);
+
+  const rows = sortedTeams.map((team, index) => {
       const teamRemaining = remainingById[team.id] ?? 0;
       const teamTotal = team.wins + team.losses + teamRemaining;
       const maxWinPct =

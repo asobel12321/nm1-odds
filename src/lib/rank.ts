@@ -1,5 +1,34 @@
 import type { TeamRecord, TeamId } from "@/lib/types";
 
+const SOMB_WINS_TIEBREAKER_VS = new Set<TeamId>(["253", "14914", "26"]);
+const SOMB_LOSES_TIEBREAKER_VS = new Set<TeamId>(["278", "13367", "1851"]);
+
+function compareSombTieBreak(
+  a: TeamRecord,
+  b: TeamRecord,
+  sombId: TeamId,
+): number | null {
+  if (a.id === sombId && b.id !== sombId) {
+    if (SOMB_WINS_TIEBREAKER_VS.has(b.id)) {
+      return -1;
+    }
+    if (SOMB_LOSES_TIEBREAKER_VS.has(b.id)) {
+      return 1;
+    }
+    return null;
+  }
+  if (b.id === sombId && a.id !== sombId) {
+    if (SOMB_WINS_TIEBREAKER_VS.has(a.id)) {
+      return 1;
+    }
+    if (SOMB_LOSES_TIEBREAKER_VS.has(a.id)) {
+      return -1;
+    }
+    return null;
+  }
+  return null;
+}
+
 export function rankTeams(
   teams: TeamRecord[],
   wins: Record<TeamId, number>,
@@ -18,13 +47,13 @@ export function rankTeams(
       if (diff !== 0) {
         return diff;
       }
-      if (a.id === sombId && b.id !== sombId) {
-        return -1;
+
+      const sombTieBreak = compareSombTieBreak(a, b, sombId);
+      if (sombTieBreak !== null) {
+        return sombTieBreak;
       }
-      if (b.id === sombId && a.id !== sombId) {
-        return 1;
-      }
-      return a.id.localeCompare(b.id);
+
+      return a.name.localeCompare(b.name);
     })
     .map((team) => team.id);
 }
