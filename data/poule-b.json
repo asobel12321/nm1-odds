@@ -1,988 +1,988 @@
 {
-  "season": "2025-2026",
-  "updated": "2026-02-22",
-  "teams": [
-    {
-      "id": "26",
-      "name": "Le Havre",
-      "abbr": "STB",
-      "wins": 8,
-      "losses": 4
-    },
-    {
-      "id": "13367",
-      "name": "Mulhouse",
-      "abbr": "MUL",
-      "wins": 8,
-      "losses": 4
-    },
-    {
-      "id": "278",
-      "name": "Fos-sur-mer",
-      "abbr": "FOS",
-      "wins": 8,
-      "losses": 4
-    },
-    {
-      "id": "3",
-      "name": "Levallois",
-      "abbr": "LEV",
-      "wins": 8,
-      "losses": 4
-    },
-    {
-      "id": "2937",
-      "name": "Tarbes-Lourdes",
-      "abbr": "UTL",
-      "wins": 7,
-      "losses": 5
-    },
-    {
-      "id": "345",
-      "name": "Pays de Fougeres",
-      "abbr": "FOU",
-      "wins": 6,
-      "losses": 6
-    },
-    {
-      "id": "1851",
-      "name": "Orchies",
-      "abbr": "ORC",
-      "wins": 6,
-      "losses": 6
-    },
-    {
-      "id": "14016",
-      "name": "Les Sables d'Olonne",
-      "abbr": "SAB",
-      "wins": 6,
-      "losses": 6
-    },
-    {
-      "id": "247",
-      "name": "Lorient",
-      "abbr": "LOR",
-      "wins": 6,
-      "losses": 6
-    },
-    {
-      "id": "13305",
-      "name": "Tours",
-      "abbr": "UTB",
-      "wins": 6,
-      "losses": 6
-    },
-    {
-      "id": "1704",
-      "name": "Boulogne-sur-Mer",
-      "abbr": "SOMB",
-      "wins": 5,
-      "losses": 7
-    },
-    {
-      "id": "14914",
-      "name": "Loon Plage",
-      "abbr": "LOO",
-      "wins": 4,
-      "losses": 8
-    },
-    {
-      "id": "1844",
-      "name": "Toulouse",
-      "abbr": "TOU",
-      "wins": 3,
-      "losses": 9
-    },
-    {
-      "id": "253",
-      "name": "Berck Rang du Fliers",
-      "abbr": "BRK",
-      "wins": 3,
-      "losses": 9
-    }
-  ],
-  "games": [
-    {
-      "id": "2026-03-06 20:00-13305-26",
-      "date": "2026-03-06 20:00",
-      "home": "13305",
-      "away": "26",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-06 20:00-14016-1704",
-      "date": "2026-03-06 20:00",
-      "home": "14016",
-      "away": "1704",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-06 20:00-1844-13367",
-      "date": "2026-03-06 20:00",
-      "home": "1844",
-      "away": "13367",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-06 20:00-247-1851",
-      "date": "2026-03-06 20:00",
-      "home": "247",
-      "away": "1851",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-06 20:00-2937-14914",
-      "date": "2026-03-06 20:00",
-      "home": "2937",
-      "away": "14914",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-06 20:00-3-253",
-      "date": "2026-03-06 20:00",
-      "home": "3",
-      "away": "253",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-06 20:00-345-278",
-      "date": "2026-03-06 20:00",
-      "home": "345",
-      "away": "278",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-13 20:00-13367-14016",
-      "date": "2026-03-13 20:00",
-      "home": "13367",
-      "away": "14016",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-13 20:00-14914-247",
-      "date": "2026-03-13 20:00",
-      "home": "14914",
-      "away": "247",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-13 20:00-1704-13305",
-      "date": "2026-03-13 20:00",
-      "home": "1704",
-      "away": "13305",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-13 20:00-1851-3",
-      "date": "2026-03-13 20:00",
-      "home": "1851",
-      "away": "3",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-13 20:00-253-1844",
-      "date": "2026-03-13 20:00",
-      "home": "253",
-      "away": "1844",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-13 20:00-26-345",
-      "date": "2026-03-13 20:00",
-      "home": "26",
-      "away": "345",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-13 20:00-278-2937",
-      "date": "2026-03-13 20:00",
-      "home": "278",
-      "away": "2937",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-17 20:00-13305-14914",
-      "date": "2026-03-17 20:00",
-      "home": "13305",
-      "away": "14914",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-17 20:00-14016-278",
-      "date": "2026-03-17 20:00",
-      "home": "14016",
-      "away": "278",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-17 20:00-1844-26",
-      "date": "2026-03-17 20:00",
-      "home": "1844",
-      "away": "26",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-17 20:00-247-13367",
-      "date": "2026-03-17 20:00",
-      "home": "247",
-      "away": "13367",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-17 20:00-2937-253",
-      "date": "2026-03-17 20:00",
-      "home": "2937",
-      "away": "253",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-17 20:00-3-1704",
-      "date": "2026-03-17 20:00",
-      "home": "3",
-      "away": "1704",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-17 20:00-345-1851",
-      "date": "2026-03-17 20:00",
-      "home": "345",
-      "away": "1851",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-20 20:00-13367-2937",
-      "date": "2026-03-20 20:00",
-      "home": "13367",
-      "away": "2937",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-20 20:00-14914-14016",
-      "date": "2026-03-20 20:00",
-      "home": "14914",
-      "away": "14016",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-20 20:00-1704-247",
-      "date": "2026-03-20 20:00",
-      "home": "1704",
-      "away": "247",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-20 20:00-1851-13305",
-      "date": "2026-03-20 20:00",
-      "home": "1851",
-      "away": "13305",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-20 20:00-253-345",
-      "date": "2026-03-20 20:00",
-      "home": "253",
-      "away": "345",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-20 20:00-26-3",
-      "date": "2026-03-20 20:00",
-      "home": "26",
-      "away": "3",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-20 20:00-278-1844",
-      "date": "2026-03-20 20:00",
-      "home": "278",
-      "away": "1844",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-27 20:00-13305-253",
-      "date": "2026-03-27 20:00",
-      "home": "13305",
-      "away": "253",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-27 20:00-14016-1851",
-      "date": "2026-03-27 20:00",
-      "home": "14016",
-      "away": "1851",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-27 20:00-1844-14914",
-      "date": "2026-03-27 20:00",
-      "home": "1844",
-      "away": "14914",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-27 20:00-247-26",
-      "date": "2026-03-27 20:00",
-      "home": "247",
-      "away": "26",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-27 20:00-2937-1704",
-      "date": "2026-03-27 20:00",
-      "home": "2937",
-      "away": "1704",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-27 20:00-3-278",
-      "date": "2026-03-27 20:00",
-      "home": "3",
-      "away": "278",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-27 20:00-345-13367",
-      "date": "2026-03-27 20:00",
-      "home": "345",
-      "away": "13367",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-31 20:00-13367-3",
-      "date": "2026-03-31 20:00",
-      "home": "13367",
-      "away": "3",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-31 20:00-14914-345",
-      "date": "2026-03-31 20:00",
-      "home": "14914",
-      "away": "345",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-31 20:00-1704-1844",
-      "date": "2026-03-31 20:00",
-      "home": "1704",
-      "away": "1844",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-31 20:00-1851-2937",
-      "date": "2026-03-31 20:00",
-      "home": "1851",
-      "away": "2937",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-31 20:00-253-247",
-      "date": "2026-03-31 20:00",
-      "home": "253",
-      "away": "247",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-31 20:00-26-14016",
-      "date": "2026-03-31 20:00",
-      "home": "26",
-      "away": "14016",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-03-31 20:00-278-13305",
-      "date": "2026-03-31 20:00",
-      "home": "278",
-      "away": "13305",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-03 20:00-13305-13367",
-      "date": "2026-04-03 20:00",
-      "home": "13305",
-      "away": "13367",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-03 20:00-14016-253",
-      "date": "2026-04-03 20:00",
-      "home": "14016",
-      "away": "253",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-03 20:00-1844-1851",
-      "date": "2026-04-03 20:00",
-      "home": "1844",
-      "away": "1851",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-03 20:00-247-278",
-      "date": "2026-04-03 20:00",
-      "home": "247",
-      "away": "278",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-03 20:00-2937-26",
-      "date": "2026-04-03 20:00",
-      "home": "2937",
-      "away": "26",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-03 20:00-3-14914",
-      "date": "2026-04-03 20:00",
-      "home": "3",
-      "away": "14914",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-03 20:00-345-1704",
-      "date": "2026-04-03 20:00",
-      "home": "345",
-      "away": "1704",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-10 20:00-13367-1844",
-      "date": "2026-04-10 20:00",
-      "home": "13367",
-      "away": "1844",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-10 20:00-14914-2937",
-      "date": "2026-04-10 20:00",
-      "home": "14914",
-      "away": "2937",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-10 20:00-1704-14016",
-      "date": "2026-04-10 20:00",
-      "home": "1704",
-      "away": "14016",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-10 20:00-1851-247",
-      "date": "2026-04-10 20:00",
-      "home": "1851",
-      "away": "247",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-10 20:00-253-3",
-      "date": "2026-04-10 20:00",
-      "home": "253",
-      "away": "3",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-10 20:00-26-13305",
-      "date": "2026-04-10 20:00",
-      "home": "26",
-      "away": "13305",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-10 20:00-278-345",
-      "date": "2026-04-10 20:00",
-      "home": "278",
-      "away": "345",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-17 20:00-13305-1704",
-      "date": "2026-04-17 20:00",
-      "home": "13305",
-      "away": "1704",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-17 20:00-14016-13367",
-      "date": "2026-04-17 20:00",
-      "home": "14016",
-      "away": "13367",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-17 20:00-1844-253",
-      "date": "2026-04-17 20:00",
-      "home": "1844",
-      "away": "253",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-17 20:00-247-14914",
-      "date": "2026-04-17 20:00",
-      "home": "247",
-      "away": "14914",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-17 20:00-2937-278",
-      "date": "2026-04-17 20:00",
-      "home": "2937",
-      "away": "278",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-17 20:00-3-1851",
-      "date": "2026-04-17 20:00",
-      "home": "3",
-      "away": "1851",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-17 20:00-345-26",
-      "date": "2026-04-17 20:00",
-      "home": "345",
-      "away": "26",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-21 20:00-13367-247",
-      "date": "2026-04-21 20:00",
-      "home": "13367",
-      "away": "247",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-21 20:00-14914-13305",
-      "date": "2026-04-21 20:00",
-      "home": "14914",
-      "away": "13305",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-21 20:00-1704-3",
-      "date": "2026-04-21 20:00",
-      "home": "1704",
-      "away": "3",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-21 20:00-1851-345",
-      "date": "2026-04-21 20:00",
-      "home": "1851",
-      "away": "345",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-21 20:00-253-2937",
-      "date": "2026-04-21 20:00",
-      "home": "253",
-      "away": "2937",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-21 20:00-26-1844",
-      "date": "2026-04-21 20:00",
-      "home": "26",
-      "away": "1844",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-21 20:00-278-14016",
-      "date": "2026-04-21 20:00",
-      "home": "278",
-      "away": "14016",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-26 15:30-13305-1851",
-      "date": "2026-04-26 15:30",
-      "home": "13305",
-      "away": "1851",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-26 15:30-14016-14914",
-      "date": "2026-04-26 15:30",
-      "home": "14016",
-      "away": "14914",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-26 15:30-1844-278",
-      "date": "2026-04-26 15:30",
-      "home": "1844",
-      "away": "278",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-26 15:30-247-1704",
-      "date": "2026-04-26 15:30",
-      "home": "247",
-      "away": "1704",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-26 15:30-2937-13367",
-      "date": "2026-04-26 15:30",
-      "home": "2937",
-      "away": "13367",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-26 15:30-3-26",
-      "date": "2026-04-26 15:30",
-      "home": "3",
-      "away": "26",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-04-26 15:30-345-253",
-      "date": "2026-04-26 15:30",
-      "home": "345",
-      "away": "253",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-05-01 20:00-13367-345",
-      "date": "2026-05-01 20:00",
-      "home": "13367",
-      "away": "345",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-05-01 20:00-14914-1844",
-      "date": "2026-05-01 20:00",
-      "home": "14914",
-      "away": "1844",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-05-01 20:00-1704-2937",
-      "date": "2026-05-01 20:00",
-      "home": "1704",
-      "away": "2937",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-05-01 20:00-1851-14016",
-      "date": "2026-05-01 20:00",
-      "home": "1851",
-      "away": "14016",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-05-01 20:00-253-13305",
-      "date": "2026-05-01 20:00",
-      "home": "253",
-      "away": "13305",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-05-01 20:00-26-247",
-      "date": "2026-05-01 20:00",
-      "home": "26",
-      "away": "247",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-05-01 20:00-278-3",
-      "date": "2026-05-01 20:00",
-      "home": "278",
-      "away": "3",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-05-05 20:00-13305-278",
-      "date": "2026-05-05 20:00",
-      "home": "13305",
-      "away": "278",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-05-05 20:00-14016-26",
-      "date": "2026-05-05 20:00",
-      "home": "14016",
-      "away": "26",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-05-05 20:00-1844-1704",
-      "date": "2026-05-05 20:00",
-      "home": "1844",
-      "away": "1704",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-05-05 20:00-247-253",
-      "date": "2026-05-05 20:00",
-      "home": "247",
-      "away": "253",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-05-05 20:00-2937-1851",
-      "date": "2026-05-05 20:00",
-      "home": "2937",
-      "away": "1851",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-05-05 20:00-3-13367",
-      "date": "2026-05-05 20:00",
-      "home": "3",
-      "away": "13367",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-05-05 20:00-345-14914",
-      "date": "2026-05-05 20:00",
-      "home": "345",
-      "away": "14914",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-05-08 20:00-13367-13305",
-      "date": "2026-05-08 20:00",
-      "home": "13367",
-      "away": "13305",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-05-08 20:00-14914-3",
-      "date": "2026-05-08 20:00",
-      "home": "14914",
-      "away": "3",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-05-08 20:00-1704-345",
-      "date": "2026-05-08 20:00",
-      "home": "1704",
-      "away": "345",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-05-08 20:00-1851-1844",
-      "date": "2026-05-08 20:00",
-      "home": "1851",
-      "away": "1844",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-05-08 20:00-253-14016",
-      "date": "2026-05-08 20:00",
-      "home": "253",
-      "away": "14016",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-05-08 20:00-26-2937",
-      "date": "2026-05-08 20:00",
-      "home": "26",
-      "away": "2937",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    },
-    {
-      "id": "2026-05-08 20:00-278-247",
-      "date": "2026-05-08 20:00",
-      "home": "278",
-      "away": "247",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
-    }
-  ]
+    "season":  "2025-2026",
+    "updated":  "2026-03-13",
+    "teams":  [
+                  {
+                      "id":  "26",
+                      "name":  "Le Havre",
+                      "abbr":  "STB",
+                      "wins":  9,
+                      "losses":  5
+                  },
+                  {
+                      "id":  "13367",
+                      "name":  "Mulhouse",
+                      "abbr":  "MUL",
+                      "wins":  9,
+                      "losses":  5
+                  },
+                  {
+                      "id":  "278",
+                      "name":  "Fos-sur-mer",
+                      "abbr":  "FOS",
+                      "wins":  10,
+                      "losses":  4
+                  },
+                  {
+                      "id":  "3",
+                      "name":  "Levallois",
+                      "abbr":  "LEV",
+                      "wins":  10,
+                      "losses":  4
+                  },
+                  {
+                      "id":  "2937",
+                      "name":  "Tarbes-Lourdes",
+                      "abbr":  "UTL",
+                      "wins":  8,
+                      "losses":  6
+                  },
+                  {
+                      "id":  "345",
+                      "name":  "Pays de Fougeres",
+                      "abbr":  "FOU",
+                      "wins":  6,
+                      "losses":  8
+                  },
+                  {
+                      "id":  "1851",
+                      "name":  "Orchies",
+                      "abbr":  "ORC",
+                      "wins":  6,
+                      "losses":  8
+                  },
+                  {
+                      "id":  "14016",
+                      "name":  "Les Sables d\u0027Olonne",
+                      "abbr":  "SAB",
+                      "wins":  7,
+                      "losses":  7
+                  },
+                  {
+                      "id":  "247",
+                      "name":  "Lorient",
+                      "abbr":  "LOR",
+                      "wins":  8,
+                      "losses":  6
+                  },
+                  {
+                      "id":  "13305",
+                      "name":  "Tours",
+                      "abbr":  "UTB",
+                      "wins":  7,
+                      "losses":  7
+                  },
+                  {
+                      "id":  "1704",
+                      "name":  "Boulogne-sur-Mer",
+                      "abbr":  "SOMB",
+                      "wins":  6,
+                      "losses":  8
+                  },
+                  {
+                      "id":  "14914",
+                      "name":  "Loon Plage",
+                      "abbr":  "LOO",
+                      "wins":  4,
+                      "losses":  10
+                  },
+                  {
+                      "id":  "1844",
+                      "name":  "Toulouse",
+                      "abbr":  "TOU",
+                      "wins":  4,
+                      "losses":  10
+                  },
+                  {
+                      "id":  "253",
+                      "name":  "Berck Rang du Fliers",
+                      "abbr":  "BRK",
+                      "wins":  4,
+                      "losses":  10
+                  }
+              ],
+    "games":  [
+                  {
+                      "id":  "2026-03-06 20:00-13305-26",
+                      "date":  "2026-03-06 20:00",
+                      "home":  "13305",
+                      "away":  "26",
+                      "played":  true,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-06 20:00-14016-1704",
+                      "date":  "2026-03-06 20:00",
+                      "home":  "14016",
+                      "away":  "1704",
+                      "played":  true,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-06 20:00-1844-13367",
+                      "date":  "2026-03-06 20:00",
+                      "home":  "1844",
+                      "away":  "13367",
+                      "played":  true,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-06 20:00-247-1851",
+                      "date":  "2026-03-06 20:00",
+                      "home":  "247",
+                      "away":  "1851",
+                      "played":  true,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-06 20:00-2937-14914",
+                      "date":  "2026-03-06 20:00",
+                      "home":  "2937",
+                      "away":  "14914",
+                      "played":  true,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-06 20:00-3-253",
+                      "date":  "2026-03-06 20:00",
+                      "home":  "3",
+                      "away":  "253",
+                      "played":  true,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-06 20:00-345-278",
+                      "date":  "2026-03-06 20:00",
+                      "home":  "345",
+                      "away":  "278",
+                      "played":  true,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-13 20:00-13367-14016",
+                      "date":  "2026-03-13 20:00",
+                      "home":  "13367",
+                      "away":  "14016",
+                      "played":  true,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-13 20:00-14914-247",
+                      "date":  "2026-03-13 20:00",
+                      "home":  "14914",
+                      "away":  "247",
+                      "played":  true,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-13 20:00-1704-13305",
+                      "date":  "2026-03-13 20:00",
+                      "home":  "1704",
+                      "away":  "13305",
+                      "played":  true,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-13 20:00-1851-3",
+                      "date":  "2026-03-13 20:00",
+                      "home":  "1851",
+                      "away":  "3",
+                      "played":  true,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-13 20:00-253-1844",
+                      "date":  "2026-03-13 20:00",
+                      "home":  "253",
+                      "away":  "1844",
+                      "played":  true,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-13 20:00-26-345",
+                      "date":  "2026-03-12 20:00",
+                      "home":  "26",
+                      "away":  "345",
+                      "played":  true,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-13 20:00-278-2937",
+                      "date":  "2026-03-13 20:00",
+                      "home":  "278",
+                      "away":  "2937",
+                      "played":  true,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-17 20:00-13305-14914",
+                      "date":  "2026-03-17 20:00",
+                      "home":  "13305",
+                      "away":  "14914",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-17 20:00-14016-278",
+                      "date":  "2026-03-17 20:00",
+                      "home":  "14016",
+                      "away":  "278",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-17 20:00-1844-26",
+                      "date":  "2026-03-17 20:00",
+                      "home":  "1844",
+                      "away":  "26",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-17 20:00-247-13367",
+                      "date":  "2026-03-17 20:00",
+                      "home":  "247",
+                      "away":  "13367",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-17 20:00-2937-253",
+                      "date":  "2026-03-17 20:00",
+                      "home":  "2937",
+                      "away":  "253",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-17 20:00-3-1704",
+                      "date":  "2026-03-17 20:00",
+                      "home":  "3",
+                      "away":  "1704",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-17 20:00-345-1851",
+                      "date":  "2026-03-17 20:00",
+                      "home":  "345",
+                      "away":  "1851",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-20 20:00-13367-2937",
+                      "date":  "2026-03-20 20:00",
+                      "home":  "13367",
+                      "away":  "2937",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-20 20:00-14914-14016",
+                      "date":  "2026-03-20 20:00",
+                      "home":  "14914",
+                      "away":  "14016",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-20 20:00-1704-247",
+                      "date":  "2026-03-20 20:00",
+                      "home":  "1704",
+                      "away":  "247",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-20 20:00-1851-13305",
+                      "date":  "2026-03-20 20:00",
+                      "home":  "1851",
+                      "away":  "13305",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-20 20:00-253-345",
+                      "date":  "2026-03-20 20:00",
+                      "home":  "253",
+                      "away":  "345",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-20 20:00-26-3",
+                      "date":  "2026-03-20 20:00",
+                      "home":  "26",
+                      "away":  "3",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-20 20:00-278-1844",
+                      "date":  "2026-03-20 20:00",
+                      "home":  "278",
+                      "away":  "1844",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-27 20:00-13305-253",
+                      "date":  "2026-03-27 20:00",
+                      "home":  "13305",
+                      "away":  "253",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-27 20:00-14016-1851",
+                      "date":  "2026-03-27 20:00",
+                      "home":  "14016",
+                      "away":  "1851",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-27 20:00-1844-14914",
+                      "date":  "2026-03-27 20:00",
+                      "home":  "1844",
+                      "away":  "14914",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-27 20:00-247-26",
+                      "date":  "2026-03-27 20:00",
+                      "home":  "247",
+                      "away":  "26",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-27 20:00-2937-1704",
+                      "date":  "2026-03-27 20:00",
+                      "home":  "2937",
+                      "away":  "1704",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-27 20:00-3-278",
+                      "date":  "2026-03-27 20:00",
+                      "home":  "3",
+                      "away":  "278",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-27 20:00-345-13367",
+                      "date":  "2026-03-27 20:00",
+                      "home":  "345",
+                      "away":  "13367",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-31 20:00-13367-3",
+                      "date":  "2026-03-31 20:00",
+                      "home":  "13367",
+                      "away":  "3",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-31 20:00-14914-345",
+                      "date":  "2026-03-31 20:00",
+                      "home":  "14914",
+                      "away":  "345",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-31 20:00-1704-1844",
+                      "date":  "2026-03-31 20:00",
+                      "home":  "1704",
+                      "away":  "1844",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-31 20:00-1851-2937",
+                      "date":  "2026-03-31 20:00",
+                      "home":  "1851",
+                      "away":  "2937",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-31 20:00-253-247",
+                      "date":  "2026-03-31 20:00",
+                      "home":  "253",
+                      "away":  "247",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-31 20:00-26-14016",
+                      "date":  "2026-03-31 20:00",
+                      "home":  "26",
+                      "away":  "14016",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-03-31 20:00-278-13305",
+                      "date":  "2026-03-31 20:00",
+                      "home":  "278",
+                      "away":  "13305",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-03 20:00-13305-13367",
+                      "date":  "2026-04-03 20:00",
+                      "home":  "13305",
+                      "away":  "13367",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-03 20:00-14016-253",
+                      "date":  "2026-04-03 20:00",
+                      "home":  "14016",
+                      "away":  "253",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-03 20:00-1844-1851",
+                      "date":  "2026-04-03 20:00",
+                      "home":  "1844",
+                      "away":  "1851",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-03 20:00-247-278",
+                      "date":  "2026-04-03 20:00",
+                      "home":  "247",
+                      "away":  "278",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-03 20:00-2937-26",
+                      "date":  "2026-04-03 20:00",
+                      "home":  "2937",
+                      "away":  "26",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-03 20:00-3-14914",
+                      "date":  "2026-04-03 20:00",
+                      "home":  "3",
+                      "away":  "14914",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-03 20:00-345-1704",
+                      "date":  "2026-04-03 20:00",
+                      "home":  "345",
+                      "away":  "1704",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-10 20:00-13367-1844",
+                      "date":  "2026-04-10 20:00",
+                      "home":  "13367",
+                      "away":  "1844",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-10 20:00-14914-2937",
+                      "date":  "2026-04-10 20:00",
+                      "home":  "14914",
+                      "away":  "2937",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-10 20:00-1704-14016",
+                      "date":  "2026-04-10 20:00",
+                      "home":  "1704",
+                      "away":  "14016",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-10 20:00-1851-247",
+                      "date":  "2026-04-10 20:00",
+                      "home":  "1851",
+                      "away":  "247",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-10 20:00-253-3",
+                      "date":  "2026-04-10 20:00",
+                      "home":  "253",
+                      "away":  "3",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-10 20:00-26-13305",
+                      "date":  "2026-04-10 20:00",
+                      "home":  "26",
+                      "away":  "13305",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-10 20:00-278-345",
+                      "date":  "2026-04-10 20:00",
+                      "home":  "278",
+                      "away":  "345",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-17 20:00-13305-1704",
+                      "date":  "2026-04-17 20:00",
+                      "home":  "13305",
+                      "away":  "1704",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-17 20:00-14016-13367",
+                      "date":  "2026-04-17 20:00",
+                      "home":  "14016",
+                      "away":  "13367",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-17 20:00-1844-253",
+                      "date":  "2026-04-17 20:00",
+                      "home":  "1844",
+                      "away":  "253",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-17 20:00-247-14914",
+                      "date":  "2026-04-17 20:00",
+                      "home":  "247",
+                      "away":  "14914",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-17 20:00-2937-278",
+                      "date":  "2026-04-17 20:00",
+                      "home":  "2937",
+                      "away":  "278",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-17 20:00-3-1851",
+                      "date":  "2026-04-17 20:00",
+                      "home":  "3",
+                      "away":  "1851",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-17 20:00-345-26",
+                      "date":  "2026-04-17 20:00",
+                      "home":  "345",
+                      "away":  "26",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-21 20:00-13367-247",
+                      "date":  "2026-04-21 20:00",
+                      "home":  "13367",
+                      "away":  "247",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-21 20:00-14914-13305",
+                      "date":  "2026-04-21 20:00",
+                      "home":  "14914",
+                      "away":  "13305",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-21 20:00-1704-3",
+                      "date":  "2026-04-21 20:00",
+                      "home":  "1704",
+                      "away":  "3",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-21 20:00-1851-345",
+                      "date":  "2026-04-21 20:00",
+                      "home":  "1851",
+                      "away":  "345",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-21 20:00-253-2937",
+                      "date":  "2026-04-21 20:00",
+                      "home":  "253",
+                      "away":  "2937",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-21 20:00-26-1844",
+                      "date":  "2026-04-21 20:00",
+                      "home":  "26",
+                      "away":  "1844",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-21 20:00-278-14016",
+                      "date":  "2026-04-21 20:00",
+                      "home":  "278",
+                      "away":  "14016",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-26 15:30-13305-1851",
+                      "date":  "2026-04-26 15:30",
+                      "home":  "13305",
+                      "away":  "1851",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-26 15:30-14016-14914",
+                      "date":  "2026-04-26 15:30",
+                      "home":  "14016",
+                      "away":  "14914",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-26 15:30-1844-278",
+                      "date":  "2026-04-26 15:30",
+                      "home":  "1844",
+                      "away":  "278",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-26 15:30-247-1704",
+                      "date":  "2026-04-26 15:30",
+                      "home":  "247",
+                      "away":  "1704",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-26 15:30-2937-13367",
+                      "date":  "2026-04-26 15:30",
+                      "home":  "2937",
+                      "away":  "13367",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-26 15:30-3-26",
+                      "date":  "2026-04-26 15:30",
+                      "home":  "3",
+                      "away":  "26",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-04-26 15:30-345-253",
+                      "date":  "2026-04-26 15:30",
+                      "home":  "345",
+                      "away":  "253",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-05-01 20:00-13367-345",
+                      "date":  "2026-05-01 20:00",
+                      "home":  "13367",
+                      "away":  "345",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-05-01 20:00-14914-1844",
+                      "date":  "2026-05-01 20:00",
+                      "home":  "14914",
+                      "away":  "1844",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-05-01 20:00-1704-2937",
+                      "date":  "2026-05-01 20:00",
+                      "home":  "1704",
+                      "away":  "2937",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-05-01 20:00-1851-14016",
+                      "date":  "2026-05-01 20:00",
+                      "home":  "1851",
+                      "away":  "14016",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-05-01 20:00-253-13305",
+                      "date":  "2026-05-01 20:00",
+                      "home":  "253",
+                      "away":  "13305",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-05-01 20:00-26-247",
+                      "date":  "2026-05-01 20:00",
+                      "home":  "26",
+                      "away":  "247",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-05-01 20:00-278-3",
+                      "date":  "2026-05-01 20:00",
+                      "home":  "278",
+                      "away":  "3",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-05-05 20:00-13305-278",
+                      "date":  "2026-05-05 20:00",
+                      "home":  "13305",
+                      "away":  "278",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-05-05 20:00-14016-26",
+                      "date":  "2026-05-05 20:00",
+                      "home":  "14016",
+                      "away":  "26",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-05-05 20:00-1844-1704",
+                      "date":  "2026-05-05 20:00",
+                      "home":  "1844",
+                      "away":  "1704",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-05-05 20:00-247-253",
+                      "date":  "2026-05-05 20:00",
+                      "home":  "247",
+                      "away":  "253",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-05-05 20:00-2937-1851",
+                      "date":  "2026-05-05 20:00",
+                      "home":  "2937",
+                      "away":  "1851",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-05-05 20:00-3-13367",
+                      "date":  "2026-05-05 20:00",
+                      "home":  "3",
+                      "away":  "13367",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-05-05 20:00-345-14914",
+                      "date":  "2026-05-05 20:00",
+                      "home":  "345",
+                      "away":  "14914",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-05-08 20:00-13367-13305",
+                      "date":  "2026-05-08 20:00",
+                      "home":  "13367",
+                      "away":  "13305",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-05-08 20:00-14914-3",
+                      "date":  "2026-05-08 20:00",
+                      "home":  "14914",
+                      "away":  "3",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-05-08 20:00-1704-345",
+                      "date":  "2026-05-08 20:00",
+                      "home":  "1704",
+                      "away":  "345",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-05-08 20:00-1851-1844",
+                      "date":  "2026-05-08 20:00",
+                      "home":  "1851",
+                      "away":  "1844",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-05-08 20:00-253-14016",
+                      "date":  "2026-05-08 20:00",
+                      "home":  "253",
+                      "away":  "14016",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-05-08 20:00-26-2937",
+                      "date":  "2026-05-08 20:00",
+                      "home":  "26",
+                      "away":  "2937",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  },
+                  {
+                      "id":  "2026-05-08 20:00-278-247",
+                      "date":  "2026-05-08 20:00",
+                      "home":  "278",
+                      "away":  "247",
+                      "played":  false,
+                      "homeScore":  null,
+                      "awayScore":  null
+                  }
+              ]
 }
