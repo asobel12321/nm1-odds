@@ -1,33 +1,33 @@
 {
     "season":  "2025-2026",
-    "updated":  "2026-03-13",
+    "updated":  "2026-03-17",
     "teams":  [
                   {
                       "id":  "26",
                       "name":  "Le Havre",
                       "abbr":  "STB",
-                      "wins":  9,
+                      "wins":  10,
                       "losses":  5
                   },
                   {
                       "id":  "13367",
                       "name":  "Mulhouse",
                       "abbr":  "MUL",
-                      "wins":  9,
+                      "wins":  10,
                       "losses":  5
                   },
                   {
                       "id":  "278",
                       "name":  "Fos-sur-mer",
                       "abbr":  "FOS",
-                      "wins":  10,
+                      "wins":  11,
                       "losses":  4
                   },
                   {
                       "id":  "3",
                       "name":  "Levallois",
                       "abbr":  "LEV",
-                      "wins":  10,
+                      "wins":  11,
                       "losses":  4
                   },
                   {
@@ -35,13 +35,13 @@
                       "name":  "Tarbes-Lourdes",
                       "abbr":  "UTL",
                       "wins":  8,
-                      "losses":  6
+                      "losses":  7
                   },
                   {
                       "id":  "345",
                       "name":  "Pays de Fougeres",
                       "abbr":  "FOU",
-                      "wins":  6,
+                      "wins":  7,
                       "losses":  8
                   },
                   {
@@ -49,27 +49,27 @@
                       "name":  "Orchies",
                       "abbr":  "ORC",
                       "wins":  6,
-                      "losses":  8
+                      "losses":  9
                   },
                   {
                       "id":  "14016",
                       "name":  "Les Sables d\u0027Olonne",
                       "abbr":  "SAB",
                       "wins":  7,
-                      "losses":  7
+                      "losses":  8
                   },
                   {
                       "id":  "247",
                       "name":  "Lorient",
                       "abbr":  "LOR",
                       "wins":  8,
-                      "losses":  6
+                      "losses":  7
                   },
                   {
                       "id":  "13305",
                       "name":  "Tours",
                       "abbr":  "UTB",
-                      "wins":  7,
+                      "wins":  8,
                       "losses":  7
                   },
                   {
@@ -77,27 +77,27 @@
                       "name":  "Boulogne-sur-Mer",
                       "abbr":  "SOMB",
                       "wins":  6,
-                      "losses":  8
+                      "losses":  9
                   },
                   {
                       "id":  "14914",
                       "name":  "Loon Plage",
                       "abbr":  "LOO",
                       "wins":  4,
-                      "losses":  10
+                      "losses":  11
                   },
                   {
                       "id":  "1844",
                       "name":  "Toulouse",
                       "abbr":  "TOU",
                       "wins":  4,
-                      "losses":  10
+                      "losses":  11
                   },
                   {
                       "id":  "253",
                       "name":  "Berck Rang du Fliers",
                       "abbr":  "BRK",
-                      "wins":  4,
+                      "wins":  5,
                       "losses":  10
                   }
               ],
@@ -233,7 +233,7 @@
                       "date":  "2026-03-17 20:00",
                       "home":  "13305",
                       "away":  "14914",
-                      "played":  false,
+                      "played":  true,
                       "homeScore":  null,
                       "awayScore":  null
                   },
@@ -242,7 +242,7 @@
                       "date":  "2026-03-17 20:00",
                       "home":  "14016",
                       "away":  "278",
-                      "played":  false,
+                      "played":  true,
                       "homeScore":  null,
                       "awayScore":  null
                   },
@@ -251,7 +251,7 @@
                       "date":  "2026-03-17 20:00",
                       "home":  "1844",
                       "away":  "26",
-                      "played":  false,
+                      "played":  true,
                       "homeScore":  null,
                       "awayScore":  null
                   },
@@ -260,7 +260,7 @@
                       "date":  "2026-03-17 20:00",
                       "home":  "247",
                       "away":  "13367",
-                      "played":  false,
+                      "played":  true,
                       "homeScore":  null,
                       "awayScore":  null
                   },
@@ -269,7 +269,7 @@
                       "date":  "2026-03-17 20:00",
                       "home":  "2937",
                       "away":  "253",
-                      "played":  false,
+                      "played":  true,
                       "homeScore":  null,
                       "awayScore":  null
                   },
@@ -278,7 +278,7 @@
                       "date":  "2026-03-17 20:00",
                       "home":  "3",
                       "away":  "1704",
-                      "played":  false,
+                      "played":  true,
                       "homeScore":  null,
                       "awayScore":  null
                   },
@@ -287,7 +287,7 @@
                       "date":  "2026-03-17 20:00",
                       "home":  "345",
                       "away":  "1851",
-                      "played":  false,
+                      "played":  true,
                       "homeScore":  null,
                       "awayScore":  null
                   },
