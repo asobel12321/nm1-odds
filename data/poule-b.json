@@ -6,7 +6,7 @@
                       "id":  "26",
                       "name":  "Le Havre",
                       "abbr":  "STB",
-                      "wins":  10,
+                      "wins":  11,
                       "losses":  5
                   },
                   {
@@ -28,7 +28,7 @@
                       "name":  "Levallois",
                       "abbr":  "LEV",
                       "wins":  11,
-                      "losses":  4
+                      "losses":  5
                   },
                   {
                       "id":  "2937",
@@ -341,7 +341,7 @@
                       "date":  "2026-03-20 20:00",
                       "home":  "26",
                       "away":  "3",
-                      "played":  false,
+                      "played":  true,
                       "homeScore":  null,
                       "awayScore":  null
                   },
