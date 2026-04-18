@@ -1,6 +1,6 @@
 import type { TeamRecord, TeamId } from "@/lib/types";
 
-const SOMB_WINS_TIEBREAKER_VS = new Set<TeamId>(["253", "14914", "26", "14016"]);
+const SOMB_WINS_TIEBREAKER_VS = new Set<TeamId>(["253", "14914", "26", "14016", "13305"]);
 const SOMB_LOSES_TIEBREAKER_VS = new Set<TeamId>(["278", "13367", "1851"]);
 
 function compareSombTieBreak(
