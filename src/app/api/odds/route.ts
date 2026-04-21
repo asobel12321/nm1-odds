@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { buildClinchScenarios } from "@/lib/clinch";
 import { findSombId, loadData, loadOddsCache } from "@/lib/data";
 import { buildMatchdayImpact } from "@/lib/matchdayImpact";
 import { DEFAULT_HOME_ADV, DEFAULT_K } from "@/lib/model";
@@ -14,6 +15,7 @@ interface OddsRequest {
   includeBestWorst?: boolean;
   includeWinTable?: boolean;
   includeMatchdayImpact?: boolean;
+  includeClinchScenarios?: boolean;
   forcedOutcomes?: ForcedOutcomes;
 }
 
@@ -28,6 +30,7 @@ export async function POST(req: Request) {
   const forcedOutcomes = body.forcedOutcomes ?? {};
   const includeWinTable = body.includeWinTable ?? false;
   const includeMatchdayImpact = body.includeMatchdayImpact ?? false;
+  const includeClinchScenarios = body.includeClinchScenarios ?? false;
   const cached = loadOddsCache();
   const shouldUseCache =
     Object.keys(forcedOutcomes).length === 0 &&
@@ -44,6 +47,9 @@ export async function POST(req: Request) {
       winTable: includeWinTable ? cached.sombWinTable ?? null : null,
       matchdayImpact: includeMatchdayImpact
         ? cached.sombMatchdayImpact ?? null
+        : null,
+      clinchScenarios: includeClinchScenarios
+        ? cached.sombClinchScenarios ?? null
         : null,
     });
   }
@@ -75,6 +81,9 @@ export async function POST(req: Request) {
         forcedOutcomes,
       })
     : null;
+  const clinchScenarios = includeClinchScenarios
+    ? cached?.sombClinchScenarios ?? buildClinchScenarios(data, teamId)
+    : null;
 
   return NextResponse.json({
     playoffOdds: result.playoffOdds,
@@ -83,5 +92,6 @@ export async function POST(req: Request) {
     bestWorst,
     winTable: includeWinTable ? cached?.sombWinTable ?? null : null,
     matchdayImpact,
+    clinchScenarios,
   });
 }

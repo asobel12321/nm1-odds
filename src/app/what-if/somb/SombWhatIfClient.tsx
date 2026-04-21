@@ -17,6 +17,7 @@ interface OddsResponse {
   } | null;
   winTable?: WinTable | null;
   matchdayImpact?: MatchdayImpact | null;
+  clinchScenarios?: ClinchResult | null;
 }
 
 interface SombWhatIfClientProps {
@@ -56,6 +57,18 @@ interface MatchdayImpact {
   games: MatchdayImpactGame[];
 }
 
+interface ClinchScenario {
+  label: string;
+  outcomes: ForcedOutcomes;
+}
+
+interface ClinchResult {
+  roundDate: string;
+  scenarios: number;
+  totalClinchingScenarios: number;
+  clinchingScenarios: ClinchScenario[];
+}
+
 export default function SombWhatIfClient({
   teamId,
   teams,
@@ -67,6 +80,7 @@ export default function SombWhatIfClient({
   const [bestWorst, setBestWorst] = useState<OddsResponse["bestWorst"]>(null);
   const [winTable, setWinTable] = useState<WinTable | null>(null);
   const [matchdayImpact, setMatchdayImpact] = useState<MatchdayImpact | null>(null);
+  const [clinchScenarios, setClinchScenarios] = useState<ClinchResult | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   const teamLookup = useMemo(() => {
@@ -158,6 +172,7 @@ export default function SombWhatIfClient({
         body: JSON.stringify({
           teamId,
           includeMatchdayImpact: true,
+          includeClinchScenarios: true,
         }),
       });
       const json = (await res.json()) as OddsResponse;
@@ -165,6 +180,7 @@ export default function SombWhatIfClient({
         return;
       }
       setMatchdayImpact(json.matchdayImpact ?? null);
+      setClinchScenarios(json.clinchScenarios ?? null);
     }
     fetchMatchdayImpact();
     return () => {
@@ -429,6 +445,52 @@ export default function SombWhatIfClient({
                 )}
               </tbody>
             </table>
+          </div>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="font-display text-2xl font-semibold">
+            Clinching Scenarios
+          </h2>
+          <div className="rounded-2xl border border-rose-100 bg-white/90 p-6 shadow-sm">
+            {clinchScenarios && clinchScenarios.totalClinchingScenarios > 0 ? (
+              <div className="space-y-4">
+                <div>
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-500">
+                    Next Matchday
+                  </div>
+                  <div className="mt-1 text-sm text-slate-500">
+                    {clinchScenarios.roundDate} • {clinchScenarios.totalClinchingScenarios} of{" "}
+                    {clinchScenarios.scenarios} scenarios clinch a top-8 seed.
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  {clinchScenarios.clinchingScenarios.map((scenario, index) => (
+                    <div
+                      key={`clinch-${index}`}
+                      className="rounded-xl border border-rose-100 bg-rose-50/60 px-4 py-3 text-sm text-slate-700"
+                    >
+                      {scenario.label}
+                    </div>
+                  ))}
+                </div>
+                {clinchScenarios.totalClinchingScenarios >
+                clinchScenarios.clinchingScenarios.length ? (
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+                    Showing {clinchScenarios.clinchingScenarios.length} examples.
+                  </div>
+                ) : null}
+              </div>
+            ) : (
+              <div>
+                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-500">
+                  Top-8 Clinch
+                </div>
+                <div className="mt-2 text-sm text-slate-500">
+                  No clinching scenarios available for the next matchday.
+                </div>
+              </div>
+            )}
           </div>
         </section>
       </main>

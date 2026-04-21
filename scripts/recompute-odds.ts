@@ -3,6 +3,7 @@ import path from "path";
 import { loadData, findSombId } from "../src/lib/data";
 import { simulateSeason } from "../src/lib/simulate";
 import { DEFAULT_HOME_ADV, DEFAULT_K } from "../src/lib/model";
+import { buildClinchScenarios } from "../src/lib/clinch";
 import { buildMatchdayImpact } from "../src/lib/matchdayImpact";
 import { buildWinTable } from "../src/lib/winTable";
 import type { OddsCache } from "../src/lib/types";
@@ -30,6 +31,7 @@ export async function recomputeOdds() {
     homeAdv: DEFAULT_HOME_ADV,
     sombId,
   });
+  const sombClinchScenarios = buildClinchScenarios(data, sombId);
 
   const odds: OddsCache = {
     ...result,
@@ -40,6 +42,7 @@ export async function recomputeOdds() {
     sombId,
     sombWinTable,
     sombMatchdayImpact,
+    sombClinchScenarios,
   };
 
   const outputPath = path.join(process.cwd(), "data", "odds.json");

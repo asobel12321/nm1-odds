@@ -71,6 +71,18 @@ export interface MatchdayImpact {
   games: MatchdayImpactGame[];
 }
 
+export interface ClinchScenario {
+  label: string;
+  outcomes: ForcedOutcomes;
+}
+
+export interface ClinchResult {
+  roundDate: string;
+  scenarios: number;
+  totalClinchingScenarios: number;
+  clinchingScenarios: ClinchScenario[];
+}
+
 export interface OddsCache extends SimResult {
   updated: string;
   simulations: number;
@@ -79,6 +91,7 @@ export interface OddsCache extends SimResult {
   sombId: TeamId;
   sombWinTable?: WinTable;
   sombMatchdayImpact?: MatchdayImpact | null;
+  sombClinchScenarios?: ClinchResult | null;
 }
 
 export interface BestWorstResult {
