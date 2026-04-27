@@ -251,6 +251,11 @@ export default function SombWhatIfClient({
           </Link>
         </header>
 
+        <div className="rounded-2xl border border-rose-200 bg-rose-50/80 px-5 py-4 text-sm text-rose-900 shadow-sm">
+          Odds and standings use simplified pairwise tiebreak logic. Multi-team
+          tiebreakers may not always be calculated cleanly.
+        </div>
+
         <section className="grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-4">
             <h2 className="font-display text-2xl font-semibold">Remaining SOMB Games</h2>

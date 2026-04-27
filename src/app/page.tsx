@@ -123,6 +123,11 @@ export default function Home() {
           </div>
         </header>
 
+        <div className="rounded-2xl border border-amber-200 bg-amber-50/80 px-5 py-4 text-sm text-amber-900 shadow-sm">
+          Standings and odds use simplified pairwise tiebreak logic. Multi-team
+          tiebreakers may not always be calculated cleanly.
+        </div>
+
         <section className="grid gap-8 lg:grid-cols-[1.4fr_0.6fr]">
           <div className="space-y-4">
             <h2 className="font-display text-2xl font-semibold">Current Standings</h2>
