@@ -252,7 +252,7 @@ export default function SombWhatIfClient({
         </header>
 
         <div className="rounded-2xl border border-rose-200 bg-rose-50/80 px-5 py-4 text-sm text-rose-900 shadow-sm">
-          Odds and standings use simplified pairwise tiebreak logic. Multi-team
+          Odds and standings use simplified tiebreak logic. Multi-team
           tiebreakers may not always be calculated cleanly.
         </div>
 

@@ -124,7 +124,7 @@ export default function Home() {
         </header>
 
         <div className="rounded-2xl border border-amber-200 bg-amber-50/80 px-5 py-4 text-sm text-amber-900 shadow-sm">
-          Standings and odds use simplified pairwise tiebreak logic. Multi-team
+          Standings and odds use simplified tiebreak logic. Multi-team
           tiebreakers may not always be calculated cleanly.
         </div>
 
