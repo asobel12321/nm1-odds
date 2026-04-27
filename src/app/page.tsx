@@ -10,7 +10,7 @@ import {
   teamsById,
 } from "@/lib/data";
 import { DEFAULT_HOME_ADV, DEFAULT_K } from "@/lib/model";
-import { rankTeams } from "@/lib/rank";
+import { getSombTiebreakStatus, rankTeams } from "@/lib/rank";
 import { simulateSeason } from "@/lib/simulate";
 
 export default function Home() {
@@ -45,6 +45,12 @@ export default function Home() {
   }
   const rankedIds = rankTeams(data.teams, currentWins, sombId, currentGames);
   const sortedTeams = rankedIds.map((id) => teamLookup[id]!);
+  const sombTiebreakRows = sortedTeams
+    .filter((team) => team.id !== sombId)
+    .map((team) => ({
+      team,
+      status: getSombTiebreakStatus(team.id, sombId) ?? "undecided",
+    }));
 
   const rows = sortedTeams.map((team, index) => {
       const teamRemaining = remainingById[team.id] ?? 0;
@@ -121,6 +127,43 @@ export default function Home() {
           <div className="space-y-4">
             <h2 className="font-display text-2xl font-semibold">Current Standings</h2>
             <StandingsTable rows={rows} />
+            <div className="rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm">
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <h3 className="font-display text-xl font-semibold text-slate-900">
+                    SOMB Head-to-Head Tiebreakers
+                  </h3>
+                  <p className="mt-1 text-sm text-slate-500">
+                    Decided tiebreaks stay in green or red. Undecided matchups stay black.
+                  </p>
+                </div>
+              </div>
+              <div className="mt-4 flex flex-wrap gap-3">
+                {sombTiebreakRows.map(({ team, status }) => {
+                  const tone =
+                    status === "won"
+                      ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                      : status === "lost"
+                        ? "border-red-200 bg-red-50 text-red-700"
+                        : "border-slate-200 bg-white text-slate-900";
+                  const label =
+                    status === "won" ? "Won" : status === "lost" ? "Lost" : "Undecided";
+
+                  return (
+                    <div
+                      key={team.id}
+                      className={`min-w-[11rem] rounded-xl border px-4 py-3 shadow-sm ${tone}`}
+                    >
+                      <div className="text-sm font-semibold">{team.name}</div>
+                      <div className="mt-1 flex items-center justify-between gap-3 text-xs uppercase tracking-[0.18em]">
+                        <span>{team.abbr}</span>
+                        <span>{label}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
           <div className="space-y-4">
             <h2 className="font-display text-2xl font-semibold">Upcoming Games</h2>

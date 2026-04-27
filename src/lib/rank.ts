@@ -2,6 +2,23 @@ import type { TeamRecord, TeamId } from "@/lib/types";
 
 const SOMB_WINS_TIEBREAKER_VS = new Set<TeamId>(["253", "14914", "26", "14016", "13305"]);
 const SOMB_LOSES_TIEBREAKER_VS = new Set<TeamId>(["278", "13367", "1851", "3", "247"]);
+export type SombTiebreakStatus = "won" | "lost" | "undecided";
+
+export function getSombTiebreakStatus(
+  teamId: TeamId,
+  sombId: TeamId = "SOMB",
+): SombTiebreakStatus | null {
+  if (teamId === sombId) {
+    return null;
+  }
+  if (SOMB_WINS_TIEBREAKER_VS.has(teamId)) {
+    return "won";
+  }
+  if (SOMB_LOSES_TIEBREAKER_VS.has(teamId)) {
+    return "lost";
+  }
+  return "undecided";
+}
 
 function compareSombTieBreak(
   a: TeamRecord,
@@ -9,19 +26,21 @@ function compareSombTieBreak(
   sombId: TeamId,
 ): number | null {
   if (a.id === sombId && b.id !== sombId) {
-    if (SOMB_WINS_TIEBREAKER_VS.has(b.id)) {
+    const status = getSombTiebreakStatus(b.id, sombId);
+    if (status === "won") {
       return -1;
     }
-    if (SOMB_LOSES_TIEBREAKER_VS.has(b.id)) {
+    if (status === "lost") {
       return 1;
     }
     return null;
   }
   if (b.id === sombId && a.id !== sombId) {
-    if (SOMB_WINS_TIEBREAKER_VS.has(a.id)) {
+    const status = getSombTiebreakStatus(a.id, sombId);
+    if (status === "won") {
       return 1;
     }
-    if (SOMB_LOSES_TIEBREAKER_VS.has(a.id)) {
+    if (status === "lost") {
       return -1;
     }
     return null;
