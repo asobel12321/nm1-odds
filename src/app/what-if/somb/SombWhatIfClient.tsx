@@ -29,6 +29,13 @@ interface SombWhatIfClientProps {
 
 type ToggleValue = "auto" | "win" | "loss";
 
+interface PathRow {
+  remainingWins: number;
+  finalRecord: string;
+  playoffOdds: number;
+  summary: string;
+}
+
 interface WinTableRow {
   remainingWins: number;
   remainingLosses: number;
@@ -111,6 +118,70 @@ export default function SombWhatIfClient({
       return a.date.localeCompare(b.date);
     });
   }, [games]);
+
+  const currentTeam = teamLookup[teamId];
+
+  const helpfulOutcomes = useMemo(() => {
+    if (!matchdayImpact) {
+      return [];
+    }
+    return [...matchdayImpact.games]
+      .map((impact) => {
+        const winnerId =
+          impact.better === "home" ? impact.game.home : impact.game.away;
+        const loserId =
+          impact.better === "home" ? impact.game.away : impact.game.home;
+        const winner = teamLookup[winnerId]?.name ?? winnerId;
+        const loser = teamLookup[loserId]?.name ?? loserId;
+        const delta = Math.abs(impact.homeWinOdds - impact.awayWinOdds);
+        return {
+          label: `${winner} over ${loser}`,
+          delta,
+        };
+      })
+      .filter((outcome) => outcome.delta >= 0.005)
+      .sort((a, b) => b.delta - a.delta)
+      .slice(0, 3);
+  }, [matchdayImpact, teamLookup]);
+
+  const pathRows = useMemo<PathRow[]>(() => {
+    if (!winTable || !currentTeam) {
+      return [];
+    }
+    const helpText =
+      helpfulOutcomes.length > 0
+        ? `Most helpful next result: ${helpfulOutcomes[0].label}.`
+        : "No single next-matchday result moves the projection much.";
+
+    return [...winTable.rows]
+      .sort((a, b) => b.remainingWins - a.remainingWins)
+      .map((row) => {
+        const playoffOdds = 1 - row.noPlayoffs;
+        let summary: string;
+        if (playoffOdds >= 0.995) {
+          summary =
+            "This path is effectively safe in the current model, barring extreme tiebreak noise.";
+        } else if (playoffOdds >= 0.75) {
+          summary =
+            "This is a strong path. SOMB likely stays above the cutoff with only modest outside help.";
+        } else if (playoffOdds >= 0.35) {
+          summary = `This is the bubble path. ${helpText}`;
+        } else if (playoffOdds > 0.005) {
+          summary =
+            "This is a long-shot path. SOMB would need several nearby rivals to drop games.";
+        } else {
+          summary =
+            "This path is effectively out in the current model.";
+        }
+
+        return {
+          remainingWins: row.remainingWins,
+          finalRecord: `${row.wins}-${row.losses}`,
+          playoffOdds,
+          summary,
+        };
+      });
+  }, [currentTeam, helpfulOutcomes, winTable]);
 
   useEffect(() => {
     let active = true;
@@ -496,6 +567,65 @@ export default function SombWhatIfClient({
                 </div>
               </div>
             )}
+          </div>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="font-display text-2xl font-semibold">
+            SOMB Path Explainer
+          </h2>
+          <div className="rounded-2xl border border-rose-100 bg-white/90 p-6 shadow-sm">
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-500">
+              Final Record Paths
+            </div>
+            <div className="mt-2 text-sm text-slate-500">
+              Each row groups all simulations where SOMB finishes with that many
+              wins from its remaining games.
+            </div>
+            <div className="mt-5 divide-y divide-rose-100">
+              {pathRows.length > 0 ? (
+                pathRows.map((row) => (
+                  <div
+                    key={`path-${row.remainingWins}`}
+                    className="grid gap-3 py-4 md:grid-cols-[0.8fr_0.7fr_1.8fr] md:items-center"
+                  >
+                    <div>
+                      <div className="text-sm font-semibold text-slate-900">
+                        Win {row.remainingWins} of {winTable?.remainingGames ?? 0}
+                      </div>
+                      <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                        Finish {row.finalRecord}
+                      </div>
+                    </div>
+                    <div className="text-2xl font-semibold text-slate-900">
+                      {formatTopOdds(row.playoffOdds, 1)}
+                    </div>
+                    <div className="text-sm text-slate-600">{row.summary}</div>
+                  </div>
+                ))
+              ) : (
+                <div className="py-4 text-sm text-slate-500">
+                  Path explainer not available yet.
+                </div>
+              )}
+            </div>
+            {helpfulOutcomes.length > 0 ? (
+              <div className="mt-5 rounded-xl border border-rose-100 bg-rose-50/60 px-4 py-3">
+                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-500">
+                  Biggest Help This Matchday
+                </div>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {helpfulOutcomes.map((outcome) => (
+                    <span
+                      key={outcome.label}
+                      className="rounded-full border border-rose-200 bg-white px-3 py-1 text-xs font-semibold text-rose-700"
+                    >
+                      {outcome.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ) : null}
           </div>
         </section>
       </main>
