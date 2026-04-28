@@ -5,6 +5,7 @@ import Link from "next/link";
 import { PLAYOFF_CUTOFF } from "@/lib/competition";
 import { formatTopOdds } from "@/lib/format";
 import { DEFAULT_HOME_ADV, DEFAULT_K, winProb } from "@/lib/model";
+import { getSombTiebreakStatus } from "@/lib/rank";
 import type { ForcedOutcomes, Game, TeamRecord } from "@/lib/types";
 
 interface OddsResponse {
@@ -34,6 +35,7 @@ interface PathRow {
   finalRecord: string;
   playoffOdds: number;
   summary: string;
+  details: string[];
 }
 
 interface WinTableRow {
@@ -120,6 +122,17 @@ export default function SombWhatIfClient({
   }, [games]);
 
   const currentTeam = teamLookup[teamId];
+  const remainingByTeam = useMemo(() => {
+    const counts: Record<string, number> = {};
+    for (const team of teams) {
+      counts[team.id] = 0;
+    }
+    for (const game of allRemainingGames) {
+      counts[game.home] = (counts[game.home] ?? 0) + 1;
+      counts[game.away] = (counts[game.away] ?? 0) + 1;
+    }
+    return counts;
+  }, [allRemainingGames, teams]);
 
   const helpfulOutcomes = useMemo(() => {
     if (!matchdayImpact) {
@@ -144,34 +157,142 @@ export default function SombWhatIfClient({
       .slice(0, 3);
   }, [matchdayImpact, teamLookup]);
 
+  function joinTeamNames(teamList: TeamRecord[]): string {
+    const names = teamList.map((team) => team.name);
+    if (names.length === 0) {
+      return "";
+    }
+    if (names.length === 1) {
+      return names[0]!;
+    }
+    if (names.length === 2) {
+      return `${names[0]} and ${names[1]}`;
+    }
+    return `${names.slice(0, -1).join(", ")}, and ${names.at(-1)}`;
+  }
+
   const pathRows = useMemo<PathRow[]>(() => {
     if (!winTable || !currentTeam) {
       return [];
     }
+    const helpfulLabels = helpfulOutcomes.slice(0, 2).map((outcome) => outcome.label);
     const helpText =
-      helpfulOutcomes.length > 0
-        ? `Most helpful next result: ${helpfulOutcomes[0].label}.`
+      helpfulLabels.length > 0
+        ? `The biggest immediate helps are ${helpfulLabels.join(" and ")}.`
         : "No single next-matchday result moves the projection much.";
 
     return [...winTable.rows]
       .sort((a, b) => b.remainingWins - a.remainingWins)
       .map((row) => {
         const playoffOdds = 1 - row.noPlayoffs;
+        const targetWins = row.wins;
+        const targetLosses = row.losses;
+        const lockedAhead = teams
+          .filter((team) => team.id !== teamId)
+          .filter((team) => {
+            const tiebreak = getSombTiebreakStatus(team.id, teamId);
+            return team.wins > targetWins || (team.wins === targetWins && tiebreak === "lost");
+          })
+          .sort((a, b) => b.wins - a.wins || a.name.localeCompare(b.name));
+        const cannotCatch = teams
+          .filter((team) => team.id !== teamId)
+          .filter((team) => {
+            const tiebreak = getSombTiebreakStatus(team.id, teamId);
+            const maxWins = team.wins + (remainingByTeam[team.id] ?? 0);
+            return maxWins < targetWins || (maxWins === targetWins && tiebreak === "won");
+          })
+          .sort((a, b) => b.wins - a.wins || a.name.localeCompare(b.name));
+        const blockedIds = new Set([
+          ...lockedAhead.map((team) => team.id),
+          ...cannotCatch.map((team) => team.id),
+        ]);
+        const liveRivals = teams
+          .filter((team) => team.id !== teamId && !blockedIds.has(team.id))
+          .sort((a, b) => b.wins - a.wins || a.name.localeCompare(b.name));
+        const maxLiveTeamsAbove = Math.max(0, PLAYOFF_CUTOFF - 1 - lockedAhead.length);
+        const minLiveTeamsBehind = Math.max(0, liveRivals.length - maxLiveTeamsAbove);
+        const likelyRanks = row.rankProbs
+          .map((prob, index) => ({ rank: index + 1, prob }))
+          .filter((entry) => entry.prob >= 0.1)
+          .sort((a, b) => b.prob - a.prob)
+          .slice(0, 3);
+        const likelyRankText =
+          likelyRanks.length > 0
+            ? likelyRanks
+                .map((entry) => {
+                  const suffix =
+                    entry.rank === 1
+                      ? "st"
+                      : entry.rank === 2
+                        ? "nd"
+                        : entry.rank === 3
+                          ? "rd"
+                          : "th";
+                  return `${entry.rank}${suffix} (${formatPct(entry.prob)})`;
+                })
+                .join(", ")
+            : "a wide range of bubble finishes";
+        const details: string[] = [];
         let summary: string;
         if (playoffOdds >= 0.995) {
           summary =
             "This path is effectively safe in the current model, barring extreme tiebreak noise.";
+          if (lockedAhead.length > 0) {
+            details.push(
+              `${joinTeamNames(lockedAhead)} are effectively already above SOMB here, but the rest of the field usually cannot push SOMB below 8th.`,
+            );
+          }
         } else if (playoffOdds >= 0.75) {
           summary =
             "This is a strong path. SOMB likely stays above the cutoff with only modest outside help.";
-        } else if (playoffOdds >= 0.35) {
-          summary = `This is the bubble path. ${helpText}`;
+          details.push(`Most common finishes here are ${likelyRankText}.`);
+          if (liveRivals.length > 0) {
+            details.push(
+              `The real pressure comes from ${joinTeamNames(liveRivals)}. SOMB still makes it as long as no more than ${maxLiveTeamsAbove} of those ${liveRivals.length} teams finish above them.`,
+            );
+          }
+          details.push(helpText);
+        } else if (playoffOdds >= 0.05) {
+          summary =
+            "This is the true swing path. SOMB can make it, but the rest of the bubble starts to matter a lot.";
+          details.push(`Most common finishes here are ${likelyRankText}.`);
+          if (lockedAhead.length > 0) {
+            details.push(
+              `${lockedAhead.length} teams are effectively already ahead at ${targetWins}-${targetLosses}: ${joinTeamNames(lockedAhead)}.`,
+            );
+          }
+          if (liveRivals.length > 0) {
+            details.push(
+              `The bubble race is mainly against ${joinTeamNames(liveRivals)}. SOMB generally needs to finish ahead of at least ${minLiveTeamsBehind} of those ${liveRivals.length} teams to stay in the top 8.`,
+            );
+            details.push(
+              `The miss paths usually happen when ${maxLiveTeamsAbove + 1} or more of those teams finish above SOMB.`,
+            );
+          }
+          if (cannotCatch.length > 0) {
+            details.push(
+              `${joinTeamNames(cannotCatch)} generally cannot get past this SOMB finish in the current model.`,
+            );
+          }
+          details.push(helpText);
         } else if (playoffOdds > 0.005) {
           summary =
             "This is a long-shot path. SOMB would need several nearby rivals to drop games.";
+          details.push(`Most common finishes here are ${likelyRankText}.`);
+          if (liveRivals.length > 0) {
+            details.push(
+              `To survive on this path, SOMB needs a heavy collapse from ${joinTeamNames(liveRivals)}.`,
+            );
+          }
+          details.push(helpText);
         } else {
           summary =
             "This path is effectively out in the current model.";
+          if (lockedAhead.length > 0) {
+            details.push(
+              `Too many teams are already effectively above SOMB here: ${joinTeamNames(lockedAhead)}.`,
+            );
+          }
         }
 
         return {
@@ -179,9 +300,10 @@ export default function SombWhatIfClient({
           finalRecord: `${row.wins}-${row.losses}`,
           playoffOdds,
           summary,
+          details,
         };
       });
-  }, [currentTeam, helpfulOutcomes, winTable]);
+  }, [currentTeam, helpfulOutcomes, remainingByTeam, teamId, teams, winTable]);
 
   useEffect(() => {
     let active = true;
@@ -600,7 +722,12 @@ export default function SombWhatIfClient({
                     <div className="text-2xl font-semibold text-slate-900">
                       {formatTopOdds(row.playoffOdds, 1)}
                     </div>
-                    <div className="text-sm text-slate-600">{row.summary}</div>
+                    <div className="space-y-2 text-sm text-slate-600">
+                      <div>{row.summary}</div>
+                      {row.details.map((detail, index) => (
+                        <div key={`path-detail-${row.remainingWins}-${index}`}>{detail}</div>
+                      ))}
+                    </div>
                   </div>
                 ))
               ) : (
