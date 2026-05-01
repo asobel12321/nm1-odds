@@ -278,7 +278,8 @@ export default function SombWhatIfClient({
 
         <div className="rounded-2xl border border-rose-200 bg-rose-50/80 px-5 py-4 text-sm text-rose-900 shadow-sm">
           Odds and standings use simplified tiebreak logic. Multi-team
-          tiebreakers may not always be calculated cleanly.
+          cutoff ties do not count as clinched; only a clean top-8 finish or
+          a known SOMB 2-team 8/9 tiebreak counts as a clinch.
         </div>
 
         <section className="grid gap-6 md:grid-cols-[1.1fr_0.9fr]">

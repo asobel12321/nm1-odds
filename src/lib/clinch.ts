@@ -1,6 +1,6 @@
 import { PLAYOFF_CUTOFF } from "@/lib/competition";
 import { findSombId, remainingGames, teamsById } from "@/lib/data";
-import { rankTeams } from "@/lib/rank";
+import { getSombTiebreakStatus, rankTeams } from "@/lib/rank";
 import type {
   ClinchResult,
   ClinchScenario,
@@ -284,11 +284,70 @@ function canStillMissPlayoffs(
   }
 
   const totals = finalTotalGames(data);
+  const compareRecord = (leftId: TeamId, rightId: TeamId): number => {
+    const leftGames = totals[leftId];
+    const rightGames = totals[rightId];
+    const diff = wins[leftId] * rightGames - wins[rightId] * leftGames;
+    if (diff > 0) {
+      return 1;
+    }
+    if (diff < 0) {
+      return -1;
+    }
+    return 0;
+  };
+
+  function isConservativeClinch(): boolean {
+    const ranked = rankTeams(data.teams, wins, sombId, totals);
+    const teamRank = ranked.indexOf(teamId);
+    if (teamRank < 0) {
+      return false;
+    }
+    if (teamRank >= PLAYOFF_CUTOFF) {
+      return false;
+    }
+
+    let betterCount = 0;
+    const tied: TeamId[] = [];
+
+    for (const team of data.teams) {
+      const comparison = compareRecord(team.id, teamId);
+      if (comparison > 0) {
+        betterCount += 1;
+        continue;
+      }
+      if (comparison === 0) {
+        tied.push(team.id);
+      }
+    }
+
+    if (betterCount >= PLAYOFF_CUTOFF) {
+      return false;
+    }
+
+    const tieSize = tied.length;
+    if (betterCount + tieSize <= PLAYOFF_CUTOFF) {
+      return true;
+    }
+
+    if (
+      teamId === sombId &&
+      betterCount === PLAYOFF_CUTOFF - 1 &&
+      tieSize === 2
+    ) {
+      const opponentId = tied.find((id) => id !== teamId);
+      return (
+        opponentId !== undefined &&
+        getSombTiebreakStatus(opponentId, sombId) === "won"
+      );
+    }
+
+    return false;
+  }
 
   function search(index: number): boolean {
     if (index >= variableGames.length) {
-      const ranked = rankTeams(data.teams, wins, sombId, totals);
-      return ranked.indexOf(teamId) >= PLAYOFF_CUTOFF;
+      return !isConservativeClinch();
     }
 
     const game = variableGames[index];
