@@ -378,6 +378,7 @@ export default function SombWhatIfClient({
                     {matchdayImpact.games.map((impact) => {
                       const home = teamLookup[impact.game.home]?.name ?? impact.game.home;
                       const away = teamLookup[impact.game.away]?.name ?? impact.game.away;
+                      const impactRelevant = Math.abs(impact.delta) >= 0.005;
                       const homeBetter = impact.better === "home";
                       return (
                         <div
@@ -388,10 +389,22 @@ export default function SombWhatIfClient({
                             {away} @ {home}
                           </div>
                           <div className="mt-2 grid grid-cols-2 gap-3 text-xs">
-                            <div className={homeBetter ? "font-semibold text-emerald-600" : ""}>
+                            <div
+                              className={
+                                impactRelevant && homeBetter
+                                  ? "font-semibold text-emerald-600"
+                                  : ""
+                              }
+                            >
                               {home} win: {formatTopOdds(impact.homeWinOdds, 1)} playoffs
                             </div>
-                            <div className={!homeBetter ? "font-semibold text-emerald-600" : ""}>
+                            <div
+                              className={
+                                impactRelevant && !homeBetter
+                                  ? "font-semibold text-emerald-600"
+                                  : ""
+                              }
+                            >
                               {away} win: {formatTopOdds(impact.awayWinOdds, 1)} playoffs
                             </div>
                           </div>
