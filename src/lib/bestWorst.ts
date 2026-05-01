@@ -51,6 +51,7 @@ function formatOutcomeLabel(
 }
 
 const MEANINGFUL_IMPACT_THRESHOLD = 0.005;
+const WORST_CASE_CORE_THRESHOLD = 0.03;
 
 function compressScenarioOutcomes(
   data: DataFile,
@@ -101,6 +102,12 @@ export function bestWorstNextRound(
   const unforced = round.games.filter((game) => !forcedBase[game.id]);
   const scenarios = Math.max(1, 2 ** unforced.length);
   const teamLookup = teamsById(data.teams);
+  const scenarioResults: Array<{
+    odds: number;
+    clinches: boolean;
+    outcomes: ForcedOutcomes;
+    rankHist: number[];
+  }> = [];
 
   let best: BestWorstResult["best"] | null = null;
   let worst: BestWorstResult["worst"] | null = null;
@@ -120,14 +127,31 @@ export function bestWorstNextRound(
     });
     const odds = result.playoffOdds[teamId] ?? 0;
     const rankHist = result.rankHist[teamId] ?? [];
-    const label = formatOutcomeLabel(scenarioOutcomes, unforced, teamLookup);
     const clinches = scenarioClinchesConservatively(data, teamId, scenarioOutcomes);
+    scenarioResults.push({
+      odds,
+      clinches,
+      outcomes: scenarioOutcomes,
+      rankHist,
+    });
 
     if (!best || odds > best.odds) {
-      best = { label, odds, clinches, outcomes: scenarioOutcomes, rankHist };
+      best = {
+        label: formatOutcomeLabel(scenarioOutcomes, unforced, teamLookup),
+        odds,
+        clinches,
+        outcomes: scenarioOutcomes,
+        rankHist,
+      };
     }
     if (!worst || odds < worst.odds) {
-      worst = { label, odds, clinches, outcomes: scenarioOutcomes, rankHist };
+      worst = {
+        label: formatOutcomeLabel(scenarioOutcomes, unforced, teamLookup),
+        odds,
+        clinches,
+        outcomes: scenarioOutcomes,
+        rankHist,
+      };
     }
   }
 
@@ -151,6 +175,21 @@ export function bestWorstNextRound(
     unforced,
     worst.odds,
   );
+  const worstStableScenarios = scenarioResults.filter(
+    (scenario) => scenario.odds <= worst.odds + WORST_CASE_CORE_THRESHOLD,
+  );
+  const worstStableCore: ForcedOutcomes = {};
+  for (const game of unforced) {
+    const first = worstStableScenarios[0]?.outcomes[game.id];
+    if (
+      first &&
+      worstStableScenarios.every((scenario) => scenario.outcomes[game.id] === first)
+    ) {
+      worstStableCore[game.id] = first;
+    }
+  }
+  const finalWorstOutcomes =
+    Object.keys(worstStableCore).length > 0 ? worstStableCore : worstOutcomes;
 
   return {
     roundDate: round.roundDate,
@@ -162,8 +201,8 @@ export function bestWorstNextRound(
     },
     worst: {
       ...worst,
-      outcomes: worstOutcomes,
-      label: formatOutcomeLabel(worstOutcomes, unforced, teamLookup),
+      outcomes: finalWorstOutcomes,
+      label: formatOutcomeLabel(finalWorstOutcomes, unforced, teamLookup),
     },
   };
 }
