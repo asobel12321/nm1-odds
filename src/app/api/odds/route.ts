@@ -5,6 +5,7 @@ import { buildMatchdayImpact } from "@/lib/matchdayImpact";
 import { DEFAULT_HOME_ADV, DEFAULT_K } from "@/lib/model";
 import { simulateSeason } from "@/lib/simulate";
 import { bestWorstNextRound } from "@/lib/bestWorst";
+import { buildWinTable } from "@/lib/winTable";
 import type { ForcedOutcomes } from "@/lib/types";
 
 interface OddsRequest {
@@ -32,6 +33,11 @@ export async function POST(req: Request) {
   const includeMatchdayImpact = body.includeMatchdayImpact ?? false;
   const includeClinchScenarios = body.includeClinchScenarios ?? false;
   const cached = loadOddsCache();
+  const canUseDerivedSombCache =
+    Object.keys(forcedOutcomes).length === 0 &&
+    cached &&
+    cached.sombId === sombId &&
+    teamId === sombId;
   const shouldUseCache =
     Object.keys(forcedOutcomes).length === 0 &&
     !body.includeBestWorst &&
@@ -44,12 +50,19 @@ export async function POST(req: Request) {
       rankHist: cached.rankHist,
       winHist: cached.winHist,
       bestWorst: null,
-      winTable: includeWinTable ? cached.sombWinTable ?? null : null,
+      winTable:
+        includeWinTable && canUseDerivedSombCache
+          ? cached.sombWinTable ?? null
+          : null,
       matchdayImpact: includeMatchdayImpact
-        ? cached.sombMatchdayImpact ?? null
+        ? canUseDerivedSombCache
+          ? cached.sombMatchdayImpact ?? null
+          : null
         : null,
       clinchScenarios: includeClinchScenarios
-        ? cached.sombClinchScenarios ?? null
+        ? canUseDerivedSombCache
+          ? cached.sombClinchScenarios ?? null
+          : null
         : null,
     });
   }
@@ -71,18 +84,32 @@ export async function POST(req: Request) {
         forcedOutcomes,
       })
     : null;
+  const winTable = includeWinTable
+    ? canUseDerivedSombCache
+      ? cached.sombWinTable ?? null
+      : buildWinTable(data, teamId, {
+          simulations,
+          k,
+          homeAdv,
+          sombId,
+          forcedOutcomes,
+        })
+    : null;
   const matchdayImpact = includeMatchdayImpact
-    ? cached?.sombMatchdayImpact ??
-      buildMatchdayImpact(data, teamId, {
-        simulations,
-        k,
-        homeAdv,
-        sombId,
-        forcedOutcomes,
-      })
+    ? canUseDerivedSombCache
+      ? cached.sombMatchdayImpact ?? null
+      : buildMatchdayImpact(data, teamId, {
+          simulations,
+          k,
+          homeAdv,
+          sombId,
+          forcedOutcomes,
+        })
     : null;
   const clinchScenarios = includeClinchScenarios
-    ? cached?.sombClinchScenarios ?? buildClinchScenarios(data, teamId)
+    ? canUseDerivedSombCache
+      ? cached.sombClinchScenarios ?? null
+      : buildClinchScenarios(data, teamId)
     : null;
 
   return NextResponse.json({
@@ -90,7 +117,7 @@ export async function POST(req: Request) {
     rankHist: result.rankHist,
     winHist: result.winHist,
     bestWorst,
-    winTable: includeWinTable ? cached?.sombWinTable ?? null : null,
+    winTable,
     matchdayImpact,
     clinchScenarios,
   });

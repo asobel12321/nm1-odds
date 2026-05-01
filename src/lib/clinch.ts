@@ -1,5 +1,5 @@
 import { PLAYOFF_CUTOFF } from "@/lib/competition";
-import { remainingGames, teamsById } from "@/lib/data";
+import { findSombId, remainingGames, teamsById } from "@/lib/data";
 import { rankTeams } from "@/lib/rank";
 import type {
   ClinchResult,
@@ -68,6 +68,7 @@ function formatOutcomeLabel(
 function canStillMissPlayoffs(
   data: DataFile,
   teamId: TeamId,
+  sombId: TeamId,
   nextRoundOutcomes: ForcedOutcomes,
 ): boolean {
   const wins: Record<TeamId, number> = {};
@@ -97,7 +98,7 @@ function canStillMissPlayoffs(
 
   function search(index: number): boolean {
     if (index >= variableGames.length) {
-      const ranked = rankTeams(data.teams, wins, teamId, totals);
+      const ranked = rankTeams(data.teams, wins, sombId, totals);
       return ranked.indexOf(teamId) >= PLAYOFF_CUTOFF;
     }
 
@@ -127,6 +128,7 @@ export function buildClinchScenarios(
   data: DataFile,
   teamId: TeamId,
 ): ClinchResult | null {
+  const sombId = findSombId(data) ?? "SOMB";
   const round = nextRoundGames(remainingGames(data.games));
   if (!round) {
     return null;
@@ -145,7 +147,7 @@ export function buildClinchScenarios(
       outcomes[game.id] = bit === 1 ? "home" : "away";
     }
 
-    if (!canStillMissPlayoffs(data, teamId, outcomes)) {
+    if (!canStillMissPlayoffs(data, teamId, sombId, outcomes)) {
       totalClinchingScenarios += 1;
       if (clinchingScenarios.length < MAX_DISPLAY_SCENARIOS) {
         clinchingScenarios.push({
