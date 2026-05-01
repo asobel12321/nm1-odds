@@ -491,7 +491,10 @@ export default function SombWhatIfClient({
                   </div>
                   <div className="mt-1 text-sm text-slate-500">
                     {clinchScenarios.roundDate} • {clinchScenarios.totalClinchingScenarios} of{" "}
-                    {clinchScenarios.scenarios} scenarios clinch a top-8 seed.
+                    {clinchScenarios.scenarios} full matchday outcomes clinch a top-8 seed.
+                  </div>
+                  <div className="mt-1 text-xs uppercase tracking-[0.2em] text-slate-400">
+                    Only games that actually matter are listed in each pattern.
                   </div>
                 </div>
                 <div className="space-y-3">
@@ -507,7 +510,7 @@ export default function SombWhatIfClient({
                 {clinchScenarios.totalClinchingScenarios >
                 clinchScenarios.clinchingScenarios.length ? (
                   <div className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-                    Showing {clinchScenarios.clinchingScenarios.length} examples.
+                    Showing {clinchScenarios.clinchingScenarios.length} concise patterns.
                   </div>
                 ) : null}
               </div>
