@@ -372,6 +372,15 @@ function canStillMissPlayoffs(
   return search(0);
 }
 
+export function scenarioClinchesConservatively(
+  data: DataFile,
+  teamId: TeamId,
+  nextRoundOutcomes: ForcedOutcomes,
+): boolean {
+  const sombId = findSombId(data) ?? "SOMB";
+  return !canStillMissPlayoffs(data, teamId, sombId, nextRoundOutcomes);
+}
+
 export function buildClinchScenarios(
   data: DataFile,
   teamId: TeamId,

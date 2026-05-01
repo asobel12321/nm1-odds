@@ -1,5 +1,6 @@
 import { simulateSeason } from "@/lib/simulate";
 import { teamsById, remainingGames } from "@/lib/data";
+import { scenarioClinchesConservatively } from "@/lib/clinch";
 import type {
   BestWorstResult,
   DataFile,
@@ -49,6 +50,42 @@ function formatOutcomeLabel(
   return parts.length > 0 ? parts.join("; ") : "All forced";
 }
 
+const MEANINGFUL_IMPACT_THRESHOLD = 0.005;
+
+function compressScenarioOutcomes(
+  data: DataFile,
+  teamId: TeamId,
+  params: SimParams,
+  scenarioOutcomes: ForcedOutcomes,
+  games: Game[],
+  scenarioOdds: number,
+): ForcedOutcomes {
+  const compressed: ForcedOutcomes = {};
+
+  for (const game of games) {
+    const outcome = scenarioOutcomes[game.id];
+    if (!outcome) {
+      continue;
+    }
+
+    const flippedOutcomes: ForcedOutcomes = {
+      ...scenarioOutcomes,
+      [game.id]: outcome === "home" ? "away" : "home",
+    };
+    const flippedResult = simulateSeason(data, {
+      ...params,
+      forcedOutcomes: flippedOutcomes,
+      seed: params.seed ?? 1,
+    });
+    const flippedOdds = flippedResult.playoffOdds[teamId] ?? 0;
+    if (Math.abs(flippedOdds - scenarioOdds) >= MEANINGFUL_IMPACT_THRESHOLD) {
+      compressed[game.id] = outcome;
+    }
+  }
+
+  return compressed;
+}
+
 export function bestWorstNextRound(
   data: DataFile,
   teamId: TeamId,
@@ -84,12 +121,13 @@ export function bestWorstNextRound(
     const odds = result.playoffOdds[teamId] ?? 0;
     const rankHist = result.rankHist[teamId] ?? [];
     const label = formatOutcomeLabel(scenarioOutcomes, unforced, teamLookup);
+    const clinches = scenarioClinchesConservatively(data, teamId, scenarioOutcomes);
 
     if (!best || odds > best.odds) {
-      best = { label, odds, outcomes: scenarioOutcomes, rankHist };
+      best = { label, odds, clinches, outcomes: scenarioOutcomes, rankHist };
     }
     if (!worst || odds < worst.odds) {
-      worst = { label, odds, outcomes: scenarioOutcomes, rankHist };
+      worst = { label, odds, clinches, outcomes: scenarioOutcomes, rankHist };
     }
   }
 
@@ -97,10 +135,35 @@ export function bestWorstNextRound(
     return null;
   }
 
+  const bestOutcomes = compressScenarioOutcomes(
+    data,
+    teamId,
+    params,
+    best.outcomes,
+    unforced,
+    best.odds,
+  );
+  const worstOutcomes = compressScenarioOutcomes(
+    data,
+    teamId,
+    params,
+    worst.outcomes,
+    unforced,
+    worst.odds,
+  );
+
   return {
     roundDate: round.roundDate,
     scenarios,
-    best,
-    worst,
+    best: {
+      ...best,
+      outcomes: bestOutcomes,
+      label: formatOutcomeLabel(bestOutcomes, unforced, teamLookup),
+    },
+    worst: {
+      ...worst,
+      outcomes: worstOutcomes,
+      label: formatOutcomeLabel(worstOutcomes, unforced, teamLookup),
+    },
   };
 }

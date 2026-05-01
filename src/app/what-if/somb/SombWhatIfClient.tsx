@@ -13,8 +13,8 @@ interface OddsResponse {
   bestWorst: {
     roundDate: string;
     scenarios: number;
-    best: { label: string; odds: number; rankHist: number[] };
-    worst: { label: string; odds: number; rankHist: number[] };
+    best: { label: string; odds: number; clinches: boolean; rankHist: number[] };
+    worst: { label: string; odds: number; clinches: boolean; rankHist: number[] };
   } | null;
   winTable?: WinTable | null;
   matchdayImpact?: MatchdayImpact | null;
@@ -259,19 +259,29 @@ export default function SombWhatIfClient({
           label: "Best Case",
           rankHist: bestWorst.best.rankHist,
           playoffOdds: bestWorst.best.odds,
+          clinches: bestWorst.best.clinches,
         },
         {
           label: "Current",
           rankHist,
           playoffOdds: odds,
+          clinches: false,
         },
         {
           label: "Worst Case",
           rankHist: bestWorst.worst.rankHist,
           playoffOdds: bestWorst.worst.odds,
+          clinches: bestWorst.worst.clinches,
         },
       ]
     : [];
+
+  function formatScenarioOdds(prob: number, clinches: boolean): string {
+    if (clinches) {
+      return formatTopOdds(prob, 1);
+    }
+    return formatTopOdds(Math.min(prob, 0.999), 1);
+  }
 
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top,_#fee2e2,_#f8fafc_45%,_#e2e8f0)] px-6 pb-16 pt-12 text-slate-900 md:px-12">
@@ -440,103 +450,6 @@ export default function SombWhatIfClient({
 
         <section className="space-y-4">
           <h2 className="font-display text-2xl font-semibold">
-            Best/Worst Case Scenarios
-          </h2>
-          <div className="overflow-hidden rounded-2xl border border-rose-100 bg-white/90 shadow-sm">
-            {bestWorst ? (
-              <div>
-                <div className="overflow-x-auto">
-                  <table className="min-w-[860px] table-auto border-collapse text-xs text-slate-700">
-                    <thead>
-                      <tr className="bg-rose-50 text-[11px] font-semibold uppercase tracking-[0.2em] text-rose-600">
-                        <th className="px-3 py-2 text-left">Scenario</th>
-                        {Array.from({ length: PLAYOFF_CUTOFF }, (_, idx) => (
-                          <th key={`bw-rank-${idx + 1}`} className="px-2 py-2 text-center">
-                            {idx + 1}
-                          </th>
-                        ))}
-                        <th className="px-2 py-2 text-center">9+</th>
-                        <th className="px-3 py-2 text-center">Top 8</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {bestWorstRows.map((row) => {
-                        const noPlayoffs = row.rankHist
-                          .slice(PLAYOFF_CUTOFF)
-                          .reduce((sum, value) => sum + value, 0);
-                        return (
-                          <tr key={row.label} className="border-t border-rose-100">
-                            <td className="px-3 py-2 font-semibold text-slate-900">
-                              {row.label}
-                            </td>
-                            {Array.from({ length: PLAYOFF_CUTOFF }, (_, idx) => {
-                              const value = row.rankHist[idx] ?? 0;
-                              const baseline = rankHist[idx] ?? 0;
-                              return (
-                                <td
-                                  key={`${row.label}-rank-${idx + 1}`}
-                                  className={`px-2 py-2 text-center ${rankCellClass(
-                                    value,
-                                    row.label === "Current" ? undefined : baseline,
-                                  )}`}
-                                >
-                                  {formatRankCell(value)}
-                                </td>
-                              );
-                            })}
-                            <td
-                              className={`px-2 py-2 text-center ${rankCellClass(
-                                noPlayoffs,
-                                row.label === "Current"
-                                  ? undefined
-                                  : rankHist
-                                      .slice(PLAYOFF_CUTOFF)
-                                      .reduce((sum, value) => sum + value, 0),
-                              )}`}
-                            >
-                              {formatRankCell(noPlayoffs)}
-                            </td>
-                            <td className="px-3 py-2 text-center font-semibold text-slate-900">
-                              {formatTopOdds(row.playoffOdds, 1)}
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-                <div className="grid gap-px border-t border-rose-100 bg-rose-100 md:grid-cols-2">
-                  <div className="bg-white px-4 py-4">
-                    <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-500">
-                      Best Case Scenario
-                    </div>
-                    <div className="mt-2 text-sm text-slate-700">
-                      {bestWorst.best.label}
-                    </div>
-                  </div>
-                  <div className="bg-white px-4 py-4">
-                    <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-500">
-                      Worst Case Scenario
-                    </div>
-                    <div className="mt-2 text-sm text-slate-700">
-                      {bestWorst.worst.label}
-                    </div>
-                  </div>
-                </div>
-                <div className="border-t border-rose-100 bg-rose-50/40 px-4 py-3 text-xs text-slate-500">
-                  Only games from the next matchday are considered in these scenario labels.
-                </div>
-              </div>
-            ) : (
-              <div className="px-4 py-6 text-sm text-slate-500">
-                Best/worst scenario table not available yet.
-              </div>
-            )}
-          </div>
-        </section>
-
-        <section className="space-y-4">
-          <h2 className="font-display text-2xl font-semibold">
             SOMB Outcomes by Remaining Wins
           </h2>
           <div className="overflow-x-auto rounded-2xl border border-rose-100 bg-white/90 shadow-sm">
@@ -604,6 +517,103 @@ export default function SombWhatIfClient({
                 )}
               </tbody>
             </table>
+          </div>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="font-display text-2xl font-semibold">
+            Best/Worst Case Scenarios
+          </h2>
+          <div className="overflow-hidden rounded-2xl border border-rose-100 bg-white/90 shadow-sm">
+            {bestWorst ? (
+              <div>
+                <div className="overflow-x-auto">
+                  <table className="min-w-[860px] table-auto border-collapse text-xs text-slate-700">
+                    <thead>
+                      <tr className="bg-rose-50 text-[11px] font-semibold uppercase tracking-[0.2em] text-rose-600">
+                        <th className="px-3 py-2 text-left">Scenario</th>
+                        {Array.from({ length: PLAYOFF_CUTOFF }, (_, idx) => (
+                          <th key={`bw-rank-${idx + 1}`} className="px-2 py-2 text-center">
+                            {idx + 1}
+                          </th>
+                        ))}
+                        <th className="px-2 py-2 text-center">9+</th>
+                        <th className="px-3 py-2 text-center">Top 8</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {bestWorstRows.map((row) => {
+                        const noPlayoffs = row.rankHist
+                          .slice(PLAYOFF_CUTOFF)
+                          .reduce((sum, value) => sum + value, 0);
+                        return (
+                          <tr key={row.label} className="border-t border-rose-100">
+                            <td className="px-3 py-2 font-semibold text-slate-900">
+                              {row.label}
+                            </td>
+                            {Array.from({ length: PLAYOFF_CUTOFF }, (_, idx) => {
+                              const value = row.rankHist[idx] ?? 0;
+                              const baseline = rankHist[idx] ?? 0;
+                              return (
+                                <td
+                                  key={`${row.label}-rank-${idx + 1}`}
+                                  className={`px-2 py-2 text-center ${rankCellClass(
+                                    value,
+                                    row.label === "Current" ? undefined : baseline,
+                                  )}`}
+                                >
+                                  {formatRankCell(value)}
+                                </td>
+                              );
+                            })}
+                            <td
+                              className={`px-2 py-2 text-center ${rankCellClass(
+                                noPlayoffs,
+                                row.label === "Current"
+                                  ? undefined
+                                  : rankHist
+                                      .slice(PLAYOFF_CUTOFF)
+                                      .reduce((sum, value) => sum + value, 0),
+                              )}`}
+                            >
+                              {formatRankCell(noPlayoffs)}
+                            </td>
+                            <td className="px-3 py-2 text-center font-semibold text-slate-900">
+                              {formatScenarioOdds(row.playoffOdds, row.clinches)}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="grid gap-px border-t border-rose-100 bg-rose-100 md:grid-cols-2">
+                  <div className="bg-white px-4 py-4">
+                    <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-500">
+                      Best Case Scenario
+                    </div>
+                    <div className="mt-2 text-sm text-slate-700">
+                      {bestWorst.best.label}
+                    </div>
+                  </div>
+                  <div className="bg-white px-4 py-4">
+                    <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-500">
+                      Worst Case Scenario
+                    </div>
+                    <div className="mt-2 text-sm text-slate-700">
+                      {bestWorst.worst.label}
+                    </div>
+                  </div>
+                </div>
+                <div className="border-t border-rose-100 bg-rose-50/40 px-4 py-3 text-xs text-slate-500">
+                  Only games from the next matchday are considered in these scenario labels.
+                </div>
+              </div>
+            ) : (
+              <div className="px-4 py-6 text-sm text-slate-500">
+                Best/worst scenario table not available yet.
+              </div>
+            )}
           </div>
         </section>
 

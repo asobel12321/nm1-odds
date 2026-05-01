@@ -100,12 +100,14 @@ export interface BestWorstResult {
   best: {
     label: string;
     odds: number;
+    clinches: boolean;
     outcomes: ForcedOutcomes;
     rankHist: number[];
   };
   worst: {
     label: string;
     odds: number;
+    clinches: boolean;
     outcomes: ForcedOutcomes;
     rankHist: number[];
   };
