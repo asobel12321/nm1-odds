@@ -97,6 +97,16 @@ export interface OddsCache extends SimResult {
 export interface BestWorstResult {
   roundDate: string;
   scenarios: number;
-  best: { label: string; odds: number; outcomes: ForcedOutcomes };
-  worst: { label: string; odds: number; outcomes: ForcedOutcomes };
+  best: {
+    label: string;
+    odds: number;
+    outcomes: ForcedOutcomes;
+    rankHist: number[];
+  };
+  worst: {
+    label: string;
+    odds: number;
+    outcomes: ForcedOutcomes;
+    rankHist: number[];
+  };
 }

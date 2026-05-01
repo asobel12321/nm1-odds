@@ -82,13 +82,14 @@ export function bestWorstNextRound(
       seed: (params.seed ?? 1) + mask,
     });
     const odds = result.playoffOdds[teamId] ?? 0;
+    const rankHist = result.rankHist[teamId] ?? [];
     const label = formatOutcomeLabel(scenarioOutcomes, unforced, teamLookup);
 
     if (!best || odds > best.odds) {
-      best = { label, odds, outcomes: scenarioOutcomes };
+      best = { label, odds, outcomes: scenarioOutcomes, rankHist };
     }
     if (!worst || odds < worst.odds) {
-      worst = { label, odds, outcomes: scenarioOutcomes };
+      worst = { label, odds, outcomes: scenarioOutcomes, rankHist };
     }
   }
 
