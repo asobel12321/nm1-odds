@@ -1,26 +1,26 @@
 {
     "season":  "2025-2026",
-    "updated":  "2026-04-30",
+    "updated":  "2026-05-01",
     "teams":  [
                   {
                       "id":  "26",
                       "name":  "Le Havre",
                       "abbr":  "STB",
-                      "wins":  17,
+                      "wins":  18,
                       "losses":  6
                   },
                   {
                       "id":  "13367",
                       "name":  "Mulhouse",
                       "abbr":  "MUL",
-                      "wins":  16,
+                      "wins":  17,
                       "losses":  8
                   },
                   {
                       "id":  "278",
                       "name":  "Fos-sur-mer",
                       "abbr":  "FOS",
-                      "wins":  16,
+                      "wins":  17,
                       "losses":  7
                   },
                   {
@@ -28,7 +28,7 @@
                       "name":  "Levallois",
                       "abbr":  "LEV",
                       "wins":  13,
-                      "losses":  10
+                      "losses":  11
                   },
                   {
                       "id":  "2937",
@@ -42,13 +42,13 @@
                       "name":  "Pays de Fougeres",
                       "abbr":  "FOU",
                       "wins":  9,
-                      "losses":  15
+                      "losses":  16
                   },
                   {
                       "id":  "1851",
                       "name":  "Orchies",
                       "abbr":  "ORC",
-                      "wins":  11,
+                      "wins":  12,
                       "losses":  12
                   },
                   {
@@ -56,21 +56,21 @@
                       "name":  "Les Sables d\u0027Olonne",
                       "abbr":  "SAB",
                       "wins":  11,
-                      "losses":  12
+                      "losses":  13
                   },
                   {
                       "id":  "247",
                       "name":  "Lorient",
                       "abbr":  "LOR",
                       "wins":  11,
-                      "losses":  12
+                      "losses":  13
                   },
                   {
                       "id":  "13305",
                       "name":  "Tours",
                       "abbr":  "UTB",
                       "wins":  12,
-                      "losses":  11
+                      "losses":  12
                   },
                   {
                       "id":  "1704",
@@ -83,7 +83,7 @@
                       "id":  "14914",
                       "name":  "Loon Plage",
                       "abbr":  "LOO",
-                      "wins":  4,
+                      "wins":  5,
                       "losses":  19
                   },
                   {
@@ -91,13 +91,13 @@
                       "name":  "Toulouse",
                       "abbr":  "TOU",
                       "wins":  8,
-                      "losses":  15
+                      "losses":  16
                   },
                   {
                       "id":  "253",
                       "name":  "Berck Rang du Fliers",
                       "abbr":  "BRK",
-                      "wins":  10,
+                      "wins":  11,
                       "losses":  13
                   }
               ],
@@ -800,7 +800,7 @@
                       "date":  "2026-05-01 20:00",
                       "home":  "13367",
                       "away":  "345",
-                      "played":  false,
+                      "played":  true,
                       "homeScore":  null,
                       "awayScore":  null
                   },
@@ -809,7 +809,7 @@
                       "date":  "2026-05-01 20:00",
                       "home":  "14914",
                       "away":  "1844",
-                      "played":  false,
+                      "played":  true,
                       "homeScore":  null,
                       "awayScore":  null
                   },
@@ -827,7 +827,7 @@
                       "date":  "2026-05-01 20:00",
                       "home":  "1851",
                       "away":  "14016",
-                      "played":  false,
+                      "played":  true,
                       "homeScore":  null,
                       "awayScore":  null
                   },
@@ -836,7 +836,7 @@
                       "date":  "2026-05-01 20:00",
                       "home":  "253",
                       "away":  "13305",
-                      "played":  false,
+                      "played":  true,
                       "homeScore":  null,
                       "awayScore":  null
                   },
@@ -845,7 +845,7 @@
                       "date":  "2026-05-01 20:00",
                       "home":  "26",
                       "away":  "247",
-                      "played":  false,
+                      "played":  true,
                       "homeScore":  null,
                       "awayScore":  null
                   },
@@ -854,7 +854,7 @@
                       "date":  "2026-05-01 20:00",
                       "home":  "278",
                       "away":  "3",
-                      "played":  false,
+                      "played":  true,
                       "homeScore":  null,
                       "awayScore":  null
                   },
