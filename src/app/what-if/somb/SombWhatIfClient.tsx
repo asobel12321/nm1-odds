@@ -240,16 +240,7 @@ export default function SombWhatIfClient({
     return formatPct(value);
   }
 
-  function rankCellClass(value: number, baseline?: number): string {
-    if (baseline === undefined) {
-      return "text-slate-700";
-    }
-    if (value > baseline + 0.001) {
-      return "font-semibold text-emerald-700";
-    }
-    if (value < baseline - 0.001) {
-      return "font-semibold text-rose-700";
-    }
+  function rankCellClass(): string {
     return "text-slate-700";
   }
 
@@ -553,28 +544,17 @@ export default function SombWhatIfClient({
                             </td>
                             {Array.from({ length: PLAYOFF_CUTOFF }, (_, idx) => {
                               const value = row.rankHist[idx] ?? 0;
-                              const baseline = rankHist[idx] ?? 0;
                               return (
                                 <td
                                   key={`${row.label}-rank-${idx + 1}`}
-                                  className={`px-2 py-2 text-center ${rankCellClass(
-                                    value,
-                                    row.label === "Current" ? undefined : baseline,
-                                  )}`}
+                                  className={`px-2 py-2 text-center ${rankCellClass()}`}
                                 >
                                   {formatRankCell(value)}
                                 </td>
                               );
                             })}
                             <td
-                              className={`px-2 py-2 text-center ${rankCellClass(
-                                noPlayoffs,
-                                row.label === "Current"
-                                  ? undefined
-                                  : rankHist
-                                      .slice(PLAYOFF_CUTOFF)
-                                      .reduce((sum, value) => sum + value, 0),
-                              )}`}
+                              className={`px-2 py-2 text-center ${rankCellClass()}`}
                             >
                               {formatRankCell(noPlayoffs)}
                             </td>
@@ -607,6 +587,8 @@ export default function SombWhatIfClient({
                 </div>
                 <div className="border-t border-rose-100 bg-rose-50/40 px-4 py-3 text-xs text-slate-500">
                   Only games from the next matchday are considered in these scenario labels.
+                  Best/worst odds are conditional on that matchday scenario, and
+                  unresolved multi-team cutoff tiebreaks do not count as clinched.
                 </div>
               </div>
             ) : (
