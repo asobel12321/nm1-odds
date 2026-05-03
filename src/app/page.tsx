@@ -99,13 +99,13 @@ export default function Home() {
         <header className="grid gap-6 md:grid-cols-[1.2fr_0.8fr] md:items-end">
           <div className="space-y-4">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-amber-700">
-              NM1 Phase 2 - Group A
+              NM1 Playoff Group
             </p>
             <h1 className="font-display text-4xl font-semibold leading-tight text-slate-900 md:text-5xl">
               Top Group playoff race projections.
             </h1>
             <p className="max-w-xl text-base text-slate-600">
-              Current Group A standings and a win% plus home-court model for
+              Current playoff group standings and a win% plus home-court model for
               top-8 playoff qualification.
             </p>
           </div>
@@ -135,8 +135,9 @@ export default function Home() {
         </header>
 
         <div className="rounded-2xl border border-amber-200 bg-amber-50/80 px-5 py-4 text-sm text-amber-900 shadow-sm">
-          Data is limited to NM1 Phase 2 Group A: carried-over direct Phase 1
-          results plus Group A games. Tiebreaks follow FFBB direct-game
+          Data is limited to the NM1 playoff group: playoff group games plus
+          carried-over direct Phase 1 Group A or Group B games when both teams
+          are now in the playoff group. Tiebreaks follow FFBB direct-game
           mini-standings and point-average rules; simulated future wins are
           treated as one-point results for tiebreak margin.
         </div>

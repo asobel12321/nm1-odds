@@ -300,9 +300,10 @@ export default function SombWhatIfClient({
         </header>
 
         <div className="rounded-2xl border border-rose-200 bg-rose-50/80 px-5 py-4 text-sm text-rose-900 shadow-sm">
-          The model uses Group A results only, including carried-over direct
-          Phase 1 games between Group A teams. Future simulated wins are scored
-          as one-point results, then FFBB direct-game mini-standings and
+          The model uses playoff group data only: playoff group games plus
+          carried-over direct Phase 1 Group A or Group B games when both teams
+          are now in the playoff group. Future simulated wins are scored as
+          one-point results, then FFBB direct-game mini-standings and
           point-average tiebreaks are applied.
         </div>
 

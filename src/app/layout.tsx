@@ -14,7 +14,7 @@ const bodyFont = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: "SOMB Playoff Odds",
-  description: "Simple, explainable playoff odds for SOMB in NM1 Phase 2 Group A.",
+  description: "Simple, explainable playoff odds for SOMB in the NM1 playoff group.",
 };
 
 export default function RootLayout({
