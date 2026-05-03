@@ -10,8 +10,9 @@ import {
   teamsById,
 } from "@/lib/data";
 import { DEFAULT_HOME_ADV, DEFAULT_K } from "@/lib/model";
-import { getSombTiebreakStatus, rankTeams } from "@/lib/rank";
+import { rankTeams } from "@/lib/rank";
 import { simulateSeason } from "@/lib/simulate";
+import { getTwoTeamTiebreakStatus } from "@/lib/tiebreak";
 
 export default function Home() {
   const data = loadData();
@@ -28,6 +29,8 @@ export default function Home() {
           sombId,
         });
   const teamLookup = teamsById(data.teams);
+  const focusTeam = teamLookup[sombId];
+  const focusLabel = focusTeam?.abbr ?? sombId;
   const remainingById: Record<string, number> = {};
   for (const team of data.teams) {
     remainingById[team.id] = 0;
@@ -43,13 +46,19 @@ export default function Home() {
     currentWins[team.id] = team.wins;
     currentGames[team.id] = team.wins + team.losses;
   }
-  const rankedIds = rankTeams(data.teams, currentWins, sombId, currentGames);
+  const rankedIds = rankTeams(
+    data.teams,
+    currentWins,
+    sombId,
+    currentGames,
+    data.games,
+  );
   const sortedTeams = rankedIds.map((id) => teamLookup[id]!);
   const sombTiebreakRows = sortedTeams
     .filter((team) => team.id !== sombId)
     .map((team) => ({
       team,
-      status: getSombTiebreakStatus(team.id, sombId) ?? "undecided",
+      status: getTwoTeamTiebreakStatus(sombId, team.id, data.games) ?? "undecided",
     }));
 
   const rows = sortedTeams.map((team, index) => {
@@ -96,7 +105,7 @@ export default function Home() {
               Top Group playoff race projections.
             </h1>
             <p className="max-w-xl text-base text-slate-600">
-              Current Group A standings and a simple win% + home-court model for
+              Current Group A standings and a win% plus home-court model for
               top-8 playoff qualification.
             </p>
           </div>
@@ -106,7 +115,9 @@ export default function Home() {
             </div>
             <div className="mt-4 flex items-center justify-between">
               <div>
-                <div className="text-sm font-semibold text-slate-900">SOMB What-If</div>
+                <div className="text-sm font-semibold text-slate-900">
+                  {focusLabel} What-If
+                </div>
                 <div className="text-xs text-slate-500">Path to top 8</div>
               </div>
               <Link
@@ -124,8 +135,10 @@ export default function Home() {
         </header>
 
         <div className="rounded-2xl border border-amber-200 bg-amber-50/80 px-5 py-4 text-sm text-amber-900 shadow-sm">
-          Standings and odds use simplified tiebreak logic. Multi-team
-          tiebreakers may not always be calculated cleanly.
+          Data is limited to NM1 Phase 2 Group A: carried-over direct Phase 1
+          results plus Group A games. Tiebreaks follow FFBB direct-game
+          mini-standings and point-average rules; simulated future wins are
+          treated as one-point results for tiebreak margin.
         </div>
 
         <section className="grid gap-8 lg:grid-cols-[1.4fr_0.6fr]">
@@ -136,10 +149,12 @@ export default function Home() {
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <h3 className="font-display text-xl font-semibold text-slate-900">
-                    SOMB Head-to-Head Tiebreakers
+                    {focusLabel} Head-to-Head Tiebreakers
                   </h3>
                   <p className="mt-1 text-sm text-slate-500">
-                    Decided tiebreaks stay in green or red. Undecided matchups stay black.
+                    Green and red reflect resolved two-team tiebreaks from
+                    recorded scores. Undecided means a remaining game can still
+                    change the direct margin.
                   </p>
                 </div>
               </div>

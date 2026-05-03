@@ -1,6 +1,6 @@
 import { PLAYOFF_CUTOFF } from "@/lib/competition";
 import { findSombId, remainingGames, teamsById } from "@/lib/data";
-import { getSombTiebreakStatus, rankTeams } from "@/lib/rank";
+import { resolveTeamStandings } from "@/lib/rank";
 import type {
   ClinchResult,
   ClinchScenario,
@@ -254,6 +254,19 @@ function buildClinchingPatterns(
   }));
 }
 
+function groupSpansPlayoffCutoff(group: TeamId[], ranked: TeamId[]): boolean {
+  const positions = group
+    .map((teamId) => ranked.indexOf(teamId))
+    .filter((position) => position >= 0)
+    .sort((left, right) => left - right);
+  if (positions.length === 0) {
+    return false;
+  }
+  const first = positions[0];
+  const last = positions[positions.length - 1];
+  return first < PLAYOFF_CUTOFF && last >= PLAYOFF_CUTOFF;
+}
+
 function canStillMissPlayoffs(
   data: DataFile,
   teamId: TeamId,
@@ -261,6 +274,7 @@ function canStillMissPlayoffs(
   nextRoundOutcomes: ForcedOutcomes,
 ): boolean {
   const wins: Record<TeamId, number> = {};
+  const resolvedOutcomes: ForcedOutcomes = { ...nextRoundOutcomes };
   for (const team of data.teams) {
     wins[team.id] = team.wins;
   }
@@ -277,6 +291,7 @@ function canStillMissPlayoffs(
     if (game.home === teamId || game.away === teamId) {
       const opponentId = game.home === teamId ? game.away : game.home;
       wins[opponentId] += 1;
+      resolvedOutcomes[game.id] = game.home === teamId ? "away" : "home";
       continue;
     }
 
@@ -284,65 +299,26 @@ function canStillMissPlayoffs(
   }
 
   const totals = finalTotalGames(data);
-  const compareRecord = (leftId: TeamId, rightId: TeamId): number => {
-    const leftGames = totals[leftId];
-    const rightGames = totals[rightId];
-    const diff = wins[leftId] * rightGames - wins[rightId] * leftGames;
-    if (diff > 0) {
-      return 1;
-    }
-    if (diff < 0) {
-      return -1;
-    }
-    return 0;
-  };
 
   function isConservativeClinch(): boolean {
-    const ranked = rankTeams(data.teams, wins, sombId, totals);
-    const teamRank = ranked.indexOf(teamId);
+    const resolution = resolveTeamStandings(
+      data.teams,
+      wins,
+      sombId,
+      totals,
+      data.games,
+      resolvedOutcomes,
+    );
+    const teamRank = resolution.rankedIds.indexOf(teamId);
     if (teamRank < 0) {
       return false;
     }
     if (teamRank >= PLAYOFF_CUTOFF) {
       return false;
     }
-
-    let betterCount = 0;
-    const tied: TeamId[] = [];
-
-    for (const team of data.teams) {
-      const comparison = compareRecord(team.id, teamId);
-      if (comparison > 0) {
-        betterCount += 1;
-        continue;
-      }
-      if (comparison === 0) {
-        tied.push(team.id);
-      }
-    }
-
-    if (betterCount >= PLAYOFF_CUTOFF) {
-      return false;
-    }
-
-    const tieSize = tied.length;
-    if (betterCount + tieSize <= PLAYOFF_CUTOFF) {
-      return true;
-    }
-
-    if (
-      teamId === sombId &&
-      betterCount === PLAYOFF_CUTOFF - 1 &&
-      tieSize === 2
-    ) {
-      const opponentId = tied.find((id) => id !== teamId);
-      return (
-        opponentId !== undefined &&
-        getSombTiebreakStatus(opponentId, sombId) === "won"
-      );
-    }
-
-    return false;
+    return !resolution.unresolvedGroups.some(
+      (group) => group.includes(teamId) && groupSpansPlayoffCutoff(group, resolution.rankedIds),
+    );
   }
 
   function search(index: number): boolean {
@@ -353,18 +329,24 @@ function canStillMissPlayoffs(
     const game = variableGames[index];
 
     wins[game.home] += 1;
+    resolvedOutcomes[game.id] = "home";
     if (search(index + 1)) {
       wins[game.home] -= 1;
+      delete resolvedOutcomes[game.id];
       return true;
     }
     wins[game.home] -= 1;
+    delete resolvedOutcomes[game.id];
 
     wins[game.away] += 1;
+    resolvedOutcomes[game.id] = "away";
     if (search(index + 1)) {
       wins[game.away] -= 1;
+      delete resolvedOutcomes[game.id];
       return true;
     }
     wins[game.away] -= 1;
+    delete resolvedOutcomes[game.id];
 
     return false;
   }

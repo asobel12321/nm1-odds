@@ -7,6 +7,7 @@ import type { DataFile, Game, TeamRecord } from "../src/lib/types";
 
 const STANDINGS_URL = "https://nm1.ffbb.com/classement";
 const CALENDAR_URL = "https://nm1.ffbb.com/calendrier";
+const TARGET_POULE = "poule a";
 
 function normalizeName(input: string): string {
   return input
@@ -70,17 +71,17 @@ async function fetchHtml(url: string): Promise<string> {
 function parseStandings(html: string) {
   const $ = load(html);
   const header = $("h2.generic__title")
-    .filter((_, el) => $(el).text().toLowerCase().includes("poule b"))
+    .filter((_, el) => $(el).text().toLowerCase().includes(TARGET_POULE))
     .first();
   if (!header.length) {
-    throw new Error("Could not locate Poule B standings table.");
+    throw new Error(`Could not locate ${TARGET_POULE} standings table.`);
   }
   let table = header.nextAll("div").find("table").first();
   if (!table.length) {
     table = header.parent().find("table").first();
   }
   if (!table.length) {
-    throw new Error("Poule B standings table missing.");
+    throw new Error(`${TARGET_POULE} standings table missing.`);
   }
 
   const teams: TeamRecord[] = [];
@@ -162,11 +163,11 @@ function parseSchedulePage(
     }
     const homeData = extractTeamData($, homeEl);
     const awayData = extractTeamData($, awayEl);
-    let homeId =
+    const homeId =
       homeData.logoId ??
       pageNameToId.get(normalizeName(homeData.name)) ??
       nameToId.get(normalizeName(homeData.name));
-    let awayId =
+    const awayId =
       awayData.logoId ??
       pageNameToId.get(normalizeName(awayData.name)) ??
       nameToId.get(normalizeName(awayData.name));
@@ -186,7 +187,9 @@ function parseSchedulePage(
       matchHref.match(/\/match\/(\d+)/)?.[1] ??
       `${date}-${homeId}-${awayId}`;
 
-    const played = homeData.score !== null && awayData.score !== null;
+    const hasScores = homeData.score !== null && awayData.score !== null;
+    const isPlaceholderScore = homeData.score === 0 && awayData.score === 0;
+    const played = hasScores && !isPlaceholderScore;
     if (!gamesById.has(matchId)) {
       gamesById.set(matchId, {
         id: matchId,
@@ -256,6 +259,42 @@ function applyAbbreviations(teams: TeamRecord[], abbrById: Map<string, string>) 
   });
 }
 
+function applyRecordsFromGames(teams: TeamRecord[], games: Game[]): TeamRecord[] {
+  const records = new Map<string, { wins: number; losses: number }>();
+  for (const team of teams) {
+    records.set(team.id, { wins: 0, losses: 0 });
+  }
+
+  for (const game of games) {
+    if (
+      !game.played ||
+      game.homeScore === null ||
+      game.homeScore === undefined ||
+      game.awayScore === null ||
+      game.awayScore === undefined
+    ) {
+      continue;
+    }
+    const homeRecord = records.get(game.home);
+    const awayRecord = records.get(game.away);
+    if (!homeRecord || !awayRecord) {
+      continue;
+    }
+    if (game.homeScore > game.awayScore) {
+      homeRecord.wins += 1;
+      awayRecord.losses += 1;
+    } else {
+      awayRecord.wins += 1;
+      homeRecord.losses += 1;
+    }
+  }
+
+  return teams.map((team) => {
+    const record = records.get(team.id);
+    return record ? { ...team, wins: record.wins, losses: record.losses } : team;
+  });
+}
+
 async function main() {
   const standingsHtml = await fetchHtml(STANDINGS_URL);
 
@@ -281,10 +320,10 @@ async function main() {
   const games = Array.from(gamesById.values()).filter(
     (game) => teamIds.has(game.home) && teamIds.has(game.away),
   );
-  const teams = applyAbbreviations(rawTeams, abbrById);
+  const teams = applyRecordsFromGames(applyAbbreviations(rawTeams, abbrById), games);
 
   if (teams.length !== 14) {
-    console.warn(`Expected 14 Poule B teams, got ${teams.length}.`);
+    console.warn(`Expected 14 ${TARGET_POULE} teams, got ${teams.length}.`);
   }
 
   const output: DataFile = {

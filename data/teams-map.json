@@ -1,8 +1,8 @@
 [
   {
-    "id": "26",
-    "abbr": "STB",
-    "name": "Le Havre"
+    "id": "278",
+    "abbr": "FOS",
+    "name": "Fos-sur-Mer"
   },
   {
     "id": "13367",
@@ -10,14 +10,9 @@
     "name": "Mulhouse"
   },
   {
-    "id": "278",
-    "abbr": "FOS",
-    "name": "Fos-sur-mer"
-  },
-  {
-    "id": "3",
-    "abbr": "LEV",
-    "name": "Levallois"
+    "id": "26",
+    "abbr": "STB",
+    "name": "Le Havre"
   },
   {
     "id": "2937",
@@ -25,24 +20,14 @@
     "name": "Tarbes-Lourdes"
   },
   {
-    "id": "345",
-    "abbr": "FOU",
-    "name": "Pays de Fougeres"
+    "id": "3",
+    "abbr": "LEV",
+    "name": "Levallois"
   },
   {
     "id": "1851",
     "abbr": "ORC",
     "name": "Orchies"
-  },
-  {
-    "id": "14016",
-    "abbr": "SAB",
-    "name": "Les Sables d'Olonne"
-  },
-  {
-    "id": "247",
-    "abbr": "LOR",
-    "name": "Lorient"
   },
   {
     "id": "13305",
@@ -55,9 +40,24 @@
     "name": "Boulogne-sur-Mer"
   },
   {
-    "id": "14914",
-    "abbr": "LOO",
-    "name": "Loon Plage"
+    "id": "247",
+    "abbr": "LOR",
+    "name": "Lorient"
+  },
+  {
+    "id": "253",
+    "abbr": "BRK",
+    "name": "Berck Rang du Fliers"
+  },
+  {
+    "id": "14016",
+    "abbr": "SAB",
+    "name": "Les Sables d'Olonne"
+  },
+  {
+    "id": "345",
+    "abbr": "FOU",
+    "name": "Fougères"
   },
   {
     "id": "1844",
@@ -65,8 +65,8 @@
     "name": "Toulouse"
   },
   {
-    "id": "253",
-    "abbr": "BRK",
-    "name": "Berck Rang du Fliers"
+    "id": "14914",
+    "abbr": "LOO",
+    "name": "Loon Plage"
   }
 ]

@@ -13,8 +13,8 @@ const bodyFont = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "NM1 Poule B Odds",
-  description: "Simple, explainable playoff odds for French NM1 Poule B.",
+  title: "SOMB Playoff Odds",
+  description: "Simple, explainable playoff odds for SOMB in NM1 Phase 2 Group A.",
 };
 
 export default function RootLayout({

@@ -92,6 +92,9 @@ export default function SombWhatIfClient({
     }
     return map;
   }, [teams]);
+  const focusTeam = teamLookup[teamId];
+  const focusLabel = focusTeam?.abbr ?? teamId;
+  const focusName = focusTeam?.name ?? focusLabel;
 
   const teamWpct = useMemo(() => {
     const map: Record<string, number> = {};
@@ -280,11 +283,12 @@ export default function SombWhatIfClient({
         <header className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-rose-700">
-              SOM Boulogne
+              {focusName}
             </p>
             <h1 className="font-display text-4xl font-semibold">What-If Simulator</h1>
             <p className="mt-2 max-w-2xl text-sm text-slate-600">
-              Force outcomes for SOMB games and see top-8 playoff odds refresh instantly.
+              Force outcomes for {focusLabel} games and see top-8 playoff odds
+              with FFBB-style tiebreaks.
             </p>
           </div>
           <Link
@@ -296,14 +300,17 @@ export default function SombWhatIfClient({
         </header>
 
         <div className="rounded-2xl border border-rose-200 bg-rose-50/80 px-5 py-4 text-sm text-rose-900 shadow-sm">
-          Odds and standings use simplified tiebreak logic. Multi-team
-          cutoff ties do not count as clinched; only a clean top-8 finish or
-          a known SOMB 2-team 8/9 tiebreak counts as a clinch.
+          The model uses Group A results only, including carried-over direct
+          Phase 1 games between Group A teams. Future simulated wins are scored
+          as one-point results, then FFBB direct-game mini-standings and
+          point-average tiebreaks are applied.
         </div>
 
         <section className="grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-4">
-            <h2 className="font-display text-2xl font-semibold">Remaining SOMB Games</h2>
+            <h2 className="font-display text-2xl font-semibold">
+              Remaining {focusLabel} Games
+            </h2>
             <div className="overflow-hidden rounded-2xl border border-rose-100 bg-white/90 shadow-sm">
               <div className="grid grid-cols-12 gap-2 border-b border-rose-100 bg-rose-50 px-4 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-rose-600">
                 <div className="col-span-3">Date</div>
@@ -342,7 +349,7 @@ export default function SombWhatIfClient({
                           {away} @ {home}
                           {pSombWin !== null ? (
                             <div className="text-xs font-semibold uppercase tracking-[0.18em] text-rose-400">
-                              Model SOMB win {(pSombWin * 100).toFixed(1)}%
+                              Model {focusLabel} win {(pSombWin * 100).toFixed(1)}%
                             </div>
                           ) : null}
                         </div>
@@ -441,7 +448,7 @@ export default function SombWhatIfClient({
 
         <section className="space-y-4">
           <h2 className="font-display text-2xl font-semibold">
-            SOMB Outcomes by Remaining Wins
+            {focusLabel} Outcomes by Remaining Wins
           </h2>
           <div className="overflow-x-auto rounded-2xl border border-rose-100 bg-white/90 shadow-sm">
             <table className="min-w-[860px] table-auto border-collapse text-xs text-slate-700">
@@ -587,8 +594,9 @@ export default function SombWhatIfClient({
                 </div>
                 <div className="border-t border-rose-100 bg-rose-50/40 px-4 py-3 text-xs text-slate-500">
                   Only games from the next matchday are considered in these scenario labels.
-                  Best/worst odds are conditional on that matchday scenario, and
-                  unresolved multi-team cutoff tiebreaks do not count as clinched.
+                  Best/worst odds are conditional on that matchday scenario, with
+                  each simulated future win treated as a one-point result for
+                  tiebreak purposes.
                 </div>
               </div>
             ) : (

@@ -1,7 +1,7 @@
 import { createRng } from "@/lib/rng";
 import { PLAYOFF_CUTOFF } from "@/lib/competition";
 import { winProb } from "@/lib/model";
-import { rankTeams } from "@/lib/rank";
+import { resolveTeamStandings } from "@/lib/rank";
 import type { DataFile, SimParams, SimResult, TeamId } from "@/lib/types";
 
 function buildWpctMap(data: DataFile): Record<TeamId, number> {
@@ -25,6 +25,35 @@ function remainingCounts(data: DataFile): Record<TeamId, number> {
     }
   }
   return counts;
+}
+
+function addResolutionToRankHist(
+  rankHist: Record<TeamId, number[]>,
+  rankedIds: TeamId[],
+  unresolvedGroups: TeamId[][],
+) {
+  const unresolved = new Set(unresolvedGroups.flat());
+  for (let rank = 0; rank < rankedIds.length; rank += 1) {
+    const teamId = rankedIds[rank];
+    if (!unresolved.has(teamId)) {
+      rankHist[teamId][rank] += 1;
+    }
+  }
+
+  for (const group of unresolvedGroups) {
+    const positions = group
+      .map((teamId) => rankedIds.indexOf(teamId))
+      .filter((position) => position >= 0);
+    if (positions.length === 0) {
+      continue;
+    }
+    const share = 1 / group.length;
+    for (const teamId of group) {
+      for (const position of positions) {
+        rankHist[teamId][position] += share;
+      }
+    }
+  }
 }
 
 export function simulateSeason(data: DataFile, params: SimParams): SimResult {
@@ -56,6 +85,7 @@ export function simulateSeason(data: DataFile, params: SimParams): SimResult {
 
   for (let sim = 0; sim < simulations; sim += 1) {
     const wins: Record<TeamId, number> = { ...baseWins };
+    const simOutcomes: Record<string, "home" | "away"> = {};
     for (const game of remaining) {
       const forced = params.forcedOutcomes?.[game.id];
       let winner: "home" | "away";
@@ -72,18 +102,22 @@ export function simulateSeason(data: DataFile, params: SimParams): SimResult {
       }
       const winnerId = winner === "home" ? game.home : game.away;
       wins[winnerId] += 1;
+      simOutcomes[game.id] = winner;
     }
 
-    const ranked = rankTeams(
+    const resolution = resolveTeamStandings(
       data.teams,
       wins,
       params.sombId ?? "SOMB",
       totalGames,
+      data.games,
+      simOutcomes,
     );
-    for (let i = 0; i < ranked.length; i += 1) {
-      const id = ranked[i];
-      rankHist[id][i] += 1;
-    }
+    addResolutionToRankHist(
+      rankHist,
+      resolution.rankedIds,
+      resolution.unresolvedGroups,
+    );
     for (const id of teamIds) {
       const totalWins = wins[id];
       if (totalWins >= winHist[id].length) {
