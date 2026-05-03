@@ -20,8 +20,8 @@
       "id": "26",
       "name": "Le Havre",
       "abbr": "STB",
-      "wins": 18,
-      "losses": 6
+      "wins": 17,
+      "losses": 7
     },
     {
       "id": "2937",
@@ -83,8 +83,8 @@
       "id": "345",
       "name": "Fougères",
       "abbr": "FOU",
-      "wins": 9,
-      "losses": 15
+      "wins": 10,
+      "losses": 14
     },
     {
       "id": "1844",
@@ -1422,8 +1422,8 @@
       "home": "345",
       "away": "26",
       "played": true,
-      "homeScore": 73,
-      "awayScore": 77
+      "homeScore": 77,
+      "awayScore": 73
     },
     {
       "id": "853371",
