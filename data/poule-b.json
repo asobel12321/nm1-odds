@@ -1,40 +1,40 @@
 {
   "season": "2025-2026",
-  "updated": "2026-05-02",
+  "updated": "2026-05-06",
   "teams": [
     {
       "id": "278",
       "name": "Fos-sur-Mer",
       "abbr": "FOS",
       "wins": 17,
-      "losses": 7
+      "losses": 8
     },
     {
       "id": "13367",
       "name": "Mulhouse",
       "abbr": "MUL",
       "wins": 16,
-      "losses": 8
+      "losses": 9
     },
     {
       "id": "26",
       "name": "Le Havre",
       "abbr": "STB",
-      "wins": 17,
+      "wins": 18,
       "losses": 7
     },
     {
       "id": "2937",
       "name": "Tarbes-Lourdes",
       "abbr": "UTL",
-      "wins": 13,
+      "wins": 14,
       "losses": 11
     },
     {
       "id": "3",
       "name": "Levallois",
       "abbr": "LEV",
-      "wins": 13,
+      "wins": 14,
       "losses": 11
     },
     {
@@ -42,27 +42,27 @@
       "name": "Orchies",
       "abbr": "ORC",
       "wins": 12,
-      "losses": 12
+      "losses": 13
     },
     {
       "id": "13305",
       "name": "Tours",
       "abbr": "UTB",
-      "wins": 12,
+      "wins": 13,
       "losses": 12
     },
     {
       "id": "1704",
       "name": "Boulogne-sur-Mer",
       "abbr": "SOMB",
-      "wins": 12,
+      "wins": 13,
       "losses": 12
     },
     {
       "id": "247",
       "name": "Lorient",
       "abbr": "LOR",
-      "wins": 11,
+      "wins": 12,
       "losses": 13
     },
     {
@@ -70,20 +70,20 @@
       "name": "Berck Rang du Fliers",
       "abbr": "BRK",
       "wins": 11,
-      "losses": 13
+      "losses": 14
     },
     {
       "id": "14016",
       "name": "Les Sables d'Olonne",
       "abbr": "SAB",
       "wins": 11,
-      "losses": 13
+      "losses": 14
     },
     {
       "id": "345",
       "name": "Fougères",
       "abbr": "FOU",
-      "wins": 10,
+      "wins": 11,
       "losses": 14
     },
     {
@@ -91,14 +91,14 @@
       "name": "Toulouse",
       "abbr": "TOU",
       "wins": 8,
-      "losses": 16
+      "losses": 17
     },
     {
       "id": "14914",
       "name": "Loon Plage",
       "abbr": "LOO",
       "wins": 5,
-      "losses": 19
+      "losses": 20
     }
   ],
   "games": [
@@ -1619,63 +1619,63 @@
       "date": "2026-05-05 20:00",
       "home": "3",
       "away": "13367",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
+      "played": true,
+      "homeScore": 105,
+      "awayScore": 78
     },
     {
       "id": "2026-05-05 20:00-2937-1851",
       "date": "2026-05-05 20:00",
       "home": "2937",
       "away": "1851",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
+      "played": true,
+      "homeScore": 95,
+      "awayScore": 89
     },
     {
       "id": "2026-05-05 20:00-13305-278",
       "date": "2026-05-05 20:00",
       "home": "13305",
       "away": "278",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
+      "played": true,
+      "homeScore": 79,
+      "awayScore": 69
     },
     {
       "id": "2026-05-05 20:00-1844-1704",
       "date": "2026-05-05 20:00",
       "home": "1844",
       "away": "1704",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
+      "played": true,
+      "homeScore": 84,
+      "awayScore": 88
     },
     {
       "id": "2026-05-05 20:00-247-253",
       "date": "2026-05-05 20:00",
       "home": "247",
       "away": "253",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
+      "played": true,
+      "homeScore": 72,
+      "awayScore": 70
     },
     {
       "id": "2026-05-05 20:00-345-14914",
       "date": "2026-05-05 20:00",
       "home": "345",
       "away": "14914",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
+      "played": true,
+      "homeScore": 94,
+      "awayScore": 82
     },
     {
       "id": "2026-05-05 20:00-14016-26",
       "date": "2026-05-05 20:00",
       "home": "14016",
       "away": "26",
-      "played": false,
-      "homeScore": null,
-      "awayScore": null
+      "played": true,
+      "homeScore": 68,
+      "awayScore": 90
     },
     {
       "id": "2026-05-08 20:00-14914-3",
