@@ -1,60 +1,44 @@
 import fs from "fs";
 import path from "path";
-import { loadData, findSombId } from "../src/lib/data";
-import { simulateSeason } from "../src/lib/simulate";
+import { pathToFileURL } from "url";
+import { loadData, findFocusTeamId, dataFingerprint } from "../src/lib/data";
 import { DEFAULT_HOME_ADV, DEFAULT_K } from "../src/lib/model";
-import { buildClinchScenarios } from "../src/lib/clinch";
-import { buildMatchdayImpact } from "../src/lib/matchdayImpact";
+import { DEFAULT_SEED, PLAYOFF_CUTOFF } from "../src/lib/competition";
+import { simulateSeason } from "../src/lib/simulate";
 import { buildWinTable } from "../src/lib/winTable";
 import type { OddsCache } from "../src/lib/types";
 
-const SIMULATIONS = 20000;
-
 export async function recomputeOdds() {
   const data = loadData();
-  const sombId = findSombId(data) ?? "SOMB";
-  const result = simulateSeason(data, {
-    simulations: SIMULATIONS,
+  const focusId = findFocusTeamId(data);
+  const params = {
+    simulations: 20000,
     k: DEFAULT_K,
     homeAdv: DEFAULT_HOME_ADV,
-    sombId,
-  });
-  const sombWinTable = buildWinTable(data, sombId, {
-    simulations: SIMULATIONS,
-    k: DEFAULT_K,
-    homeAdv: DEFAULT_HOME_ADV,
-    sombId,
-  });
-  const sombMatchdayImpact = buildMatchdayImpact(data, sombId, {
-    simulations: SIMULATIONS,
-    k: DEFAULT_K,
-    homeAdv: DEFAULT_HOME_ADV,
-    sombId,
-  });
-  const sombClinchScenarios = buildClinchScenarios(data, sombId);
-
-  const odds: OddsCache = {
-    ...result,
-    updated: new Date().toISOString(),
-    simulations: SIMULATIONS,
-    k: DEFAULT_K,
-    homeAdv: DEFAULT_HOME_ADV,
-    sombId,
-    sombWinTable,
-    sombMatchdayImpact,
-    sombClinchScenarios,
+    seed: DEFAULT_SEED,
+    focusId,
   };
-
-  const outputPath = path.join(process.cwd(), "data", "odds.json");
-  fs.writeFileSync(outputPath, JSON.stringify(odds, null, 2));
-  console.log(`Wrote odds cache to ${outputPath}`);
+  const odds: OddsCache = {
+    ...simulateSeason(data, params),
+    ...params,
+    cutoff: PLAYOFF_CUTOFF,
+    dataHash: dataFingerprint(data),
+    updated: new Date().toISOString(),
+    focusWinTable: buildWinTable(data, focusId, params),
+  };
+  const file = path.join(process.cwd(), "data", "odds.json");
+  fs.writeFileSync(file + ".tmp", JSON.stringify(odds, null, 2) + "\n");
+  fs.renameSync(file + ".tmp", file);
+  console.log(
+    `Vitré top-seven estimate: ${(100 * odds.playoffOdds[focusId]).toFixed(1)}% (${params.simulations} simulations).`,
+  );
 }
-
-async function main() {
-  await recomputeOdds();
+if (
+  process.argv[1] &&
+  import.meta.url === pathToFileURL(process.argv[1]).href
+) {
+  recomputeOdds().catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
 }
-
-main().catch((error) => {
-  console.error("Recompute failed:", error);
-  process.exit(1);
-});

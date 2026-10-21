@@ -115,12 +115,17 @@ export function getTwoTeamTiebreakStatus(
       (game.home === teamId && game.away === opponentId) ||
       (game.home === opponentId && game.away === teamId),
   );
-  if (headToHead.length === 0 || headToHead.some((game) => game.winner === null)) {
+  if (
+    headToHead.length === 0 ||
+    headToHead.some((game) => game.winner === null)
+  ) {
     return null;
   }
 
   const teamWins = headToHead.filter((game) => game.winner === teamId).length;
-  const opponentWins = headToHead.filter((game) => game.winner === opponentId).length;
+  const opponentWins = headToHead.filter(
+    (game) => game.winner === opponentId,
+  ).length;
   if (teamWins !== opponentWins) {
     return teamWins > opponentWins ? "won" : "lost";
   }
@@ -160,7 +165,10 @@ function fallbackSort(
   });
 }
 
-function buildGroupStats(teamIds: TeamId[], games: ResolvedGame[]): Record<TeamId, TeamTieStats> {
+function buildGroupStats(
+  teamIds: TeamId[],
+  games: ResolvedGame[],
+): Record<TeamId, TeamTieStats> {
   const teamSet = new Set(teamIds);
   const stats: Record<TeamId, TeamTieStats> = {};
   for (const id of teamIds) {
@@ -233,7 +241,11 @@ function buildOverallStats(
       continue;
     }
 
-    if (!game.scoreKnown || game.homeScore === null || game.awayScore === null) {
+    if (
+      !game.scoreKnown ||
+      game.homeScore === null ||
+      game.awayScore === null
+    ) {
       complete = false;
       continue;
     }
@@ -310,14 +322,19 @@ function resolveTieGroup(
   }
 
   const directStats = buildGroupStats(teamIds, groupGames);
-  const winsGroups = groupByMetric(teamIds, (teamId) => directStats[teamId].wins);
+  const winsGroups = groupByMetric(
+    teamIds,
+    (teamId) => directStats[teamId].wins,
+  );
   if (winsGroups.length > 1) {
     return flattenResolutions(winsGroups, (group) =>
       resolveTieGroup(group, resolvedGames, teamLookup, fallbackCompare),
     );
   }
 
-  const equalDirectGames = allEqual(teamIds.map((teamId) => directStats[teamId].games));
+  const equalDirectGames = allEqual(
+    teamIds.map((teamId) => directStats[teamId].games),
+  );
   const directScoresKnown = groupGames.every((game) => game.scoreKnown);
 
   if (equalDirectGames && directScoresKnown) {
@@ -401,14 +418,21 @@ export function resolveStandingsByTiebreaks(
   const rankedIds: TeamId[] = [];
   const unresolvedGroups: TeamId[][] = [];
 
-  for (const [, tiedIds] of Array.from(buckets.entries()).sort((left, right) => {
-    const [leftWins, leftGames] = left[0].split(":").map(Number);
-    const [rightWins, rightGames] = right[0].split(":").map(Number);
-    return rightWins * leftGames - leftWins * rightGames;
-  })) {
+  for (const [, tiedIds] of Array.from(buckets.entries()).sort(
+    (left, right) => {
+      const [leftWins, leftGames] = left[0].split(":").map(Number);
+      const [rightWins, rightGames] = right[0].split(":").map(Number);
+      return rightWins * leftGames - leftWins * rightGames;
+    },
+  )) {
     const resolution =
       tiedIds.length > 1
-        ? resolveTieGroup(tiedIds, resolvedGames, teamLookup, options.fallbackCompare)
+        ? resolveTieGroup(
+            tiedIds,
+            resolvedGames,
+            teamLookup,
+            options.fallbackCompare,
+          )
         : { rankedIds: tiedIds, unresolvedGroups: [] };
     rankedIds.push(...resolution.rankedIds);
     unresolvedGroups.push(...resolution.unresolvedGroups);

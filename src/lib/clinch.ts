@@ -1,5 +1,5 @@
 import { PLAYOFF_CUTOFF } from "@/lib/competition";
-import { findSombId, remainingGames, teamsById } from "@/lib/data";
+import { findFocusTeamId, remainingGames, teamsById } from "@/lib/data";
 import { resolveTeamStandings } from "@/lib/rank";
 import type {
   ClinchResult,
@@ -27,11 +27,15 @@ function dateKey(date: string): string {
   return date.split(" ")[0] ?? date;
 }
 
-function nextRoundGames(games: Game[]): { roundDate: string; games: Game[] } | null {
+function nextRoundGames(
+  games: Game[],
+): { roundDate: string; games: Game[] } | null {
   if (games.length === 0) {
     return null;
   }
-  const sorted = [...games].sort((a, b) => dateValue(a.date) - dateValue(b.date));
+  const sorted = [...games].sort(
+    (a, b) => dateValue(a.date) - dateValue(b.date),
+  );
   const target = sorted[0];
   const targetKey = dateKey(target.date);
   return {
@@ -72,7 +76,7 @@ function formatOutcomeLabel(
   });
 
   if (parts.length === 0) {
-    return "Any results on this matchday clinch a top-8 seed.";
+    return "Any results on this matchday clinch a top-7 seed.";
   }
 
   return parts.join("; ");
@@ -115,7 +119,10 @@ function combineImplicants(a: Implicant, b: Implicant): Implicant | null {
   return { bits, covers };
 }
 
-function buildPrimeImplicants(minterms: number[], bitCount: number): Implicant[] {
+function buildPrimeImplicants(
+  minterms: number[],
+  bitCount: number,
+): Implicant[] {
   let current: Implicant[] = minterms.map((mask) => ({
     bits: maskToBits(mask, bitCount),
     covers: [mask],
@@ -196,7 +203,9 @@ function chooseImplicants(minterms: number[], bitCount: number): Implicant[] {
       if (chosen.has(index)) {
         continue;
       }
-      const uncovered = primes[index].covers.filter((minterm) => !covered.has(minterm));
+      const uncovered = primes[index].covers.filter(
+        (minterm) => !covered.has(minterm),
+      );
       if (uncovered.length === 0) {
         continue;
       }
@@ -233,7 +242,10 @@ function chooseImplicants(minterms: number[], bitCount: number): Implicant[] {
     });
 }
 
-function implicantToOutcomes(implicant: Implicant, games: Game[]): ForcedOutcomes {
+function implicantToOutcomes(
+  implicant: Implicant,
+  games: Game[],
+): ForcedOutcomes {
   const outcomes: ForcedOutcomes = {};
   for (let i = 0; i < implicant.bits.length; i += 1) {
     if (implicant.bits[i] === "-") {
@@ -270,7 +282,7 @@ function groupSpansPlayoffCutoff(group: TeamId[], ranked: TeamId[]): boolean {
 function canStillMissPlayoffs(
   data: DataFile,
   teamId: TeamId,
-  sombId: TeamId,
+  focusId: TeamId,
   nextRoundOutcomes: ForcedOutcomes,
 ): boolean {
   const wins: Record<TeamId, number> = {};
@@ -304,7 +316,7 @@ function canStillMissPlayoffs(
     const resolution = resolveTeamStandings(
       data.teams,
       wins,
-      sombId,
+      focusId,
       totals,
       data.games,
       resolvedOutcomes,
@@ -317,7 +329,9 @@ function canStillMissPlayoffs(
       return false;
     }
     return !resolution.unresolvedGroups.some(
-      (group) => group.includes(teamId) && groupSpansPlayoffCutoff(group, resolution.rankedIds),
+      (group) =>
+        group.includes(teamId) &&
+        groupSpansPlayoffCutoff(group, resolution.rankedIds),
     );
   }
 
@@ -359,15 +373,15 @@ export function scenarioClinchesConservatively(
   teamId: TeamId,
   nextRoundOutcomes: ForcedOutcomes,
 ): boolean {
-  const sombId = findSombId(data) ?? "SOMB";
-  return !canStillMissPlayoffs(data, teamId, sombId, nextRoundOutcomes);
+  const focusId = findFocusTeamId(data) ?? "AVB";
+  return !canStillMissPlayoffs(data, teamId, focusId, nextRoundOutcomes);
 }
 
 export function buildClinchScenarios(
   data: DataFile,
   teamId: TeamId,
 ): ClinchResult | null {
-  const sombId = findSombId(data) ?? "SOMB";
+  const focusId = findFocusTeamId(data) ?? "AVB";
   const round = nextRoundGames(remainingGames(data.games));
   if (!round) {
     return null;
@@ -386,16 +400,13 @@ export function buildClinchScenarios(
       outcomes[game.id] = bit === 1 ? "home" : "away";
     }
 
-    if (!canStillMissPlayoffs(data, teamId, sombId, outcomes)) {
+    if (!canStillMissPlayoffs(data, teamId, focusId, outcomes)) {
       totalClinchingScenarios += 1;
       clinchingMasks.push(mask);
     }
   }
 
-  const clinchingScenarios = buildClinchingPatterns(
-    clinchingMasks,
-    round.games,
-  )
+  const clinchingScenarios = buildClinchingPatterns(clinchingMasks, round.games)
     .map((scenario) => ({
       ...scenario,
       label: formatOutcomeLabel(scenario.outcomes, round.games, teamLookup),

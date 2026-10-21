@@ -1,10 +1,13 @@
-import { resolveStandingsByTiebreaks, type StandingsResolution } from "@/lib/tiebreak";
+import {
+  resolveStandingsByTiebreaks,
+  type StandingsResolution,
+} from "@/lib/tiebreak";
 import type { ForcedOutcomes, Game, TeamRecord, TeamId } from "@/lib/types";
 
 export function rankTeams(
   teams: TeamRecord[],
   wins: Record<TeamId, number>,
-  sombId: TeamId = "SOMB",
+  focusId: TeamId = "AVB",
   totalGames?: Record<TeamId, number>,
   games?: Game[],
   forcedOutcomes?: ForcedOutcomes,
@@ -12,7 +15,7 @@ export function rankTeams(
   return resolveTeamStandings(
     teams,
     wins,
-    sombId,
+    focusId,
     totalGames,
     games,
     forcedOutcomes,
@@ -22,12 +25,12 @@ export function rankTeams(
 export function resolveTeamStandings(
   teams: TeamRecord[],
   wins: Record<TeamId, number>,
-  _sombId: TeamId = "SOMB",
+  _focusId: TeamId = "AVB",
   totalGames?: Record<TeamId, number>,
   games?: Game[],
   forcedOutcomes?: ForcedOutcomes,
 ): StandingsResolution {
-  void _sombId;
+  void _focusId;
   return resolveStandingsByTiebreaks(teams, wins, {
     totalGames,
     games,

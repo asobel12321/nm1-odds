@@ -1,14 +1,13 @@
 import { createRng } from "@/lib/rng";
 import { PLAYOFF_CUTOFF } from "@/lib/competition";
-import { winProb } from "@/lib/model";
+import { teamStrength, winProb } from "@/lib/model";
 import { resolveTeamStandings } from "@/lib/rank";
 import type { DataFile, SimParams, SimResult, TeamId } from "@/lib/types";
 
 function buildWpctMap(data: DataFile): Record<TeamId, number> {
   const map: Record<TeamId, number> = {};
   for (const team of data.teams) {
-    const games = team.wins + team.losses;
-    map[team.id] = games > 0 ? team.wins / games : 0.5;
+    map[team.id] = teamStrength(team.wins, team.losses);
   }
   return map;
 }
@@ -87,6 +86,7 @@ export function simulateSeason(data: DataFile, params: SimParams): SimResult {
     const wins: Record<TeamId, number> = { ...baseWins };
     const simOutcomes: Record<string, "home" | "away"> = {};
     for (const game of remaining) {
+      const draw = rng(); // Consume one draw per fixture so scenarios share comparable randomness.
       const forced = params.forcedOutcomes?.[game.id];
       let winner: "home" | "away";
       if (forced) {
@@ -98,7 +98,7 @@ export function simulateSeason(data: DataFile, params: SimParams): SimResult {
           params.k,
           params.homeAdv,
         );
-        winner = rng() < pHome ? "home" : "away";
+        winner = draw < pHome ? "home" : "away";
       }
       const winnerId = winner === "home" ? game.home : game.away;
       wins[winnerId] += 1;
@@ -108,7 +108,7 @@ export function simulateSeason(data: DataFile, params: SimParams): SimResult {
     const resolution = resolveTeamStandings(
       data.teams,
       wins,
-      params.sombId ?? "SOMB",
+      params.focusId ?? "AVB",
       totalGames,
       data.games,
       simOutcomes,
