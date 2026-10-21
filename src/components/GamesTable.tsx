@@ -13,7 +13,11 @@ function formatDate(date: string): string {
   return date;
 }
 
-export default function GamesTable({ games, teamsById, title }: GamesTableProps) {
+export default function GamesTable({
+  games,
+  teamsById,
+  title,
+}: GamesTableProps) {
   return (
     <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white/90 shadow-sm">
       {title ? (
@@ -23,7 +27,9 @@ export default function GamesTable({ games, teamsById, title }: GamesTableProps)
       ) : null}
       <div className="divide-y divide-slate-100">
         {games.length === 0 ? (
-          <div className="px-4 py-6 text-sm text-slate-500">No games scheduled.</div>
+          <div className="px-4 py-6 text-sm text-slate-500">
+            No games scheduled.
+          </div>
         ) : (
           games.map((game) => {
             const homeTeam = teamsById[game.home];

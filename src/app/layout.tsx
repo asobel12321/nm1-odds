@@ -13,8 +13,9 @@ const bodyFont = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "SOMB Playoff Odds",
-  description: "Simple, explainable playoff odds for SOMB in the NM1 playoff group.",
+  title: "Vitré Top Seven Odds",
+  description:
+    "Vitré’s chances of finishing in Group B’s top seven and reaching the NM1 phase-two upper group.",
 };
 
 export default function RootLayout({
@@ -24,7 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${displayFont.variable} ${bodyFont.variable} antialiased`}>
+      <body
+        className={`${displayFont.variable} ${bodyFont.variable} antialiased`}
+      >
         {children}
       </body>
     </html>

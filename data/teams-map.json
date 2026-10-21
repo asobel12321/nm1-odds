@@ -1,72 +1,67 @@
 [
   {
-    "id": "278",
-    "abbr": "FOS",
-    "name": "Fos-sur-Mer"
-  },
-  {
-    "id": "13367",
-    "abbr": "MUL",
-    "name": "Mulhouse"
-  },
-  {
-    "id": "26",
-    "abbr": "STB",
-    "name": "Le Havre"
-  },
-  {
     "id": "2937",
-    "abbr": "UTL",
-    "name": "Tarbes-Lourdes"
-  },
-  {
-    "id": "3",
-    "abbr": "LEV",
-    "name": "Levallois"
-  },
-  {
-    "id": "1851",
-    "abbr": "ORC",
-    "name": "Orchies"
-  },
-  {
-    "id": "13305",
-    "abbr": "UTB",
-    "name": "Tours"
-  },
-  {
-    "id": "1704",
-    "abbr": "SOMB",
-    "name": "Boulogne-sur-Mer"
+    "name": "Tarbes Lourdes",
+    "abbr": "UTL"
   },
   {
     "id": "247",
-    "abbr": "LOR",
-    "name": "Lorient"
+    "name": "Lorient",
+    "abbr": "CEP"
   },
   {
-    "id": "253",
-    "abbr": "BRK",
-    "name": "Berck Rang du Fliers"
+    "id": "341",
+    "name": "Challans",
+    "abbr": "VCB"
   },
   {
-    "id": "14016",
-    "abbr": "SAB",
-    "name": "Les Sables d'Olonne"
+    "id": "13305",
+    "name": "Tours",
+    "abbr": "TMB"
   },
   {
     "id": "345",
-    "abbr": "FOU",
-    "name": "Fougères"
+    "name": "Fougères",
+    "abbr": "PFB"
+  },
+  {
+    "id": "33",
+    "name": "Angers",
+    "abbr": "EAB"
+  },
+  {
+    "id": "296",
+    "name": "Bordeaux",
+    "abbr": "BOR"
   },
   {
     "id": "1844",
-    "abbr": "TOU",
-    "name": "Toulouse"
+    "name": "Toulouse",
+    "abbr": "TBC"
   },
   {
-    "id": "14914",
-    "abbr": "LOO",
-    "name": "Loon Plage"
+    "id": "269",
+    "name": "Vitré",
+    "abbr": "AVB"
+  },
+  {
+    "id": "1902",
+    "name": "Rennes",
+    "abbr": "URB"
+  },
+  {
+    "id": "14016",
+    "name": "Les Sables d'Olonne",
+    "abbr": "LSV"
+  },
+  {
+    "id": "1719",
+    "name": "Chartres",
+    "abbr": "CCB"
+  },
+  {
+    "id": "15605",
+    "name": "Laval",
+    "abbr": "USL"
   }
 ]

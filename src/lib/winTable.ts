@@ -1,6 +1,6 @@
 import { createRng } from "@/lib/rng";
 import { PLAYOFF_CUTOFF } from "@/lib/competition";
-import { winProb } from "@/lib/model";
+import { teamStrength, winProb } from "@/lib/model";
 import { resolveTeamStandings } from "@/lib/rank";
 import { remainingGames } from "@/lib/data";
 import type { DataFile, SimParams, TeamId, WinTable } from "@/lib/types";
@@ -8,8 +8,7 @@ import type { DataFile, SimParams, TeamId, WinTable } from "@/lib/types";
 function buildWpctMap(data: DataFile): Record<TeamId, number> {
   const map: Record<TeamId, number> = {};
   for (const team of data.teams) {
-    const games = team.wins + team.losses;
-    map[team.id] = games > 0 ? team.wins / games : 0.5;
+    map[team.id] = teamStrength(team.wins, team.losses);
   }
   return map;
 }
@@ -41,18 +40,19 @@ export function buildWinTable(
     totalGames[team.id] = team.wins + team.losses + remainingByTeam[team.id];
   }
 
-  const sombRemaining = remaining.filter(
+  const focusRemaining = remaining.filter(
     (game) => game.home === teamId || game.away === teamId,
   );
-  const remainingCount = sombRemaining.length;
-  const rankCounts: number[][] = Array.from({ length: remainingCount + 1 }, () =>
-    Array(teamIds.length).fill(0),
+  const remainingCount = focusRemaining.length;
+  const rankCounts: number[][] = Array.from(
+    { length: remainingCount + 1 },
+    () => Array(teamIds.length).fill(0),
   );
   const rowTotals: number[] = Array(remainingCount + 1).fill(0);
 
   for (let sim = 0; sim < simulations; sim += 1) {
     const wins: Record<TeamId, number> = { ...baseWins };
-    let sombWins = 0;
+    let focusWins = 0;
     const simOutcomes: Record<string, "home" | "away"> = {};
     for (const game of remaining) {
       const pHome = winProb(
@@ -61,24 +61,25 @@ export function buildWinTable(
         params.k,
         params.homeAdv,
       );
-      const winner = rng() < pHome ? "home" : "away";
+      const winner =
+        params.forcedOutcomes?.[game.id] ?? (rng() < pHome ? "home" : "away");
       const winnerId = winner === "home" ? game.home : game.away;
       wins[winnerId] += 1;
       simOutcomes[game.id] = winner;
       if (winnerId === teamId) {
-        sombWins += 1;
+        focusWins += 1;
       }
     }
 
     const resolution = resolveTeamStandings(
       data.teams,
       wins,
-      params.sombId ?? "SOMB",
+      params.focusId ?? "AVB",
       totalGames,
       data.games,
       simOutcomes,
     );
-    if (sombWins <= remainingCount) {
+    if (focusWins <= remainingCount) {
       const unresolvedGroup = resolution.unresolvedGroups.find((group) =>
         group.includes(teamId),
       );
@@ -88,15 +89,15 @@ export function buildWinTable(
           .filter((position) => position >= 0);
         const share = positions.length > 0 ? 1 / unresolvedGroup.length : 0;
         for (const position of positions) {
-          rankCounts[sombWins][position] += share;
+          rankCounts[focusWins][position] += share;
         }
       } else {
-        const sombRank = resolution.rankedIds.indexOf(teamId);
-        if (sombRank >= 0) {
-          rankCounts[sombWins][sombRank] += 1;
+        const focusRank = resolution.rankedIds.indexOf(teamId);
+        if (focusRank >= 0) {
+          rankCounts[focusWins][focusRank] += 1;
         }
       }
-      rowTotals[sombWins] += 1;
+      rowTotals[focusWins] += 1;
     }
   }
 
@@ -104,7 +105,9 @@ export function buildWinTable(
     const total = rowTotals[remainingWins] || 1;
     const rankProbs = counts.map((count) => count / total);
     const remainingLosses = remainingCount - remainingWins;
-    const noPlayoffs = rankProbs.slice(PLAYOFF_CUTOFF).reduce((a, b) => a + b, 0);
+    const noPlayoffs = rankProbs
+      .slice(PLAYOFF_CUTOFF)
+      .reduce((a, b) => a + b, 0);
     return {
       remainingWins,
       remainingLosses,
@@ -113,6 +116,7 @@ export function buildWinTable(
       winPct: remainingCount > 0 ? remainingWins / remainingCount : 0,
       rankProbs,
       noPlayoffs,
+      samples: rowTotals[remainingWins],
     };
   });
 

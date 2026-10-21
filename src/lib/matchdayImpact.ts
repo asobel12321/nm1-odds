@@ -22,7 +22,10 @@ function nextRoundGames(games: Game[]) {
     (a, b) => Date.parse(a.date) - Date.parse(b.date),
   );
   const targetKey = dateKey(sorted[0].date);
-  return { roundDate: sorted[0].date, games: sorted.filter((g) => dateKey(g.date) === targetKey) };
+  return {
+    roundDate: sorted[0].date,
+    games: sorted.filter((g) => dateKey(g.date) === targetKey),
+  };
 }
 
 export function buildMatchdayImpact(

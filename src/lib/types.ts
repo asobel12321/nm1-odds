@@ -6,6 +6,8 @@ export interface TeamRecord {
   abbr: string;
   wins: number;
   losses: number;
+  officialRank?: number;
+  points?: number;
 }
 
 export interface Game {
@@ -23,6 +25,9 @@ export interface DataFile {
   updated: string;
   teams: TeamRecord[];
   games: Game[];
+  source?: string;
+  phase?: string;
+  group?: string;
 }
 
 export type GameResult = "home" | "away";
@@ -33,7 +38,7 @@ export interface SimParams {
   k: number;
   homeAdv: number;
   seed?: number;
-  sombId?: TeamId;
+  focusId?: TeamId;
   forcedOutcomes?: ForcedOutcomes;
 }
 
@@ -51,6 +56,7 @@ export interface WinTableRow {
   winPct: number;
   rankProbs: number[];
   noPlayoffs: number;
+  samples: number;
 }
 
 export interface WinTable {
@@ -84,14 +90,17 @@ export interface ClinchResult {
 }
 
 export interface OddsCache extends SimResult {
+  dataHash: string;
+  cutoff: number;
+  seed: number;
   updated: string;
   simulations: number;
   k: number;
   homeAdv: number;
-  sombId: TeamId;
-  sombWinTable?: WinTable;
-  sombMatchdayImpact?: MatchdayImpact | null;
-  sombClinchScenarios?: ClinchResult | null;
+  focusId: TeamId;
+  focusWinTable?: WinTable;
+  focusMatchdayImpact?: MatchdayImpact | null;
+  focusClinchScenarios?: ClinchResult | null;
 }
 
 export interface BestWorstResult {

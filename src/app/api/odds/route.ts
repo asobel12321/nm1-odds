@@ -1,124 +1,48 @@
 import { NextResponse } from "next/server";
-import { buildClinchScenarios } from "@/lib/clinch";
-import { findSombId, loadData, loadOddsCache } from "@/lib/data";
-import { buildMatchdayImpact } from "@/lib/matchdayImpact";
+import { loadData, loadOddsCache, findFocusTeamId } from "@/lib/data";
 import { DEFAULT_HOME_ADV, DEFAULT_K } from "@/lib/model";
+import { DEFAULT_SEED } from "@/lib/competition";
 import { simulateSeason } from "@/lib/simulate";
-import { bestWorstNextRound } from "@/lib/bestWorst";
-import { buildWinTable } from "@/lib/winTable";
 import type { ForcedOutcomes } from "@/lib/types";
 
-interface OddsRequest {
-  simulations?: number;
-  k?: number;
-  homeAdv?: number;
-  teamId?: string;
-  includeBestWorst?: boolean;
-  includeWinTable?: boolean;
-  includeMatchdayImpact?: boolean;
-  includeClinchScenarios?: boolean;
-  forcedOutcomes?: ForcedOutcomes;
-}
-
 export async function POST(req: Request) {
-  const body = (await req.json()) as OddsRequest;
-  const data = loadData();
-  const simulations = body.simulations ?? 5000;
-  const k = body.k ?? DEFAULT_K;
-  const homeAdv = body.homeAdv ?? DEFAULT_HOME_ADV;
-  const teamId = body.teamId ?? "SOMB";
-  const sombId = findSombId(data) ?? "SOMB";
-  const forcedOutcomes = body.forcedOutcomes ?? {};
-  const includeWinTable = body.includeWinTable ?? false;
-  const includeMatchdayImpact = body.includeMatchdayImpact ?? false;
-  const includeClinchScenarios = body.includeClinchScenarios ?? false;
-  const cached = loadOddsCache();
-  const canUseDerivedSombCache =
-    Object.keys(forcedOutcomes).length === 0 &&
-    cached &&
-    cached.sombId === sombId &&
-    teamId === sombId;
-  const shouldUseCache =
-    Object.keys(forcedOutcomes).length === 0 &&
-    !body.includeBestWorst &&
-    cached &&
-    cached.sombId === sombId;
-
-  if (shouldUseCache) {
-    return NextResponse.json({
-      playoffOdds: cached.playoffOdds,
-      rankHist: cached.rankHist,
-      winHist: cached.winHist,
-      bestWorst: null,
-      winTable:
-        includeWinTable && canUseDerivedSombCache
-          ? cached.sombWinTable ?? null
-          : null,
-      matchdayImpact: includeMatchdayImpact
-        ? canUseDerivedSombCache
-          ? cached.sombMatchdayImpact ?? null
-          : null
-        : null,
-      clinchScenarios: includeClinchScenarios
-        ? canUseDerivedSombCache
-          ? cached.sombClinchScenarios ?? null
-          : null
-        : null,
-    });
+  let body: unknown;
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON." }, { status: 400 });
   }
-
-  const result = simulateSeason(data, {
-    simulations,
-    k,
-    homeAdv,
-    sombId,
+  if (!body || typeof body !== "object" || Array.isArray(body))
+    return NextResponse.json({ error: "Expected an object." }, { status: 400 });
+  const input = body as Record<string, unknown>;
+  const data = loadData();
+  const raw = input.forcedOutcomes ?? {};
+  if (!raw || typeof raw !== "object" || Array.isArray(raw))
+    return NextResponse.json({ error: "Invalid outcomes." }, { status: 400 });
+  const remaining = new Set(
+    data.games.filter((g) => !g.played).map((g) => g.id),
+  );
+  for (const [id, result] of Object.entries(raw)) {
+    if (!remaining.has(id) || (result !== "home" && result !== "away"))
+      return NextResponse.json(
+        { error: "Choose a valid result for a remaining game." },
+        { status: 400 },
+      );
+  }
+  const forcedOutcomes = raw as ForcedOutcomes;
+  const cache =
+    Object.keys(forcedOutcomes).length === 0 ? loadOddsCache(data) : null;
+  const params = {
+    simulations: 5000,
+    k: DEFAULT_K,
+    homeAdv: DEFAULT_HOME_ADV,
+    seed: DEFAULT_SEED,
+    focusId: findFocusTeamId(data),
     forcedOutcomes,
-  });
-
-  const bestWorst = body.includeBestWorst
-    ? bestWorstNextRound(data, teamId, {
-        simulations,
-        k,
-        homeAdv,
-        sombId,
-        forcedOutcomes,
-      })
-    : null;
-  const winTable = includeWinTable
-    ? canUseDerivedSombCache
-      ? cached.sombWinTable ?? null
-      : buildWinTable(data, teamId, {
-          simulations,
-          k,
-          homeAdv,
-          sombId,
-          forcedOutcomes,
-        })
-    : null;
-  const matchdayImpact = includeMatchdayImpact
-    ? canUseDerivedSombCache
-      ? cached.sombMatchdayImpact ?? null
-      : buildMatchdayImpact(data, teamId, {
-          simulations,
-          k,
-          homeAdv,
-          sombId,
-          forcedOutcomes,
-        })
-    : null;
-  const clinchScenarios = includeClinchScenarios
-    ? canUseDerivedSombCache
-      ? cached.sombClinchScenarios ?? null
-      : buildClinchScenarios(data, teamId)
-    : null;
-
+  };
+  const result = cache ?? simulateSeason(data, params);
   return NextResponse.json({
-    playoffOdds: result.playoffOdds,
-    rankHist: result.rankHist,
-    winHist: result.winHist,
-    bestWorst,
-    winTable,
-    matchdayImpact,
-    clinchScenarios,
+    ...result,
+    simulations: cache?.simulations ?? params.simulations,
   });
 }

@@ -19,11 +19,15 @@ function dateKey(date: string): string {
   return date.split(" ")[0] ?? date;
 }
 
-function nextRoundGames(games: Game[]): { roundDate: string; games: Game[] } | null {
+function nextRoundGames(
+  games: Game[],
+): { roundDate: string; games: Game[] } | null {
   if (games.length === 0) {
     return null;
   }
-  const sorted = [...games].sort((a, b) => dateValue(a.date) - dateValue(b.date));
+  const sorted = [...games].sort(
+    (a, b) => dateValue(a.date) - dateValue(b.date),
+  );
   const target = sorted[0];
   const targetKey = dateKey(target.date);
   const round = sorted.filter((game) => dateKey(game.date) === targetKey);
@@ -127,7 +131,11 @@ export function bestWorstNextRound(
     });
     const odds = result.playoffOdds[teamId] ?? 0;
     const rankHist = result.rankHist[teamId] ?? [];
-    const clinches = scenarioClinchesConservatively(data, teamId, scenarioOutcomes);
+    const clinches = scenarioClinchesConservatively(
+      data,
+      teamId,
+      scenarioOutcomes,
+    );
     scenarioResults.push({
       odds,
       clinches,
@@ -183,7 +191,9 @@ export function bestWorstNextRound(
     const first = worstStableScenarios[0]?.outcomes[game.id];
     if (
       first &&
-      worstStableScenarios.every((scenario) => scenario.outcomes[game.id] === first)
+      worstStableScenarios.every(
+        (scenario) => scenario.outcomes[game.id] === first,
+      )
     ) {
       worstStableCore[game.id] = first;
     }
