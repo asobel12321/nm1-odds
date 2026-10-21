@@ -1,12 +1,14 @@
 import VitreWhatIfClient from "./VitreWhatIfClient";
-import { loadData, loadOddsCache, findFocusTeamId } from "@/lib/data";
-export default function WhatIfPage() {
-  const data = loadData();
+import { findFocusTeamId } from "@/lib/data";
+import { loadSnapshot } from "@/lib/snapshot";
+export const dynamic = "force-dynamic";
+export default async function WhatIfPage() {
+  const { data, odds } = await loadSnapshot();
   return (
     <VitreWhatIfClient
       data={data}
       teamId={findFocusTeamId(data)}
-      baseline={loadOddsCache(data)?.playoffOdds[findFocusTeamId(data)] ?? null}
+      baseline={odds.playoffOdds[findFocusTeamId(data)] ?? null}
     />
   );
 }

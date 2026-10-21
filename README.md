@@ -23,7 +23,9 @@ npm run build
 
 `refresh` imports and validates the official page, then recomputes the 20,000-simulation cache. Validation requires 13 Group B teams, all 156 home/away fixtures, unique IDs, and score-derived records matching the standings. A malformed/incomplete upstream page fails before replacing the existing snapshot. The data contains actual source timestamps and official ranks. FFBB fixture times are Europe/Paris local time.
 
-GitHub Actions refreshes the data daily at 05:30 UTC and supports manual runs. Its validated data commits keep GitHub current. Note: pushes made with GitHub’s default `GITHUB_TOKEN` do not trigger other GitHub workflows and may not trigger the Vercel Git integration. For unattended hosting refreshes, configure a Vercel deploy hook or supported bot credential separately; no hosting secrets are stored here. The UI labels the snapshot date and warns when it is over two days old.
+The hosted site checks FFBB through a server-side cache refreshed approximately hourly on traffic. Fresh source data is validated before simulation; a source failure falls back to the validated Git snapshot with its original timestamp. The UI warns when the source timestamp is over two days old. A new season fails the live refresh rather than silently reusing this season’s rules.
+
+GitHub Actions also saves a validated snapshot and odds to GitHub daily at 05:30 UTC, with a manual-run option. The hosted Data Cache means daily bot commits do not need to trigger Vercel deployments to keep live probabilities current. Pull remote snapshots into the canonical checkout with `git pull --ff-only` before editing.
 
 ## Git workflow
 

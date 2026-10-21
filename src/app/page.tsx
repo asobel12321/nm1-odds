@@ -1,12 +1,7 @@
+import { loadSnapshot } from "@/lib/snapshot";
 import Link from "next/link";
 import StandingsTable from "@/components/StandingsTable";
-import {
-  findFocusTeamId,
-  loadData,
-  loadOddsCache,
-  remainingGames,
-  teamsById,
-} from "@/lib/data";
+import { findFocusTeamId, remainingGames, teamsById } from "@/lib/data";
 import {
   DEFAULT_HOME_ADV,
   DEFAULT_K,
@@ -23,10 +18,9 @@ import { simulateSeason } from "@/lib/simulate";
 
 export const dynamic = "force-dynamic";
 
-export default function Home() {
-  const data = loadData();
+export default async function Home() {
+  const { data, odds: cache } = await loadSnapshot();
   const focusId = findFocusTeamId(data);
-  const cache = loadOddsCache(data);
   const result =
     cache ??
     simulateSeason(data, {

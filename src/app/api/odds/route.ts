@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { loadData, loadOddsCache, findFocusTeamId } from "@/lib/data";
+import { findFocusTeamId } from "@/lib/data";
+import { loadSnapshot } from "@/lib/snapshot";
 import { DEFAULT_HOME_ADV, DEFAULT_K } from "@/lib/model";
 import { DEFAULT_SEED } from "@/lib/competition";
 import { simulateSeason } from "@/lib/simulate";
@@ -15,7 +16,7 @@ export async function POST(req: Request) {
   if (!body || typeof body !== "object" || Array.isArray(body))
     return NextResponse.json({ error: "Expected an object." }, { status: 400 });
   const input = body as Record<string, unknown>;
-  const data = loadData();
+  const { data, odds } = await loadSnapshot();
   const raw = input.forcedOutcomes ?? {};
   if (!raw || typeof raw !== "object" || Array.isArray(raw))
     return NextResponse.json({ error: "Invalid outcomes." }, { status: 400 });
@@ -30,8 +31,7 @@ export async function POST(req: Request) {
       );
   }
   const forcedOutcomes = raw as ForcedOutcomes;
-  const cache =
-    Object.keys(forcedOutcomes).length === 0 ? loadOddsCache(data) : null;
+  const cache = Object.keys(forcedOutcomes).length === 0 ? odds : null;
   const params = {
     simulations: 5000,
     k: DEFAULT_K,
