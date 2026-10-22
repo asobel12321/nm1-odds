@@ -13,3 +13,9 @@
 ## Review/results
 
 Vitré adjusted net+1.55 per100. Production snapshot top7=73.36%,20,000 simulations, seed20261021. Independent historical efficiency validation is pending. The original39-game comparison was essentially even with the old margin model. Production refreshes retain a complete saved snapshot when FFBB scores and possession inputs disagree.
+
+## 90% homepage target
+
+- [x] Derive the minimum sampled win target from the existing conditional win table.
+- [x] Add the target near the hero headline, with its final record and actual estimated chance.
+- [ ] Verify, merge and confirm the live target updates from model data.

@@ -15,6 +15,7 @@ import {
   SOURCE_URL,
 } from "@/lib/competition";
 import { simulateSeason } from "@/lib/simulate";
+import { selectWinTarget } from "@/lib/winTable";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
@@ -64,6 +65,7 @@ export default async function Home() {
     }));
   const samples =
     cache?.focusWinTable?.rows.filter((row) => row.samples >= 100) ?? [];
+  const target = selectWinTarget(cache?.focusWinTable);
   return (
     <div className="site-shell">
       <nav className="site-nav wrap">
@@ -103,6 +105,34 @@ export default async function Home() {
               <br />
               Earn a place in the upper group for phase two.
             </p>
+            {remaining.length > 0 && (
+              <div className="win-target-callout">
+                <span className="eyebrow green">90%+ TOP-SEVEN TARGET</span>
+                {target ? (
+                  <>
+                    <p>
+                      Vitré’s target: win{" "}
+                      <strong>
+                        {target.remainingWins} of the {remaining.length}{" "}
+                        remaining games
+                      </strong>{" "}
+                      for a <strong>90%+ estimated chance</strong> of finishing
+                      in the top seven.
+                    </p>
+                    <span className="target-detail">
+                      That’s a {target.wins}–{target.losses} finish ·{" "}
+                      {(100 * (1 - target.noPlayoffs)).toFixed(1)}% model
+                      estimate. Results elsewhere still matter.
+                    </span>
+                  </>
+                ) : (
+                  <p>
+                    A 90% win target isn’t available from the current simulation
+                    samples yet.
+                  </p>
+                )}
+              </div>
+            )}
             <Link className="primary-link" href="/what-if/vitre">
               Explore Vitré’s scenarios <span>↗</span>
             </Link>

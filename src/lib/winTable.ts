@@ -111,3 +111,19 @@ export function buildWinTable(
 
   return { remainingGames: remainingCount, rows };
 }
+
+/** Smallest supported final-record row reaching the requested qualification probability. */
+export function selectWinTarget(
+  table: WinTable | undefined,
+  threshold = 0.9,
+  minimumSamples = 100,
+) {
+  return table?.rows
+    .filter(
+      (row) =>
+        row.samples >= minimumSamples &&
+        Number.isFinite(row.noPlayoffs) &&
+        1 - row.noPlayoffs >= threshold,
+    )
+    .sort((a, b) => a.remainingWins - b.remainingWins)[0];
+}
