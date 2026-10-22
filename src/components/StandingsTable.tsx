@@ -4,14 +4,15 @@ export interface StandingsRow {
   rank: number;
   team: TeamRecord;
   playoffOdds: number;
+  powerRating: number;
 }
 export default function StandingsTable({ rows }: { rows: StandingsRow[] }) {
   return (
     <div className="table-scroll">
       <table className="standings">
         <caption className="sr-only">
-          Group B standings ranked by winning percentage and simulated top-seven
-          chances
+          Group B standings ordered by winning percentage, with power ratings
+          and simulated top-seven chances
         </caption>
         <thead>
           <tr>
@@ -19,7 +20,11 @@ export default function StandingsTable({ rows }: { rows: StandingsRow[] }) {
             <th scope="col">Team</th>
             <th scope="col">GP</th>
             <th scope="col">W–L</th>
-            <th scope="col">Win %</th>
+            <th scope="col">
+              Power
+              <br />
+              rating
+            </th>
             <th scope="col">Top 7</th>
           </tr>
         </thead>
@@ -49,11 +54,11 @@ export default function StandingsTable({ rows }: { rows: StandingsRow[] }) {
                 {row.team.wins}–{row.team.losses}
               </td>
               <td>
-                {(
-                  (100 * row.team.wins) /
-                  (row.team.wins + row.team.losses || 1)
-                ).toFixed(1)}
-                %
+                {row.powerRating.toLocaleString("en-US", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                  signDisplay: "exceptZero",
+                })}
               </td>
               <td>
                 <div className="table-odds">
