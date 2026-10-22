@@ -1,6 +1,6 @@
 import { createRng } from "@/lib/rng";
 import { PLAYOFF_CUTOFF } from "@/lib/competition";
-import { fitStrengthRatings, winProb } from "@/lib/model";
+import { createProjectionModel } from "@/lib/projectionModel";
 import { resolveTeamStandings } from "@/lib/rank";
 import { remainingGames } from "@/lib/data";
 import type { DataFile, SimParams, TeamId, WinTable } from "@/lib/types";
@@ -12,8 +12,9 @@ export function buildWinTable(
 ): WinTable {
   const simulations = Math.max(1, params.simulations);
   const rng = createRng(params.seed ?? Date.now());
-  const ratings = fitStrengthRatings(data, params.homeAdv);
+  const predict = createProjectionModel(data, params).homeProbability;
   const remaining = remainingGames(data.games);
+  const probabilities = new Map(remaining.map((g) => [g.id, predict(g)]));
   const teamIds = data.teams.map((team) => team.id);
   const baseWins: Record<TeamId, number> = {};
   const baseLosses: Record<TeamId, number> = {};
@@ -47,12 +48,7 @@ export function buildWinTable(
     let focusWins = 0;
     const simOutcomes: Record<string, "home" | "away"> = {};
     for (const game of remaining) {
-      const pHome = winProb(
-        ratings[game.home],
-        ratings[game.away],
-        params.probabilityScale,
-        params.homeAdv,
-      );
+      const pHome = probabilities.get(game.id)!;
       const draw = rng();
       const winner =
         params.forcedOutcomes?.[game.id] ?? (draw < pHome ? "home" : "away");

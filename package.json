@@ -11,9 +11,11 @@
     "recompute": "tsx scripts/recompute-odds.ts",
     "watch:odds": "tsx scripts/watch-odds.ts",
     "map:teams": "tsx scripts/write-team-map.ts",
-    "refresh": "npm run bootstrap && npm run recompute",
+    "refresh": "npm run bootstrap -- --refresh-boxes && npm run recompute",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test tests/*.test.ts"
+    "test": "tsx --test tests/*.test.ts",
+    "efficiency:import": "tsx scripts/import-efficiency-boxscores.ts",
+    "efficiency:explore": "tsx scripts/explore-efficiency.ts"
   },
   "dependencies": {
     "cheerio": "^1.1.2",

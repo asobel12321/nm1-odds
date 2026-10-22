@@ -1,12 +1,12 @@
+export const maxDuration = 60;
 import { NextResponse } from "next/server";
 import { findFocusTeamId } from "@/lib/data";
 import { loadSnapshot } from "@/lib/snapshot";
 import {
   DEFAULT_HOME_ADV,
   DEFAULT_PROBABILITY_SCALE,
-  MODEL_CONFIG,
-  fitStrengthRatings,
-} from "@/lib/model";
+  createProjectionModel,
+} from "@/lib/projectionModel";
 import { DEFAULT_SEED } from "@/lib/competition";
 import { simulateSeason } from "@/lib/simulate";
 import type { ForcedOutcomes } from "@/lib/types";
@@ -48,8 +48,7 @@ export async function POST(req: Request) {
   const result = cache ?? simulateSeason(data, params);
   return NextResponse.json({
     ...result,
-    ...MODEL_CONFIG,
-    strengthRatings: cache?.strengthRatings ?? fitStrengthRatings(data),
+    ...createProjectionModel(data, params).metadata,
     simulations: cache?.simulations ?? params.simulations,
   });
 }

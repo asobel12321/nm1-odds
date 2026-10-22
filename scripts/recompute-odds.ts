@@ -5,9 +5,8 @@ import { loadData, findFocusTeamId, dataFingerprint } from "../src/lib/data";
 import {
   DEFAULT_HOME_ADV,
   DEFAULT_PROBABILITY_SCALE,
-  MODEL_CONFIG,
-  fitStrengthRatings,
-} from "../src/lib/model";
+  createProjectionModel,
+} from "../src/lib/projectionModel";
 import { DEFAULT_SEED, PLAYOFF_CUTOFF } from "../src/lib/competition";
 import { simulateSeason } from "../src/lib/simulate";
 import { buildWinTable } from "../src/lib/winTable";
@@ -24,8 +23,7 @@ export async function recomputeOdds() {
     focusId,
   };
   const odds: OddsCache = {
-    ...MODEL_CONFIG,
-    strengthRatings: fitStrengthRatings(data),
+    ...createProjectionModel(data, params).metadata,
     ...simulateSeason(data, params),
     ...params,
     cutoff: PLAYOFF_CUTOFF,

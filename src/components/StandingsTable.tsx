@@ -21,7 +21,9 @@ export default function StandingsTable({ rows }: { rows: StandingsRow[] }) {
             <th scope="col">GP</th>
             <th scope="col">W–L</th>
             <th scope="col">
-              Power
+              <span title="Adjusted net efficiency: points per 100 possessions relative to Group B average">
+                Power
+              </span>
               <br />
               rating
             </th>

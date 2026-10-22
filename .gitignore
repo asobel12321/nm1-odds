@@ -42,3 +42,7 @@ next-env.d.ts
 
 # Incomplete atomic data writes
 /data/*.tmp
+
+# Experimental efficiency outputs and HTTP caches
+/outputs/efficiency/
+/data/experimental/*.tmp
