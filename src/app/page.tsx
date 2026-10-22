@@ -59,6 +59,7 @@ export default async function Home() {
       rank: index + 1,
       team: t,
       playoffOdds: result.playoffOdds[t.id],
+      powerRating: strengthRatings[t.id],
     }));
   const samples =
     cache?.focusWinTable?.rows.filter((row) => row.samples >= 100) ?? [];
