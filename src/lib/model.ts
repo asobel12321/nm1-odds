@@ -1,5 +1,5 @@
-export const DEFAULT_K = 2.0;
-export const DEFAULT_HOME_ADV = 0.12;
+export const DEFAULT_K = 2.2;
+export const DEFAULT_HOME_ADV = 0.125;
 export function sigmoid(x: number): number {
   return 1 / (1 + Math.exp(-x));
 }

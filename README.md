@@ -33,7 +33,7 @@ Before editing: `git status` then `git pull --ff-only` on a clean branch. Create
 
 ## Model and limits
 
-Each remaining result uses `sigmoid(2 * (homeStrength - awayStrength) + 0.12)`, where strength is `(wins + 2) / (wins + losses + 4)`. This shrinks small early-season samples toward 50%. Strength is fixed during the simulated season; injuries, rosters, form and future point deductions are not modeled. Seeded draws make comparisons reproducible.
+Each remaining result uses `sigmoid(2.2 * (homeStrength - awayStrength) + 0.125)`, where strength is `(wins + 2) / (wins + losses + 4)`. This shrinks small early-season samples toward 50%. Strength is fixed during the simulated season; injuries, rosters, form and future point deductions are not modeled. Seeded draws make comparisons reproducible.
 
 Top-seven odds sum ranks 1–7 across 20,000 simulations. The model retains direct-game tiebreak logic; future wins use synthetic 75–74 scores, so exact tiebreak margins are approximate. Unresolved ties split probability across the tied positions. Win-target rows are conditional samples and require at least 100 observations. No win target is a clinch claim.
 
