@@ -10,7 +10,7 @@ codex/adjusted-efficiency in C:\Users\asobe\Projects\Worktrees\nm1-odds-efficien
 
 ## Current Status
 
-Working draft implemented and verified. Ready for review as a draft PR; not merged or selected by the production model.
+Working draft implemented and verified. Synced to GitHub as draft PR https://github.com/asobel12321/nm1-odds/pull/6; not merged or selected by the production model.
 
 ## Files Changed
 
