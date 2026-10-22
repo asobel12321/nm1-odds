@@ -1,7 +1,11 @@
 import fs from "fs";
 import path from "path";
 import { createHash } from "crypto";
-import { DEFAULT_HOME_ADV, DEFAULT_K } from "@/lib/model";
+import {
+  DEFAULT_HOME_ADV,
+  DEFAULT_PROBABILITY_SCALE,
+  MODEL_CONFIG,
+} from "@/lib/model";
 import { DEFAULT_SEED, FOCUS_TEAM_ID, PLAYOFF_CUTOFF } from "@/lib/competition";
 import type { DataFile, TeamRecord, Game, OddsCache } from "@/lib/types";
 
@@ -40,11 +44,14 @@ export function loadOddsCache(data = loadData()): OddsCache | null {
     const cache: OddsCache = JSON.parse(
       fs.readFileSync(path.join(process.cwd(), "data", "odds.json"), "utf8"),
     );
-    return cache.dataHash === dataFingerprint(data) &&
+    return cache.modelVersion === MODEL_CONFIG.modelVersion &&
+      cache.marginCap === MODEL_CONFIG.marginCap &&
+      cache.strengthRidge === MODEL_CONFIG.strengthRidge &&
+      cache.dataHash === dataFingerprint(data) &&
       cache.cutoff === PLAYOFF_CUTOFF &&
       cache.seed === DEFAULT_SEED &&
       cache.focusId === findFocusTeamId(data) &&
-      cache.k === DEFAULT_K &&
+      cache.probabilityScale === DEFAULT_PROBABILITY_SCALE &&
       cache.homeAdv === DEFAULT_HOME_ADV
       ? cache
       : null;

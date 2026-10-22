@@ -2,7 +2,12 @@ import fs from "fs";
 import path from "path";
 import { pathToFileURL } from "url";
 import { loadData, findFocusTeamId, dataFingerprint } from "../src/lib/data";
-import { DEFAULT_HOME_ADV, DEFAULT_K } from "../src/lib/model";
+import {
+  DEFAULT_HOME_ADV,
+  DEFAULT_PROBABILITY_SCALE,
+  MODEL_CONFIG,
+  fitStrengthRatings,
+} from "../src/lib/model";
 import { DEFAULT_SEED, PLAYOFF_CUTOFF } from "../src/lib/competition";
 import { simulateSeason } from "../src/lib/simulate";
 import { buildWinTable } from "../src/lib/winTable";
@@ -13,12 +18,14 @@ export async function recomputeOdds() {
   const focusId = findFocusTeamId(data);
   const params = {
     simulations: 20000,
-    k: DEFAULT_K,
+    probabilityScale: DEFAULT_PROBABILITY_SCALE,
     homeAdv: DEFAULT_HOME_ADV,
     seed: DEFAULT_SEED,
     focusId,
   };
   const odds: OddsCache = {
+    ...MODEL_CONFIG,
+    strengthRatings: fitStrengthRatings(data),
     ...simulateSeason(data, params),
     ...params,
     cutoff: PLAYOFF_CUTOFF,

@@ -1,7 +1,12 @@
 import { NextResponse } from "next/server";
 import { findFocusTeamId } from "@/lib/data";
 import { loadSnapshot } from "@/lib/snapshot";
-import { DEFAULT_HOME_ADV, DEFAULT_K } from "@/lib/model";
+import {
+  DEFAULT_HOME_ADV,
+  DEFAULT_PROBABILITY_SCALE,
+  MODEL_CONFIG,
+  fitStrengthRatings,
+} from "@/lib/model";
 import { DEFAULT_SEED } from "@/lib/competition";
 import { simulateSeason } from "@/lib/simulate";
 import type { ForcedOutcomes } from "@/lib/types";
@@ -34,7 +39,7 @@ export async function POST(req: Request) {
   const cache = Object.keys(forcedOutcomes).length === 0 ? odds : null;
   const params = {
     simulations: 5000,
-    k: DEFAULT_K,
+    probabilityScale: DEFAULT_PROBABILITY_SCALE,
     homeAdv: DEFAULT_HOME_ADV,
     seed: DEFAULT_SEED,
     focusId: findFocusTeamId(data),
@@ -43,6 +48,8 @@ export async function POST(req: Request) {
   const result = cache ?? simulateSeason(data, params);
   return NextResponse.json({
     ...result,
+    ...MODEL_CONFIG,
+    strengthRatings: cache?.strengthRatings ?? fitStrengthRatings(data),
     simulations: cache?.simulations ?? params.simulations,
   });
 }

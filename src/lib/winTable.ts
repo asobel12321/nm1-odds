@@ -1,17 +1,9 @@
 import { createRng } from "@/lib/rng";
 import { PLAYOFF_CUTOFF } from "@/lib/competition";
-import { teamStrength, winProb } from "@/lib/model";
+import { fitStrengthRatings, winProb } from "@/lib/model";
 import { resolveTeamStandings } from "@/lib/rank";
 import { remainingGames } from "@/lib/data";
 import type { DataFile, SimParams, TeamId, WinTable } from "@/lib/types";
-
-function buildWpctMap(data: DataFile): Record<TeamId, number> {
-  const map: Record<TeamId, number> = {};
-  for (const team of data.teams) {
-    map[team.id] = teamStrength(team.wins, team.losses);
-  }
-  return map;
-}
 
 export function buildWinTable(
   data: DataFile,
@@ -20,7 +12,7 @@ export function buildWinTable(
 ): WinTable {
   const simulations = Math.max(1, params.simulations);
   const rng = createRng(params.seed ?? Date.now());
-  const wpct = buildWpctMap(data);
+  const ratings = fitStrengthRatings(data, params.homeAdv);
   const remaining = remainingGames(data.games);
   const teamIds = data.teams.map((team) => team.id);
   const baseWins: Record<TeamId, number> = {};
@@ -56,13 +48,14 @@ export function buildWinTable(
     const simOutcomes: Record<string, "home" | "away"> = {};
     for (const game of remaining) {
       const pHome = winProb(
-        wpct[game.home],
-        wpct[game.away],
-        params.k,
+        ratings[game.home],
+        ratings[game.away],
+        params.probabilityScale,
         params.homeAdv,
       );
+      const draw = rng();
       const winner =
-        params.forcedOutcomes?.[game.id] ?? (rng() < pHome ? "home" : "away");
+        params.forcedOutcomes?.[game.id] ?? (draw < pHome ? "home" : "away");
       const winnerId = winner === "home" ? game.home : game.away;
       wins[winnerId] += 1;
       simOutcomes[game.id] = winner;
