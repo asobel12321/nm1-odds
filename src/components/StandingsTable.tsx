@@ -10,7 +10,8 @@ export default function StandingsTable({ rows }: { rows: StandingsRow[] }) {
     <div className="table-scroll">
       <table className="standings">
         <caption className="sr-only">
-          Official Group B standings and simulated top-seven chances
+          Group B standings ranked by winning percentage and simulated top-seven
+          chances
         </caption>
         <thead>
           <tr>
@@ -18,7 +19,7 @@ export default function StandingsTable({ rows }: { rows: StandingsRow[] }) {
             <th scope="col">Team</th>
             <th scope="col">GP</th>
             <th scope="col">W–L</th>
-            <th scope="col">Pts</th>
+            <th scope="col">Win %</th>
             <th scope="col">Top 7</th>
           </tr>
         </thead>
@@ -47,7 +48,13 @@ export default function StandingsTable({ rows }: { rows: StandingsRow[] }) {
               <td>
                 {row.team.wins}–{row.team.losses}
               </td>
-              <td>{row.team.points}</td>
+              <td>
+                {(
+                  (100 * row.team.wins) /
+                  (row.team.wins + row.team.losses || 1)
+                ).toFixed(1)}
+                %
+              </td>
               <td>
                 <div className="table-odds">
                   {(100 * row.playoffOdds).toFixed(1)}%

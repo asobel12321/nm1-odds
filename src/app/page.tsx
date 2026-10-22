@@ -49,9 +49,13 @@ export default async function Home() {
   });
   const ageDays = (Date.now() - Date.parse(data.updated)) / 86400000;
   const rows = [...data.teams]
-    .sort((a, b) => a.officialRank! - b.officialRank!)
-    .map((t) => ({
-      rank: t.officialRank!,
+    .sort((a, b) => {
+      const aPct = a.wins / (a.wins + a.losses || 1);
+      const bPct = b.wins / (b.wins + b.losses || 1);
+      return bPct - aPct || a.officialRank! - b.officialRank!;
+    })
+    .map((t, index) => ({
+      rank: index + 1,
       team: t,
       playoffOdds: result.playoffOdds[t.id],
     }));
@@ -164,9 +168,9 @@ export default async function Home() {
             </div>
             <StandingsTable rows={rows} />
             <p className="footnote">
-              Positions follow FFBB’s published table. Games played are uneven;
-              the model simulates every remaining fixture before ranking the
-              final table.
+              Displayed positions are ranked by winning percentage, with equal
+              percentages ordered by FFBB position. Qualification odds still use
+              the same season simulations and tiebreak calculations.
             </p>
           </div>
           <aside>
