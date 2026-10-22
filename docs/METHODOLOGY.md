@@ -53,3 +53,7 @@ The initial39-game current-season chronological comparison was essentially even 
 Injuries, future lineup changes, future strength uncertainty and administrative points deductions are not forecast. These are model estimates, not official FFBB probabilities.
 
 Sources: [FFBB team statistics](https://nm1.ffbb.com/saison-reguliere/leaders/equipes), [Ken Pomeroy's glossary](https://kenpom.com/blog/ratings-glossary/), [published additive methodology](https://kenpom.com/blog/ratings-methodology-update/).
+
+## Homepage 90% target
+
+The headline target selects the fewest remaining wins whose exact final-record qualification estimate is at least90%, using only rows with at least100 simulated samples. It displays the actual probability as well. This is conditional on the simulated mix of results at that record, not a guarantee for every possible set of wins. It updates from the existing win table without changing the model.

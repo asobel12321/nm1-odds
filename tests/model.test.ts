@@ -9,7 +9,7 @@ import {
 } from "../src/lib/data";
 import { simulateSeason } from "../src/lib/simulate";
 import { parseRegularSeason } from "../src/lib/ffbb";
-import { buildWinTable } from "../src/lib/winTable";
+import { buildWinTable, selectWinTarget } from "../src/lib/winTable";
 import { DEFAULT_PROBABILITY_SCALE, DEFAULT_HOME_ADV } from "../src/lib/model";
 import type { DataFile } from "../src/lib/types";
 
@@ -154,5 +154,34 @@ test("importer parses official page structure and rejects partial or inconsisten
         ),
       ),
     /Invalid basketball score|disagree/,
+  );
+});
+
+test("90% target uses the fewest wins with enough samples, without rounding a lower probability up", () => {
+  const table = loadOddsCache(loadData())!.focusWinTable!;
+  const eligible = selectWinTarget(table)!;
+  assert.ok(
+    table.rows
+      .filter(
+        (row) =>
+          row.remainingWins < eligible.remainingWins && row.samples >= 100,
+      )
+      .every((row) => 1 - row.noPlayoffs < 0.9),
+  );
+  assert.ok(1 - eligible.noPlayoffs >= 0.9);
+  const synthetic = {
+    ...table,
+    rows: [
+      { ...eligible, remainingWins: 12 },
+      { ...eligible, remainingWins: 8, noPlayoffs: 0.100001 },
+      { ...eligible, remainingWins: 9, samples: 99 },
+      { ...eligible, remainingWins: 10, noPlayoffs: 0.1 },
+    ],
+  };
+  assert.equal(selectWinTarget(synthetic)!.remainingWins, 10);
+  assert.equal(selectWinTarget(undefined), undefined);
+  assert.equal(
+    selectWinTarget({ ...table, rows: synthetic.rows.slice(1, 3) }),
+    undefined,
   );
 });

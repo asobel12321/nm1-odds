@@ -783,3 +783,23 @@ h3 {
     width: 100%;
   }
 }
+
+.win-target-callout {
+  margin-top: 22px;
+  padding: 16px 18px;
+  border-left: 3px solid var(--green);
+  background: #eaf0e3;
+  border-radius: 0 5px 5px 0;
+}
+.win-target-callout p {
+  margin-top: 8px;
+  font-size: 17px;
+  line-height: 1.55;
+}
+.win-target-callout .target-detail {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
