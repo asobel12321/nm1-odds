@@ -35,7 +35,7 @@ export type ForcedOutcomes = Record<string, GameResult>;
 
 export interface SimParams {
   simulations: number;
-  k: number;
+  probabilityScale: number;
   homeAdv: number;
   seed?: number;
   focusId?: TeamId;
@@ -90,12 +90,16 @@ export interface ClinchResult {
 }
 
 export interface OddsCache extends SimResult {
+  modelVersion: string;
+  marginCap: number;
+  strengthRidge: number;
+  strengthRatings: Record<TeamId, number>;
   dataHash: string;
   cutoff: number;
   seed: number;
   updated: string;
   simulations: number;
-  k: number;
+  probabilityScale: number;
   homeAdv: number;
   focusId: TeamId;
   focusWinTable?: WinTable;

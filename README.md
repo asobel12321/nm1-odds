@@ -33,10 +33,19 @@ Before editing: `git status` then `git pull --ff-only` on a clean branch. Create
 
 ## Model and limits
 
-Each remaining result uses `sigmoid(2.2 * (homeStrength - awayStrength) + 0.125)`, where strength is `(wins + 2) / (wins + losses + 4)`. This shrinks small early-season samples toward 50%. Strength is fixed during the simulated season; injuries, rosters, form and future point deductions are not modeled. Seeded draws make comparisons reproducible.
+Neutral-court strength scores are fitted from completed Group B scores, with the same model as the local 20-point-cap draft. For each game, let `m` be the home scoring margin. Minimize:
+
+```text
+sum_games [clip(m, -20, +20) - 3 - (rating_home - rating_away)]^2
+    + 4 * sum_teams rating_team^2
+```
+
+Each game has equal weight. The ratings sum to zero and use a points-per-game scale relative to the group average, not points per 100 possessions. The ridge coefficient of four shrinks early-season estimates toward average. Ratings use only completed games, are refitted as scores arrive, and stay fixed during simulations. RPI-style resume scores do not enter projections.
+
+Future home win probability is `sigmoid((rating_home - rating_away + 3) / 10)`. The same three-point home correction is used in both fitting and forecasting, so venue is not counted twice. Equal-strength teams give the home side a 57.4% win probability; a ten-point expected home margin gives 73.1%. The ten-point logistic scale and three-point home advantage are provisional assumptions, not an NM1-calibrated fit. The old win-percentage coefficient and home logit offset are replaced because strength scores have different units. Injuries, rosters, pace, overtime and future point deductions are not modeled. Standings continue to display current winning percentage with official position ordering equal percentages.
 
 Top-seven odds sum ranks 1–7 across 20,000 simulations. The model retains direct-game tiebreak logic; future wins use synthetic 75–74 scores, so exact tiebreak margins are approximate. Unresolved ties split probability across the tied positions. Win-target rows are conditional samples and require at least 100 observations. No win target is a clinch claim.
 
-The cache includes a SHA-256 fingerprint of the data, the focus team, cutoff and model settings. A changed input invalidates it. The what-if API accepts only valid remaining-game outcomes and caps computation at 5,000 fixed-seed simulations. The old `/what-if/somb` bookmark redirects to `/what-if/vitre`.
+The cache includes a SHA-256 fingerprint of the data, the focus team, cutoff, model version, margin cap, ridge, probability scale, home advantage and fitted strength scores. A changed input invalidates it. The what-if API accepts only valid remaining-game outcomes and caps computation at 5,000 fixed-seed simulations. The old `/what-if/somb` bookmark redirects to `/what-if/vitre`.
 
 Competition format: https://nm1.ffbb.com/playoffs/page/4-formule-du-championnat-de-france-nm1

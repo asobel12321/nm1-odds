@@ -4,8 +4,8 @@ import StandingsTable from "@/components/StandingsTable";
 import { findFocusTeamId, remainingGames, teamsById } from "@/lib/data";
 import {
   DEFAULT_HOME_ADV,
-  DEFAULT_K,
-  teamStrength,
+  DEFAULT_PROBABILITY_SCALE,
+  fitStrengthRatings,
   winProb,
 } from "@/lib/model";
 import {
@@ -26,12 +26,13 @@ export default async function Home() {
     simulateSeason(data, {
       simulations: 5000,
       seed: DEFAULT_SEED,
-      k: DEFAULT_K,
+      probabilityScale: DEFAULT_PROBABILITY_SCALE,
       homeAdv: DEFAULT_HOME_ADV,
       focusId,
     });
   const lookup = teamsById(data.teams);
   const team = lookup[focusId];
+  const strengthRatings = cache?.strengthRatings ?? fitStrengthRatings(data);
   const remaining = remainingGames(data.games).filter(
     (g) => g.home === focusId || g.away === focusId,
   );
@@ -186,9 +187,9 @@ export default async function Home() {
                 const home = g.home === focusId;
                 const opponent = lookup[home ? g.away : g.home];
                 const hp = winProb(
-                  teamStrength(lookup[g.home].wins, lookup[g.home].losses),
-                  teamStrength(lookup[g.away].wins, lookup[g.away].losses),
-                  DEFAULT_K,
+                  strengthRatings[g.home],
+                  strengthRatings[g.away],
+                  DEFAULT_PROBABILITY_SCALE,
                   DEFAULT_HOME_ADV,
                 );
                 return (
@@ -308,9 +309,26 @@ export default async function Home() {
             <h2>Transparent by design.</h2>
             <p>
               {(cache?.simulations ?? 5000).toLocaleString("en-US")} seeded
-              season simulations using current records, modest early-season
-              shrinkage toward 50%, and home advantage. Team strength stays
-              fixed within each simulation.
+              season simulations use opponent-adjusted strength scores from
+              completed Group B games. Strength is measured in points relative
+              to the group average, rather than winning percentage or
+              possessions.
+            </p>
+            <p>
+              Each result is capped at a 20-point margin. We remove three points
+              for home court, then fit all teams together to explain the results
+              against their opponents. A shrinkage weight of four pulls
+              early-season ratings toward average. Every game has equal weight;
+              ratings are fixed during each simulation and refitted when new
+              scores arrive.
+            </p>
+            <p>
+              For each future game, expected home margin = home strength − away
+              strength + 3 points. Home win probability = 1 / (1 + exp(−expected
+              margin / 10)). Equal-strength teams give the home side a 57.4%
+              chance. The three-point home edge and ten-point probability scale
+              are starting assumptions; this model has not been backtested on
+              NM1.
             </p>
             <p>
               Direct-game tiebreaks use recorded scores. Future wins use a

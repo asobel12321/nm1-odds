@@ -7,7 +7,12 @@ import {
 } from "./data";
 import { parseRegularSeason } from "./ffbb";
 import { DEFAULT_SEED, PLAYOFF_CUTOFF, SOURCE_URL } from "./competition";
-import { DEFAULT_K, DEFAULT_HOME_ADV } from "./model";
+import {
+  DEFAULT_PROBABILITY_SCALE,
+  DEFAULT_HOME_ADV,
+  MODEL_CONFIG,
+  fitStrengthRatings,
+} from "./model";
 import { simulateSeason } from "./simulate";
 import { buildWinTable } from "./winTable";
 import type { OddsCache } from "./types";
@@ -45,11 +50,13 @@ export const loadSnapshot = unstable_cache(
     const params = {
       simulations: 20000,
       seed: DEFAULT_SEED,
-      k: DEFAULT_K,
+      probabilityScale: DEFAULT_PROBABILITY_SCALE,
       homeAdv: DEFAULT_HOME_ADV,
       focusId: findFocusTeamId(data),
     };
     const odds: OddsCache = {
+      ...MODEL_CONFIG,
+      strengthRatings: fitStrengthRatings(data),
       ...simulateSeason(data, params),
       ...params,
       cutoff: PLAYOFF_CUTOFF,
@@ -59,6 +66,6 @@ export const loadSnapshot = unstable_cache(
     };
     return { data, odds };
   },
-  ["vitre-group-b-2026-2027", String(DEFAULT_K), String(DEFAULT_HOME_ADV)],
+  ["vitre-group-b-2026-2027", JSON.stringify(MODEL_CONFIG)],
   { revalidate: 3600 },
 );

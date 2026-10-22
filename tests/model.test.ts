@@ -10,7 +10,7 @@ import {
 import { simulateSeason } from "../src/lib/simulate";
 import { parseRegularSeason } from "../src/lib/ffbb";
 import { buildWinTable } from "../src/lib/winTable";
-import { DEFAULT_K, DEFAULT_HOME_ADV } from "../src/lib/model";
+import { DEFAULT_PROBABILITY_SCALE, DEFAULT_HOME_ADV } from "../src/lib/model";
 import type { DataFile } from "../src/lib/types";
 
 test("snapshot is Group B with a full balanced schedule and matching results", () => {
@@ -39,7 +39,7 @@ test("seven qualification places, normalized probabilities and deterministic dra
   const params = {
     simulations: 100,
     seed: 42,
-    k: DEFAULT_K,
+    probabilityScale: DEFAULT_PROBABILITY_SCALE,
     homeAdv: DEFAULT_HOME_ADV,
   };
   const result = simulateSeason(data, params);
@@ -74,8 +74,8 @@ test("forced Vitré sweep and losses affect both simulator and win table", () =>
     const params = {
       simulations: 20,
       seed: 42,
-      k: 2,
-      homeAdv: 0.12,
+      probabilityScale: DEFAULT_PROBABILITY_SCALE,
+      homeAdv: DEFAULT_HOME_ADV,
       forcedOutcomes,
     };
     const result = simulateSeason(data, params);
@@ -98,8 +98,8 @@ test("a finished eight-team competition qualifies seven, not eight", () => {
   const result = simulateSeason(data, {
     simulations: 10,
     seed: 42,
-    k: 2,
-    homeAdv: 0.12,
+    probabilityScale: DEFAULT_PROBABILITY_SCALE,
+    homeAdv: DEFAULT_HOME_ADV,
   });
   assert.equal(result.playoffOdds["6"], 1);
   assert.equal(result.playoffOdds["7"], 0);
