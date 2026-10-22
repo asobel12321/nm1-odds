@@ -8,7 +8,7 @@
 - [x] Update homepage methodology, README and production documentation.
 - [x] Regenerate complete production data and odds snapshots.
 - [x] Pass26 tests, typecheck, full lint, build and local HTTP checks.
-- [ ] Pass GitHub checks, merge PR6 and verify production.
+- [x] Pass GitHub checks, merge PR6 and verify production.
 
 ## Review/results
 

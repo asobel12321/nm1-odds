@@ -12,7 +12,7 @@ PR: https://github.com/asobel12321/nm1-odds/pull/6. GitHub is authoritative for 
 
 ## Current Status
 
-Production integration and local verification complete. User authorized promotion to main. Ready to push the release commit, pass CI, merge PR6 and verify production.
+PR6 merged to main as c40e1bb948f5d70d09d142860cb9b27970941a8e. Vercel production deployment succeeded. Public homepage and API verified as adjusted-efficiency-20-v1; Vitré top7=73.36%, power+1.5549 per100. Canonical Active checkout synced with GitHub.
 
 ## Files Changed
 
@@ -56,7 +56,9 @@ The original39-game comparison was essentially even with the previous model. Do 
 - npm run build: PASS.
 - Built-app HTTP checks: PASS, homepage methodology and model version, unchanged standings order, baseline efficiency API, forced Vitré sweep top7=100%, invalid fixture400, what-if page200.
 - git diff --check: PASS.
+- GitHub CI and Vercel: PASS. PR6 merged.
+- Production HTTP checks: PASS, new model/units, +3 home advantage, cap20,13-team standings, methodology and scenario page.
 
 ## Next Steps
 
-Complete PR6 merge and production verification. Later: audit historical box scores and evaluate this fixed model on independent group-seasons. Do not transfer old team ratings to new rosters.
+Release complete. Future work: audit historical box scores and evaluate this fixed model on independent group-seasons. Do not transfer old team ratings to new rosters.
