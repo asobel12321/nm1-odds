@@ -10,7 +10,7 @@ codex/ninety-percent-target in C:\Users\asobe\Projects\Worktrees\nm1-odds-effici
 
 ## Current Status
 
-Implemented and locally verified. Ready to sync, merge and confirm production.
+Published via PR7: https://github.com/asobel12321/nm1-odds/pull/7. Merged to main as fdc41dfcb740130b956560455db3b889962aa75d. Production homepage verified:10 of19 remaining wins,13–11 finish,97.7% estimate, callout near the headline. Canonical Active checkout synced.
 
 ## Files Changed
 
@@ -44,7 +44,9 @@ The win target is conditional on reaching the stated final record and the simula
 - npm run build: PASS.
 - Chrome rendered-page and screenshot check: PASS, target visible near hero headline.
 - git diff --check: PASS.
+- GitHub CI and Vercel preview: PASS.
+- Production HTTP check: PASS, dynamic target visible near headline and13 standings rows retained.
 
 ## Next Steps
 
-Publish through a feature PR and verify the production target. The estimate updates automatically with future valid model snapshots.
+Release complete. The estimate updates automatically with future valid model snapshots.
