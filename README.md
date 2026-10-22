@@ -49,3 +49,15 @@ Top-seven odds sum ranks 1–7 across 20,000 simulations. The model retains dire
 The cache includes a SHA-256 fingerprint of the data, the focus team, cutoff, model version, margin cap, ridge, probability scale, home advantage and fitted strength scores. A changed input invalidates it. The what-if API accepts only valid remaining-game outcomes and caps computation at 5,000 fixed-seed simulations. The old `/what-if/somb` bookmark redirects to `/what-if/vitre`.
 
 Competition format: https://nm1.ffbb.com/playoffs/page/4-formule-du-championnat-de-france-nm1
+
+## Experimental adjusted efficiency model
+
+The draft model is isolated from the site and production calculation. It fits current-season offensive and defensive efficiency per 100 estimated possessions, adjusted for opponents and venue, plus an adjusted pace. It retains the 20-point game-margin cap and three-point home advantage. See [the draft results and methodology](docs/EFFICIENCY_DRAFT.md).
+
+```sh
+npm run efficiency:import
+npm run efficiency:import -- --refresh
+npm run efficiency:explore
+```
+
+The first command reuses locally cached source pages; `--refresh` fetches a fresh snapshot. The importer validates every completed Group B box score and reconciles the results with FFBB team averages before replacing `data/experimental/poule-b-boxscores.json`. That input is independent of daily production refreshes. Reports, CSVs and source-page caches live in ignored `outputs/efficiency/`; the public-data input, source URLs/hashes and regression fixtures are tracked. The draft's future fixture probabilities and season simulations are written to `outputs/efficiency/comparison.json`. Its small early-season comparison does not establish superior calibration.
