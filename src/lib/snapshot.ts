@@ -59,6 +59,6 @@ export const loadSnapshot = unstable_cache(
     };
     return { data, odds };
   },
-  ["vitre-group-b-2026-2027"],
+  ["vitre-group-b-2026-2027", String(DEFAULT_K), String(DEFAULT_HOME_ADV)],
   { revalidate: 3600 },
 );
