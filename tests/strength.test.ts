@@ -1,3 +1,7 @@
+import {
+  MODEL_CONFIG,
+  createProjectionModel,
+} from "../src/lib/projectionModel";
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
@@ -5,7 +9,6 @@ import {
   winProb,
   DEFAULT_PROBABILITY_SCALE,
   DEFAULT_HOME_ADV,
-  MODEL_CONFIG,
 } from "../src/lib/model";
 import { loadData, loadOddsCache } from "../src/lib/data";
 import { simulateSeason } from "../src/lib/simulate";
@@ -107,7 +110,7 @@ test("cached strength scores are centered and reproduce the current fitted model
   assert.ok(cache);
   for (const [key, value] of Object.entries(MODEL_CONFIG))
     assert.equal(cache[key as keyof typeof cache], value);
-  const ratings = fitStrengthRatings(data);
+  const ratings = createProjectionModel(data).strengthRatings;
   assert.deepEqual(cache.strengthRatings, ratings);
   assert.ok(Math.abs(Object.values(ratings).reduce((a, b) => a + b, 0)) < 1e-9);
 });

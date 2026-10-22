@@ -1,6 +1,6 @@
-# Adjusted efficiency draft: NM1 2026-2027, Group B
+# Original development comparison: NM1 2026-2027, Group B
 
-Generated 2026-10-22T14:58:19.366Z; source snapshot 2026-10-22T14:53:53.460Z. **Experimental; production is unchanged.**
+Generated 2026-10-22T14:58:19.366Z; source snapshot 2026-10-22T14:53:53.460Z. **Historical draft comparison. The efficiency model is now being promoted to production; see METHODOLOGY.md for the current methodology.**
 
 ## First result
 

@@ -5,9 +5,9 @@ import { findFocusTeamId, remainingGames, teamsById } from "@/lib/data";
 import {
   DEFAULT_HOME_ADV,
   DEFAULT_PROBABILITY_SCALE,
-  fitStrengthRatings,
-  winProb,
-} from "@/lib/model";
+  createProjectionModel,
+  MODEL_CONFIG,
+} from "@/lib/projectionModel";
 import {
   DEFAULT_SEED,
   PLAYOFF_CUTOFF,
@@ -17,9 +17,10 @@ import {
 import { simulateSeason } from "@/lib/simulate";
 
 export const dynamic = "force-dynamic";
+export const maxDuration = 60;
 
 export default async function Home() {
-  const { data, odds: cache } = await loadSnapshot();
+  const { data, odds: cache, dataAgeDays: ageDays } = await loadSnapshot();
   const focusId = findFocusTeamId(data);
   const result =
     cache ??
@@ -32,7 +33,8 @@ export default async function Home() {
     });
   const lookup = teamsById(data.teams);
   const team = lookup[focusId];
-  const strengthRatings = cache?.strengthRatings ?? fitStrengthRatings(data);
+  const projection = createProjectionModel(data);
+  const strengthRatings = cache?.strengthRatings ?? projection.strengthRatings;
   const remaining = remainingGames(data.games).filter(
     (g) => g.home === focusId || g.away === focusId,
   );
@@ -48,7 +50,6 @@ export default async function Home() {
     year: "numeric",
     timeZone: "Europe/Paris",
   });
-  const ageDays = (Date.now() - Date.parse(data.updated)) / 86400000;
   const rows = [...data.teams]
     .sort((a, b) => {
       const aPct = a.wins / (a.wins + a.losses || 1);
@@ -74,7 +75,7 @@ export default async function Home() {
           FFBB official ↗
         </a>
       </nav>
-      <main className="wrap">
+      <main className="wrap" data-model-version={MODEL_CONFIG.modelVersion}>
         <header className="intro">
           <span className="eyebrow">
             NM1 · {data.season} · PHASE 1 · GROUP B
@@ -172,7 +173,9 @@ export default async function Home() {
             <p className="footnote">
               Displayed positions are ranked by winning percentage, with equal
               percentages ordered by FFBB position. Qualification odds still use
-              the same season simulations and tiebreak calculations.
+              the season simulations and tiebreak calculations. Power rating is
+              adjusted net efficiency in points per 100 possessions; positive
+              means above the Group B average.
             </p>
           </div>
           <aside>
@@ -187,12 +190,7 @@ export default async function Home() {
               {remaining.slice(0, 5).map((g) => {
                 const home = g.home === focusId;
                 const opponent = lookup[home ? g.away : g.home];
-                const hp = winProb(
-                  strengthRatings[g.home],
-                  strengthRatings[g.away],
-                  DEFAULT_PROBABILITY_SCALE,
-                  DEFAULT_HOME_ADV,
-                );
+                const hp = projection.homeProbability(g);
                 return (
                   <div key={g.id} className="fixture">
                     <div className="fixture-date">
@@ -310,43 +308,59 @@ export default async function Home() {
             <h2>Transparent by design.</h2>
             <p>
               {(cache?.simulations ?? 5000).toLocaleString("en-US")} seeded
-              season simulations use opponent-adjusted strength scores from
-              completed Group B games. Strength is measured in points relative
-              to the group average, rather than winning percentage or
-              possessions.
+              season simulations use separate opponent-adjusted offensive and
+              defensive ratings from this season’s completed Group B box scores.
+              Adjusted offense (ORTG) is points scored per 100 possessions
+              against an average defense; adjusted defense (DRTG) is points
+              allowed against an average offense. Power rating = adjusted ORTG −
+              adjusted DRTG. Higher offense, lower defense and a positive net
+              rating are better.
             </p>
             <p>
-              Each result is capped at a 20-point margin. We remove three points
-              for home court, then fit all teams together to explain the results
-              against their opponents. A shrinkage weight of four pulls
-              early-season ratings toward average. Every game has equal weight;
-              ratings are fixed during each simulation and refitted when new
-              scores arrive.
+              Estimated possessions = field-goal attempts − offensive rebounds +
+              turnovers + 0.44 × free-throw attempts. We average both teams’
+              estimates for each game. Pace is adjusted for opponents and
+              expressed per 40 minutes, including overtime normalization. The
+              free-throw coefficient is an approximation, not a measured NM1
+              constant.
             </p>
             <p>
-              For each future game, expected home margin = home strength − away
-              strength + 3 points. Home win probability = 1 / (1 + exp(−expected
-              margin / 10)). Equal-strength teams give the home side a 57.4%
-              chance. The three-point home edge and ten-point probability scale
-              are starting assumptions; this model has not been backtested on
-              NM1.
+              For fitting, we cap each game’s scoring margin at ±20 points while
+              preserving total scoring, then remove the three-point home edge.
+              Offense, defense and pace are fitted together against the teams
+              actually faced, with a shrinkage weight of four pulling early
+              estimates toward the group average. Each game has equal weight.
+              Last season’s roster ratings do not carry over.
+            </p>
+            <p>
+              Expected home margin = (home net rating − away net rating) ×
+              projected possessions / 100 + 3 points. Home win probability = 1 /
+              (1 + exp(−expected margin / 10)). Equal-rated teams give the home
+              side a 57.4% chance. Ratings stay fixed within each simulated
+              season and are refitted as validated box scores arrive.
             </p>
             <p>
               Direct-game tiebreaks use recorded scores. Future wins use a
-              one-point margin; unresolved ties share positions equally. This
-              approximation can move close qualification estimates.
+              one-point margin; unresolved ties share positions equally. Scores
+              and possession inputs must validate together; an incomplete FFBB
+              update retains the last complete snapshot.
             </p>
             <p>
-              These are model probabilities, not official FFBB forecasts.
-              Injuries, roster changes and point deductions are not predicted.
+              This is a transparent efficiency model inspired by KenPom, not
+              KenPom’s proprietary rating. The initial 39-game comparison was
+              essentially even with our previous margin model; independent
+              historical efficiency validation is still pending. Home advantage,
+              shrinkage and the probability scale remain provisional. These are
+              model estimates, not official FFBB forecasts. Injuries, future
+              roster changes and point deductions are not predicted.
             </p>
             <a
               className="text-link"
-              href={SOURCE_URL}
+              href="https://nm1.ffbb.com/saison-reguliere/leaders/equipes"
               target="_blank"
               rel="noreferrer"
             >
-              Source: FFBB regular season ↗
+              Source: FFBB team statistics ↗
             </a>
           </div>
         </section>

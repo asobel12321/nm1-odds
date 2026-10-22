@@ -5,7 +5,7 @@ import {
   DEFAULT_HOME_ADV,
   DEFAULT_PROBABILITY_SCALE,
   MODEL_CONFIG,
-} from "@/lib/model";
+} from "@/lib/projectionModel";
 import { DEFAULT_SEED, FOCUS_TEAM_ID, PLAYOFF_CUTOFF } from "@/lib/competition";
 import type { DataFile, TeamRecord, Game, OddsCache } from "@/lib/types";
 
@@ -44,9 +44,9 @@ export function loadOddsCache(data = loadData()): OddsCache | null {
     const cache: OddsCache = JSON.parse(
       fs.readFileSync(path.join(process.cwd(), "data", "odds.json"), "utf8"),
     );
-    return cache.modelVersion === MODEL_CONFIG.modelVersion &&
-      cache.marginCap === MODEL_CONFIG.marginCap &&
-      cache.strengthRidge === MODEL_CONFIG.strengthRidge &&
+    return Object.entries(MODEL_CONFIG).every(
+      ([key, value]) => cache[key as keyof OddsCache] === value,
+    ) &&
       cache.dataHash === dataFingerprint(data) &&
       cache.cutoff === PLAYOFF_CUTOFF &&
       cache.seed === DEFAULT_SEED &&

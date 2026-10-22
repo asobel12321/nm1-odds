@@ -137,7 +137,10 @@ test("importer parses official page structure and rejects partial or inconsisten
   const html = (games: string[]) =>
     `<h2 class="generic__title">Classement de la NM1 poule B</h2><div><table><tbody>${standings}</tbody></table></div><ul>${games.join("")}</ul>`;
   const parsed = parseRegularSeason(html(fixtures), data.updated);
-  assert.deepEqual(parsed, data);
+  const scheduleOnly = { ...data };
+  delete scheduleOnly.boxScores;
+  delete scheduleOnly.boxScoreSources;
+  assert.deepEqual(parsed, scheduleOnly);
   assert.throws(
     () => parseRegularSeason(html(fixtures.slice(1))),
     /Incomplete schedule/,

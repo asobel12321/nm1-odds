@@ -1,3 +1,5 @@
+import type { BoxGame } from "./ffbbBoxScore";
+import type { EfficiencyTeam } from "./efficiency";
 export type TeamId = string;
 
 export interface TeamRecord {
@@ -28,6 +30,11 @@ export interface DataFile {
   source?: string;
   phase?: string;
   group?: string;
+  boxScores?: BoxGame[];
+  boxScoreSources?: Record<
+    string,
+    { url: string; retrieved: string; sha256: string }
+  >;
 }
 
 export type GameResult = "home" | "away";
@@ -94,6 +101,12 @@ export interface OddsCache extends SimResult {
   marginCap: number;
   strengthRidge: number;
   strengthRatings: Record<TeamId, number>;
+  ftCoefficient: number;
+  paceRidge: number;
+  ratingUnits: string;
+  efficiencyRatings: Record<TeamId, EfficiencyTeam>;
+  groupEfficiency: number;
+  groupPace: number;
   dataHash: string;
   cutoff: number;
   seed: number;

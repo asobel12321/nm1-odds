@@ -1,16 +1,15 @@
-# Adjusted efficiency draft
+# Adjusted efficiency production release
 
-- [x] Import and validate current Group B game box scores; audit coverage.
-- [x] Fit separate opponent-adjusted offense, defense and pace from this season only.
-- [x] Preserve the ±20 margin cap and +3-point home advantage; compare FT coefficients.
-- [x] Run a draft season projection with existing qualification/tiebreak rules.
-- [x] Add meaningful tests and run test/typecheck/lint/build checks.
-- [x] Save a reviewable report, source data provenance and session handoff.
+- [x] Validate current Group B box scores and reconcile all13 teams.
+- [x] Fit opponent-adjusted offense, defense, net efficiency and pace.
+- [x] Connect headline odds, fixture probabilities, win-target table and scenarios.
+- [x] Preserve cap20, +3 home advantage, standings order and tiebreak rules.
+- [x] Validate complete source refreshes and possession-aware cache invalidation.
+- [x] Update homepage methodology, README and production documentation.
+- [x] Regenerate complete production data and odds snapshots.
+- [x] Pass26 tests, typecheck, full lint, build and local HTTP checks.
+- [ ] Pass GitHub checks, merge PR6 and verify production.
 
 ## Review/results
 
-39 completed games and13 teams validated and reconciled. Vitré adjusted net+1.55 per100; draft top7 73.6% versus current73.5% on identical inputs. Both FT coefficient variants give effectively the same qualification result.
-
-21 tests, typecheck, focused lint, production build and whitespace check pass. Full lint is blocked by a pre-existing render-purity issue at src/app/page.tsx:51, reproduced on main.
-
-Production model/UI/data unchanged. Draft model remains unvalidated beyond39 early-season games. Historical efficiency backtesting is the next validation step; no live switch has been made.
+Vitré adjusted net+1.55 per100. Production snapshot top7=73.36%,20,000 simulations, seed20261021. Independent historical efficiency validation is pending. The original39-game comparison was essentially even with the old margin model. Production refreshes retain a complete saved snapshot when FFBB scores and possession inputs disagree.

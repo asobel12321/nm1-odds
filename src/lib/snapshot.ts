@@ -5,48 +5,45 @@ import {
   findFocusTeamId,
   dataFingerprint,
 } from "./data";
-import { parseRegularSeason } from "./ffbb";
 import { DEFAULT_SEED, PLAYOFF_CUTOFF, SOURCE_URL } from "./competition";
 import {
   DEFAULT_PROBABILITY_SCALE,
   DEFAULT_HOME_ADV,
   MODEL_CONFIG,
-  fitStrengthRatings,
-} from "./model";
+  createProjectionModel,
+} from "./projectionModel";
+import { refreshEfficiencyData } from "./ffbbEfficiency";
 import { simulateSeason } from "./simulate";
 import { buildWinTable } from "./winTable";
 import type { OddsCache } from "./types";
-
-// Vercel's persistent Data Cache keeps public-source refreshes independent of bot deploys.
-// A refresh failure returns the last validated Git snapshot, with its original timestamp.
+async function fetchText(url: string) {
+  const response = await fetch(url, {
+    cache: "no-store",
+    signal: AbortSignal.timeout(12000),
+  });
+  if (!response.ok) throw new Error("FFBB returned " + response.status);
+  return new TextDecoder("utf-8").decode(await response.arrayBuffer());
+}
 export const loadSnapshot = unstable_cache(
   async () => {
-    let data = loadData();
+    const stored = loadData();
+    let data = stored;
     try {
-      const response = await fetch(SOURCE_URL, {
-        cache: "no-store",
-        signal: AbortSignal.timeout(12000),
-      });
-      if (!response.ok) throw new Error(`FFBB returned ${response.status}`);
-      const fresh = parseRegularSeason(
-        new TextDecoder("utf-8").decode(await response.arrayBuffer()),
+      data = await refreshEfficiencyData(
+        await fetchText(SOURCE_URL),
+        stored,
+        fetchText,
       );
-      if (fresh.season !== data.season)
-        throw new Error(
-          "Season changed: update competition configuration first.",
-        );
-      data = fresh;
     } catch (error) {
       console.warn(
-        "FFBB live refresh unavailable; serving validated Git snapshot.",
+        "FFBB efficiency refresh unavailable; serving last complete Git snapshot.",
         error instanceof Error ? error.message : "Refresh failed",
       );
     }
-    // Ignore the checked-at timestamp when comparing an otherwise identical source snapshot.
-    const stored = loadData();
+    const dataAgeDays = (Date.now() - Date.parse(data.updated)) / 86400000;
     const comparable = { ...data, updated: stored.updated };
     const cache = loadOddsCache(comparable);
-    if (cache) return { data, odds: cache };
+    if (cache) return { data, odds: cache, dataAgeDays };
     const params = {
       simulations: 20000,
       seed: DEFAULT_SEED,
@@ -55,8 +52,7 @@ export const loadSnapshot = unstable_cache(
       focusId: findFocusTeamId(data),
     };
     const odds: OddsCache = {
-      ...MODEL_CONFIG,
-      strengthRatings: fitStrengthRatings(data),
+      ...createProjectionModel(data, params).metadata,
       ...simulateSeason(data, params),
       ...params,
       cutoff: PLAYOFF_CUTOFF,
@@ -64,7 +60,7 @@ export const loadSnapshot = unstable_cache(
       updated: new Date().toISOString(),
       focusWinTable: buildWinTable(data, params.focusId, params),
     };
-    return { data, odds };
+    return { data, odds, dataAgeDays };
   },
   ["vitre-group-b-2026-2027", JSON.stringify(MODEL_CONFIG)],
   { revalidate: 3600 },

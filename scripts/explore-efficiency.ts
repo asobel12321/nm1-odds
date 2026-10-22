@@ -24,13 +24,18 @@ assert.equal(
 );
 const fit = fitEfficiency(data, boxes),
   alternate = fitEfficiency(data, boxes, { ftCoefficient: 0.475 });
-const baseline = simulateSeason(data, {
-  simulations,
-  seed,
-  homeAdv: 3,
-  probabilityScale: 10,
-  focusId: "269",
-});
+const baseMargin = fitStrengthRatings(data, 3);
+const baseline = simulateSeason(
+  data,
+  {
+    simulations,
+    seed,
+    homeAdv: 3,
+    probabilityScale: 10,
+    focusId: "269",
+  },
+  (g) => winProb(baseMargin[g.home], baseMargin[g.away], 10, 3),
+);
 const projection = simulateEfficiencySeason(data, fit, simulations, seed),
   sensitivity = simulateEfficiencySeason(data, alternate, simulations, seed);
 const baseRatings = fitStrengthRatings(data, 3);
