@@ -132,7 +132,7 @@ test("importer parses official page structure and rejects partial or inconsisten
     .join("");
   const fixtures = data.games.map(
     (g) =>
-      `<li class="display-games__second-list__entry"><time datetime="${g.date.slice(0, 10)}"></time><ul><li class="display-games__third-list__entry"><span class="game__day">Journée 1, Group B</span><span class="game__date"><span class="date">${g.date.slice(11)}</span></span>${[g.home, g.away].map((id, i) => `<div class="display-games__third-list__entry__team"><img src="https://www.proballers.com/media/team/${id}.svg"><span class="team__title">${data.teams.find((t) => t.id === id)!.abbr}</span>${g.played ? `<span class="team__score">${i === 0 ? g.homeScore : g.awayScore}</span>` : ""}</div>`).join("")}</li></ul></li>`,
+      `<li class="display-games__second-list__entry"><time datetime="${g.date.slice(0, 10)}"></time><ul><li class="display-games__third-list__entry"><span class="game__day">Journée ${g.round ?? 1}, Group B</span><span class="game__date"><span class="date">${g.date.slice(11)}</span></span>${[g.home, g.away].map((id, i) => `<div class="display-games__third-list__entry__team"><img src="https://www.proballers.com/media/team/${id}.svg"><span class="team__title">${data.teams.find((t) => t.id === id)!.abbr}</span>${g.played ? `<span class="team__score">${i === 0 ? g.homeScore : g.awayScore}</span>` : ""}</div>`).join("")}</li></ul></li>`,
   );
   const html = (games: string[]) =>
     `<h2 class="generic__title">Classement de la NM1 poule B</h2><div><table><tbody>${standings}</tbody></table></div><ul>${games.join("")}</ul>`;

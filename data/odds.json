@@ -725,8 +725,8 @@
   "seed": 20261021,
   "focusId": "269",
   "cutoff": 7,
-  "dataHash": "157bbeac39647e2be1f81acae2c5ca5f2589154274532445f74604a7800bd992",
-  "updated": "2026-10-22T20:01:27.136Z",
+  "dataHash": "69c497960484388669d027886ff3549c80dd6bd1aef4f57bf27c5ebe8850dd0a",
+  "updated": "2026-10-23T09:02:16.847Z",
   "focusWinTable": {
     "remainingGames": 19,
     "rows": [
@@ -1211,5 +1211,86 @@
         "samples": 0
       }
     ]
+  },
+  "bestCaseVersion": "round-best-v1",
+  "focusBestCase": {
+    "roundNumber": 8,
+    "roundDate": "2026-10-23 20:00",
+    "roundEndDate": "2026-10-23 20:30",
+    "games": [
+      {
+        "round": 8,
+        "id": "14016-296",
+        "date": "2026-10-23 20:00",
+        "home": "14016",
+        "away": "296",
+        "played": false,
+        "homeScore": null,
+        "awayScore": null
+      },
+      {
+        "round": 8,
+        "id": "15605-13305",
+        "date": "2026-10-23 20:00",
+        "home": "15605",
+        "away": "13305",
+        "played": false,
+        "homeScore": null,
+        "awayScore": null
+      },
+      {
+        "round": 8,
+        "id": "1719-247",
+        "date": "2026-10-23 20:30",
+        "home": "1719",
+        "away": "247",
+        "played": false,
+        "homeScore": null,
+        "awayScore": null
+      },
+      {
+        "round": 8,
+        "id": "1844-269",
+        "date": "2026-10-23 20:30",
+        "home": "1844",
+        "away": "269",
+        "played": false,
+        "homeScore": null,
+        "awayScore": null
+      },
+      {
+        "round": 8,
+        "id": "341-33",
+        "date": "2026-10-23 20:30",
+        "home": "341",
+        "away": "33",
+        "played": false,
+        "homeScore": null,
+        "awayScore": null
+      },
+      {
+        "round": 8,
+        "id": "345-1902",
+        "date": "2026-10-23 20:30",
+        "home": "345",
+        "away": "1902",
+        "played": false,
+        "homeScore": null,
+        "awayScore": null
+      }
+    ],
+    "scenarios": 64,
+    "simulations": 5000,
+    "seed": 20261021,
+    "baselineOdds": 0.7398,
+    "odds": 0.8314,
+    "outcomes": {
+      "14016-296": "away",
+      "15605-13305": "home",
+      "1719-247": "away",
+      "1844-269": "away",
+      "341-33": "home",
+      "345-1902": "away"
+    }
   }
 }

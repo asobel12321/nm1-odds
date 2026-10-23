@@ -1,3 +1,4 @@
+import { BEST_CASE_VERSION } from "./bestCase";
 import fs from "fs";
 import path from "path";
 import { createHash } from "crypto";
@@ -48,6 +49,7 @@ export function loadOddsCache(data = loadData()): OddsCache | null {
       ([key, value]) => cache[key as keyof OddsCache] === value,
     ) &&
       cache.dataHash === dataFingerprint(data) &&
+      cache.bestCaseVersion === BEST_CASE_VERSION &&
       cache.cutoff === PLAYOFF_CUTOFF &&
       cache.seed === DEFAULT_SEED &&
       cache.focusId === findFocusTeamId(data) &&

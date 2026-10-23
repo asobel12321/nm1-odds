@@ -85,7 +85,14 @@ export function parseRegularSeason(
         throw new Error("Invalid basketball score.");
     }
     const played = scores.every(Number.isFinite) && scores[0] !== scores[1];
+    const round = Number(
+      el
+        .find(".game__day")
+        .text()
+        .match(/Journée\s+(\d+)/i)?.[1],
+    );
     games.set(id, {
+      ...(Number.isInteger(round) && round > 0 ? { round } : {}),
       id,
       date: day + (time ? ` ${time[1]}` : ""),
       home,

@@ -1,3 +1,4 @@
+import { buildBestCase, BEST_CASE_VERSION } from "../src/lib/bestCase";
 import fs from "fs";
 import path from "path";
 import { pathToFileURL } from "url";
@@ -30,6 +31,8 @@ export async function recomputeOdds() {
     dataHash: dataFingerprint(data),
     updated: new Date().toISOString(),
     focusWinTable: buildWinTable(data, focusId, params),
+    bestCaseVersion: BEST_CASE_VERSION,
+    focusBestCase: buildBestCase(data, focusId, params),
   };
   const file = path.join(process.cwd(), "data", "odds.json");
   fs.writeFileSync(file + ".tmp", JSON.stringify(odds, null, 2) + "\n");

@@ -133,3 +133,69 @@ export function simulateSeason(
 
   return { playoffOdds, rankHist, winHist };
 }
+/** Focus-only equivalent of simulateSeason, skipping tiebreak work away from the cutoff. */
+export function simulateQualificationOdds(
+  data: DataFile,
+  teamId: TeamId,
+  params: SimParams,
+  homeProbability?: (game: Game) => number,
+): number {
+  const simulations = Math.max(1, Math.floor(params.simulations)),
+    rng = createRng(params.seed ?? Date.now());
+  const predict =
+    homeProbability ?? createProjectionModel(data, params).homeProbability;
+  const remaining = data.games.filter((g) => !g.played),
+    probabilities = remaining.map(predict);
+  const base = Object.fromEntries(data.teams.map((t) => [t.id, t.wins]));
+  const total = Object.fromEntries(
+    data.teams.map((t) => [
+      t.id,
+      t.wins +
+        t.losses +
+        remaining.filter((g) => g.home === t.id || g.away === t.id).length,
+    ]),
+  );
+  if (!(teamId in base)) throw new Error("Unknown focus team");
+  let qualified = 0;
+  for (let sim = 0; sim < simulations; sim++) {
+    const wins = { ...base },
+      outcomes: Record<string, "home" | "away"> = {};
+    remaining.forEach((g, i) => {
+      const draw = rng(),
+        winner =
+          params.forcedOutcomes?.[g.id] ??
+          (draw < probabilities[i] ? "home" : "away");
+      wins[winner === "home" ? g.home : g.away]++;
+      outcomes[g.id] = winner;
+    });
+    let above = 0,
+      tied = 0;
+    for (const team of data.teams) {
+      const difference =
+        wins[team.id] * (total[teamId] || 1) -
+        wins[teamId] * (total[team.id] || 1);
+      if (difference > 0) above++;
+      else if (difference === 0) tied++;
+    }
+    if (above >= PLAYOFF_CUTOFF) continue;
+    if (above + tied <= PLAYOFF_CUTOFF) {
+      qualified++;
+      continue;
+    }
+    const resolution = resolveTeamStandings(
+      data.teams,
+      wins,
+      params.focusId ?? teamId,
+      total,
+      data.games,
+      outcomes,
+    );
+    const group = resolution.unresolvedGroups.find((g) => g.includes(teamId));
+    if (group)
+      qualified +=
+        group.filter((id) => resolution.rankedIds.indexOf(id) < PLAYOFF_CUTOFF)
+          .length / group.length;
+    else if (resolution.rankedIds.indexOf(teamId) < PLAYOFF_CUTOFF) qualified++;
+  }
+  return qualified / simulations;
+}
