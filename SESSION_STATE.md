@@ -6,11 +6,11 @@ Add the most favorable combination of results for Vitré in the upcoming officia
 
 ## Branch
 
-codex/best-case-round in C:\Users\asobe\Projects\Worktrees\nm1-odds-efficiency. Canonical checkout: C:\Users\asobe\Projects\Active\nm1-odds.
+codex/best-case-release in C:\Users\asobe\Projects\Worktrees\nm1-odds-efficiency (release records after codex/best-case-round). Canonical checkout: C:\Users\asobe\Projects\Active\nm1-odds.
 
 ## Current Status
 
-Implementation and local verification complete. Ready for GitHub checks, PR merge and production verification.
+Published on 23 October 2026 via PR8: https://github.com/asobel12321/nm1-odds/pull/8. Feature merged to main as e9a46e0d8ca373795b1a21580b7d1c2a68130db6. GitHub checks and Vercel deployment passed. Live homepage verified at https://nm1-odds.vercel.app: Round 8, all six results, 83.1% conditional top-seven odds, existing 73.4% baseline and 13 standings rows. Canonical Active checkout synced.
 
 ## Files Changed
 
@@ -47,7 +47,9 @@ These are conditional Monte Carlo estimates, not qualification guarantees or the
 - Built homepage HTTP and Chrome screenshot: PASS, six results displayed above the standings.
 - POST /api/odds with the six displayed results: PASS, reproduces 0.8314 top-seven probability.
 - git diff --check: PASS.
+- GitHub checks and Vercel preview/production deployment: PASS.
+- Production HTTP and Chrome screenshot: PASS, all six results and 83.1% displayed above the unchanged standings.
 
 ## Next Steps
 
-Commit and push this branch, open and attach the PR, pass GitHub checks, merge, verify the Vercel production section, and sync the canonical Active checkout. Then record the final release result here.
+Release complete. The scenario refreshes with valid source snapshots and advances to the next round as results are completed. Local test server stopped. Independent historical efficiency-model validation remains future work.
