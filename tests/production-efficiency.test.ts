@@ -35,7 +35,7 @@ function schedule(data: DataFile) {
       (g) =>
         '<li class="display-games__second-list__entry"><time datetime="' +
         g.date.slice(0, 10) +
-        '"></time><ul><li class="display-games__third-list__entry"><span class="game__day">Group B</span><span class="game__date"><span class="date">' +
+        '"></time><ul><li class="display-games__third-list__entry"><span class="game__day">Journée "+(g.round ?? 1)+", Group B</span><span class="game__date"><span class="date">' +
         g.date.slice(11) +
         '</span></span><a href="' +
         (data.boxScoreSources?.[g.id]?.url ?? "/match/" + g.id + "-test") +

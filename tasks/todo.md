@@ -19,3 +19,8 @@ Vitré adjusted net+1.55 per100. Production snapshot top7=73.36%,20,000 simulati
 - [x] Derive the minimum sampled win target from the existing conditional win table.
 - [x] Add the target near the hero headline, with its final record and actual estimated chance.
 - [x] Verify, merge and confirm the live target updates from model data.
+
+## Best upcoming round
+- [x] Preserve official round numbers and compare all outcomes with shared randomness.
+- [x] Cache and display the full best-case scenario and conditional top-seven odds.
+- [ ] Verify round grouping, probability replay, UI and performance; publish and confirm live.

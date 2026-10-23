@@ -1,6 +1,6 @@
 {
   "season": "2026-2027",
-  "updated": "2026-10-22T20:01:13.887Z",
+  "updated": "2026-10-23T08:59:52.382Z",
   "phase": "regular-season",
   "group": "B",
   "source": "https://nm1.ffbb.com/saison-reguliere",
@@ -125,6 +125,7 @@
   ],
   "games": [
     {
+      "round": 1,
       "id": "14016-1719",
       "date": "2026-09-18 20:00",
       "home": "14016",
@@ -134,6 +135,7 @@
       "awayScore": 75
     },
     {
+      "round": 1,
       "id": "2937-296",
       "date": "2026-09-18 20:00",
       "home": "2937",
@@ -143,6 +145,7 @@
       "awayScore": 85
     },
     {
+      "round": 1,
       "id": "33-13305",
       "date": "2026-09-18 20:00",
       "home": "33",
@@ -152,6 +155,7 @@
       "awayScore": 65
     },
     {
+      "round": 1,
       "id": "247-15605",
       "date": "2026-09-18 20:30",
       "home": "247",
@@ -161,6 +165,7 @@
       "awayScore": 73
     },
     {
+      "round": 2,
       "id": "13305-247",
       "date": "2026-09-25 20:00",
       "home": "13305",
@@ -170,6 +175,7 @@
       "awayScore": 80
     },
     {
+      "round": 2,
       "id": "296-33",
       "date": "2026-09-25 20:00",
       "home": "296",
@@ -179,6 +185,7 @@
       "awayScore": 63
     },
     {
+      "round": 2,
       "id": "1719-341",
       "date": "2026-09-25 20:30",
       "home": "1719",
@@ -188,6 +195,7 @@
       "awayScore": 87
     },
     {
+      "round": 2,
       "id": "1844-1902",
       "date": "2026-09-25 20:30",
       "home": "1844",
@@ -197,6 +205,7 @@
       "awayScore": 85
     },
     {
+      "round": 2,
       "id": "269-2937",
       "date": "2026-09-25 20:30",
       "home": "269",
@@ -206,6 +215,7 @@
       "awayScore": 66
     },
     {
+      "round": 2,
       "id": "345-14016",
       "date": "2026-09-25 20:30",
       "home": "345",
@@ -215,6 +225,7 @@
       "awayScore": 61
     },
     {
+      "round": 3,
       "id": "13305-296",
       "date": "2026-09-29 20:00",
       "home": "13305",
@@ -224,6 +235,7 @@
       "awayScore": 84
     },
     {
+      "round": 3,
       "id": "1902-15605",
       "date": "2026-09-29 20:00",
       "home": "1902",
@@ -233,6 +245,7 @@
       "awayScore": 62
     },
     {
+      "round": 3,
       "id": "33-345",
       "date": "2026-09-29 20:00",
       "home": "33",
@@ -242,6 +255,7 @@
       "awayScore": 64
     },
     {
+      "round": 3,
       "id": "247-269",
       "date": "2026-09-29 20:30",
       "home": "247",
@@ -251,6 +265,7 @@
       "awayScore": 63
     },
     {
+      "round": 3,
       "id": "341-14016",
       "date": "2026-09-29 20:30",
       "home": "341",
@@ -260,6 +275,7 @@
       "awayScore": 66
     },
     {
+      "round": 4,
       "id": "296-247",
       "date": "2026-10-02 20:00",
       "home": "296",
@@ -269,6 +285,7 @@
       "awayScore": 77
     },
     {
+      "round": 4,
       "id": "1719-1902",
       "date": "2026-10-02 20:30",
       "home": "1719",
@@ -278,6 +295,7 @@
       "awayScore": 89
     },
     {
+      "round": 4,
       "id": "1844-13305",
       "date": "2026-10-02 20:30",
       "home": "1844",
@@ -287,6 +305,7 @@
       "awayScore": 86
     },
     {
+      "round": 4,
       "id": "345-2937",
       "date": "2026-10-02 20:30",
       "home": "345",
@@ -296,6 +315,7 @@
       "awayScore": 96
     },
     {
+      "round": 4,
       "id": "15605-341",
       "date": "2026-10-03 20:00",
       "home": "15605",
@@ -305,6 +325,7 @@
       "awayScore": 89
     },
     {
+      "round": 5,
       "id": "296-15605",
       "date": "2026-10-07 20:00",
       "home": "296",
@@ -314,6 +335,7 @@
       "awayScore": 59
     },
     {
+      "round": 5,
       "id": "13305-269",
       "date": "2026-10-09 20:00",
       "home": "13305",
@@ -323,6 +345,7 @@
       "awayScore": 76
     },
     {
+      "round": 5,
       "id": "1902-14016",
       "date": "2026-10-09 20:00",
       "home": "1902",
@@ -332,6 +355,7 @@
       "awayScore": 89
     },
     {
+      "round": 5,
       "id": "2937-1719",
       "date": "2026-10-09 20:00",
       "home": "2937",
@@ -341,6 +365,7 @@
       "awayScore": 74
     },
     {
+      "round": 5,
       "id": "33-1844",
       "date": "2026-10-09 20:00",
       "home": "33",
@@ -350,6 +375,7 @@
       "awayScore": 89
     },
     {
+      "round": 5,
       "id": "247-345",
       "date": "2026-10-09 20:30",
       "home": "247",
@@ -359,6 +385,7 @@
       "awayScore": 70
     },
     {
+      "round": 1,
       "id": "341-345",
       "date": "2026-10-13 20:30",
       "home": "341",
@@ -368,6 +395,7 @@
       "awayScore": 61
     },
     {
+      "round": 6,
       "id": "14016-13305",
       "date": "2026-10-16 20:00",
       "home": "14016",
@@ -377,6 +405,7 @@
       "awayScore": 62
     },
     {
+      "round": 6,
       "id": "15605-2937",
       "date": "2026-10-16 20:30",
       "home": "15605",
@@ -386,6 +415,7 @@
       "awayScore": 83
     },
     {
+      "round": 6,
       "id": "1719-33",
       "date": "2026-10-16 20:30",
       "home": "1719",
@@ -395,6 +425,7 @@
       "awayScore": 62
     },
     {
+      "round": 6,
       "id": "1844-247",
       "date": "2026-10-16 20:30",
       "home": "1844",
@@ -404,6 +435,7 @@
       "awayScore": 57
     },
     {
+      "round": 6,
       "id": "269-296",
       "date": "2026-10-16 20:30",
       "home": "269",
@@ -413,6 +445,7 @@
       "awayScore": 66
     },
     {
+      "round": 6,
       "id": "341-1902",
       "date": "2026-10-16 20:30",
       "home": "341",
@@ -422,6 +455,7 @@
       "awayScore": 81
     },
     {
+      "round": 7,
       "id": "13305-1719",
       "date": "2026-10-20 20:00",
       "home": "13305",
@@ -431,6 +465,7 @@
       "awayScore": 73
     },
     {
+      "round": 7,
       "id": "2937-341",
       "date": "2026-10-20 20:00",
       "home": "2937",
@@ -440,6 +475,7 @@
       "awayScore": 82
     },
     {
+      "round": 7,
       "id": "296-1844",
       "date": "2026-10-20 20:00",
       "home": "296",
@@ -449,6 +485,7 @@
       "awayScore": 72
     },
     {
+      "round": 7,
       "id": "33-15605",
       "date": "2026-10-20 20:00",
       "home": "33",
@@ -458,6 +495,7 @@
       "awayScore": 71
     },
     {
+      "round": 7,
       "id": "247-14016",
       "date": "2026-10-20 20:30",
       "home": "247",
@@ -467,6 +505,7 @@
       "awayScore": 65
     },
     {
+      "round": 7,
       "id": "269-345",
       "date": "2026-10-20 20:30",
       "home": "269",
@@ -476,6 +515,7 @@
       "awayScore": 92
     },
     {
+      "round": 8,
       "id": "14016-296",
       "date": "2026-10-23 20:00",
       "home": "14016",
@@ -485,6 +525,7 @@
       "awayScore": null
     },
     {
+      "round": 8,
       "id": "15605-13305",
       "date": "2026-10-23 20:00",
       "home": "15605",
@@ -494,6 +535,7 @@
       "awayScore": null
     },
     {
+      "round": 8,
       "id": "1719-247",
       "date": "2026-10-23 20:30",
       "home": "1719",
@@ -503,6 +545,7 @@
       "awayScore": null
     },
     {
+      "round": 8,
       "id": "1844-269",
       "date": "2026-10-23 20:30",
       "home": "1844",
@@ -512,6 +555,7 @@
       "awayScore": null
     },
     {
+      "round": 8,
       "id": "341-33",
       "date": "2026-10-23 20:30",
       "home": "341",
@@ -521,6 +565,7 @@
       "awayScore": null
     },
     {
+      "round": 8,
       "id": "345-1902",
       "date": "2026-10-23 20:30",
       "home": "345",
@@ -530,6 +575,7 @@
       "awayScore": null
     },
     {
+      "round": 1,
       "id": "1902-269",
       "date": "2026-10-27 20:00",
       "home": "1902",
@@ -539,6 +585,7 @@
       "awayScore": null
     },
     {
+      "round": 9,
       "id": "296-1719",
       "date": "2026-10-28 20:00",
       "home": "296",
@@ -548,6 +595,7 @@
       "awayScore": null
     },
     {
+      "round": 9,
       "id": "13305-341",
       "date": "2026-10-30 20:00",
       "home": "13305",
@@ -557,6 +605,7 @@
       "awayScore": null
     },
     {
+      "round": 9,
       "id": "2937-1902",
       "date": "2026-10-30 20:00",
       "home": "2937",
@@ -566,6 +615,7 @@
       "awayScore": null
     },
     {
+      "round": 9,
       "id": "33-14016",
       "date": "2026-10-30 20:00",
       "home": "33",
@@ -575,6 +625,7 @@
       "awayScore": null
     },
     {
+      "round": 9,
       "id": "1844-345",
       "date": "2026-10-30 20:30",
       "home": "1844",
@@ -584,6 +635,7 @@
       "awayScore": null
     },
     {
+      "round": 9,
       "id": "269-15605",
       "date": "2026-10-30 20:30",
       "home": "269",
@@ -593,6 +645,7 @@
       "awayScore": null
     },
     {
+      "round": 10,
       "id": "15605-1844",
       "date": "2026-11-04 20:30",
       "home": "15605",
@@ -602,6 +655,7 @@
       "awayScore": null
     },
     {
+      "round": 10,
       "id": "14016-2937",
       "date": "2026-11-06 20:00",
       "home": "14016",
@@ -611,6 +665,7 @@
       "awayScore": null
     },
     {
+      "round": 10,
       "id": "1902-13305",
       "date": "2026-11-06 20:00",
       "home": "1902",
@@ -620,6 +675,7 @@
       "awayScore": null
     },
     {
+      "round": 10,
       "id": "1719-269",
       "date": "2026-11-06 20:30",
       "home": "1719",
@@ -629,6 +685,7 @@
       "awayScore": null
     },
     {
+      "round": 10,
       "id": "341-247",
       "date": "2026-11-06 20:30",
       "home": "341",
@@ -638,6 +695,7 @@
       "awayScore": null
     },
     {
+      "round": 10,
       "id": "345-296",
       "date": "2026-11-06 20:30",
       "home": "345",
@@ -647,6 +705,7 @@
       "awayScore": null
     },
     {
+      "round": 11,
       "id": "15605-345",
       "date": "2026-11-11 20:30",
       "home": "15605",
@@ -656,6 +715,7 @@
       "awayScore": null
     },
     {
+      "round": 11,
       "id": "296-341",
       "date": "2026-11-13 20:00",
       "home": "296",
@@ -665,6 +725,7 @@
       "awayScore": null
     },
     {
+      "round": 11,
       "id": "33-1902",
       "date": "2026-11-13 20:00",
       "home": "33",
@@ -674,6 +735,7 @@
       "awayScore": null
     },
     {
+      "round": 11,
       "id": "1844-1719",
       "date": "2026-11-13 20:30",
       "home": "1844",
@@ -683,6 +745,7 @@
       "awayScore": null
     },
     {
+      "round": 11,
       "id": "247-2937",
       "date": "2026-11-13 20:30",
       "home": "247",
@@ -692,6 +755,7 @@
       "awayScore": null
     },
     {
+      "round": 11,
       "id": "269-14016",
       "date": "2026-11-13 20:30",
       "home": "269",
@@ -701,6 +765,7 @@
       "awayScore": null
     },
     {
+      "round": 12,
       "id": "14016-1844",
       "date": "2026-11-17 20:00",
       "home": "14016",
@@ -710,6 +775,7 @@
       "awayScore": null
     },
     {
+      "round": 12,
       "id": "1902-247",
       "date": "2026-11-17 20:00",
       "home": "1902",
@@ -719,6 +785,7 @@
       "awayScore": null
     },
     {
+      "round": 12,
       "id": "2937-33",
       "date": "2026-11-17 20:00",
       "home": "2937",
@@ -728,6 +795,7 @@
       "awayScore": null
     },
     {
+      "round": 12,
       "id": "345-13305",
       "date": "2026-11-17 20:00",
       "home": "345",
@@ -737,6 +805,7 @@
       "awayScore": null
     },
     {
+      "round": 12,
       "id": "1719-15605",
       "date": "2026-11-17 20:30",
       "home": "1719",
@@ -746,6 +815,7 @@
       "awayScore": null
     },
     {
+      "round": 12,
       "id": "341-269",
       "date": "2026-11-17 20:30",
       "home": "341",
@@ -755,6 +825,7 @@
       "awayScore": null
     },
     {
+      "round": 13,
       "id": "296-1902",
       "date": "2026-11-20 20:00",
       "home": "296",
@@ -764,6 +835,7 @@
       "awayScore": null
     },
     {
+      "round": 13,
       "id": "33-247",
       "date": "2026-11-20 20:00",
       "home": "33",
@@ -773,6 +845,7 @@
       "awayScore": null
     },
     {
+      "round": 13,
       "id": "15605-14016",
       "date": "2026-11-20 20:30",
       "home": "15605",
@@ -782,6 +855,7 @@
       "awayScore": null
     },
     {
+      "round": 13,
       "id": "1844-341",
       "date": "2026-11-20 20:30",
       "home": "1844",
@@ -791,6 +865,7 @@
       "awayScore": null
     },
     {
+      "round": 13,
       "id": "345-1719",
       "date": "2026-11-20 20:30",
       "home": "345",
@@ -800,6 +875,7 @@
       "awayScore": null
     },
     {
+      "round": 13,
       "id": "13305-2937",
       "date": "2026-11-21 20:00",
       "home": "13305",
@@ -809,6 +885,7 @@
       "awayScore": null
     },
     {
+      "round": 4,
       "id": "269-33",
       "date": "2026-11-24 20:30",
       "home": "269",
@@ -818,6 +895,7 @@
       "awayScore": null
     },
     {
+      "round": 3,
       "id": "2937-1844",
       "date": "2026-11-25 20:00",
       "home": "2937",
@@ -827,6 +905,7 @@
       "awayScore": null
     },
     {
+      "round": 14,
       "id": "13305-33",
       "date": "2026-12-04 20:00",
       "home": "13305",
@@ -836,6 +915,7 @@
       "awayScore": null
     },
     {
+      "round": 14,
       "id": "296-2937",
       "date": "2026-12-04 20:00",
       "home": "296",
@@ -845,6 +925,7 @@
       "awayScore": null
     },
     {
+      "round": 14,
       "id": "1719-14016",
       "date": "2026-12-04 20:30",
       "home": "1719",
@@ -854,6 +935,7 @@
       "awayScore": null
     },
     {
+      "round": 14,
       "id": "269-1902",
       "date": "2026-12-04 20:30",
       "home": "269",
@@ -863,6 +945,7 @@
       "awayScore": null
     },
     {
+      "round": 14,
       "id": "345-341",
       "date": "2026-12-04 20:30",
       "home": "345",
@@ -872,6 +955,7 @@
       "awayScore": null
     },
     {
+      "round": 14,
       "id": "15605-247",
       "date": "2026-12-06 17:00",
       "home": "15605",
@@ -881,6 +965,7 @@
       "awayScore": null
     },
     {
+      "round": 15,
       "id": "14016-345",
       "date": "2026-12-11 20:00",
       "home": "14016",
@@ -890,6 +975,7 @@
       "awayScore": null
     },
     {
+      "round": 15,
       "id": "1902-1844",
       "date": "2026-12-11 20:00",
       "home": "1902",
@@ -899,6 +985,7 @@
       "awayScore": null
     },
     {
+      "round": 15,
       "id": "2937-269",
       "date": "2026-12-11 20:00",
       "home": "2937",
@@ -908,6 +995,7 @@
       "awayScore": null
     },
     {
+      "round": 15,
       "id": "33-296",
       "date": "2026-12-11 20:00",
       "home": "33",
@@ -917,6 +1005,7 @@
       "awayScore": null
     },
     {
+      "round": 15,
       "id": "247-13305",
       "date": "2026-12-11 20:30",
       "home": "247",
@@ -926,6 +1015,7 @@
       "awayScore": null
     },
     {
+      "round": 15,
       "id": "341-1719",
       "date": "2026-12-11 20:30",
       "home": "341",
@@ -935,6 +1025,7 @@
       "awayScore": null
     },
     {
+      "round": 16,
       "id": "14016-341",
       "date": "2026-12-15 20:00",
       "home": "14016",
@@ -944,6 +1035,7 @@
       "awayScore": null
     },
     {
+      "round": 16,
       "id": "296-13305",
       "date": "2026-12-15 20:00",
       "home": "296",
@@ -953,6 +1045,7 @@
       "awayScore": null
     },
     {
+      "round": 16,
       "id": "345-33",
       "date": "2026-12-15 20:00",
       "home": "345",
@@ -962,6 +1055,7 @@
       "awayScore": null
     },
     {
+      "round": 16,
       "id": "15605-1902",
       "date": "2026-12-15 20:30",
       "home": "15605",
@@ -971,6 +1065,7 @@
       "awayScore": null
     },
     {
+      "round": 16,
       "id": "1844-2937",
       "date": "2026-12-15 20:30",
       "home": "1844",
@@ -980,6 +1075,7 @@
       "awayScore": null
     },
     {
+      "round": 16,
       "id": "269-247",
       "date": "2026-12-15 20:30",
       "home": "269",
@@ -989,6 +1085,7 @@
       "awayScore": null
     },
     {
+      "round": 17,
       "id": "13305-1844",
       "date": "2026-12-18 20:00",
       "home": "13305",
@@ -998,6 +1095,7 @@
       "awayScore": null
     },
     {
+      "round": 17,
       "id": "1902-1719",
       "date": "2026-12-18 20:00",
       "home": "1902",
@@ -1007,6 +1105,7 @@
       "awayScore": null
     },
     {
+      "round": 17,
       "id": "2937-345",
       "date": "2026-12-18 20:00",
       "home": "2937",
@@ -1016,6 +1115,7 @@
       "awayScore": null
     },
     {
+      "round": 17,
       "id": "33-269",
       "date": "2026-12-18 20:00",
       "home": "33",
@@ -1025,6 +1125,7 @@
       "awayScore": null
     },
     {
+      "round": 17,
       "id": "341-15605",
       "date": "2026-12-18 20:00",
       "home": "341",
@@ -1034,6 +1135,7 @@
       "awayScore": null
     },
     {
+      "round": 17,
       "id": "247-296",
       "date": "2026-12-18 20:30",
       "home": "247",
@@ -1043,6 +1145,7 @@
       "awayScore": null
     },
     {
+      "round": 18,
       "id": "14016-1902",
       "date": "2027-01-08 20:00",
       "home": "14016",
@@ -1052,6 +1155,7 @@
       "awayScore": null
     },
     {
+      "round": 18,
       "id": "1844-33",
       "date": "2027-01-08 20:00",
       "home": "1844",
@@ -1061,6 +1165,7 @@
       "awayScore": null
     },
     {
+      "round": 18,
       "id": "15605-296",
       "date": "2027-01-08 20:30",
       "home": "15605",
@@ -1070,6 +1175,7 @@
       "awayScore": null
     },
     {
+      "round": 18,
       "id": "1719-2937",
       "date": "2027-01-08 20:30",
       "home": "1719",
@@ -1079,6 +1185,7 @@
       "awayScore": null
     },
     {
+      "round": 18,
       "id": "269-13305",
       "date": "2027-01-08 20:30",
       "home": "269",
@@ -1088,6 +1195,7 @@
       "awayScore": null
     },
     {
+      "round": 18,
       "id": "345-247",
       "date": "2027-01-08 20:30",
       "home": "345",
@@ -1097,6 +1205,7 @@
       "awayScore": null
     },
     {
+      "round": 19,
       "id": "13305-14016",
       "date": "2027-01-15 20:00",
       "home": "13305",
@@ -1106,6 +1215,7 @@
       "awayScore": null
     },
     {
+      "round": 19,
       "id": "1902-341",
       "date": "2027-01-15 20:00",
       "home": "1902",
@@ -1115,6 +1225,7 @@
       "awayScore": null
     },
     {
+      "round": 19,
       "id": "2937-15605",
       "date": "2027-01-15 20:00",
       "home": "2937",
@@ -1124,6 +1235,7 @@
       "awayScore": null
     },
     {
+      "round": 19,
       "id": "296-269",
       "date": "2027-01-15 20:00",
       "home": "296",
@@ -1133,6 +1245,7 @@
       "awayScore": null
     },
     {
+      "round": 19,
       "id": "33-1719",
       "date": "2027-01-15 20:00",
       "home": "33",
@@ -1142,6 +1255,7 @@
       "awayScore": null
     },
     {
+      "round": 19,
       "id": "247-1844",
       "date": "2027-01-15 20:30",
       "home": "247",
@@ -1151,6 +1265,7 @@
       "awayScore": null
     },
     {
+      "round": 20,
       "id": "14016-247",
       "date": "2027-01-19 20:00",
       "home": "14016",
@@ -1160,6 +1275,7 @@
       "awayScore": null
     },
     {
+      "round": 20,
       "id": "15605-33",
       "date": "2027-01-19 20:30",
       "home": "15605",
@@ -1169,6 +1285,7 @@
       "awayScore": null
     },
     {
+      "round": 20,
       "id": "1719-13305",
       "date": "2027-01-19 20:30",
       "home": "1719",
@@ -1178,6 +1295,7 @@
       "awayScore": null
     },
     {
+      "round": 20,
       "id": "1844-296",
       "date": "2027-01-19 20:30",
       "home": "1844",
@@ -1187,6 +1305,7 @@
       "awayScore": null
     },
     {
+      "round": 20,
       "id": "341-2937",
       "date": "2027-01-19 20:30",
       "home": "341",
@@ -1196,6 +1315,7 @@
       "awayScore": null
     },
     {
+      "round": 20,
       "id": "345-269",
       "date": "2027-01-19 20:30",
       "home": "345",
@@ -1205,6 +1325,7 @@
       "awayScore": null
     },
     {
+      "round": 21,
       "id": "1902-345",
       "date": "2027-01-22 20:00",
       "home": "1902",
@@ -1214,6 +1335,7 @@
       "awayScore": null
     },
     {
+      "round": 21,
       "id": "33-341",
       "date": "2027-01-22 20:00",
       "home": "33",
@@ -1223,6 +1345,7 @@
       "awayScore": null
     },
     {
+      "round": 21,
       "id": "247-1719",
       "date": "2027-01-22 20:30",
       "home": "247",
@@ -1232,6 +1355,7 @@
       "awayScore": null
     },
     {
+      "round": 21,
       "id": "269-1844",
       "date": "2027-01-22 20:30",
       "home": "269",
@@ -1241,6 +1365,7 @@
       "awayScore": null
     },
     {
+      "round": 21,
       "id": "13305-15605",
       "date": "2027-01-23 20:00",
       "home": "13305",
@@ -1250,6 +1375,7 @@
       "awayScore": null
     },
     {
+      "round": 21,
       "id": "296-14016",
       "date": "2027-01-26 20:00",
       "home": "296",
@@ -1259,6 +1385,7 @@
       "awayScore": null
     },
     {
+      "round": 22,
       "id": "14016-33",
       "date": "2027-01-29 20:00",
       "home": "14016",
@@ -1268,6 +1395,7 @@
       "awayScore": null
     },
     {
+      "round": 22,
       "id": "1902-2937",
       "date": "2027-01-29 20:00",
       "home": "1902",
@@ -1277,6 +1405,7 @@
       "awayScore": null
     },
     {
+      "round": 22,
       "id": "15605-269",
       "date": "2027-01-29 20:30",
       "home": "15605",
@@ -1286,6 +1415,7 @@
       "awayScore": null
     },
     {
+      "round": 22,
       "id": "1719-296",
       "date": "2027-01-29 20:30",
       "home": "1719",
@@ -1295,6 +1425,7 @@
       "awayScore": null
     },
     {
+      "round": 22,
       "id": "341-13305",
       "date": "2027-01-29 20:30",
       "home": "341",
@@ -1304,6 +1435,7 @@
       "awayScore": null
     },
     {
+      "round": 22,
       "id": "345-1844",
       "date": "2027-01-29 20:30",
       "home": "345",
@@ -1313,6 +1445,7 @@
       "awayScore": null
     },
     {
+      "round": 23,
       "id": "13305-1902",
       "date": "2027-02-05 20:00",
       "home": "13305",
@@ -1322,6 +1455,7 @@
       "awayScore": null
     },
     {
+      "round": 23,
       "id": "2937-14016",
       "date": "2027-02-05 20:00",
       "home": "2937",
@@ -1331,6 +1465,7 @@
       "awayScore": null
     },
     {
+      "round": 23,
       "id": "296-345",
       "date": "2027-02-05 20:00",
       "home": "296",
@@ -1340,6 +1475,7 @@
       "awayScore": null
     },
     {
+      "round": 23,
       "id": "1844-15605",
       "date": "2027-02-05 20:30",
       "home": "1844",
@@ -1349,6 +1485,7 @@
       "awayScore": null
     },
     {
+      "round": 23,
       "id": "247-341",
       "date": "2027-02-05 20:30",
       "home": "247",
@@ -1358,6 +1495,7 @@
       "awayScore": null
     },
     {
+      "round": 23,
       "id": "269-1719",
       "date": "2027-02-05 20:30",
       "home": "269",
@@ -1367,6 +1505,7 @@
       "awayScore": null
     },
     {
+      "round": 24,
       "id": "14016-269",
       "date": "2027-02-12 20:00",
       "home": "14016",
@@ -1376,6 +1515,7 @@
       "awayScore": null
     },
     {
+      "round": 24,
       "id": "1902-33",
       "date": "2027-02-12 20:00",
       "home": "1902",
@@ -1385,6 +1525,7 @@
       "awayScore": null
     },
     {
+      "round": 24,
       "id": "2937-247",
       "date": "2027-02-12 20:00",
       "home": "2937",
@@ -1394,6 +1535,7 @@
       "awayScore": null
     },
     {
+      "round": 24,
       "id": "1719-1844",
       "date": "2027-02-12 20:30",
       "home": "1719",
@@ -1403,6 +1545,7 @@
       "awayScore": null
     },
     {
+      "round": 24,
       "id": "341-296",
       "date": "2027-02-12 20:30",
       "home": "341",
@@ -1412,6 +1555,7 @@
       "awayScore": null
     },
     {
+      "round": 24,
       "id": "345-15605",
       "date": "2027-02-12 20:30",
       "home": "345",
@@ -1421,6 +1565,7 @@
       "awayScore": null
     },
     {
+      "round": 25,
       "id": "13305-345",
       "date": "2027-02-16 20:00",
       "home": "13305",
@@ -1430,6 +1575,7 @@
       "awayScore": null
     },
     {
+      "round": 25,
       "id": "15605-1719",
       "date": "2027-02-16 20:00",
       "home": "15605",
@@ -1439,6 +1585,7 @@
       "awayScore": null
     },
     {
+      "round": 25,
       "id": "1844-14016",
       "date": "2027-02-16 20:00",
       "home": "1844",
@@ -1448,6 +1595,7 @@
       "awayScore": null
     },
     {
+      "round": 25,
       "id": "247-1902",
       "date": "2027-02-16 20:00",
       "home": "247",
@@ -1457,6 +1605,7 @@
       "awayScore": null
     },
     {
+      "round": 25,
       "id": "269-341",
       "date": "2027-02-16 20:00",
       "home": "269",
@@ -1466,6 +1615,7 @@
       "awayScore": null
     },
     {
+      "round": 25,
       "id": "33-2937",
       "date": "2027-02-16 20:00",
       "home": "33",
@@ -1475,6 +1625,7 @@
       "awayScore": null
     },
     {
+      "round": 26,
       "id": "14016-15605",
       "date": "2027-02-19 20:00",
       "home": "14016",
@@ -1484,6 +1635,7 @@
       "awayScore": null
     },
     {
+      "round": 26,
       "id": "1719-345",
       "date": "2027-02-19 20:00",
       "home": "1719",
@@ -1493,6 +1645,7 @@
       "awayScore": null
     },
     {
+      "round": 26,
       "id": "1902-296",
       "date": "2027-02-19 20:00",
       "home": "1902",
@@ -1502,6 +1655,7 @@
       "awayScore": null
     },
     {
+      "round": 26,
       "id": "247-33",
       "date": "2027-02-19 20:00",
       "home": "247",
@@ -1511,6 +1665,7 @@
       "awayScore": null
     },
     {
+      "round": 26,
       "id": "2937-13305",
       "date": "2027-02-19 20:00",
       "home": "2937",
@@ -1520,6 +1675,7 @@
       "awayScore": null
     },
     {
+      "round": 26,
       "id": "341-1844",
       "date": "2027-02-19 20:00",
       "home": "341",
@@ -1565,7 +1721,8 @@
         "turnovers": 20
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876798-les-sables-d-olonne-chartres"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876798-les-sables-d-olonne-chartres",
+      "round": 1
     },
     {
       "id": "2937-296",
@@ -1602,7 +1759,8 @@
         "turnovers": 13
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876799-tarbes-lourdes-bordeaux"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876799-tarbes-lourdes-bordeaux",
+      "round": 1
     },
     {
       "id": "33-13305",
@@ -1639,7 +1797,8 @@
         "turnovers": 20
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876795-angers-tours"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876795-angers-tours",
+      "round": 1
     },
     {
       "id": "247-15605",
@@ -1676,7 +1835,8 @@
         "turnovers": 13
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876796-lorient-laval"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876796-lorient-laval",
+      "round": 1
     },
     {
       "id": "13305-247",
@@ -1713,7 +1873,8 @@
         "turnovers": 16
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876802-tours-lorient"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876802-tours-lorient",
+      "round": 2
     },
     {
       "id": "296-33",
@@ -1750,7 +1911,8 @@
         "turnovers": 12
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876805-bordeaux-angers"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876805-bordeaux-angers",
+      "round": 2
     },
     {
       "id": "1719-341",
@@ -1787,7 +1949,8 @@
         "turnovers": 9
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876804-chartres-challans"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876804-chartres-challans",
+      "round": 2
     },
     {
       "id": "1844-1902",
@@ -1824,7 +1987,8 @@
         "turnovers": 19
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876801-toulouse-rennes"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876801-toulouse-rennes",
+      "round": 2
     },
     {
       "id": "269-2937",
@@ -1861,7 +2025,8 @@
         "turnovers": 16
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876800-vitre-tarbes-lourdes"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876800-vitre-tarbes-lourdes",
+      "round": 2
     },
     {
       "id": "345-14016",
@@ -1898,7 +2063,8 @@
         "turnovers": 17
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876803-fougeres-les-sables-d-olonne"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876803-fougeres-les-sables-d-olonne",
+      "round": 2
     },
     {
       "id": "13305-296",
@@ -1935,7 +2101,8 @@
         "turnovers": 23
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876811-tours-bordeaux"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876811-tours-bordeaux",
+      "round": 3
     },
     {
       "id": "1902-15605",
@@ -1972,7 +2139,8 @@
         "turnovers": 18
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876809-rennes-laval"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876809-rennes-laval",
+      "round": 3
     },
     {
       "id": "33-345",
@@ -2009,7 +2177,8 @@
         "turnovers": 23
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876810-angers-fougeres"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876810-angers-fougeres",
+      "round": 3
     },
     {
       "id": "247-269",
@@ -2046,7 +2215,8 @@
         "turnovers": 17
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876806-lorient-vitre"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876806-lorient-vitre",
+      "round": 3
     },
     {
       "id": "341-14016",
@@ -2083,7 +2253,8 @@
         "turnovers": 18
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876808-challans-les-sables-d-olonne"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876808-challans-les-sables-d-olonne",
+      "round": 3
     },
     {
       "id": "296-247",
@@ -2120,7 +2291,8 @@
         "turnovers": 15
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876815-bordeaux-lorient"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876815-bordeaux-lorient",
+      "round": 4
     },
     {
       "id": "1719-1902",
@@ -2157,7 +2329,8 @@
         "turnovers": 14
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876814-chartres-rennes"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876814-chartres-rennes",
+      "round": 4
     },
     {
       "id": "1844-13305",
@@ -2194,7 +2367,8 @@
         "turnovers": 17
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876812-toulouse-tours"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876812-toulouse-tours",
+      "round": 4
     },
     {
       "id": "345-2937",
@@ -2231,7 +2405,8 @@
         "turnovers": 14
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876813-fougeres-tarbes-lourdes"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876813-fougeres-tarbes-lourdes",
+      "round": 4
     },
     {
       "id": "15605-341",
@@ -2268,7 +2443,8 @@
         "turnovers": 10
       },
       "minutes": 45,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876816-laval-challans"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876816-laval-challans",
+      "round": 4
     },
     {
       "id": "296-15605",
@@ -2305,7 +2481,8 @@
         "turnovers": 17
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876821-bordeaux-laval"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876821-bordeaux-laval",
+      "round": 5
     },
     {
       "id": "13305-269",
@@ -2342,7 +2519,8 @@
         "turnovers": 16
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876818-tours-vitre"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876818-tours-vitre",
+      "round": 5
     },
     {
       "id": "1902-14016",
@@ -2379,7 +2557,8 @@
         "turnovers": 21
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876820-rennes-les-sables-d-olonne"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876820-rennes-les-sables-d-olonne",
+      "round": 5
     },
     {
       "id": "2937-1719",
@@ -2416,7 +2595,8 @@
         "turnovers": 14
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876823-tarbes-lourdes-chartres"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876823-tarbes-lourdes-chartres",
+      "round": 5
     },
     {
       "id": "33-1844",
@@ -2453,7 +2633,8 @@
         "turnovers": 16
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876819-angers-toulouse"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876819-angers-toulouse",
+      "round": 5
     },
     {
       "id": "247-345",
@@ -2490,7 +2671,8 @@
         "turnovers": 20
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876822-lorient-fougeres"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876822-lorient-fougeres",
+      "round": 5
     },
     {
       "id": "341-345",
@@ -2527,7 +2709,8 @@
         "turnovers": 17
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876797-challans-fougeres"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876797-challans-fougeres",
+      "round": 1
     },
     {
       "id": "14016-13305",
@@ -2564,7 +2747,8 @@
         "turnovers": 22
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876824-les-sables-d-olonne-tours"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876824-les-sables-d-olonne-tours",
+      "round": 6
     },
     {
       "id": "15605-2937",
@@ -2601,7 +2785,8 @@
         "turnovers": 19
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876825-laval-tarbes-lourdes"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876825-laval-tarbes-lourdes",
+      "round": 6
     },
     {
       "id": "1719-33",
@@ -2638,7 +2823,8 @@
         "turnovers": 17
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876829-chartres-angers"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876829-chartres-angers",
+      "round": 6
     },
     {
       "id": "1844-247",
@@ -2675,7 +2861,8 @@
         "turnovers": 22
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876827-toulouse-lorient"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876827-toulouse-lorient",
+      "round": 6
     },
     {
       "id": "269-296",
@@ -2712,7 +2899,8 @@
         "turnovers": 19
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876828-vitre-bordeaux"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876828-vitre-bordeaux",
+      "round": 6
     },
     {
       "id": "341-1902",
@@ -2749,7 +2937,8 @@
         "turnovers": 14
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876826-challans-rennes"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876826-challans-rennes",
+      "round": 6
     },
     {
       "id": "13305-1719",
@@ -2786,7 +2975,8 @@
         "turnovers": 24
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876834-tours-chartres"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876834-tours-chartres",
+      "round": 7
     },
     {
       "id": "2937-341",
@@ -2823,7 +3013,8 @@
         "turnovers": 14
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876835-tarbes-lourdes-challans"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876835-tarbes-lourdes-challans",
+      "round": 7
     },
     {
       "id": "296-1844",
@@ -2860,7 +3051,8 @@
         "turnovers": 21
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876830-bordeaux-toulouse"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876830-bordeaux-toulouse",
+      "round": 7
     },
     {
       "id": "33-15605",
@@ -2897,7 +3089,8 @@
         "turnovers": 20
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876832-angers-laval"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876832-angers-laval",
+      "round": 7
     },
     {
       "id": "247-14016",
@@ -2934,7 +3127,8 @@
         "turnovers": 14
       },
       "minutes": 40,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876831-lorient-les-sables-d-olonne"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876831-lorient-les-sables-d-olonne",
+      "round": 7
     },
     {
       "id": "269-345",
@@ -2971,7 +3165,8 @@
         "turnovers": 14
       },
       "minutes": 45,
-      "source": "https://nm1.ffbb.com/saison-reguliere/match/876833-vitre-fougeres"
+      "source": "https://nm1.ffbb.com/saison-reguliere/match/876833-vitre-fougeres",
+      "round": 7
     }
   ],
   "boxScoreSources": {

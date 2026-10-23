@@ -15,6 +15,7 @@ export interface TeamRecord {
 export interface Game {
   id: string;
   date: string;
+  round?: number;
   home: TeamId;
   away: TeamId;
   played: boolean;
@@ -116,6 +117,8 @@ export interface OddsCache extends SimResult {
   homeAdv: number;
   focusId: TeamId;
   focusWinTable?: WinTable;
+  bestCaseVersion?: string;
+  focusBestCase?: BestCaseResult | null;
   focusMatchdayImpact?: MatchdayImpact | null;
   focusClinchScenarios?: ClinchResult | null;
 }
@@ -137,4 +140,17 @@ export interface BestWorstResult {
     outcomes: ForcedOutcomes;
     rankHist: number[];
   };
+}
+
+export interface BestCaseResult {
+  roundNumber: number | null;
+  roundDate: string;
+  roundEndDate: string;
+  games: Game[];
+  scenarios: number;
+  simulations: number;
+  seed: number;
+  baselineOdds: number;
+  odds: number;
+  outcomes: ForcedOutcomes;
 }

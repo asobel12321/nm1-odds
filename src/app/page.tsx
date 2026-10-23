@@ -1,3 +1,4 @@
+import BestCaseRound from "@/components/BestCaseRound";
 import { loadSnapshot } from "@/lib/snapshot";
 import Link from "next/link";
 import StandingsTable from "@/components/StandingsTable";
@@ -188,6 +189,13 @@ export default async function Home() {
             </a>
           </p>
         </div>
+        {cache?.focusBestCase && (
+          <BestCaseRound
+            scenario={cache.focusBestCase}
+            teams={lookup}
+            currentOdds={odds}
+          />
+        )}
         <section className="dashboard-grid">
           <div>
             <div className="section-heading">
@@ -374,6 +382,13 @@ export default async function Home() {
               one-point margin; unresolved ties share positions equally. Scores
               and possession inputs must validate together; an incomplete FFBB
               update retains the last complete snapshot.
+            </p>
+            <p>
+              The best-round scenario compares every home/away result
+              combination for the next official round, using 5,000 simulations
+              per combination and the same random draws. Its odds assume every
+              displayed result occurs; they are not the likelihood of that
+              combination happening.
             </p>
             <p>
               This is a transparent efficiency model inspired by KenPom, not

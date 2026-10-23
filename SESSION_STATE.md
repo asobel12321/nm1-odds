@@ -2,51 +2,52 @@
 
 ## Objective
 
-Add a prominent, automatically updating 90%+ top-seven win target near the homepage headline, using existing conditional simulation results.
+Add the most favorable combination of results for Vitré in the upcoming official round, together with the resulting conditional top-seven odds.
 
 ## Branch
 
-codex/ninety-percent-target in C:\Users\asobe\Projects\Worktrees\nm1-odds-efficiency. Canonical checkout: C:\Users\asobe\Projects\Active\nm1-odds.
+codex/best-case-round in C:\Users\asobe\Projects\Worktrees\nm1-odds-efficiency. Canonical checkout: C:\Users\asobe\Projects\Active\nm1-odds.
 
 ## Current Status
 
-Published via PR7: https://github.com/asobel12321/nm1-odds/pull/7. Merged to main as fdc41dfcb740130b956560455db3b889962aa75d. Production homepage verified:10 of19 remaining wins,13–11 finish,97.7% estimate, callout near the headline. Canonical Active checkout synced.
+Implementation and local verification complete. Ready for GitHub checks, PR merge and production verification.
 
 ## Files Changed
 
-src/app/page.tsx, src/app/globals.css, src/lib/winTable.ts, tests/model.test.ts, docs/METHODOLOGY.md, tasks/todo.md, SESSION_STATE.md.
+New bestCase calculation and BestCaseRound homepage component; focus-only simulator; official FFBB round parsing; odds cache/version integration; refreshed data/odds snapshots; regression tests; methodology and task/handoff documentation.
 
 ## Accomplishments
 
-- Select the fewest remaining wins whose final-record qualification estimate is at least90%, with at least100 samples.
-- Show the target, remaining games, final record and actual probability near the headline.
-- Current target10 of19 remaining wins;13–11 finish;97.7% conditional qualification estimate.
-- Unsupported samples show an unavailable message; the banner is hidden once no games remain.
-- No changes to ratings, probabilities, standings order or simulations.
+- Group upcoming fixtures by official round, including rounds split across dates, with a legacy date fallback.
+- Compare every result combination with 5,000 simulations and shared random draws, retaining every displayed forced result.
+- Reuse the existing ratings, home advantage, qualification cutoff and tiebreak rules.
+- Cache the best-case calculation alongside the main forecast and refresh it with valid source snapshots.
+- Display all six favorable Round 8 results and an 83.14% conditional estimate, versus the headline's 73.36% current estimate.
+- Preserve existing baseline probabilities and strength ratings exactly.
 
 ## Things Tried
 
-In-app browser was unavailable. Used the available Chrome browser to inspect the built homepage and its screenshot.
+A full-season simulation for each combination took 38.7 seconds locally. The mathematically equivalent focus-only cutoff calculation reduces a complete recompute to 20.7 seconds. Cached requests reuse the result.
 
 ## Things Learned
 
-The available integer win totals jump from70.3% at12–12 to97.7% at13–11. Label the banner90%+ rather than imply an exact90% probability.
+Official round metadata is necessary because a round can span multiple dates. Shared random draws and retaining all forced outcomes make the scenario reproducible in the existing what-if simulator.
 
 ## Known Issues
 
-The win target is conditional on reaching the stated final record and the simulated mix of results, not a guaranteed clinch. Existing efficiency-model limitations remain as described in docs/METHODOLOGY.md.
+These are conditional Monte Carlo estimates, not qualification guarantees or the probability of the listed result combination. Near-equal combinations can change with sampling. Future unknown score margins retain the existing synthetic one-point tiebreak approximation. Invalid round groups above seven games suppress this section without breaking the homepage.
 
 ## Verification Run
 
-- npm test: PASS,27 tests including threshold/sample filtering.
+- npm test: PASS, 32 tests, including round grouping and exact replay against the full simulator.
 - npm run typecheck: PASS.
 - npm run lint: PASS.
 - npm run build: PASS.
-- Chrome rendered-page and screenshot check: PASS, target visible near hero headline.
+- Complete recompute: PASS, 13 teams, 156 fixtures, 39 completed box scores; unchanged baseline odds and ratings.
+- Built homepage HTTP and Chrome screenshot: PASS, six results displayed above the standings.
+- POST /api/odds with the six displayed results: PASS, reproduces 0.8314 top-seven probability.
 - git diff --check: PASS.
-- GitHub CI and Vercel preview: PASS.
-- Production HTTP check: PASS, dynamic target visible near headline and13 standings rows retained.
 
 ## Next Steps
 
-Release complete. The estimate updates automatically with future valid model snapshots.
+Commit and push this branch, open and attach the PR, pass GitHub checks, merge, verify the Vercel production section, and sync the canonical Active checkout. Then record the final release result here.
