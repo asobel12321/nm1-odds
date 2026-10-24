@@ -1,15 +1,5 @@
 [
   {
-    "id": "2937",
-    "name": "Tarbes Lourdes",
-    "abbr": "UTL"
-  },
-  {
-    "id": "247",
-    "name": "Lorient",
-    "abbr": "CEP"
-  },
-  {
     "id": "341",
     "name": "Challans",
     "abbr": "VCB"
@@ -20,9 +10,34 @@
     "abbr": "TMB"
   },
   {
+    "id": "247",
+    "name": "Lorient",
+    "abbr": "CEP"
+  },
+  {
+    "id": "2937",
+    "name": "Tarbes Lourdes",
+    "abbr": "UTL"
+  },
+  {
     "id": "345",
     "name": "Fougères",
     "abbr": "PFB"
+  },
+  {
+    "id": "1902",
+    "name": "Rennes",
+    "abbr": "URB"
+  },
+  {
+    "id": "1844",
+    "name": "Toulouse",
+    "abbr": "TBC"
+  },
+  {
+    "id": "14016",
+    "name": "Les Sables d'Olonne",
+    "abbr": "LSV"
   },
   {
     "id": "33",
@@ -35,29 +50,14 @@
     "abbr": "BOR"
   },
   {
-    "id": "1844",
-    "name": "Toulouse",
-    "abbr": "TBC"
+    "id": "1719",
+    "name": "Chartres",
+    "abbr": "CCB"
   },
   {
     "id": "269",
     "name": "Vitré",
     "abbr": "AVB"
-  },
-  {
-    "id": "1902",
-    "name": "Rennes",
-    "abbr": "URB"
-  },
-  {
-    "id": "14016",
-    "name": "Les Sables d'Olonne",
-    "abbr": "LSV"
-  },
-  {
-    "id": "1719",
-    "name": "Chartres",
-    "abbr": "CCB"
   },
   {
     "id": "15605",
