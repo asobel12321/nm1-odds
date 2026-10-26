@@ -1,6 +1,6 @@
 {
   "season": "2026-2027",
-  "updated": "2026-10-25T10:03:34.813Z",
+  "updated": "2026-10-26T11:26:26.276Z",
   "phase": "regular-season",
   "group": "B",
   "source": "https://nm1.ffbb.com/saison-reguliere",
@@ -3400,227 +3400,227 @@
   "boxScoreSources": {
     "14016-1719": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876798-les-sables-d-olonne-chartres",
-      "retrieved": "2026-10-25T10:03:35.476Z",
+      "retrieved": "2026-10-26T11:26:26.933Z",
       "sha256": "4f652381b3d8d6cf1dd102219cf669a71571202397178f216a6d0a3ca280a0a3"
     },
     "33-13305": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876795-angers-tours",
-      "retrieved": "2026-10-25T10:03:35.705Z",
+      "retrieved": "2026-10-26T11:26:27.177Z",
       "sha256": "c6db507a9bc80ada4f9c444df16f5af6c9cbbe9688870f656630fed61a874eba"
     },
     "2937-296": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876799-tarbes-lourdes-bordeaux",
-      "retrieved": "2026-10-25T10:03:35.785Z",
+      "retrieved": "2026-10-26T11:26:27.331Z",
       "sha256": "16c3e8df8622773a4bffdcccb585351d665e7526544180aee3bd7d5980d4351a"
     },
     "247-15605": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876796-lorient-laval",
-      "retrieved": "2026-10-25T10:03:35.931Z",
+      "retrieved": "2026-10-26T11:26:27.408Z",
       "sha256": "8ff1bc6b4f14a78fc45863acb038328689c6174b14537b3316c1f3b7b38d8cfe"
     },
     "13305-247": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876802-tours-lorient",
-      "retrieved": "2026-10-25T10:03:36.020Z",
+      "retrieved": "2026-10-26T11:26:27.567Z",
       "sha256": "01560928cbe12b8c8a3dd0143fa7e848bd8ea8ea4b6fbecd38e18befcf2d6452"
     },
     "296-33": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876805-bordeaux-angers",
-      "retrieved": "2026-10-25T10:03:36.161Z",
+      "retrieved": "2026-10-26T11:26:27.640Z",
       "sha256": "6e6aeb3ba368e69a45f983d5b8a9e96f71a393b68fc3a44b955426ccefedff7e"
     },
     "1719-341": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876804-chartres-challans",
-      "retrieved": "2026-10-25T10:03:36.249Z",
+      "retrieved": "2026-10-26T11:26:27.794Z",
       "sha256": "1eb231e21b510318faa2a705869b2d1a36fa0bca5bff927e51d9573576e864e5"
     },
     "1844-1902": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876801-toulouse-rennes",
-      "retrieved": "2026-10-25T10:03:36.428Z",
+      "retrieved": "2026-10-26T11:26:27.885Z",
       "sha256": "36cecf69f9b5cd838791a31e2640742a9109039a7c1ccec2644af7b273fc7690"
     },
     "269-2937": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876800-vitre-tarbes-lourdes",
-      "retrieved": "2026-10-25T10:03:36.585Z",
+      "retrieved": "2026-10-26T11:26:28.052Z",
       "sha256": "300b74cbb78ce7706a88b63c626aa5886123c31050499209dc1e0fe5dab6437c"
     },
     "345-14016": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876803-fougeres-les-sables-d-olonne",
-      "retrieved": "2026-10-25T10:03:36.653Z",
+      "retrieved": "2026-10-26T11:26:28.112Z",
       "sha256": "a371caed3fdf5cc524403f3527228a98cc13103f30f11d384c7639f1ac8e2df9"
     },
     "13305-296": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876811-tours-bordeaux",
-      "retrieved": "2026-10-25T10:03:36.804Z",
+      "retrieved": "2026-10-26T11:26:28.280Z",
       "sha256": "b4e2e84e80baf72f26f488bd123e907894a2b6e06f4de7383854eacbcf5f4b41"
     },
     "1902-15605": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876809-rennes-laval",
-      "retrieved": "2026-10-25T10:03:36.882Z",
+      "retrieved": "2026-10-26T11:26:28.340Z",
       "sha256": "782d06dfa5684e47ed46fd7585424bd3084aa962c4b3b1545e934170469b85ea"
     },
     "33-345": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876810-angers-fougeres",
-      "retrieved": "2026-10-25T10:03:37.033Z",
+      "retrieved": "2026-10-26T11:26:28.514Z",
       "sha256": "7d9ce4e405667286ea39393d77b71238821ef63b6a5af60f31df2708b2aaa07e"
     },
     "247-269": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876806-lorient-vitre",
-      "retrieved": "2026-10-25T10:03:37.104Z",
+      "retrieved": "2026-10-26T11:26:28.571Z",
       "sha256": "d407eae70998e72d97180032faf5e156880a5918fc4c42fcc66e36ead9cbfd7a"
     },
     "341-14016": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876808-challans-les-sables-d-olonne",
-      "retrieved": "2026-10-25T10:03:37.265Z",
+      "retrieved": "2026-10-26T11:26:28.741Z",
       "sha256": "8b389974312d246b1118d36660eaf445b99e8548219fdb79d4910bbfc8b41228"
     },
     "296-247": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876815-bordeaux-lorient",
-      "retrieved": "2026-10-25T10:03:37.338Z",
+      "retrieved": "2026-10-26T11:26:28.806Z",
       "sha256": "b307fcc635577f211bce0ae9c365ba28fe93446e6cdcbeb85227a078dffa93c0"
     },
     "1719-1902": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876814-chartres-rennes",
-      "retrieved": "2026-10-25T10:03:37.492Z",
+      "retrieved": "2026-10-26T11:26:28.970Z",
       "sha256": "75cc0215eae9d040b9fb030ed0761e228528d196ea95736aca885fdb9d3fb8eb"
     },
     "1844-13305": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876812-toulouse-tours",
-      "retrieved": "2026-10-25T10:03:37.575Z",
+      "retrieved": "2026-10-26T11:26:29.041Z",
       "sha256": "1f3db0d96aec51be16371c47dcf65936099162e3405bbb037bd1f818c25591ee"
     },
     "345-2937": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876813-fougeres-tarbes-lourdes",
-      "retrieved": "2026-10-25T10:03:37.721Z",
+      "retrieved": "2026-10-26T11:26:29.242Z",
       "sha256": "530fec8252cfc541756dc3eb9fbea8547199f10b0397919ddc51fa2a73dfbfae"
     },
     "15605-341": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876816-laval-challans",
-      "retrieved": "2026-10-25T10:03:37.797Z",
+      "retrieved": "2026-10-26T11:26:29.314Z",
       "sha256": "ff8e78a03fbbd357ff820e6e8368f54d128f7b46c789eb1badaefe6a8e48aa15"
     },
     "296-15605": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876821-bordeaux-laval",
-      "retrieved": "2026-10-25T10:03:37.942Z",
+      "retrieved": "2026-10-26T11:26:29.472Z",
       "sha256": "bb42cc5d8a2a43e1f97e08256ce933d9af95835de25bbf13e2e0a80163466204"
     },
     "13305-269": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876818-tours-vitre",
-      "retrieved": "2026-10-25T10:03:38.027Z",
+      "retrieved": "2026-10-26T11:26:29.555Z",
       "sha256": "f9931b217d61d7bb01fae68c9993925a1c92345d895a38d0f985cae2f129347a"
     },
     "1902-14016": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876820-rennes-les-sables-d-olonne",
-      "retrieved": "2026-10-25T10:03:38.181Z",
+      "retrieved": "2026-10-26T11:26:29.700Z",
       "sha256": "c19d6e7bb4bcaee0e4349086dc055aeffa0d5a68a98f5494ad0409b173aaeaa1"
     },
     "2937-1719": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876823-tarbes-lourdes-chartres",
-      "retrieved": "2026-10-25T10:03:38.272Z",
+      "retrieved": "2026-10-26T11:26:29.790Z",
       "sha256": "90a3d09654d8482db80063f802994968db02ea799296bb5d548fda8ee3db8ac5"
     },
     "33-1844": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876819-angers-toulouse",
-      "retrieved": "2026-10-25T10:03:38.418Z",
+      "retrieved": "2026-10-26T11:26:29.932Z",
       "sha256": "c28f1f1fb1756ee678ea6775e10e13f2e702ed0f99e133789ca053f04c618f43"
     },
     "247-345": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876822-lorient-fougeres",
-      "retrieved": "2026-10-25T10:03:38.501Z",
+      "retrieved": "2026-10-26T11:26:30.035Z",
       "sha256": "14c8efdb386c150ab4bd70a5b21b18da86d355e523fd88fd285bac7f94ac3fa6"
     },
     "341-345": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876797-challans-fougeres",
-      "retrieved": "2026-10-25T10:03:38.661Z",
+      "retrieved": "2026-10-26T11:26:30.226Z",
       "sha256": "3972663906615e6a2b5eba3619ef0b264da80335957155b85ac238a8dbbf9103"
     },
     "14016-13305": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876824-les-sables-d-olonne-tours",
-      "retrieved": "2026-10-25T10:03:38.822Z",
+      "retrieved": "2026-10-26T11:26:30.362Z",
       "sha256": "132b79b0479cdf97b6500e18ac0084a866b6d48b470ab20bbb38d1c1408d2aea"
     },
     "15605-2937": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876825-laval-tarbes-lourdes",
-      "retrieved": "2026-10-25T10:03:38.891Z",
+      "retrieved": "2026-10-26T11:26:30.456Z",
       "sha256": "e1b62c967499d63990cb3523ca5017d5633e14607a607632ddef7058d2e90b23"
     },
     "1719-33": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876829-chartres-angers",
-      "retrieved": "2026-10-25T10:03:39.041Z",
+      "retrieved": "2026-10-26T11:26:30.595Z",
       "sha256": "fa711d30be645927630f7b8c52f5b5f24a01dfe47791e3b1bfc28a1fb2ad088a"
     },
     "1844-247": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876827-toulouse-lorient",
-      "retrieved": "2026-10-25T10:03:39.121Z",
+      "retrieved": "2026-10-26T11:26:30.685Z",
       "sha256": "03a8ae7302f303fe390a4918d164be8612c52e227d798cf8c4bbfc2144518b4a"
     },
     "269-296": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876828-vitre-bordeaux",
-      "retrieved": "2026-10-25T10:03:39.259Z",
+      "retrieved": "2026-10-26T11:26:30.829Z",
       "sha256": "af967db52e568d3fb39dbe3865bec229a841d1836e20d66e3026e4fb71d8ef7b"
     },
     "341-1902": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876826-challans-rennes",
-      "retrieved": "2026-10-25T10:03:39.339Z",
+      "retrieved": "2026-10-26T11:26:30.914Z",
       "sha256": "036976410e464522a1e825aab4616d7180209297837b0e1ec9fd66d8b13e48f4"
     },
     "13305-1719": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876834-tours-chartres",
-      "retrieved": "2026-10-25T10:03:39.472Z",
+      "retrieved": "2026-10-26T11:26:31.057Z",
       "sha256": "d2dfd2acd8a3db97e7231e56843961280623198e0c0762a8ff182fae4ce54656"
     },
     "2937-341": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876835-tarbes-lourdes-challans",
-      "retrieved": "2026-10-25T10:03:39.537Z",
+      "retrieved": "2026-10-26T11:26:31.113Z",
       "sha256": "90772f3294a0384786c9a44caf3914dd10e32b71d6dd547b88b8ca43ec4b1233"
     },
     "296-1844": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876830-bordeaux-toulouse",
-      "retrieved": "2026-10-25T10:03:39.687Z",
+      "retrieved": "2026-10-26T11:26:31.293Z",
       "sha256": "4d128315f0f6258e8fe7b1c0c4833e571b25f50c3bed66c77b31d3eb930be062"
     },
     "33-15605": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876832-angers-laval",
-      "retrieved": "2026-10-25T10:03:39.763Z",
+      "retrieved": "2026-10-26T11:26:31.342Z",
       "sha256": "48b41817f1b1c32d3198dcbba47cd2f28120bb4aa720008ff7b09ac400a6c951"
     },
     "247-14016": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876831-lorient-les-sables-d-olonne",
-      "retrieved": "2026-10-25T10:03:39.926Z",
+      "retrieved": "2026-10-26T11:26:31.518Z",
       "sha256": "36928604bd28e9a0bda2fbe1a148c081cb238d802cf6973620aae4d6f2d0d831"
     },
     "269-345": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876833-vitre-fougeres",
-      "retrieved": "2026-10-25T10:03:40.027Z",
+      "retrieved": "2026-10-26T11:26:31.571Z",
       "sha256": "e3c8b0a9787036b1dcc4dcec6b78306617eb1e3f58b3c91e55b3fa71500f6360"
     },
     "14016-296": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876840-les-sables-d-olonne-bordeaux",
-      "retrieved": "2026-10-25T10:03:40.149Z",
+      "retrieved": "2026-10-26T11:26:31.721Z",
       "sha256": "aeea04196897989338532acd8b039ee583d9f149d231a7a1c8ba6ad50c2feaaa"
     },
     "15605-13305": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876837-laval-tours",
-      "retrieved": "2026-10-25T10:03:40.221Z",
+      "retrieved": "2026-10-26T11:26:31.815Z",
       "sha256": "9cab23319ad94d454051b5c316cf7cdb48c19af24c4d4d95cc735dc65a964106"
     },
     "1719-247": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876839-chartres-lorient",
-      "retrieved": "2026-10-25T10:03:40.371Z",
+      "retrieved": "2026-10-26T11:26:31.934Z",
       "sha256": "f812d4f003d8e0c4e2b8d4150b3089d27543373abdc3ef0ba98e91a587735988"
     },
     "1844-269": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876836-toulouse-vitre",
-      "retrieved": "2026-10-25T10:03:40.443Z",
+      "retrieved": "2026-10-26T11:26:32.014Z",
       "sha256": "3c9173895f0201670447f31dd727da65c776229619fcfde86fbe6225e3a36579"
     },
     "341-33": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876841-challans-angers",
-      "retrieved": "2026-10-25T10:03:40.593Z",
+      "retrieved": "2026-10-26T11:26:32.173Z",
       "sha256": "4e458983c79e60bcce8040662593da6476d66da579a3754afb08f0669d13464a"
     },
     "345-1902": {
       "url": "https://nm1.ffbb.com/saison-reguliere/match/876838-fougeres-rennes",
-      "retrieved": "2026-10-25T10:03:40.659Z",
+      "retrieved": "2026-10-26T11:26:32.226Z",
       "sha256": "21d06313b8349d5f518eca4822dd83ad7a701894e5c50b83cdf28fba07557c74"
     }
   }
