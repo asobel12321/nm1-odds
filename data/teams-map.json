@@ -1,5 +1,10 @@
 [
   {
+    "id": "1902",
+    "name": "Rennes",
+    "abbr": "URB"
+  },
+  {
     "id": "341",
     "name": "Challans",
     "abbr": "VCB"
@@ -25,11 +30,6 @@
     "abbr": "PFB"
   },
   {
-    "id": "1902",
-    "name": "Rennes",
-    "abbr": "URB"
-  },
-  {
     "id": "1844",
     "name": "Toulouse",
     "abbr": "TBC"
@@ -45,6 +45,11 @@
     "abbr": "EAB"
   },
   {
+    "id": "269",
+    "name": "Vitré",
+    "abbr": "AVB"
+  },
+  {
     "id": "296",
     "name": "Bordeaux",
     "abbr": "BOR"
@@ -53,11 +58,6 @@
     "id": "1719",
     "name": "Chartres",
     "abbr": "CCB"
-  },
-  {
-    "id": "269",
-    "name": "Vitré",
-    "abbr": "AVB"
   },
   {
     "id": "15605",
