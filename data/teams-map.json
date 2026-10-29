@@ -20,9 +20,19 @@
     "abbr": "CEP"
   },
   {
+    "id": "1719",
+    "name": "Chartres",
+    "abbr": "CCB"
+  },
+  {
     "id": "2937",
     "name": "Tarbes Lourdes",
     "abbr": "UTL"
+  },
+  {
+    "id": "296",
+    "name": "Bordeaux",
+    "abbr": "BOR"
   },
   {
     "id": "345",
@@ -48,16 +58,6 @@
     "id": "269",
     "name": "Vitré",
     "abbr": "AVB"
-  },
-  {
-    "id": "296",
-    "name": "Bordeaux",
-    "abbr": "BOR"
-  },
-  {
-    "id": "1719",
-    "name": "Chartres",
-    "abbr": "CCB"
   },
   {
     "id": "15605",
