@@ -10,14 +10,14 @@
     "abbr": "VCB"
   },
   {
+    "id": "269",
+    "name": "Vitré",
+    "abbr": "AVB"
+  },
+  {
     "id": "13305",
     "name": "Tours",
     "abbr": "TMB"
-  },
-  {
-    "id": "1844",
-    "name": "Toulouse",
-    "abbr": "TBC"
   },
   {
     "id": "2937",
@@ -25,29 +25,9 @@
     "abbr": "UTL"
   },
   {
-    "id": "247",
-    "name": "Lorient",
-    "abbr": "CEP"
-  },
-  {
-    "id": "33",
-    "name": "Angers",
-    "abbr": "EAB"
-  },
-  {
-    "id": "269",
-    "name": "Vitré",
-    "abbr": "AVB"
-  },
-  {
-    "id": "1719",
-    "name": "Chartres",
-    "abbr": "CCB"
-  },
-  {
-    "id": "345",
-    "name": "Fougères",
-    "abbr": "PFB"
+    "id": "1844",
+    "name": "Toulouse",
+    "abbr": "TBC"
   },
   {
     "id": "14016",
@@ -58,6 +38,26 @@
     "id": "296",
     "name": "Bordeaux",
     "abbr": "BOR"
+  },
+  {
+    "id": "1719",
+    "name": "Chartres",
+    "abbr": "CCB"
+  },
+  {
+    "id": "247",
+    "name": "Lorient",
+    "abbr": "CEP"
+  },
+  {
+    "id": "345",
+    "name": "Fougères",
+    "abbr": "PFB"
+  },
+  {
+    "id": "33",
+    "name": "Angers",
+    "abbr": "EAB"
   },
   {
     "id": "15605",
