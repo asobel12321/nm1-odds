@@ -216,63 +216,6 @@ export default async function Home() {
               means above the Group B average.
             </p>
           </div>
-          <aside>
-            <div className="section-heading">
-              <div>
-                <span className="eyebrow">UP NEXT</span>
-                <h2>Vitré’s schedule</h2>
-              </div>
-              <span className="muted small">Win chance</span>
-            </div>
-            <div className="fixture-list">
-              {remaining.slice(0, 5).map((g) => {
-                const home = g.home === focusId;
-                const opponent = lookup[home ? g.away : g.home];
-                const hp = projection.homeProbability(g);
-                return (
-                  <div key={g.id} className="fixture">
-                    <div className="fixture-date">
-                      {new Date(
-                        g.date.slice(0, 10) + "T12:00:00Z",
-                      ).toLocaleDateString("en-GB", {
-                        day: "2-digit",
-                        month: "short",
-                        timeZone: "Europe/Paris",
-                      })}
-                      <span>{home ? "HOME" : "AWAY"}</span>
-                    </div>
-                    <div>
-                      <strong>
-                        {home ? "vs " : "@ "}
-                        {opponent.name}
-                      </strong>
-                      <span className="muted small">
-                        {g.date.slice(11)} · France time
-                      </span>
-                    </div>
-                    <strong className="fixture-prob">
-                      {(100 * (home ? hp : 1 - hp)).toFixed(0)}%
-                    </strong>
-                  </div>
-                );
-              })}
-            </div>
-            <Link href="/what-if/vitre" className="text-link">
-              All {remaining.length} games & what-if picks ↗
-            </Link>
-            <div className="note-card">
-              <span className="eyebrow">GAMES IN HAND MATTER</span>
-              <h3>
-                A position is a snapshot.
-                <br />A probability looks ahead.
-              </h3>
-              <p>
-                Vitré has played {team.wins + team.losses} of{" "}
-                {team.wins + team.losses + remaining.length} games. The forecast
-                accounts for every team’s remaining schedule and home court.
-              </p>
-            </div>
-          </aside>
         </section>
         <section className="distribution-section">
           <div className="section-heading">
