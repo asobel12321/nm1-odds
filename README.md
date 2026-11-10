@@ -37,7 +37,7 @@ Power rating is now **opponent-adjusted net efficiency per100 possessions**: adj
 
 The model retains the ±20 game-point margin cap, ridge weight4, +3-point home advantage and logistic probability scale10. Expected game margin = net-rating difference × projected possessions/100 +3 home points. Ratings and pace remain fixed inside each simulated season. Standings retain their existing winning-percentage order; the power-rating column does not sort the table.
 
-See [the full production methodology](docs/METHODOLOGY.md), also explained in the homepage transparency section. The same model supplies headline odds, schedule probabilities, win-target rows and what-if scenarios. Independent historical efficiency validation remains pending.
+See [the full production methodology](docs/METHODOLOGY.md), also explained in the homepage transparency section. The same model supplies headline odds, schedule probabilities, win-target rows and what-if scenarios. Independent historical efficiency validation remains pending. The homepage also compares top-seven odds after a win or loss in Vitré’s next game and the best-case upcoming round; the round’s required results expand on demand.
 
 Production data includes validated box scores with source provenance. A score-and-stat mismatch retains the previous complete snapshot. Hosted refreshes check hourly and reuse matching boxes; the daily GitHub refresh fetches all completed boxes to pick up statistical corrections. Cache invalidation includes possession inputs and model configuration. Top-seven simulations retain the existing tiebreak approximation, and the what-if API still caps forced scenarios at5,000 simulations.
 

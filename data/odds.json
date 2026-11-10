@@ -713,7 +713,7 @@
   "focusId": "269",
   "cutoff": 7,
   "dataHash": "1801d7cfa4d91e5041fd7a2e37a679c25f7160447c3a8e737a31646f9ad083a0",
-  "updated": "2026-11-10T13:42:43.853Z",
+  "updated": "2026-11-10T15:54:18.993Z",
   "focusWinTable": {
     "remainingGames": 15,
     "rows": [
@@ -1102,6 +1102,23 @@
         "samples": 0
       }
     ]
+  },
+  "nextGameVersion": "next-game-v1",
+  "focusNextGame": {
+    "game": {
+      "round": 11,
+      "id": "269-14016",
+      "date": "2026-11-13 20:30",
+      "home": "269",
+      "away": "14016",
+      "played": false,
+      "homeScore": null,
+      "awayScore": null
+    },
+    "simulations": 5000,
+    "seed": 20261021,
+    "winOdds": 0.7818,
+    "lossOdds": 0.5876
   },
   "bestCaseVersion": "round-best-v1",
   "focusBestCase": {

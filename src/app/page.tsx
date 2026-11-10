@@ -1,4 +1,4 @@
-import BestCaseRound from "@/components/BestCaseRound";
+import UpcomingScenarios from "@/components/UpcomingScenarios";
 import { loadSnapshot } from "@/lib/snapshot";
 import Link from "next/link";
 import StandingsTable from "@/components/StandingsTable";
@@ -189,13 +189,13 @@ export default async function Home() {
             </a>
           </p>
         </div>
-        {cache?.focusBestCase && (
-          <BestCaseRound
-            scenario={cache.focusBestCase}
-            teams={lookup}
-            currentOdds={odds}
-          />
-        )}
+        <UpcomingScenarios
+          nextGame={cache?.focusNextGame}
+          bestCase={cache?.focusBestCase}
+          teams={lookup}
+          focusId={focusId}
+          currentOdds={odds}
+        />
         <section className="dashboard-grid">
           <div>
             <div className="section-heading">
@@ -384,6 +384,10 @@ export default async function Home() {
               update retains the last complete snapshot.
             </p>
             <p>
+              Next-game win and loss estimates each force only Vitré’s next
+              result, using 5,000 simulations with the same random draws. All
+              other games follow the current model. These are top-seven
+              qualification chances, not the chance of winning the next game.
               The best-round scenario compares every home/away result
               combination for the next official round, using 5,000 simulations
               per combination and the same random draws. Its odds assume every

@@ -2,54 +2,51 @@
 
 ## Objective
 
-Add the most favorable combination of results for Vitré in the upcoming official round, together with the resulting conditional top-seven odds.
+Show Vitré’s top-seven odds after a win or loss in its next game, alongside a less prominent best-case round with expandable results.
 
 ## Branch
 
-codex/best-case-release in C:\Users\asobe\Projects\Worktrees\nm1-odds-efficiency (release records after codex/best-case-round). Canonical checkout: C:\Users\asobe\Projects\Active\nm1-odds.
+codex/next-game-scenarios in C:\Users\asobe\Projects\Worktrees\nm1-odds-efficiency. Canonical checkout: C:\Users\asobe\Projects\Active\nm1-odds.
 
 ## Current Status
 
-Published on 23 October 2026 via PR8: https://github.com/asobel12321/nm1-odds/pull/8. Feature merged to main as e9a46e0d8ca373795b1a21580b7d1c2a68130db6. GitHub checks and Vercel deployment passed. Live homepage verified at https://nm1-odds.vercel.app: Round 8, all six results, 83.1% conditional top-seven odds, existing 73.4% baseline and 13 standings rows. Canonical Active checkout synced.
+Implemented and locally verified on 10 November 2026. Cached next fixture is home against Les Sables d’Olonne on 13 November at 20:30 France time. Conditional qualification estimates: win 78.18%, loss 58.76%, best Round 11 80.18%; unchanged baseline 69.59%. Ready for GitHub checks, merge and production verification.
 
 ## Files Changed
 
-New bestCase calculation and BestCaseRound homepage component; focus-only simulator; official FFBB round parsing; odds cache/version integration; refreshed data/odds snapshots; regression tests; methodology and task/handoff documentation.
+src/lib/nextGame.ts; cache types/loading/live and script recompute paths; data/odds.json; UpcomingScenarios replaces BestCaseRound; homepage and compact responsive styles; next-game replay tests; README, methodology, tasks and this handoff.
 
 ## Accomplishments
 
-- Group upcoming fixtures by official round, including rounds split across dates, with a legacy date fallback.
-- Compare every result combination with 5,000 simulations and shared random draws, retaining every displayed forced result.
-- Reuse the existing ratings, home advantage, qualification cutoff and tiebreak rules.
-- Cache the best-case calculation alongside the main forecast and refresh it with valid source snapshots.
-- Display all six favorable Round 8 results and an 83.14% conditional estimate, versus the headline's 73.36% current estimate.
-- Preserve existing baseline probabilities and strength ratings exactly.
+- Select Vitré’s earliest unplayed fixture by date rather than array order or round number.
+- Run 5,000 shared-seed simulations for each next-game result, forcing only that fixture and retaining all existing ratings, home advantage and tiebreaks.
+- Version and save next-game results with the same validated snapshot and automatic refresh used for the main forecast.
+- Show win and loss qualification odds first, then a smaller best-round estimate; required round results use a native details disclosure, collapsed by default.
+- Preserve all baseline odds, rating values, rank/win histograms, win-target rows and best-round results exactly.
 
 ## Things Tried
 
-A full-season simulation for each combination took 38.7 seconds locally. The mathematically equivalent focus-only cutoff calculation reduces a complete recompute to 20.7 seconds. Cached requests reuse the result.
+Initial synthetic completed-game fixtures lacked required box scores. Corrected test data to pair completed fixtures with valid box inputs; all 36 tests now pass. Windows browser inspection stopped because the tool could not verify its current URL. No further UI actions attempted; verified built HTML and API instead.
 
 ## Things Learned
 
-Official round metadata is necessary because a round can span multiple dates. Shared random draws and retaining all forced outcomes make the scenario reproducible in the existing what-if simulator.
+The next official round starts before Vitré’s fixture. Win/loss scenarios must force only Vitré’s next result and allow all other games to follow the model; best-round scenarios condition on the entire listed combination.
 
 ## Known Issues
 
-These are conditional Monte Carlo estimates, not qualification guarantees or the probability of the listed result combination. Near-equal combinations can change with sampling. Future unknown score margins retain the existing synthetic one-point tiebreak approximation. Invalid round groups above seven games suppress this section without breaking the homepage.
+Visual browser inspection was unavailable in this session. Responsive CSS was reviewed, but no screenshot or mobile preview is claimed. Existing sampling, fixed-rating and synthetic future-score tiebreak limitations remain. These are qualification probabilities conditional on results, not the chance of winning the next game.
 
 ## Verification Run
 
-- npm test: PASS, 32 tests, including round grouping and exact replay against the full simulator.
+- npm test: PASS, 36 tests including home/away result replay, chronological selection, completion and input validation.
 - npm run typecheck: PASS.
 - npm run lint: PASS.
 - npm run build: PASS.
-- Complete recompute: PASS, 13 teams, 156 fixtures, 39 completed box scores; unchanged baseline odds and ratings.
-- Built homepage HTTP and Chrome screenshot: PASS, six results displayed above the standings.
-- POST /api/odds with the six displayed results: PASS, reproduces 0.8314 top-seven probability.
+- Regenerated odds cache: PASS; all pre-existing forecasts, ratings and best-round fields equal the previous snapshot exactly.
+- Built homepage HTTP: PASS, three correctly labeled estimates, six collapsed round results, 13 standings rows and old oversized section removed.
+- POST /api/odds: PASS, both displayed next-game outcomes reproduce the exact qualification probabilities.
 - git diff --check: PASS.
-- GitHub checks and Vercel preview/production deployment: PASS.
-- Production HTTP and Chrome screenshot: PASS, all six results and 83.1% displayed above the unchanged standings.
 
 ## Next Steps
 
-Release complete. The scenario refreshes with valid source snapshots and advances to the next round as results are completed. Local test server stopped. Independent historical efficiency-model validation remains future work.
+Commit/push, create and attach PR, pass checks, merge and verify production. Sync the canonical Active checkout and record final release status.

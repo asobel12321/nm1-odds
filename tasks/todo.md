@@ -29,3 +29,9 @@ Vitré adjusted net+1.55 per100. Production snapshot top7=73.36%,20,000 simulati
 ## Best-round review/results
 
 Published PR8 on 23 October 2026. Round 8 best case: Bordeaux, Laval, Lorient, Vitré, Challans and Rennes win; conditional top-seven odds 83.14% versus the unchanged 73.36% headline forecast. All six displayed outcomes reproduce the estimate in the full simulator and API. All 32 tests, typecheck, lint, build, GitHub checks and Vercel deployment passed. Production HTTP and browser inspection passed. Conditional estimates retain existing model and future-score tiebreak limitations; scenario calculations use 5,000 shared-draw simulations per combination.
+
+## Next-game scenarios and compact round outlook
+
+- [x] Calculate cached top-seven odds conditional on a win or loss in Vitré’s next fixture.
+- [x] Show win/loss estimates first and a compact best-round estimate with expandable results.
+- [ ] Verify scenario replay, unchanged baseline, responsive layout, and publish/sync the release.
