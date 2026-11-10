@@ -290,7 +290,7 @@ h3 {
 }
 .dashboard-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
+  grid-template-columns: 1fr;
   gap: 40px;
   padding: 44px 0;
 }
