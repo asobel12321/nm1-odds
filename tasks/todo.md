@@ -34,4 +34,9 @@ Published PR8 on 23 October 2026. Round 8 best case: Bordeaux, Laval, Lorient, V
 
 - [x] Calculate cached top-seven odds conditional on a win or loss in Vitré’s next fixture.
 - [x] Show win/loss estimates first and a compact best-round estimate with expandable results.
-- [ ] Verify scenario replay, unchanged baseline, responsive layout, and publish/sync the release.
+- [x] Verify scenario replay and unchanged baseline; review responsive styles; publish and sync the release.
+
+
+## Next-game outlook review/results
+
+Published PR9 on 10 November 2026. Current next-game qualification estimates: 78.18% after a win, 58.76% after a loss; best Round 11 80.18%. All previous forecast fields remain exactly unchanged (baseline 69.59%). Required best-round results are collapsed by default in the compact section. All 36 tests, typecheck, lint, build, built-page/API replay, GitHub checks and Vercel deployment passed. Production HTTP confirms all three cards, correct fixture, six collapsed results and 13 standings rows. Browser inspection stopped because the tool could not verify its URL, so no visual/mobile preview is claimed.

@@ -6,11 +6,11 @@ Show Vitré’s top-seven odds after a win or loss in its next game, alongside a
 
 ## Branch
 
-codex/next-game-scenarios in C:\Users\asobe\Projects\Worktrees\nm1-odds-efficiency. Canonical checkout: C:\Users\asobe\Projects\Active\nm1-odds.
+codex/next-game-release (release records after codex/next-game-scenarios) in C:\Users\asobe\Projects\Worktrees\nm1-odds-efficiency. Canonical checkout: C:\Users\asobe\Projects\Active\nm1-odds.
 
 ## Current Status
 
-Implemented and locally verified on 10 November 2026. Cached next fixture is home against Les Sables d’Olonne on 13 November at 20:30 France time. Conditional qualification estimates: win 78.18%, loss 58.76%, best Round 11 80.18%; unchanged baseline 69.59%. Ready for GitHub checks, merge and production verification.
+Published on 10 November 2026 through PR9: https://github.com/asobel12321/nm1-odds/pull/9. Merged feature SHA edaef9835fac53c0f074ddb5c32370f9226b40f6. GitHub checks and Vercel preview/production deployments passed. Cached next fixture is home against Les Sables d’Olonne on 13 November at 20:30 France time. Conditional qualification estimates: win 78.18%, loss 58.76%, best Round 11 80.18%; unchanged baseline 69.59%. Production HTTP verified all three estimates, the correct next opponent/date, six collapsed round results and unchanged 13-row standings/baseline. Canonical Active checkout synced.
 
 ## Files Changed
 
@@ -46,7 +46,9 @@ Visual browser inspection was unavailable in this session. Responsive CSS was re
 - Built homepage HTTP: PASS, three correctly labeled estimates, six collapsed round results, 13 standings rows and old oversized section removed.
 - POST /api/odds: PASS, both displayed next-game outcomes reproduce the exact qualification probabilities.
 - git diff --check: PASS.
+- GitHub verification and Vercel preview/production deployment: PASS.
+- Live homepage HTTP: PASS, 78.2% win / 58.8% loss / 80.2% best round; 69.6% baseline and six collapsed results.
 
 ## Next Steps
 
-Commit/push, create and attach PR, pass checks, merge and verify production. Sync the canonical Active checkout and record final release status.
+Release complete. Local server stopped. Next-game and best-round estimates refresh automatically with validated snapshots. Independent historical efficiency validation remains future work.
