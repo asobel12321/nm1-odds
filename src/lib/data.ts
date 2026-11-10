@@ -1,3 +1,4 @@
+import { NEXT_GAME_VERSION } from "./nextGame";
 import { BEST_CASE_VERSION } from "./bestCase";
 import fs from "fs";
 import path from "path";
@@ -50,6 +51,7 @@ export function loadOddsCache(data = loadData()): OddsCache | null {
     ) &&
       cache.dataHash === dataFingerprint(data) &&
       cache.bestCaseVersion === BEST_CASE_VERSION &&
+      cache.nextGameVersion === NEXT_GAME_VERSION &&
       cache.cutoff === PLAYOFF_CUTOFF &&
       cache.seed === DEFAULT_SEED &&
       cache.focusId === findFocusTeamId(data) &&

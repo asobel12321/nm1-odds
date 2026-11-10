@@ -117,6 +117,8 @@ export interface OddsCache extends SimResult {
   homeAdv: number;
   focusId: TeamId;
   focusWinTable?: WinTable;
+  nextGameVersion?: string;
+  focusNextGame?: NextGameResult | null;
   bestCaseVersion?: string;
   focusBestCase?: BestCaseResult | null;
   focusMatchdayImpact?: MatchdayImpact | null;
@@ -153,4 +155,12 @@ export interface BestCaseResult {
   baselineOdds: number;
   odds: number;
   outcomes: ForcedOutcomes;
+}
+
+export interface NextGameResult {
+  game: Game;
+  simulations: number;
+  seed: number;
+  winOdds: number;
+  lossOdds: number;
 }

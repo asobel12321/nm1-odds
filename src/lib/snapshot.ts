@@ -1,3 +1,4 @@
+import { buildNextGame, NEXT_GAME_VERSION } from "./nextGame";
 import { buildBestCase, BEST_CASE_VERSION } from "./bestCase";
 import { unstable_cache } from "next/cache";
 import {
@@ -60,11 +61,18 @@ export const loadSnapshot = unstable_cache(
       dataHash: dataFingerprint(data),
       updated: new Date().toISOString(),
       focusWinTable: buildWinTable(data, params.focusId, params),
+      nextGameVersion: NEXT_GAME_VERSION,
+      focusNextGame: buildNextGame(data, params.focusId, params),
       bestCaseVersion: BEST_CASE_VERSION,
       focusBestCase: buildBestCase(data, params.focusId, params),
     };
     return { data, odds, dataAgeDays };
   },
-  ["vitre-group-b-2026-2027", JSON.stringify(MODEL_CONFIG), BEST_CASE_VERSION],
+  [
+    "vitre-group-b-2026-2027",
+    JSON.stringify(MODEL_CONFIG),
+    BEST_CASE_VERSION,
+    NEXT_GAME_VERSION,
+  ],
   { revalidate: 3600 },
 );
