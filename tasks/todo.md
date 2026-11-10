@@ -45,4 +45,7 @@ Published PR9 on 10 November 2026. Current next-game qualification estimates: 78
 ## Remove homepage schedule
 
 - [x] Remove the Up next / Vitré schedule sidebar and give the standings the full row.
-- [ ] Verify the page and production release, then sync the Active checkout.
+- [x] Verify the page and production release, then sync the Active checkout.
+
+
+Removed the homepage schedule/sidebar in PR10. Standings fill the row. Lint, build, GitHub checks and Vercel preview passed; production HTTP confirms the section is absent, with 13 standings rows and all three scenario cards retained.

@@ -6,11 +6,11 @@ Remove the homepage Up next / Vitré schedule section and let the standings use 
 
 ## Branch
 
-codex/remove-home-schedule in the nm1-odds-efficiency worktree. Canonical checkout: C:/Users/asobe/Projects/Active/nm1-odds.
+codex/remove-schedule-release (release records after codex/remove-home-schedule) in the nm1-odds-efficiency worktree. Canonical checkout: C:/Users/asobe/Projects/Active/nm1-odds.
 
 ## Current Status
 
-Schedule sidebar removed; standings use one full-width column. Build and lint passed; ready for GitHub checks and production verification.
+Published through PR10 on 10 November 2026: https://github.com/asobel12321/nm1-odds/pull/10. Feature merged as 4d88eeca1d1563f4a231d18100097060aa71c28c. Production HTTP confirms the schedule sidebar is absent, with 13 standings rows and all three scenario cards retained. Standings use one full-width column. Active checkout synced.
 
 ## Files Changed
 
@@ -30,7 +30,7 @@ The desktop layout reserved a second column for the schedule; a single-column gr
 
 ## Known Issues
 
-No new model or data changes. Visual browser preview was unavailable in the preceding task; use built-page checks for this removal.
+No new model or data changes. No browser visual preview is claimed; production HTML was verified directly.
 
 ## Verification Run
 
@@ -38,7 +38,9 @@ No new model or data changes. Visual browser preview was unavailable in the prec
 - npm run build: PASS, including TypeScript checks.
 - git diff --check: PASS.
 - Reviewed diff: only schedule/sidebar markup and the standings grid changed.
+- GitHub test/build checks and Vercel preview: PASS.
+- Production HTTP: PASS, no schedule/fixture list, 13 standings rows and three scenario cards.
 
 ## Next Steps
 
-Verify, commit/push, pass GitHub checks, merge and confirm the schedule is absent in production. Sync the canonical Active checkout.
+Release complete. No model, data, cache or probability changes were required.
