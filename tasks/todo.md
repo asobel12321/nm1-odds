@@ -49,3 +49,11 @@ Published PR9 on 10 November 2026. Current next-game qualification estimates: 78
 
 
 Removed the homepage schedule/sidebar in PR10. Standings fill the row. Lint, build, GitHub checks and Vercel preview passed; production HTTP confirms the section is absent, with 13 standings rows and all three scenario cards retained.
+
+
+## NM1 score-based tiebreakers
+
+- [x] Confirm the 2026/27 FFBB rules for tied teams and the phase-one cutoff.
+- [x] Use classification points and score-based tiebreaks across the projections.
+- [x] Test two-team and multi-team ties, replay scenarios, and verify game win probabilities are unchanged.
+- [ ] Publish, verify the live methodology and odds, and sync the Active checkout.

@@ -28,7 +28,7 @@ export function buildNextGame(
     Math.min(NEXT_GAME_SIMULATIONS, Math.floor(params.simulations)),
   );
   const seed = params.seed ?? 1;
-  const predict = createProjectionModel(data, params).homeProbability;
+  const predict = createProjectionModel(data, params).forecast;
   const win = game.home === teamId ? "home" : "away";
   const loss = win === "home" ? "away" : "home";
   const conditional = (outcome: "home" | "away") =>

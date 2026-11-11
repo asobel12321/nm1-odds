@@ -1,8 +1,5 @@
-import { createRng } from "@/lib/rng";
+import { createSeasonSampler } from "@/lib/seasonSampler";
 import { PLAYOFF_CUTOFF } from "@/lib/competition";
-import { createProjectionModel } from "@/lib/projectionModel";
-import { resolveTeamStandings } from "@/lib/rank";
-import { remainingGames } from "@/lib/data";
 import type { DataFile, SimParams, TeamId, WinTable } from "@/lib/types";
 
 export function buildWinTable(
@@ -10,64 +7,21 @@ export function buildWinTable(
   teamId: TeamId,
   params: SimParams,
 ): WinTable {
-  const simulations = Math.max(1, params.simulations);
-  const rng = createRng(params.seed ?? Date.now());
-  const predict = createProjectionModel(data, params).homeProbability;
-  const remaining = remainingGames(data.games);
-  const probabilities = new Map(remaining.map((g) => [g.id, predict(g)]));
-  const teamIds = data.teams.map((team) => team.id);
-  const baseWins: Record<TeamId, number> = {};
-  const baseLosses: Record<TeamId, number> = {};
-  const remainingByTeam: Record<TeamId, number> = {};
-  for (const team of data.teams) {
-    baseWins[team.id] = team.wins;
-    baseLosses[team.id] = team.losses;
-    remainingByTeam[team.id] = 0;
-  }
-  for (const game of remaining) {
-    remainingByTeam[game.home] += 1;
-    remainingByTeam[game.away] += 1;
-  }
-  const totalGames: Record<TeamId, number> = {};
-  for (const team of data.teams) {
-    totalGames[team.id] = team.wins + team.losses + remainingByTeam[team.id];
-  }
-
-  const focusRemaining = remaining.filter(
-    (game) => game.home === teamId || game.away === teamId,
-  );
-  const remainingCount = focusRemaining.length;
+  const simulations = Math.max(1, Math.floor(params.simulations));
+  const sampler = createSeasonSampler(data, params);
+  const team = data.teams.find((t) => t.id === teamId);
+  if (!team) throw new Error("Unknown focus team");
+  const remainingCount = sampler.remainingCounts[teamId];
   const rankCounts: number[][] = Array.from(
     { length: remainingCount + 1 },
-    () => Array(teamIds.length).fill(0),
+    () => Array(data.teams.length).fill(0),
   );
   const rowTotals: number[] = Array(remainingCount + 1).fill(0);
 
   for (let sim = 0; sim < simulations; sim += 1) {
-    const wins: Record<TeamId, number> = { ...baseWins };
-    let focusWins = 0;
-    const simOutcomes: Record<string, "home" | "away"> = {};
-    for (const game of remaining) {
-      const pHome = probabilities.get(game.id)!;
-      const draw = rng();
-      const winner =
-        params.forcedOutcomes?.[game.id] ?? (draw < pHome ? "home" : "away");
-      const winnerId = winner === "home" ? game.home : game.away;
-      wins[winnerId] += 1;
-      simOutcomes[game.id] = winner;
-      if (winnerId === teamId) {
-        focusWins += 1;
-      }
-    }
-
-    const resolution = resolveTeamStandings(
-      data.teams,
-      wins,
-      params.focusId ?? "AVB",
-      totalGames,
-      data.games,
-      simOutcomes,
-    );
+    const wins = sampler.sampleWins();
+    const focusWins = wins[teamId] - team.wins;
+    const resolution = sampler.rank(wins);
     if (focusWins <= remainingCount) {
       const unresolvedGroup = resolution.unresolvedGroups.find((group) =>
         group.includes(teamId),
@@ -100,8 +54,8 @@ export function buildWinTable(
     return {
       remainingWins,
       remainingLosses,
-      wins: baseWins[teamId] + remainingWins,
-      losses: baseLosses[teamId] + remainingLosses,
+      wins: team.wins + remainingWins,
+      losses: team.losses + remainingLosses,
       winPct: remainingCount > 0 ? remainingWins / remainingCount : 0,
       rankProbs,
       noPlayoffs,

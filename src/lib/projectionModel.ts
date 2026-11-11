@@ -7,7 +7,13 @@ import type { DataFile, Game } from "./types";
 import { assertEfficiencyCoverage } from "./ffbbEfficiency";
 export const DEFAULT_HOME_ADV = EFFICIENCY_CONFIG.homeAdv;
 export const DEFAULT_PROBABILITY_SCALE = EFFICIENCY_CONFIG.probabilityScale;
+export type GameForecast = Pick<
+  ReturnType<typeof predictEfficiency>,
+  "homeScore" | "awayScore" | "margin" | "homeWinProbability"
+>;
+
 export const MODEL_CONFIG = {
+  standingsVersion: "ffbb-2026-score-v1",
   modelVersion: "adjusted-efficiency-20-v1",
   marginCap: EFFICIENCY_CONFIG.marginCap,
   strengthRidge: EFFICIENCY_CONFIG.ridge,
@@ -29,11 +35,12 @@ export function createProjectionModel(
   const strengthRatings = Object.fromEntries(
     Object.entries(fit.teams).map(([id, t]) => [id, t.net]),
   );
+  const forecast = (game: Game) => predictEfficiency(fit, game.home, game.away);
   return {
     fit,
+    forecast,
     strengthRatings,
-    homeProbability: (game: Game) =>
-      predictEfficiency(fit, game.home, game.away).homeWinProbability,
+    homeProbability: (game: Game) => forecast(game).homeWinProbability,
     metadata: {
       ...MODEL_CONFIG,
       homeAdv: fit.config.homeAdv,

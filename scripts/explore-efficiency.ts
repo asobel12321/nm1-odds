@@ -34,7 +34,11 @@ const baseline = simulateSeason(
     probabilityScale: 10,
     focusId: "269",
   },
-  (g) => winProb(baseMargin[g.home], baseMargin[g.away], 10, 3),
+  (g) => ({
+    ...predictEfficiency(fit, g.home, g.away),
+    margin: baseMargin[g.home] - baseMargin[g.away] + 3,
+    homeWinProbability: winProb(baseMargin[g.home], baseMargin[g.away], 10, 3),
+  }),
 );
 const projection = simulateEfficiencySeason(data, fit, simulations, seed),
   sensitivity = simulateEfficiencySeason(data, alternate, simulations, seed);
