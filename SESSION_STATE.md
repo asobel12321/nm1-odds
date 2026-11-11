@@ -6,11 +6,11 @@ Use the official 2026/27 NM1 tiebreaks in Vitré’s top-seven forecasts, includ
 
 ## Branch
 
-codex/nm1-score-tiebreakers in the nm1-odds-efficiency worktree. Canonical checkout: C:/Users/asobe/Projects/Active/nm1-odds.
+codex/nm1-tiebreak-release (release record for codex/nm1-score-tiebreakers) in the nm1-odds-efficiency worktree. Canonical checkout: C:/Users/asobe/Projects/Active/nm1-odds.
 
 ## Current Status
 
-Implementation and 43 tests pass as of 11 November 2026. Using the same validated 58-game snapshot, Vitré’s forecast changes from 69.59% to 70.03%. Next-game win 78.44%, loss 59.34%, best round 80.36%. Built homepage and exact what-if replay verified; GitHub release pending.
+Published 11 November 2026 through PR11: https://github.com/asobel12321/nm1-odds/pull/11. Feature merged as 9ca801af858ba3ad6613d2454815143c34c9a693. Using the same validated 58-game snapshot, Vitré’s forecast changes from 69.59% to 70.03%. Next-game win 78.44%, loss 59.34%, best round 80.36%. Live homepage and API both verified the new standings version and 70.0% displayed odds; canonical Active checkout synced.
 
 ## Files Changed
 
@@ -45,7 +45,9 @@ Future score totals are projected, with stochastic margins; the model does not f
 - Final optimized best-round cache replay: PASS, exact, 8.68 seconds for 64 combinations.
 - git diff --check: PASS.
 - Built homepage and what-if API: PASS, 13 standings rows, updated methodology, and all three scenario probabilities replay exactly.
+- GitHub CI and Vercel preview/production deployment: PASS.
+- Live homepage/API: PASS, ffbb-2026-score-v1, 70.0% baseline, all three scenarios, 13 standings rows.
 
 ## Next Steps
 
-Commit/push, pass GitHub checks, merge and confirm production. Sync the Active checkout.
+Release complete. Local server stopped. The existing automatic refresh recomputes the official tiebreak projections as new scores are validated.

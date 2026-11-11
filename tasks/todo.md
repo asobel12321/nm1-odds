@@ -56,4 +56,9 @@ Removed the homepage schedule/sidebar in PR10. Standings fill the row. Lint, bui
 - [x] Confirm the 2026/27 FFBB rules for tied teams and the phase-one cutoff.
 - [x] Use classification points and score-based tiebreaks across the projections.
 - [x] Test two-team and multi-team ties, replay scenarios, and verify game win probabilities are unchanged.
-- [ ] Publish, verify the live methodology and odds, and sync the Active checkout.
+- [x] Publish, verify the live methodology and odds, and sync the Active checkout.
+
+
+### Tiebreak release results
+
+Published PR11 on 11 November 2026. Same-snapshot Vitré odds 69.59% → 70.03%; ratings, win distributions and source data match exactly. All 43 tests, lint, build, GitHub checks and Vercel deployment passed. Local what-if replay matched all three scenarios; production homepage/API report the new version and updated methodology. Exceptional administrative match rulings are outside the projection.
