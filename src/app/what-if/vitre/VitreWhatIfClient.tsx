@@ -153,8 +153,9 @@ export default function VitreWhatIfClient({
         </div>
         <p className="footnote">
           {remaining.length} remaining fixtures. Scenarios use 5,000 simulations
-          with the same seed for comparable picks. Baseline uses 20,000. Future
-          wins use a one-point margin for tiebreaks.
+          with the same seed for comparable picks. Baseline uses 20,000. The
+          model samples future scores for FFBB tiebreaks, including the margins
+          of games whose winner you pick.
         </p>
         <Link href="/" className="text-link">
           ← Standings, methodology & source

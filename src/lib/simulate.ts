@@ -1,22 +1,7 @@
-import { createRng } from "@/lib/rng";
-import { PLAYOFF_CUTOFF } from "@/lib/competition";
-import { createProjectionModel } from "@/lib/projectionModel";
-import { resolveTeamStandings } from "@/lib/rank";
-import type { DataFile, SimParams, SimResult, TeamId, Game } from "@/lib/types";
-
-function remainingCounts(data: DataFile): Record<TeamId, number> {
-  const counts: Record<TeamId, number> = {};
-  for (const team of data.teams) {
-    counts[team.id] = 0;
-  }
-  for (const game of data.games) {
-    if (!game.played) {
-      counts[game.home] += 1;
-      counts[game.away] += 1;
-    }
-  }
-  return counts;
-}
+import { PLAYOFF_CUTOFF } from "./competition";
+import type { GameForecast } from "./projectionModel";
+import { createSeasonSampler } from "./seasonSampler";
+import type { DataFile, SimParams, SimResult, TeamId, Game } from "./types";
 
 function addResolutionToRankHist(
   rankHist: Record<TeamId, number[]>,
@@ -50,78 +35,26 @@ function addResolutionToRankHist(
 export function simulateSeason(
   data: DataFile,
   params: SimParams,
-  homeProbability?: (game: Game) => number,
+  forecast?: (game: Game) => GameForecast,
 ): SimResult {
-  const simulations = Math.max(1, params.simulations);
-  const rng = createRng(params.seed ?? Date.now());
-  const predict =
-    homeProbability ?? createProjectionModel(data, params).homeProbability;
-  const remaining = data.games.filter((game) => !game.played);
-  const probabilities = new Map(remaining.map((g) => [g.id, predict(g)]));
-  const baseWins: Record<TeamId, number> = {};
-  for (const team of data.teams) {
-    baseWins[team.id] = team.wins;
-  }
-
-  const counts = remainingCounts(data);
+  const simulations = Math.max(1, Math.floor(params.simulations));
+  const sampler = createSeasonSampler(data, params, forecast);
   const maxWins = Math.max(
-    ...data.teams.map((team) => team.wins + counts[team.id]),
+    ...data.teams.map((team) => team.wins + sampler.remainingCounts[team.id]),
   );
-  const totalGames: Record<TeamId, number> = {};
-  for (const team of data.teams) {
-    totalGames[team.id] = team.wins + team.losses + counts[team.id];
-  }
-
+  const teamIds = data.teams.map((team) => team.id);
   const rankHist: Record<TeamId, number[]> = {};
   const winHist: Record<TeamId, number[]> = {};
-  const teamIds = data.teams.map((team) => team.id);
   for (const id of teamIds) {
     rankHist[id] = Array(teamIds.length).fill(0);
     winHist[id] = Array(maxWins + 1).fill(0);
   }
-
-  for (let sim = 0; sim < simulations; sim += 1) {
-    const wins: Record<TeamId, number> = { ...baseWins };
-    const simOutcomes: Record<string, "home" | "away"> = {};
-    for (const game of remaining) {
-      const draw = rng(); // Consume one draw per fixture so scenarios share comparable randomness.
-      const forced = params.forcedOutcomes?.[game.id];
-      let winner: "home" | "away";
-      if (forced) {
-        winner = forced;
-      } else {
-        const pHome = probabilities.get(game.id)!;
-        winner = draw < pHome ? "home" : "away";
-      }
-      const winnerId = winner === "home" ? game.home : game.away;
-      wins[winnerId] += 1;
-      simOutcomes[game.id] = winner;
-    }
-
-    const resolution = resolveTeamStandings(
-      data.teams,
-      wins,
-      params.focusId ?? "AVB",
-      totalGames,
-      data.games,
-      simOutcomes,
-    );
-    addResolutionToRankHist(
-      rankHist,
-      resolution.rankedIds,
-      resolution.unresolvedGroups,
-    );
-    for (const id of teamIds) {
-      const totalWins = wins[id];
-      if (totalWins >= winHist[id].length) {
-        const prevLength = winHist[id].length;
-        winHist[id].length = totalWins + 1;
-        winHist[id].fill(0, prevLength);
-      }
-      winHist[id][totalWins] += 1;
-    }
+  for (let sim = 0; sim < simulations; sim++) {
+    const wins = sampler.sampleWins();
+    const { rankedIds, unresolvedGroups } = sampler.rank(wins);
+    addResolutionToRankHist(rankHist, rankedIds, unresolvedGroups);
+    for (const id of teamIds) winHist[id][wins[id]]++;
   }
-
   const playoffOdds: Record<TeamId, number> = {};
   for (const id of teamIds) {
     rankHist[id] = rankHist[id].map((count) => count / simulations);
@@ -130,72 +63,44 @@ export function simulateSeason(
       .slice(0, PLAYOFF_CUTOFF)
       .reduce((a, b) => a + b, 0);
   }
-
   return { playoffOdds, rankHist, winHist };
 }
-/** Focus-only equivalent of simulateSeason, skipping tiebreak work away from the cutoff. */
+
+/** Focus-only equivalent of simulateSeason, skipping ties away from the cutoff. */
 export function simulateQualificationOdds(
   data: DataFile,
   teamId: TeamId,
   params: SimParams,
-  homeProbability?: (game: Game) => number,
+  forecast?: (game: Game) => GameForecast,
 ): number {
-  const simulations = Math.max(1, Math.floor(params.simulations)),
-    rng = createRng(params.seed ?? Date.now());
-  const predict =
-    homeProbability ?? createProjectionModel(data, params).homeProbability;
-  const remaining = data.games.filter((g) => !g.played),
-    probabilities = remaining.map(predict);
-  const base = Object.fromEntries(data.teams.map((t) => [t.id, t.wins]));
-  const total = Object.fromEntries(
-    data.teams.map((t) => [
-      t.id,
-      t.wins +
-        t.losses +
-        remaining.filter((g) => g.home === t.id || g.away === t.id).length,
-    ]),
-  );
-  if (!(teamId in base)) throw new Error("Unknown focus team");
+  if (!data.teams.some((team) => team.id === teamId))
+    throw new Error("Unknown focus team");
+  const simulations = Math.max(1, Math.floor(params.simulations));
+  const sampler = createSeasonSampler(data, params, forecast);
   let qualified = 0;
   for (let sim = 0; sim < simulations; sim++) {
-    const wins = { ...base },
-      outcomes: Record<string, "home" | "away"> = {};
-    remaining.forEach((g, i) => {
-      const draw = rng(),
-        winner =
-          params.forcedOutcomes?.[g.id] ??
-          (draw < probabilities[i] ? "home" : "away");
-      wins[winner === "home" ? g.home : g.away]++;
-      outcomes[g.id] = winner;
-    });
-    let above = 0,
-      tied = 0;
+    const wins = sampler.sampleWins();
+    const focusPoints = sampler.pointsFor(teamId, wins);
+    let above = 0;
+    const tied: DataFile["teams"] = [];
     for (const team of data.teams) {
-      const difference =
-        wins[team.id] * (total[teamId] || 1) -
-        wins[teamId] * (total[team.id] || 1);
-      if (difference > 0) above++;
-      else if (difference === 0) tied++;
+      const points = sampler.pointsFor(team.id, wins);
+      if (points > focusPoints) above++;
+      else if (points === focusPoints) tied.push(team);
     }
     if (above >= PLAYOFF_CUTOFF) continue;
-    if (above + tied <= PLAYOFF_CUTOFF) {
+    if (above + tied.length <= PLAYOFF_CUTOFF) {
       qualified++;
       continue;
     }
-    const resolution = resolveTeamStandings(
-      data.teams,
-      wins,
-      params.focusId ?? teamId,
-      total,
-      data.games,
-      outcomes,
-    );
-    const group = resolution.unresolvedGroups.find((g) => g.includes(teamId));
+    const spots = PLAYOFF_CUTOFF - above;
+    const { rankedIds, unresolvedGroups } = sampler.rank(wins, tied);
+    const group = unresolvedGroups.find((g) => g.includes(teamId));
     if (group)
       qualified +=
-        group.filter((id) => resolution.rankedIds.indexOf(id) < PLAYOFF_CUTOFF)
-          .length / group.length;
-    else if (resolution.rankedIds.indexOf(teamId) < PLAYOFF_CUTOFF) qualified++;
+        group.filter((id) => rankedIds.indexOf(id) < spots).length /
+        group.length;
+    else if (rankedIds.indexOf(teamId) < spots) qualified++;
   }
   return qualified / simulations;
 }

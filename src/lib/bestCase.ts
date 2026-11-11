@@ -52,7 +52,7 @@ export function buildBestCase(
     Math.min(BEST_CASE_SIMULATIONS, Math.floor(params.simulations)),
   );
   const seed = params.seed ?? 1;
-  const predict = createProjectionModel(data, params).homeProbability;
+  const predict = createProjectionModel(data, params).forecast;
   const known = params.forcedOutcomes ?? {},
     unforced = round.games.filter((g) => !known[g.id]),
     scenarios = 2 ** unforced.length;

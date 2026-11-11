@@ -2,45 +2,50 @@
 
 ## Objective
 
-Remove the homepage Up next / Vitré schedule section and let the standings use its space.
+Use the official 2026/27 NM1 tiebreaks in Vitré’s top-seven forecasts, including the combined score of head-to-head matchups.
 
 ## Branch
 
-codex/remove-schedule-release (release records after codex/remove-home-schedule) in the nm1-odds-efficiency worktree. Canonical checkout: C:/Users/asobe/Projects/Active/nm1-odds.
+codex/nm1-score-tiebreakers in the nm1-odds-efficiency worktree. Canonical checkout: C:/Users/asobe/Projects/Active/nm1-odds.
 
 ## Current Status
 
-Published through PR10 on 10 November 2026: https://github.com/asobel12321/nm1-odds/pull/10. Feature merged as 4d88eeca1d1563f4a231d18100097060aa71c28c. Production HTTP confirms the schedule sidebar is absent, with 13 standings rows and all three scenario cards retained. Standings use one full-width column. Active checkout synced.
+Implementation and 43 tests pass as of 11 November 2026. Using the same validated 58-game snapshot, Vitré’s forecast changes from 69.59% to 70.03%. Next-game win 78.44%, loss 59.34%, best round 80.36%. Built homepage and exact what-if replay verified; GitHub release pending.
 
 ## Files Changed
 
-src/app/page.tsx, src/app/globals.css, tasks/todo.md, SESSION_STATE.md.
+Shared season sampler, projection forecast adapter, tiebreak resolver, full/focus simulations and win table, next-game/best-round callers, experimental comparison adapter, odds cache, tests, homepage/what-if methodology, and documentation.
 
 ## Accomplishments
 
-Removed the schedule sidebar and its accompanying context card. Existing odds, scenario cards, data and calculations are untouched.
+- Checked FFBB general Articles 16–17 and the NM1 phase-one cutoff in the published 2026/27 rulebooks.
+- Rank projections by classification points; resolve ties by mini-table points, head-to-head margin and scoring, then overall group margin and scoring. Restart after a split; share positions if the rule calls for drawing lots.
+- Use real completed scores and projected totals with logistic sampled margins for future games. Forced results condition the margin on the chosen winner.
+- Keep the same one draw per fixture, model ratings, home advantage, win probabilities, sampled win histograms, and live standings presentation.
+- Version the cache and apply the same ranking and scores to headline odds, what-if, best round, next-game odds and the win target.
 
 ## Things Tried
 
-Used the existing homepage section and layout styles for a small removal.
+Initial full recompute took 36.3 seconds. Narrowed score work to games involving tied teams and the best-round shortcut to the cutoff tie. Final 64-combination best-round search took 8.68 seconds and reproduced the saved result exactly.
 
 ## Things Learned
 
-The desktop layout reserved a second column for the schedule; a single-column grid prevents an empty sidebar gap.
+A split series uses the sum of the two margins. In a multi-team tie, the criteria restart with the remaining tied subset rather than moving straight to the next criterion.
 
 ## Known Issues
 
-No new model or data changes. No browser visual preview is claimed; production HTML was verified directly.
+Future score totals are projected, with stochastic margins; the model does not forecast match-level administrative rulings or forfeits. It starts from the official classification points reported in the snapshot. Existing win-probability calibration caveats remain.
 
 ## Verification Run
 
+- npm test: PASS, 43 tests, including 7 new cases for official rule order, conditional score draws and seventh-place replay.
 - npm run lint: PASS.
-- npm run build: PASS, including TypeScript checks.
+- npm run build: PASS, including final TypeScript compilation.
+- npm run recompute: PASS; exact baseline win histograms, ratings and data fingerprint match prior cache.
+- Final optimized best-round cache replay: PASS, exact, 8.68 seconds for 64 combinations.
 - git diff --check: PASS.
-- Reviewed diff: only schedule/sidebar markup and the standings grid changed.
-- GitHub test/build checks and Vercel preview: PASS.
-- Production HTTP: PASS, no schedule/fixture list, 13 standings rows and three scenario cards.
+- Built homepage and what-if API: PASS, 13 standings rows, updated methodology, and all three scenario probabilities replay exactly.
 
 ## Next Steps
 
-Release complete. No model, data, cache or probability changes were required.
+Commit/push, pass GitHub checks, merge and confirm production. Sync the Active checkout.

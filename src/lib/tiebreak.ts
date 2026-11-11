@@ -1,4 +1,10 @@
-import type { ForcedOutcomes, Game, TeamId, TeamRecord } from "@/lib/types";
+import type {
+  ForcedOutcomes,
+  Game,
+  GameScore,
+  TeamId,
+  TeamRecord,
+} from "@/lib/types";
 
 export interface StandingsResolution {
   rankedIds: TeamId[];
@@ -16,9 +22,6 @@ interface ResolvedGame {
   scoreKnown: boolean;
 }
 
-const SYNTHETIC_WINNER_SCORE = 75;
-const SYNTHETIC_LOSER_SCORE = 74;
-
 interface TeamTieStats {
   wins: number;
   games: number;
@@ -29,6 +32,8 @@ interface TeamTieStats {
 interface ResolveOptions {
   games?: Game[];
   forcedOutcomes?: ForcedOutcomes;
+  scoreFor?: (game: Game) => GameScore | undefined;
+  classificationPoints?: Record<TeamId, number>;
   fallbackCompare?: (a: TeamRecord, b: TeamRecord) => number | null;
   totalGames?: Record<TeamId, number>;
 }
@@ -51,56 +56,32 @@ function gcd(left: number, right: number): number {
 
 function buildResolvedGames(
   games: Game[],
-  forcedOutcomes?: ForcedOutcomes,
+  options: ResolveOptions = {},
 ): ResolvedGame[] {
   return games.map((game) => {
-    if (game.played) {
-      const homeScore = game.homeScore ?? null;
-      const awayScore = game.awayScore ?? null;
-      const winner =
-        homeScore !== null && awayScore !== null
-          ? homeScore > awayScore
-            ? game.home
-            : game.away
-          : null;
-      return {
-        home: game.home,
-        away: game.away,
-        winner,
-        homeScore,
-        awayScore,
-        scoreKnown: homeScore !== null && awayScore !== null,
-      };
-    }
-
-    const forced = forcedOutcomes?.[game.id];
-    if (forced === "home") {
-      return {
-        home: game.home,
-        away: game.away,
-        winner: game.home,
-        homeScore: SYNTHETIC_WINNER_SCORE,
-        awayScore: SYNTHETIC_LOSER_SCORE,
-        scoreKnown: true,
-      };
-    }
-    if (forced === "away") {
-      return {
-        home: game.home,
-        away: game.away,
-        winner: game.away,
-        homeScore: SYNTHETIC_LOSER_SCORE,
-        awayScore: SYNTHETIC_WINNER_SCORE,
-        scoreKnown: true,
-      };
-    }
+    // The official score always takes precedence over a scenario.
+    const score = game.played ? game : options.scoreFor?.(game);
+    const homeScore = score?.homeScore ?? null;
+    const awayScore = score?.awayScore ?? null;
+    const scoreKnown = homeScore !== null && awayScore !== null;
+    const forced = game.played ? undefined : options.forcedOutcomes?.[game.id];
+    const winner =
+      scoreKnown && homeScore !== awayScore
+        ? homeScore > awayScore
+          ? game.home
+          : game.away
+        : forced === "home"
+          ? game.home
+          : forced === "away"
+            ? game.away
+            : null;
     return {
       home: game.home,
       away: game.away,
-      winner: null,
-      homeScore: null,
-      awayScore: null,
-      scoreKnown: false,
+      winner,
+      homeScore,
+      awayScore,
+      scoreKnown,
     };
   });
 }
@@ -322,12 +303,13 @@ function resolveTieGroup(
   }
 
   const directStats = buildGroupStats(teamIds, groupGames);
-  const winsGroups = groupByMetric(
+  // Article 17 starts with classification points within the tied mini-table.
+  const directPointsGroups = groupByMetric(
     teamIds,
-    (teamId) => directStats[teamId].wins,
+    (id) => directStats[id].games + directStats[id].wins,
   );
-  if (winsGroups.length > 1) {
-    return flattenResolutions(winsGroups, (group) =>
+  if (directPointsGroups.length > 1) {
+    return flattenResolutions(directPointsGroups, (group) =>
       resolveTieGroup(group, resolvedGames, teamLookup, fallbackCompare),
     );
   }
@@ -337,7 +319,11 @@ function resolveTieGroup(
   );
   const directScoresKnown = groupGames.every((game) => game.scoreKnown);
 
-  if (equalDirectGames && directScoresKnown) {
+  // A winner-only scenario cannot jump past an unknown score margin.
+  if (equalDirectGames && !directScoresKnown)
+    return tryFallbackResolution(teamIds, teamLookup, fallbackCompare);
+
+  if (equalDirectGames) {
     const directDiffGroups = groupByMetric(
       teamIds,
       (teamId) => directStats[teamId].pointDiff,
@@ -396,35 +382,49 @@ export function resolveStandingsByTiebreaks(
   }
 
   const totalGames = options.totalGames;
-  const resolvedGames = options.games
-    ? buildResolvedGames(options.games, options.forcedOutcomes)
-    : [];
-
   const buckets = new Map<string, TeamId[]>();
-  for (const team of teams) {
-    const gamesPlayed = totalGames?.[team.id];
-    const numerator = wins[team.id];
-    const denominator = gamesPlayed && gamesPlayed > 0 ? gamesPlayed : 1;
-    const divisor = gcd(numerator, denominator);
-    const key = `${numerator / divisor}:${denominator / divisor}`;
-    const bucket = buckets.get(key);
-    if (bucket) {
-      bucket.push(team.id);
-    } else {
-      buckets.set(key, [team.id]);
+  if (!options.classificationPoints)
+    for (const team of teams) {
+      const gamesPlayed = totalGames?.[team.id];
+      const numerator = wins[team.id];
+      const denominator = gamesPlayed && gamesPlayed > 0 ? gamesPlayed : 1;
+      const divisor = gcd(numerator, denominator);
+      const key = `${numerator / divisor}:${denominator / divisor}`;
+      const bucket = buckets.get(key);
+      if (bucket) {
+        bucket.push(team.id);
+      } else {
+        buckets.set(key, [team.id]);
+      }
     }
-  }
 
   const rankedIds: TeamId[] = [];
   const unresolvedGroups: TeamId[][] = [];
 
-  for (const [, tiedIds] of Array.from(buckets.entries()).sort(
-    (left, right) => {
-      const [leftWins, leftGames] = left[0].split(":").map(Number);
-      const [rightWins, rightGames] = right[0].split(":").map(Number);
-      return rightWins * leftGames - leftWins * rightGames;
-    },
-  )) {
+  const points = options.classificationPoints;
+  const groups = points
+    ? groupByMetric(
+        teams.map((team) => team.id),
+        (id) => points[id],
+      )
+    : Array.from(buckets.entries())
+        .sort((left, right) => {
+          const [leftWins, leftGames] = left[0].split(":").map(Number);
+          const [rightWins, rightGames] = right[0].split(":").map(Number);
+          return rightWins * leftGames - leftWins * rightGames;
+        })
+        .map(([, ids]) => ids);
+  const tiedTeams = new Set(groups.filter((group) => group.length > 1).flat());
+  const resolvedGames =
+    options.games && tiedTeams.size > 0
+      ? buildResolvedGames(
+          options.games.filter(
+            (game) => tiedTeams.has(game.home) || tiedTeams.has(game.away),
+          ),
+          options,
+        )
+      : [];
+  for (const tiedIds of groups) {
     const resolution =
       tiedIds.length > 1
         ? resolveTieGroup(

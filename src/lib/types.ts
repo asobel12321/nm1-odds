@@ -38,6 +38,11 @@ export interface DataFile {
   >;
 }
 
+export interface GameScore {
+  homeScore: number;
+  awayScore: number;
+}
+
 export type GameResult = "home" | "away";
 export type ForcedOutcomes = Record<string, GameResult>;
 
@@ -99,6 +104,7 @@ export interface ClinchResult {
 
 export interface OddsCache extends SimResult {
   modelVersion: string;
+  standingsVersion: string;
   marginCap: number;
   strengthRidge: number;
   strengthRatings: Record<TeamId, number>;

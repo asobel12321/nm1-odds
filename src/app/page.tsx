@@ -14,6 +14,7 @@ import {
   PLAYOFF_CUTOFF,
   RULES_URL,
   SOURCE_URL,
+  TIEBREAK_RULES_URL,
 } from "@/lib/competition";
 import { simulateSeason } from "@/lib/simulate";
 import { selectWinTarget } from "@/lib/winTable";
@@ -210,10 +211,10 @@ export default async function Home() {
             <StandingsTable rows={rows} />
             <p className="footnote">
               Displayed positions are ranked by winning percentage, with equal
-              percentages ordered by FFBB position. Qualification odds still use
-              the season simulations and tiebreak calculations. Power rating is
-              adjusted net efficiency in points per 100 possessions; positive
-              means above the Group B average.
+              percentages ordered by FFBB position. Qualification odds use the
+              official end-of-phase tiebreak rules. Power rating is adjusted net
+              efficiency in points per 100 possessions; positive means above the
+              Group B average.
             </p>
           </div>
         </section>
@@ -321,10 +322,27 @@ export default async function Home() {
               season and are refitted as validated box scores arrive.
             </p>
             <p>
-              Direct-game tiebreaks use recorded scores. Future wins use a
-              one-point margin; unresolved ties share positions equally. Scores
-              and possession inputs must validate together; an incomplete FFBB
-              update retains the last complete snapshot.
+              <a
+                href={TIEBREAK_RULES_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="text-link"
+              >
+                FFBB rules (Articles 16–17) ↗
+              </a>{" "}
+              After classification points, tied teams are compared on points
+              earned against one another, then combined head-to-head margin and
+              points scored. If still tied, overall group margin and points
+              scored come next. The process restarts for any teams still tied
+              after a split. If the rules call for drawing lots, the model
+              shares those positions equally.
+            </p>
+            <p>
+              Finished games use official scores. Future margins are sampled
+              from the same model that sets game win probabilities, with scores
+              built around the projected total. What-if picks force the winner
+              and still sample the margin. An incomplete FFBB update retains the
+              last complete snapshot.
             </p>
             <p>
               Next-game win and loss estimates each force only Vitré’s next
