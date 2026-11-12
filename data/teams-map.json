@@ -10,6 +10,11 @@
     "abbr": "VCB"
   },
   {
+    "id": "345",
+    "name": "Fougères",
+    "abbr": "PFB"
+  },
+  {
     "id": "269",
     "name": "Vitré",
     "abbr": "AVB"
@@ -50,18 +55,13 @@
     "abbr": "CEP"
   },
   {
-    "id": "345",
-    "name": "Fougères",
-    "abbr": "PFB"
+    "id": "15605",
+    "name": "Laval",
+    "abbr": "USL"
   },
   {
     "id": "33",
     "name": "Angers",
     "abbr": "EAB"
-  },
-  {
-    "id": "15605",
-    "name": "Laval",
-    "abbr": "USL"
   }
 ]
