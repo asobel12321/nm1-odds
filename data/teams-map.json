@@ -1,33 +1,13 @@
 [
   {
-    "id": "1902",
-    "name": "Rennes",
-    "abbr": "URB"
-  },
-  {
     "id": "341",
     "name": "Challans",
     "abbr": "VCB"
   },
   {
-    "id": "345",
-    "name": "Fougères",
-    "abbr": "PFB"
-  },
-  {
-    "id": "269",
-    "name": "Vitré",
-    "abbr": "AVB"
-  },
-  {
-    "id": "13305",
-    "name": "Tours",
-    "abbr": "TMB"
-  },
-  {
-    "id": "2937",
-    "name": "Tarbes Lourdes",
-    "abbr": "UTL"
+    "id": "1902",
+    "name": "Rennes",
+    "abbr": "URB"
   },
   {
     "id": "1844",
@@ -40,6 +20,36 @@
     "abbr": "LSV"
   },
   {
+    "id": "269",
+    "name": "Vitré",
+    "abbr": "AVB"
+  },
+  {
+    "id": "247",
+    "name": "Lorient",
+    "abbr": "CEP"
+  },
+  {
+    "id": "345",
+    "name": "Fougères",
+    "abbr": "PFB"
+  },
+  {
+    "id": "2937",
+    "name": "Tarbes Lourdes",
+    "abbr": "UTL"
+  },
+  {
+    "id": "33",
+    "name": "Angers",
+    "abbr": "EAB"
+  },
+  {
+    "id": "13305",
+    "name": "Tours",
+    "abbr": "TMB"
+  },
+  {
     "id": "296",
     "name": "Bordeaux",
     "abbr": "BOR"
@@ -50,18 +60,8 @@
     "abbr": "CCB"
   },
   {
-    "id": "247",
-    "name": "Lorient",
-    "abbr": "CEP"
-  },
-  {
     "id": "15605",
     "name": "Laval",
     "abbr": "USL"
-  },
-  {
-    "id": "33",
-    "name": "Angers",
-    "abbr": "EAB"
   }
 ]
