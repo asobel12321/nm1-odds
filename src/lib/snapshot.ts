@@ -15,6 +15,7 @@ import {
   createProjectionModel,
 } from "./projectionModel";
 import { refreshEfficiencyData } from "./ffbbEfficiency";
+import { FFBB_FEED_VERSION } from "./ffbb";
 import { simulateSeason } from "./simulate";
 import { buildWinTable } from "./winTable";
 import type { OddsCache } from "./types";
@@ -73,6 +74,7 @@ export const loadSnapshot = unstable_cache(
     JSON.stringify(MODEL_CONFIG),
     BEST_CASE_VERSION,
     NEXT_GAME_VERSION,
+    FFBB_FEED_VERSION,
   ],
   { revalidate: 3600 },
 );

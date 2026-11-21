@@ -1,6 +1,6 @@
 import { load } from "cheerio";
 import { createHash } from "node:crypto";
-import { parseRegularSeason } from "./ffbb";
+import { parseRegularSeason, ffbbFixtureId, hasGroupBStandings } from "./ffbb";
 import { parseBoxScore, type BoxGame } from "./ffbbBoxScore";
 import { possessionData } from "./efficiency";
 import { SOURCE_URL } from "./competition";
@@ -69,7 +69,20 @@ export async function refreshEfficiencyData(
   fetchText: FetchText,
   refreshAll = false,
 ): Promise<DataFile> {
-  const fresh = parseRegularSeason(html);
+  let standingsHtml = html;
+  if (!hasGroupBStandings(html)) {
+    // FFBB moved/removed the homepage table. An empty official table is
+    // recoverable only through a complete fixture/box/stat reconciliation.
+    try {
+      standingsHtml = await fetchText(SOURCE_URL + "/classement");
+    } catch {
+      standingsHtml = "";
+    }
+  }
+  const fresh = parseRegularSeason(html, new Date().toISOString(), {
+    previous,
+    standingsHtml,
+  });
   if (fresh.season !== previous.season)
     throw new Error("Season changed: update competition configuration first");
   const $ = load(html),
@@ -88,10 +101,25 @@ export async function refreshEfficiencyData(
         )
         .get(),
       href = e.find("a[href*='/match/']").first().attr("href");
-    if (ids.length === 2 && href)
-      links.set(ids.join("-"), new URL(href, SOURCE_URL).href);
+    if (ids.length === 2 && href) {
+      const round = Number(
+        e
+          .find(".game__day")
+          .text()
+          .match(/Journée\s+(\d+)/i)?.[1],
+      );
+      links.set(
+        ffbbFixtureId(ids[0], ids[1], round),
+        new URL(href, SOURCE_URL).href,
+      );
+    }
   });
-  const prior = new Map((previous.boxScores ?? []).map((g) => [g.id, g])),
+  const prior = new Map(
+      (previous.boxScores ?? []).map((g) => [
+        ffbbFixtureId(g.home, g.away, g.round),
+        g,
+      ]),
+    ),
     completed = fresh.games.filter((g) => g.played);
   const boxes: BoxGame[] = [],
     sources: NonNullable<DataFile["boxScoreSources"]> = {};
@@ -117,8 +145,8 @@ export async function refreshEfficiencyData(
             homeScore: old.homeScore,
             awayScore: old.awayScore,
           });
-          if (previous.boxScoreSources?.[game.id])
-            sources[game.id] = previous.boxScoreSources[game.id];
+          if (previous.boxScoreSources?.[old.id])
+            sources[game.id] = previous.boxScoreSources[old.id];
           continue;
         }
         const url = links.get(game.id);

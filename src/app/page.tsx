@@ -171,7 +171,11 @@ export default async function Home() {
                   {team.officialRank}
                   <small> / {data.teams.length}</small>
                 </strong>
-                <span>OFFICIAL POSITION</span>
+                <span>
+                  {data.standingsSource === "results"
+                    ? "POINTS POSITION"
+                    : "OFFICIAL POSITION"}
+                </span>
               </div>
               <div>
                 <strong>{expectedWins.toFixed(1)}</strong>
@@ -209,12 +213,23 @@ export default async function Home() {
               </span>
             </div>
             <StandingsTable rows={rows} />
+            {data.standingsSource === "results" && (
+              <p className="footnote">
+                FFBB’s standings table is currently unavailable. Records and
+                points positions are rebuilt from the complete FFBB score list,
+                with every completed game checked against its box score and the
+                team-stat totals.
+              </p>
+            )}
             <p className="footnote">
               Displayed positions are ranked by winning percentage, with equal
-              percentages ordered by FFBB position. Qualification odds use the
-              official end-of-phase tiebreak rules. Power rating is adjusted net
-              efficiency in points per 100 possessions; positive means above the
-              Group B average.
+              percentages ordered by{" "}
+              {data.standingsSource === "results"
+                ? "the calculated points position"
+                : "FFBB position"}
+              . Qualification odds use the official end-of-phase tiebreak rules.
+              Power rating is adjusted net efficiency in points per 100
+              possessions; positive means above the Group B average.
             </p>
           </div>
         </section>

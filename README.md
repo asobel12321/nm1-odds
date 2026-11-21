@@ -21,7 +21,7 @@ npm run typecheck
 npm run build
 ```
 
-`refresh` imports and validates the official page, then recomputes the 20,000-simulation cache. Validation requires 13 Group B teams, all 156 home/away fixtures, unique IDs, and score-derived records matching the standings. A malformed/incomplete upstream page fails before replacing the existing snapshot. The data contains actual source timestamps and official ranks. FFBB fixture times are Europe/Paris local time.
+`refresh` imports and validates the official page, then recomputes the 20,000-simulation cache. Validation requires 13 Group B teams, all 156 fixtures (two per team pairing), unique IDs, and score-derived records matching the standings. Fixtures are keyed by round and team pair so a venue reversal cannot merge the two legs. A malformed/incomplete score feed fails before replacing the existing snapshot. If the official standings table is missing, records may be rebuilt from the complete score list using the known same-season roster, but every box score and the FFBB team-stat totals must still reconcile; the UI labels those standings as calculated from results. The data contains actual source timestamps and official ranks. FFBB fixture times are Europe/Paris local time.
 
 The hosted site checks FFBB through a server-side cache refreshed approximately hourly on traffic. Fresh source data is validated before simulation; a source failure falls back to the validated Git snapshot with its original timestamp. The UI warns when the source timestamp is over two days old. A new season fails the live refresh rather than silently reusing this season’s rules.
 
