@@ -68,5 +68,10 @@ Published PR11 on 11 November 2026. Same-snapshot Vitré odds 69.59% → 70.03%;
 
 - [x] Diagnose failed Nov 18–20 jobs and compare current FFBB feeds.
 - [x] Reproduce venue inversion and missing standings failures; fix source parsing while preserving full score/stat validation.
-- [ ] Refresh and verify current scores, odds, cache, and daily workflow.
-- [ ] Deploy, confirm the live update, and sync the Active checkout.
+- [x] Refresh and verify current scores, odds, cache, and daily workflow.
+- [x] Deploy, confirm the live update, and sync the Active checkout.
+
+
+### Refresh repair results
+
+Published PR12 on 21 November 2026. The source had removed standings rows and reversed the Laval–Les Sables venue, colliding the previous fixture IDs. Stable round/pair IDs and score-derived standings restore refresh without relaxing complete box/team-stat validation. Full refresh now validates 75 games; Vitré 6–5, top-seven 70.92%. All 48 tests and patched builds passed in CI/Vercel. Workflow 44899504254 completed refresh/tests/commit successfully; live page and API are current. Next.js 16.4.6 resolves the build advisory. Windows local dependency downloads reset, so local npm ci remains an environment follow-up.
