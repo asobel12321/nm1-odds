@@ -2,52 +2,50 @@
 
 ## Objective
 
-Use the official 2026/27 NM1 tiebreaks in Vitré’s top-seven forecasts, including the combined score of head-to-head matchups.
+Restore automatic NM1 score/model updates after the site stopped at its 17 November snapshot.
 
 ## Branch
 
-codex/nm1-tiebreak-release (release record for codex/nm1-score-tiebreakers) in the nm1-odds-efficiency worktree. Canonical checkout: C:/Users/asobe/Projects/Active/nm1-odds.
+codex/restore-ffbb-refresh in C:/Users/asobe/Projects/Worktrees/nm1-odds-efficiency. Canonical checkout: C:/Users/asobe/Projects/Active/nm1-odds.
 
 ## Current Status
 
-Published 11 November 2026 through PR11: https://github.com/asobel12321/nm1-odds/pull/11. Feature merged as 9ca801af858ba3ad6613d2454815143c34c9a693. Using the same validated 58-game snapshot, Vitré’s forecast changes from 69.59% to 70.03%. Next-game win 78.44%, loss 59.34%, best round 80.36%. Live homepage and API both verified the new standings version and 70.0% displayed odds; canonical Active checkout synced.
+On 21 November, identified refresh failures on 18–20 November: a venue reversal collapsed the Laval–Les Sables legs into one ID (155 fixtures), and the main FFBB page lost its standings table. Fixed both; a complete live refresh passed with 13 teams, 156 fixtures and 75 validated boxes. Vitré now 6–5 and top-seven 70.92%. Final build/deploy and GitHub workflow verification pending. Build flagged Next 16.4.2 advisory. Updated manifests/lockfile to 16.4.6; Windows package downloads reset twice, so the patched final build will be verified by GitHub/Vercel before merging.
 
 ## Files Changed
 
-Shared season sampler, projection forecast adapter, tiebreak resolver, full/focus simulations and win table, next-game/best-round callers, experimental comparison adapter, odds cache, tests, homepage/what-if methodology, and documentation.
+FFBB parser and efficiency refresh, snapshot cache version, current data/odds/team map, standings-source UI labels, 5 new source-regression cases, corrected synthetic round formatting, framework patch, README/methodology and task records.
 
 ## Accomplishments
 
-- Checked FFBB general Articles 16–17 and the NM1 phase-one cutoff in the published 2026/27 rulebooks.
-- Rank projections by classification points; resolve ties by mini-table points, head-to-head margin and scoring, then overall group margin and scoring. Restart after a split; share positions if the rule calls for drawing lots.
-- Use real completed scores and projected totals with logistic sampled margins for future games. Forced results condition the margin on the chosen winner.
-- Keep the same one draw per fixture, model ratings, home advantage, win probabilities, sampled win histograms, and live standings presentation.
-- Version the cache and apply the same ranking and scores to headline odds, what-if, best round, next-game odds and the win target.
+- Identify fixtures by round and unordered team pair, preserving both legs through a venue reversal.
+- Require all 156 fixtures, two fixtures per team pair and the known same-season 13-team roster.
+- Try the dedicated standings page if the main page lacks standings. If both omit rows, reconstruct records and points from complete scores with an explicit results-derived flag.
+- Preserve all completed-box validation and independent FFBB team-stat reconciliation before replacing data.
+- Show calculated points position/source text when official standings are absent; preserve winning-percentage table order.
+- Invalidate the hosted fallback cache for the repaired source parser.
 
 ## Things Tried
 
-Initial full recompute took 36.3 seconds. Narrowed score work to games involving tied teams and the best-round shortcut to the cutoff tie. Final 64-combination best-round search took 8.68 seconds and reproduced the saved result exactly.
+Regression tests reproduced both actual errors before the code change; they pass after the fix. The full real refresh then succeeded. The initial production build compiled but stopped on a newly reported Next.js security advisory affecting <=16.4.4; upgrading within the existing 16.4 release line.
 
 ## Things Learned
 
-A split series uses the sum of the two margins. In a multi-team tie, the criteria restart with the remaining tied subset rather than moving straight to the next criterion.
+The two current Laval–Les Sables fixtures both list Les Sables at home. A home-away composite ID is not a unique match identity. The official team-stat page remains populated even though the standings pages are empty, allowing the full score/box snapshot to be reconciled independently.
 
 ## Known Issues
 
-Future score totals are projected, with stochastic margins; the model does not forecast match-level administrative rulings or forfeits. It starts from the official classification points reported in the snapshot. Existing win-probability calibration caveats remain.
+Until FFBB restores standings rows, records/positions are derived and labeled accordingly. This fallback refuses a known administrative points adjustment, a new season, missing fixtures, unknown teams or a statistical mismatch. Patched dependency build verification is pending in GitHub/Vercel because local Windows tarball downloads reset.
 
 ## Verification Run
 
-- npm test: PASS, 43 tests, including 7 new cases for official rule order, conditional score draws and seventh-place replay.
-- npm run lint: PASS.
-- npm run build: PASS, including final TypeScript compilation.
-- npm run recompute: PASS; exact baseline win histograms, ratings and data fingerprint match prior cache.
-- Final optimized best-round cache replay: PASS, exact, 8.68 seconds for 64 combinations.
+- Reproducer before fix: expected 2 failures, identical to the production errors.
+- Full live npm run refresh: PASS, 75 completed boxes and refreshed odds.
+- npm test: PASS, 48 tests, including derived-standings validation failures and venue inversion.
+- npm run typecheck and lint: PASS before framework patch.
+- First build: compilation/typecheck passed, then security-advisory stop. Lockfile updated to 16.4.6; final patched build pending CI.
 - git diff --check: PASS.
-- Built homepage and what-if API: PASS, 13 standings rows, updated methodology, and all three scenario probabilities replay exactly.
-- GitHub CI and Vercel preview/production deployment: PASS.
-- Live homepage/API: PASS, ffbb-2026-score-v1, 70.0% baseline, all three scenarios, 13 standings rows.
 
 ## Next Steps
 
-Release complete. Local server stopped. The existing automatic refresh recomputes the official tiebreak projections as new scores are validated.
+Verify patched framework, final build and page/API; publish through PR, run the GitHub refresh workflow, confirm production dates/record/odds, sync Active and update this record.

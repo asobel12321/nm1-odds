@@ -31,6 +31,7 @@ export interface DataFile {
   source?: string;
   phase?: string;
   group?: string;
+  standingsSource?: "results";
   boxScores?: BoxGame[];
   boxScoreSources?: Record<
     string,

@@ -62,3 +62,11 @@ Removed the homepage schedule/sidebar in PR10. Standings fill the row. Lint, bui
 ### Tiebreak release results
 
 Published PR11 on 11 November 2026. Same-snapshot Vitré odds 69.59% → 70.03%; ratings, win distributions and source data match exactly. All 43 tests, lint, build, GitHub checks and Vercel deployment passed. Local what-if replay matched all three scenarios; production homepage/API report the new version and updated methodology. Exceptional administrative match rulings are outside the projection.
+
+
+## Restore automatic FFBB refresh
+
+- [x] Diagnose failed Nov 18–20 jobs and compare current FFBB feeds.
+- [x] Reproduce venue inversion and missing standings failures; fix source parsing while preserving full score/stat validation.
+- [ ] Refresh and verify current scores, odds, cache, and daily workflow.
+- [ ] Deploy, confirm the live update, and sync the Active checkout.

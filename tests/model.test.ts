@@ -140,6 +140,7 @@ test("importer parses official page structure and rejects partial or inconsisten
   const scheduleOnly = { ...data };
   delete scheduleOnly.boxScores;
   delete scheduleOnly.boxScoreSources;
+  delete scheduleOnly.standingsSource;
   assert.deepEqual(parsed, scheduleOnly);
   assert.throws(
     () => parseRegularSeason(html(fixtures.slice(1))),

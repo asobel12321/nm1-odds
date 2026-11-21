@@ -35,7 +35,9 @@ function schedule(data: DataFile) {
       (g) =>
         '<li class="display-games__second-list__entry"><time datetime="' +
         g.date.slice(0, 10) +
-        '"></time><ul><li class="display-games__third-list__entry"><span class="game__day">Journée "+(g.round ?? 1)+", Group B</span><span class="game__date"><span class="date">' +
+        '"></time><ul><li class="display-games__third-list__entry"><span class="game__day">Journée ' +
+        (g.round ?? 1) +
+        ' , Group B</span><span class="game__date"><span class="date">' +
         g.date.slice(11) +
         '</span></span><a href="' +
         (data.boxScoreSources?.[g.id]?.url ?? "/match/" + g.id + "-test") +
@@ -255,4 +257,52 @@ test("same-score stat corrections force a full refetch before replacing a snapsh
     next.boxScores!.map((g) => g.homeBox),
     data.boxScores!.map((g) => g.homeBox),
   );
+});
+
+test("missing official standings rebuild current records only after box and team-stat reconciliation", async () => {
+  const data = loadData(),
+    before = structuredClone(data),
+    requests: string[] = [];
+  const html = schedule(data);
+  const fixtureOnly = html.slice(html.indexOf("<ul>"));
+  const next = await refreshEfficiencyData(fixtureOnly, data, async (url) => {
+    requests.push(url);
+    if (url.endsWith("/classement"))
+      return "<h2 class='generic__title'>Classement poule B</h2><div><table><tbody></tbody></table></div>";
+    if (url.endsWith("/leaders/equipes")) return statistics(data);
+    throw Error("Unexpected refetch: " + url);
+  });
+  assert.equal(next.standingsSource, "results");
+  assert.equal(next.games.length, 156);
+  assert.equal(next.boxScores!.length, data.boxScores!.length);
+  assert.equal(requests.length, 2);
+  for (const team of data.teams) {
+    const refreshed = next.teams.find((t) => t.id === team.id)!;
+    assert.deepEqual(
+      [refreshed.wins, refreshed.losses, refreshed.points],
+      [team.wins, team.losses, team.points],
+    );
+  }
+  assert.deepEqual(data, before);
+});
+
+test("derived standings still reject inconsistent team stats without changing the saved input", async () => {
+  const data = loadData(),
+    before = structuredClone(data),
+    wrong = structuredClone(data);
+  wrong.boxScores![0].homeBox.turnovers += 10;
+  const html = schedule(data);
+  const fixtureOnly = html.slice(html.indexOf("<ul>"));
+  await assert.rejects(
+    () =>
+      refreshEfficiencyData(fixtureOnly, data, async (url) => {
+        if (url.endsWith("/classement")) return "<main>No standings</main>";
+        if (url.endsWith("/leaders/equipes")) return statistics(wrong);
+        const game = data.boxScores!.find((g) => g.source === url);
+        assert.ok(game);
+        return boxHtml(game);
+      }),
+    /Team statistics disagree/,
+  );
+  assert.deepEqual(data, before);
 });
