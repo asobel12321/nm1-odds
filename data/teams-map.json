@@ -15,6 +15,11 @@
     "abbr": "PFB"
   },
   {
+    "id": "269",
+    "name": "Vitré",
+    "abbr": "AVB"
+  },
+  {
     "id": "14016",
     "name": "Les Sables d'Olonne",
     "abbr": "LSV"
@@ -33,11 +38,6 @@
     "id": "1844",
     "name": "Toulouse",
     "abbr": "TBC"
-  },
-  {
-    "id": "269",
-    "name": "Vitré",
-    "abbr": "AVB"
   },
   {
     "id": "1719",
