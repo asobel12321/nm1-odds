@@ -15,9 +15,9 @@
     "abbr": "PFB"
   },
   {
-    "id": "269",
-    "name": "Vitré",
-    "abbr": "AVB"
+    "id": "33",
+    "name": "Angers",
+    "abbr": "EAB"
   },
   {
     "id": "14016",
@@ -25,24 +25,19 @@
     "abbr": "LSV"
   },
   {
-    "id": "33",
-    "name": "Angers",
-    "abbr": "EAB"
-  },
-  {
-    "id": "13305",
-    "name": "Tours",
-    "abbr": "TMB"
-  },
-  {
     "id": "1844",
     "name": "Toulouse",
     "abbr": "TBC"
   },
   {
-    "id": "1719",
-    "name": "Chartres",
-    "abbr": "CCB"
+    "id": "269",
+    "name": "Vitré",
+    "abbr": "AVB"
+  },
+  {
+    "id": "13305",
+    "name": "Tours",
+    "abbr": "TMB"
   },
   {
     "id": "247",
@@ -53,6 +48,11 @@
     "id": "2937",
     "name": "Tarbes Lourdes",
     "abbr": "UTL"
+  },
+  {
+    "id": "1719",
+    "name": "Chartres",
+    "abbr": "CCB"
   },
   {
     "id": "296",
